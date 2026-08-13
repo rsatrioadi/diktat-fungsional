@@ -1,0 +1,12 @@
+[book]
+title = "Diktat Pemrograman Fungsional"
+authors = ["Satrio Adi Rukmono"]
+language = "id"
+
+[output.html]
+mathjax-support = true
+
+[output.pandoc.profile.pdf]
+output-file = "output.pdf"
+to = "latex"
+pdf-engine = "lualatex"
