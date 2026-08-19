@@ -1,0 +1,740 @@
+<!DOCTYPE HTML>
+<html lang="id" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Type Bentukan - Diktat Pemrograman Fungsional</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-e96d0476.css">
+        <link rel="stylesheet" href="css/chrome-d279d366.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex-0ab6a5e0.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-2ab1aa36.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Diktat Pemrograman Fungsional</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="type-bentukan"><a class="header" href="#type-bentukan">Type Bentukan</a></h1>
+<h2 id="persoalan-yang-melahirkannya"><a class="header" href="#persoalan-yang-melahirkannya">Persoalan yang Melahirkannya</a></h2>
+<p>Sampai bab ini, setiap fungsi yang ditulis hanya menerima dan menghasilkan nilai bertype dasar: <code>Integer</code>, <code>Real</code>, <code>Boolean</code>, <code>Character</code>. Pembatasan itu sudah mulai terasa.</p>
+<p>Pada Bab 4 ditulis <code>quadrant : Real, Real → Integer [1..4]</code>. Dua parameter <code>Real</code> itu sesungguhnya bukan dua bilangan yang berdiri sendiri; keduanya adalah satu titik. Tidak ada dalam teksnya yang menyatakan hal itu. Yang menyatakannya hanyalah nama parameternya, <code>x</code> dan <code>y</code>, dan itu pun hanya kepada pembaca manusia. Hal yang sama sudah terjadi pada Bab 3. Fungsi <code>distance</code> di sana berdefinisi <code>distance : Real, Real, Real, Real → Real</code>: empat bilangan berderet, dan tidak ada apa pun dalam teksnya yang mencegah seseorang mengaplikasikannya dengan urutan yang keliru. Bahwa keempatnya sesungguhnya dua titik hanya hidup di kepala penulisnya.</p>
+<p><strong>Type bentukan</strong> adalah type baru yang dibentuk dari type yang sudah ada, dengan memberinya nama. Type baru itu membuat gagasan “titik” menjadi sesuatu yang tertulis dalam program, bukan sekadar dimaksudkan oleh penulisnya.</p>
+<p>Dalam berbagai paradigma dan bahasa, gagasan yang sama dikenal dengan nama <em>type komposisi</em>, <em>type terstruktur</em>, <em>rekord</em>, atau <em>struct</em>. Diktat ini memakai istilah <strong>type bentukan</strong>.</p>
+<h2 id="type-sebagai-produk"><a class="header" href="#type-sebagai-produk">Type sebagai Produk</a></h2>
+<p>Sebuah type adalah <strong>himpunan nilai</strong> beserta <strong>sekumpulan operasi</strong> yang terdefinisi atasnya.</p>
+<p>Type bentukan yang paling umum dipakai adalah <strong>produk</strong>: nilainya terdiri dari beberapa komponen sekaligus. Sebuah titik (dengan type bentukan yang akan kita beri nama <code>Point</code>) adalah sebuah absis <strong>dan</strong> sebuah ordinat. Sebuah pecahan (<code>Fraction</code>) adalah sebuah pembilang (<em>numerator</em>) <strong>dan</strong> sebuah penyebut (<em>denominator</em>).</p>
+<p>Himpunan nilainya adalah hasil kali kartesian himpunan nilai komponennya: dari sinilah nama “produk” berasal. Bila <code>Point</code> terdiri dari dua <code>Real</code>, maka setiap pasangan bilangan riil adalah sebuah <code>Point</code>, dan tidak ada nilai <code>Point</code> yang lain.</p>
+<p>Nilai sebuah type bentukan dituliskan sebagai <strong>tuple</strong>, dengan komponen berurutan di antara kurung sudut:</p>
+<pre><code>⟨0.0, 0.0⟩          { titik pusat koordinat }
+⟨1.0, 2.0⟩          { titik dengan absis 1.0 dan ordinat 2.0 }
+⟨3, 4⟩              { pecahan tiga per empat }
+</code></pre>
+<p>Beberapa type bentukan yang sering muncul dalam informatika:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Type</th><th>Komposisi</th><th>Makna Komponen</th></tr>
+</thead>
+<tbody>
+<tr><td><code>Point</code></td><td><code>⟨x : Real, y : Real⟩</code></td><td>absis, ordinat</td></tr>
+<tr><td><code>Complex</code></td><td><code>⟨re : Real, im : Real⟩</code></td><td>bagian riil, bagian imajiner</td></tr>
+<tr><td><code>Fraction</code></td><td><code>⟨numerator : Integer, denominator : Integer &gt; 0⟩</code></td><td>pembilang, penyebut</td></tr>
+<tr><td><code>Time</code></td><td><code>⟨hour : Integer, minute : Integer, second : Integer⟩</code></td><td>jam, menit, detik</td></tr>
+<tr><td><code>Date</code></td><td><code>⟨day : Integer, month : Integer, year : Integer⟩</code></td><td>tanggal, bulan, tahun</td></tr>
+</tbody>
+</table>
+</div>
+<p>Komponen sebuah type bentukan tidak harus bertype dasar. Dari <code>Point</code> dapat dibentuk <code>Line</code> sebagai <code>⟨start : Point, end : Point⟩</code>, dan dari <code>Time</code> serta <code>Date</code> dapat dibentuk <code>DateTime</code> sebagai <code>⟨date : Date, time : Time⟩</code>. Kemampuan menyusun type di atas type membuat gagasan ini berguna melampaui contoh-contoh kecil di bab ini.</p>
+<h2 id="mendefinisikan-sebuah-type-bentukan"><a class="header" href="#mendefinisikan-sebuah-type-bentukan">Mendefinisikan Sebuah Type Bentukan</a></h2>
+<p>Mendefinisikan type bentukan dalam notasi fungsional berarti menuliskan lima hal. Empat di antaranya adalah fungsi, sesuai dengan konteks fungsional: yang dapat dituliskan hanyalah fungsi.</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bagian</th><th>Isi</th><th>Direalisasi?</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Definisi type</strong></td><td>nama type dan komposisinya</td><td>tidak</td></tr>
+<tr><td><strong>Selektor</strong></td><td>mengambil satu komponen dari sebuah nilai</td><td>tidak</td></tr>
+<tr><td><strong>Konstruktor</strong></td><td>membentuk sebuah nilai dari komponen-komponennya</td><td>tidak</td></tr>
+<tr><td><strong>Predikat</strong></td><td>menentukan karakteristik sebuah nilai</td><td>ya</td></tr>
+<tr><td><strong>Operator lain</strong></td><td>fungsi yang berlaku atas type tersebut</td><td>ya</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Konstruktor dan selektor tidak direalisasi.</strong> Alasannya bukan karena keduanya sulit, melainkan karena keduanya adalah persoalan bahasa, bukan persoalan rancangan. Bagaimana sebuah pasangan nilai disimpan dan diambil kembali ditentukan sepenuhnya oleh bahasa yang dipakai; notasi hanya menyatakan bahwa keduanya <em>ada</em> dan menyatakan domain serta range-nya. Sebagaimana akan terlihat pada setiap contoh di bab ini, bahasa acuan menyediakan keduanya secara cuma-cuma begitu type-nya didefinisikan.</p>
+<p>Kelimanya dituliskan dalam satu <strong>teks type</strong>, yang diawali judul <code>TYPE namaType</code>. Judul ini sejajar dengan <code>JUDUL</code> pada teks fungsi Bab 2: ia memudahkan pencarian dan bukan bagian dari program.</p>
+<p>Konvensi penamaan pada bab ini:</p>
+<ul>
+<li>Nama type bentukan diawali huruf besar: <code>Point</code>, <code>Fraction</code>, <code>Date</code>.</li>
+<li>Nama konstruktor diawali <code>make</code>: <code>makePoint</code>, <code>makeFraction</code>.</li>
+<li>Nama selektor <strong>sama dengan</strong> nama komponen pada definisi type: <code>x</code>, <code>y</code>, <code>numerator</code>. Dua nama untuk satu hal yang sama tidak menambah apa-apa selain kesempatan keliru.</li>
+<li>Nama predikat diawali <code>is</code>, sebagaimana Bab 2: <code>isOrigin</code>, <code>isValidDate</code>.</li>
+</ul>
+<h2 id="prinsip-yang-mendasari-bekerja-lewat-selektor"><a class="header" href="#prinsip-yang-mendasari-bekerja-lewat-selektor">Prinsip yang Mendasari: Bekerja Lewat Selektor</a></h2>
+<p>Satu aturan berlaku di seluruh bab ini, dan sebaiknya diterima sekarang sebelum contohnya membuatnya tampak berlebihan:</p>
+<blockquote>
+<p>Setiap fungsi atas sebuah type bentukan mengakses komponennya <strong>hanya melalui selektor</strong>, dan membentuk nilainya <strong>hanya melalui konstruktor</strong>.</p>
+</blockquote>
+<p>Artinya: <code>x (p)</code>, bukan “komponen pertama dari <code>p</code>”. Harganya adalah teks yang sedikit lebih panjang. Imbalannya: seluruh pengetahuan tentang <em>bagaimana</em> sebuah <code>Point</code> tersusun terkumpul di satu tempat, yaitu definisi type-nya, sehingga bila kelak susunannya diubah (misalnya <code>Point</code> disimpan dalam koordinat polar), tidak ada satu pun fungsi lain yang perlu ikut berubah.</p>
+<p>Gagasan ini akan kembali kelak, jauh lebih besar, dengan nama <em>abstraksi data</em>. Di sini, ini baru berupa disiplin menulis.</p>
+<h2 id="contoh-1-type-point"><a class="header" href="#contoh-1-type-point">Contoh 1: Type Point</a></h2>
+<p><strong>Persoalan.</strong> Definisikan type <code>Point</code> yang mewakili sebuah titik pada koordinat kartesian, beserta operasi yang lazim atasnya.</p>
+<pre><code>TYPE POINT
+</code></pre>
+<pre><code>DEFINISI TYPE
+    type Point : ⟨x : Real, y : Real⟩
+    { ⟨x, y⟩ adalah sebuah Point, dengan x sebagai absis dan y sebagai ordinat }
+
+DEFINISI DAN SPESIFIKASI SELEKTOR
+    x : Point → Real
+    { x (p) memberikan absis dari Point p }
+
+    y : Point → Real
+    { y (p) memberikan ordinat dari Point p }
+
+DEFINISI DAN SPESIFIKASI KONSTRUKTOR
+    makePoint : Real, Real → Point
+    { makePoint (a, b) membentuk sebuah Point dengan absis a dan ordinat b }
+
+DEFINISI DAN SPESIFIKASI PREDIKAT
+    isOrigin : Point → Boolean
+    { isOrigin (p) bernilai true bila p adalah titik pusat koordinat ⟨0.0, 0.0⟩ }
+
+    isOnAxis : Point → Boolean
+    { isOnAxis (p) bernilai true bila p terletak pada sumbu X atau sumbu Y }
+
+DEFINISI DAN SPESIFIKASI OPERATOR LAIN
+    distanceFromOrigin : Point → Real
+    { distanceFromOrigin (p) adalah jarak p terhadap titik pusat koordinat }
+
+    distance : Point, Point → Real
+    { distance (p1, p2) adalah jarak antara Point p1 dan p2 }
+
+    quadrant : Point → Integer [1..4]
+    { quadrant (p) adalah nomor kuadran tempat p berada.
+      Prasyarat: not (isOnAxis (p)) }
+</code></pre>
+<pre><code>REALISASI
+    isOrigin (p) : (x (p) = 0.0) and (y (p) = 0.0)
+
+    isOnAxis (p) : (x (p) = 0.0) or (y (p) = 0.0)
+
+    distanceFromOrigin (p) : sqrt (x (p) * x (p) + y (p) * y (p))
+
+    distance (p1, p2) :
+        sqrt (sqrDif (x (p1), x (p2)) +
+              sqrDif (y (p1), y (p2)))
+
+    quadrant (p) :
+        depend on x (p), y (p)
+            (x (p) &gt; 0.0) and (y (p) &gt; 0.0) : 1
+            (x (p) &lt; 0.0) and (y (p) &gt; 0.0) : 2
+            (x (p) &lt; 0.0) and (y (p) &lt; 0.0) : 3
+            (x (p) &gt; 0.0) and (y (p) &lt; 0.0) : 4
+</code></pre>
+<pre><code>APLIKASI
+    ⇒ isOrigin (makePoint (0.0, 0.0))
+      true
+    ⇒ isOnAxis (makePoint (0.0, 5.0))
+      true
+    ⇒ distanceFromOrigin (makePoint (3.0, 4.0))
+      5.0
+    ⇒ distance (makePoint (1.0, 1.0), makePoint (4.0, 5.0))
+      5.0
+    ⇒ quadrant (makePoint (-3.0, 2.0))
+      2
+</code></pre>
+<p>Tiga hal patut diperhatikan.</p>
+<p><strong><code>quadrant</code> dan <code>distance</code> sudah pernah ditulis, dan sekarang berubah.</strong> Pada Bab 4 definisinya adalah <code>quadrant : Real, Real → Integer [1..4]</code>, dan pada Bab 3 <code>distance : Real, Real, Real, Real → Real</code>. Isi realisasinya praktis sama; yang berubah adalah <em>apa yang diterimanya</em>. Versi terdahulu menerima bilangan-bilangan yang kebetulan diperlakukan sebagai titik; versi ini menerima titik. Perbedaannya tidak terlihat pada hasil, tetapi terlihat pada apa yang mungkin salah: <code>quadrant (3.0, 2.0)</code> dan <code>quadrant (2.0, 3.0)</code> sama-sama sah pada versi lama meskipun salah satunya mungkin berasal dari kekeliruan urutan, sedangkan pada versi ini tidak ada urutan yang dapat tertukar. Mulai bab ini, kedua nama itu selalu berarti versi yang bekerja atas <code>Point</code>.</p>
+<p>Perhatikan bahwa <code>distance</code> memakai kembali <code>sqrDif</code> dari Bab 3, dan bahwa <code>distanceFromOrigin</code> justru <strong>tidak</strong> dapat memakai <code>square</code> dari Bab 2: domain <code>square</code> adalah <code>Integer</code>, sedangkan yang dikuadratkan di sini adalah <code>Real</code>.</p>
+<p><strong>Prasyaratnya kini dapat dinyatakan dengan nama.</strong> Bab 4 menuliskan prasyarat <code>x ≠ 0.0 and y ≠ 0.0</code>. Di sini prasyaratnya adalah <code>not (isOnAxis (p))</code>: kalimat yang menyebutkan gagasannya, bukan perhitungannya. Setiap kali sebuah kondisi cukup penting untuk muncul lebih dari sekali, ia layak diberi nama sebagai predikat.</p>
+<p><strong><code>distanceFromOrigin</code> bukan kasus khusus yang berdiri sendiri.</strong> Fungsi ini dapat ditulis ulang sebagai <code>distance (p, makePoint (0.0, 0.0))</code>, dan dengan begitu hilanglah satu realisasi yang harus dipelihara. Yang tersisa hanyalah pertimbangan keterbacaan. Latihan Merancang di akhir bab menanyakan mana yang Anda pilih.</p>
+<h3 id="dalam-haskell"><a class="header" href="#dalam-haskell">Dalam Haskell</a></h3>
+<pre><code class="language-haskell">data Point = Point { x :: Double, y :: Double }
+
+-- konstruktor: Point 3.0 4.0
+-- selektor:    x p, y p
+
+isOrigin :: Point -&gt; Bool
+-- isOrigin p bernilai True bila p adalah titik pusat koordinat
+isOrigin p = x p == 0.0 &amp;&amp; y p == 0.0
+
+distance :: Point -&gt; Point -&gt; Double
+-- distance p1 p2 adalah jarak antara p1 dan p2
+distance p1 p2 = sqrt (sqrDif (x p1) (x p2) +
+                       sqrDif (y p1) (y p2))
+</code></pre>
+<p>Satu baris <code>data</code> menghasilkan tiga hal sekaligus: type-nya, konstruktornya (<code>Point</code>), dan kedua selektornya (<code>x</code>, <code>y</code>). Inilah yang dimaksud ketika dikatakan bahwa konstruktor dan selektor tidak perlu direalisasi dalam notasi. Implementasi bahasa yang mengerjakannya.</p>
+<p>Dua catatan tentang terjemahan ini:</p>
+<ul>
+<li>Konstruktor dalam Haskell bernama <code>Point</code>, sama dengan nama type-nya, dan bukan <code>makePoint</code>. Keduanya boleh sama karena Haskell membedakan nama type dari nama nilai. Notasi tidak membuat pembedaan itu, sehingga <code>makePoint</code> tetap diperlukan di sana.</li>
+<li><code>x p == 0.0</code> adalah perbandingan kesamaan atas bilangan riil, dan perbandingan semacam itu jarang merupakan gagasan yang baik: hasil perhitungan riil hampir tidak pernah persis sama dengan nilai yang diharapkan. Untuk titik yang dibentuk langsung dari literal, seperti pada contoh di atas, hal ini tidak menjadi masalah. Untuk titik yang merupakan hasil perhitungan, <code>isOrigin</code> sebaiknya diganti dengan pemeriksaan <code>distanceFromOrigin (p) &lt; ε</code> untuk suatu <code>ε</code> kecil yang dinyatakan pada spesifikasi.</li>
+</ul>
+<h2 id="contoh-2-type-fraction"><a class="header" href="#contoh-2-type-fraction">Contoh 2: Type Fraction</a></h2>
+<p><strong>Persoalan.</strong> Definisikan type <code>Fraction</code> beserta operator aritmatika dan relasional atasnya.</p>
+<p>Type ini memperkenalkan dua persoalan yang tidak muncul pada <code>Point</code>.</p>
+<pre><code>TYPE FRACTION
+</code></pre>
+<pre><code>DEFINISI TYPE
+    type Fraction : ⟨numerator : Integer, denominator : Integer &gt; 0⟩
+    { ⟨numerator, denominator⟩ adalah sebuah pecahan yang bernilai
+      numerator dibagi denominator. Penyebut selalu positif; tanda
+      pecahan dibawa oleh pembilangnya }
+
+DEFINISI DAN SPESIFIKASI SELEKTOR
+    numerator : Fraction → Integer
+    { numerator (f) memberikan pembilang dari f }
+
+    denominator : Fraction → Integer &gt; 0
+    { denominator (f) memberikan penyebut dari f }
+
+DEFINISI DAN SPESIFIKASI KONSTRUKTOR
+    makeFraction : Integer, Integer → Fraction
+    { makeFraction (n, d) membentuk pecahan bernilai n/d.
+      Prasyarat: d &gt; 0 }
+
+DEFINISI DAN SPESIFIKASI PREDIKAT
+    isEqFraction : Fraction, Fraction → Boolean
+    { isEqFraction (f1, f2) bernilai true bila f1 dan f2 bernilai sama }
+
+    isLtFraction : Fraction, Fraction → Boolean
+    { isLtFraction (f1, f2) bernilai true bila nilai f1 lebih kecil
+      daripada nilai f2 }
+
+DEFINISI DAN SPESIFIKASI OPERATOR LAIN
+    addFraction : Fraction, Fraction → Fraction
+    { addFraction (f1, f2) adalah jumlah f1 dan f2:
+      n1/d1 + n2/d2 = (n1*d2 + n2*d1) / (d1*d2) }
+
+    mulFraction : Fraction, Fraction → Fraction
+    { mulFraction (f1, f2) adalah hasil kali f1 dan f2:
+      n1/d1 * n2/d2 = (n1*n2) / (d1*d2) }
+
+    toReal : Fraction → Real
+    { toReal (f) adalah nilai f sebagai bilangan riil }
+</code></pre>
+<pre><code>REALISASI
+    isEqFraction (f1, f2) :
+        numerator (f1) * denominator (f2) = numerator (f2) * denominator (f1)
+
+    isLtFraction (f1, f2) :
+        numerator (f1) * denominator (f2) &lt; numerator (f2) * denominator (f1)
+
+    addFraction (f1, f2) :
+        makeFraction (numerator (f1) * denominator (f2) +
+                      numerator (f2) * denominator (f1),
+                      denominator (f1) * denominator (f2))
+
+    mulFraction (f1, f2) :
+        makeFraction (numerator (f1) * numerator (f2),
+                      denominator (f1) * denominator (f2))
+
+    toReal (f) : asReal (numerator (f)) / asReal (denominator (f))
+</code></pre>
+<pre><code>APLIKASI
+    ⇒ isEqFraction (makeFraction (1, 2), makeFraction (2, 4))
+      true
+    ⇒ isLtFraction (makeFraction (1, 3), makeFraction (1, 2))
+      true
+    ⇒ addFraction (makeFraction (1, 2), makeFraction (1, 3))
+      ⟨5, 6⟩
+    ⇒ mulFraction (makeFraction (2, 3), makeFraction (3, 4))
+      ⟨6, 12⟩
+    ⇒ toReal (makeFraction (1, 4))
+      0.25
+</code></pre>
+<h3 id="persoalan-pertama-invarian-type"><a class="header" href="#persoalan-pertama-invarian-type">Persoalan pertama: invarian type</a></h3>
+<p>Definisi type menyatakan <code>denominator : Integer &gt; 0</code>. Pernyataan itu <strong>tidak dijamin oleh apa pun</strong>. Notasi menuliskannya, tetapi tidak ada mekanisme yang mencegah terbentuknya pecahan dengan penyebut nol (atau negatif).</p>
+<p>Syarat semacam ini disebut <strong>invarian</strong> sebuah type: sifat yang harus berlaku bagi setiap nilai type tersebut, sepanjang hidupnya. Dalam notasi fungsional, invarian ditegakkan dengan disiplin, di dua tempat:</p>
+<ul>
+<li>Konstruktor mencantumkan prasyaratnya (<code>d &gt; 0</code>), sehingga tanggung jawab memeriksanya jatuh kepada pemanggil. Perhatikan bahwa prasyaratnya adalah <code>d &gt; 0</code> dan bukan <code>d ≠ 0</code>: prasyarat sebuah konstruktor harus menjamin <strong>seluruh</strong> invarian type-nya.</li>
+<li>Setiap operator yang menghasilkan nilai baru harus memastikan hasilnya tetap memenuhi invarian. Perhatikan bahwa <code>addFraction</code> dan <code>mulFraction</code> menghasilkan penyebut berupa hasil kali kedua penyebut masukannya, yang positif bila keduanya positif, jadi keduanya aman.</li>
+</ul>
+<p>Bila satu saja operator lalai, seluruh sisa program berjalan di atas nilai yang tidak sah, dan gejalanya akan muncul di tempat yang jauh dari sebabnya. Memeriksa invarian pada setiap operator yang menghasilkan nilai bertype tersebut adalah kebiasaan yang murah dan berumur panjang.</p>
+<h3 id="persoalan-kedua-nilai-versus-representasi"><a class="header" href="#persoalan-kedua-nilai-versus-representasi">Persoalan kedua: nilai versus representasi</a></h3>
+<p><code>makeFraction (1, 2)</code> dan <code>makeFraction (2, 4)</code> adalah dua nilai <code>Fraction</code> yang <strong>berbeda representasinya</strong> tetapi <strong>sama nilainya</strong>. Inilah sebabnya <code>isEqFraction</code> harus direalisasi, dan tidak boleh diserahkan kepada perbandingan komponen demi komponen, yang akan menjawab bahwa keduanya berbeda.</p>
+<p>Perbedaan ini tidak muncul pada <code>Point</code>: dua <code>Point</code> sama bila dan hanya bila absis dan ordinatnya sama. <code>Fraction</code> adalah contoh pertama dalam diktat ini tempat <strong>beberapa representasi mewakili satu nilai yang sama</strong>, dan setiap kali hal itu terjadi, kesamaan menjadi sesuatu yang harus dirancang, bukan diwarisi.</p>
+<p>Ada jalan lain: mengharuskan setiap <code>Fraction</code> selalu berada dalam bentuk paling sederhana, sehingga satu nilai hanya punya satu representasi dan perbandingan komponen kembali sah. Jalan itu memerlukan fungsi faktor persekutuan terbesar (FPB) yang definisinya rekursif, sehingga pembahasannya menunggu Bab 6. Latihan Merancang di akhir bab menanyakan mana di antara keduanya yang Anda pilih dan apa harganya.</p>
+<h3 id="dalam-haskell-1"><a class="header" href="#dalam-haskell-1">Dalam Haskell</a></h3>
+<pre><code class="language-haskell">data Fraction = Fraction { numerator :: Integer, denominator :: Integer }
+
+isEqFraction :: Fraction -&gt; Fraction -&gt; Bool
+-- isEqFraction f1 f2 bernilai True bila f1 dan f2 bernilai sama
+isEqFraction f1 f2 = numerator f1 * denominator f2 == numerator f2 * denominator f1
+
+addFraction :: Fraction -&gt; Fraction -&gt; Fraction
+-- addFraction f1 f2 adalah jumlah f1 dan f2
+addFraction f1 f2 = Fraction (numerator f1 * denominator f2 + numerator f2 * denominator f1)
+                             (denominator f1 * denominator f2)
+</code></pre>
+<p>Haskell menyediakan cara pintas untuk membangkitkan operasi kesamaan secara otomatis, dengan menambahkan <code>deriving Eq</code> pada definisi <code>data</code>. <strong>Untuk <code>Fraction</code>, cara pintas itu memberikan jawaban yang salah</strong>, karena yang dibangkitkannya adalah perbandingan komponen demi komponen: <code>Fraction 1 2</code> dan <code>Fraction 2 4</code> akan dinyatakan berbeda.</p>
+<p>Ini adalah pelajaran yang lebih besar daripada satu kata kunci. Fasilitas otomatis sebuah bahasa bekerja pada tingkat representasi, sedangkan yang sering kita maksudkan adalah kesamaan pada tingkat nilai. Keduanya bertepatan cukup sering sehingga kita lupa bahwa keduanya berbeda (dan tidak bertepatan cukup sering sehingga kelupaan itu mahal).</p>
+<h2 id="contoh-3-type-date"><a class="header" href="#contoh-3-type-date">Contoh 3: Type Date</a></h2>
+<p><strong>Persoalan.</strong> Definisikan type <code>Date</code> beserta predikat untuk memeriksa keabsahan dan membandingkan dua tanggal.</p>
+<pre><code>TYPE DATE
+</code></pre>
+<pre><code>DEFINISI TYPE
+    type Date : ⟨day : Integer [1..31], month : Integer [1..12], year : Integer &gt; 0⟩
+    { ⟨day, month, year⟩ adalah sebuah tanggal }
+
+DEFINISI DAN SPESIFIKASI SELEKTOR
+    day : Date → Integer [1..31]
+    month : Date → Integer [1..12]
+    year : Date → Integer &gt; 0
+    { masing-masing memberikan komponen yang bersesuaian dari sebuah Date }
+
+DEFINISI DAN SPESIFIKASI KONSTRUKTOR
+    makeDate : Integer, Integer, Integer → Date
+    { makeDate (d, m, y) membentuk sebuah Date.
+      Prasyarat: isValidDate (d, m, y) }
+
+DEFINISI DAN SPESIFIKASI PREDIKAT
+    isValidDate : Integer, Integer, Integer → Boolean
+    { isValidDate (d, m, y) bernilai true bila ⟨d, m, y⟩ adalah tanggal yang sah }
+
+    isBefore : Date, Date → Boolean
+    { isBefore (d1, d2) bernilai true bila d1 jatuh sebelum d2 }
+
+DEFINISI DAN SPESIFIKASI OPERATOR LAIN
+    nDaysInMonth : Integer [1..12], Integer &gt; 0 → Integer [28..31]
+    { nDaysInMonth (m, y) adalah banyaknya hari dalam bulan m pada tahun y }
+</code></pre>
+<pre><code>REALISASI
+    nDaysInMonth (m, y) :
+      depend on m
+        m = 2                                     : if isLeapYear (y) then 29 else 28
+        (m = 4) or (m = 6) or (m = 9) or (m = 11) : 30
+        else                                      : 31
+
+    isValidDate (d, m, y) :
+      ((y &gt; 0) and (m ≥ 1) and (m ≤ 12) and (d ≥ 1))
+        and then (d ≤ nDaysInMonth (m, y))
+
+    isBefore (d1, d2) :
+      let
+        sameYear  : year (d1) = year (d2)
+        sameMonth : month (d1) = month (d2)
+      in
+        depend on d1, d2
+          not (sameYear)               : year (d1) &lt; year (d2)
+          sameYear and not (sameMonth) : month (d1) &lt; month (d2)
+          sameYear and sameMonth       : day (d1) &lt; day (d2)
+</code></pre>
+<pre><code>APLIKASI
+    ⇒ nDaysInMonth (2, 1900)
+      28
+    ⇒ nDaysInMonth (2, 2000)
+      29
+    ⇒ isValidDate (29, 2, 2023)
+      false
+    ⇒ isValidDate (29, 2, 2024)
+      true
+    ⇒ isBefore (makeDate (31, 12, 2023), makeDate (1, 1, 2024))
+      true
+    ⇒ isBefore (makeDate (1, 3, 2024), makeDate (1, 3, 2024))
+      false
+</code></pre>
+<p>Contoh ini mengumpulkan hampir seluruh isi empat bab sebelumnya dalam satu tempat, dan itulah sebabnya contoh ini diletakkan terakhir.</p>
+<p><strong><code>isLeapYear</code> dipakai kembali tanpa ditulis ulang.</strong> Fungsi ini sudah didefinisikan pada Bab 3 dan sudah diperiksa di sana. Yang dikerjakan di sini hanyalah mengaplikasikannya. Kebiasaan menyusun fungsi dari fungsi yang sudah ada, alih-alih menuliskan kembali perhitungannya, adalah satu-satunya cara sebuah program tetap dapat diperiksa kebenarannya ketika ia bertumbuh.</p>
+<p><strong><code>and then</code> dipakai sekali, dan memang diperlukan sekali.</strong> Pada <code>isValidDate</code>, ekspresi <code>d ≤ nDaysInMonth (m, y)</code> hanya bermakna bila <code>m</code> sudah dipastikan berada dalam <code>[1..12]</code>; tanpa hubung-singkat, <code>nDaysInMonth (13, 2024)</code> akan dievaluasi dan tidak menghasilkan apa-apa. Empat pemeriksaan sebelumnya selalu terdefinisi, sehingga keempatnya dirangkai dengan <code>and</code> biasa, sesuai anjuran Bab 4: <code>and then</code> hanya dipakai di tempat yang memang menuntutnya, agar pembaca tahu di mana urutan benar-benar berarti.</p>
+<p><strong><code>isBefore</code> adalah analisis kasus berjenjang, dan justru karena itu kondisinya harus ditulis utuh.</strong> Godaan yang wajar adalah menuliskan kondisi kedua sebagai <code>month (d1) ≠ month (d2)</code> saja, seperti pada <code>stateOfWater</code>, dan membiarkan kondisi pertama “menyaring” kasusnya lebih dahulu. Kondisi seperti itu <strong>tidak disjoint</strong>: <code>⟨15, 5, 2023⟩</code> dan <code>⟨20, 3, 2024⟩</code> memenuhi kondisi pertama maupun kondisi kedua, dan keduanya menjawab berbeda: yang pertama <code>true</code>, yang kedua <code>false</code>. Karena urutan penulisan tidak berarti apa-apa dalam notasi ini (Bab 4), fungsi semacam itu tidak mempunyai nilai bagi masukan tersebut.</p>
+<p>Yang menyelamatkannya adalah menyebutkan <code>sameYear</code> pada kondisi kedua dan ketiga. Apa yang dalam banyak bahasa diserahkan diam-diam kepada urutan penulisan, di sini harus dinyatakan. Nama antara membuat harga itu murah sekaligus membuat maksudnya terbaca. Perbandingan berjenjang seperti ini (banding komponen paling berpengaruh dahulu, dan hanya bila seri lanjutkan ke komponen berikutnya) adalah pola yang akan muncul lagi setiap kali dua nilai bentukan harus diurutkan.</p>
+<p><strong>Perhatikan apa yang tidak ditulis di sini.</strong> Menghitung selisih dua tanggal dalam hari, atau menentukan tanggal ke-<em>n</em> setelah sebuah tanggal, memerlukan penjumlahan atas sejumlah bulan atau tahun yang tidak diketahui sebelumnya. Persoalan semacam itu memerlukan rekursi, dan menunggu Bab 6.</p>
+<h2 id="type-bentukan-sebagai-hasil"><a class="header" href="#type-bentukan-sebagai-hasil">Type Bentukan sebagai Hasil</a></h2>
+<p>Sejauh ini type bentukan selalu muncul sebagai <strong>domain</strong>. Type bentukan dapat pula muncul sebagai <strong>range</strong>: sebuah fungsi boleh menghasilkan lebih dari satu nilai, asalkan keduanya dibungkus menjadi satu.</p>
+<p>Kemampuan ini menyelesaikan persoalan yang sudah terasa sejak Bab 3. Pembagian bulat menghasilkan dua hal (hasil bagi dan sisa) dan keduanya dihitung oleh perhitungan yang sama. Menuliskan <code>div</code> dan <code>mod</code> sebagai dua fungsi terpisah berarti mengerjakan pekerjaan yang sama dua kali.</p>
+<pre><code>JUDUL   Pembagian Bulat dengan Sisa
+
+DEFINISI DAN SPESIFIKASI
+    divMod : Integer, Integer → ⟨Integer, Integer⟩
+    { divMod (n, d) menghasilkan ⟨q, r⟩ dengan q hasil bagi bulat dan r sisa
+      pembagian n oleh d, sehingga n = q*d + r dan 0 ≤ r &lt; d.
+      Prasyarat: d &gt; 0 }
+
+REALISASI
+    divMod (n, d) : ⟨n div d, n mod d⟩
+
+APLIKASI
+    ⇒ divMod (17, 5)
+      ⟨3, 2⟩
+    ⇒ divMod (86400, 3600)
+      ⟨24, 0⟩
+</code></pre>
+<p>Range <code>divMod</code> adalah sebuah type bentukan <strong>tanpa nama</strong>: sebuah tuple yang menyatakan komposisi nilainya tanpa <code>type</code> yang mendahuluinya. Notasi mengizinkan hal ini demi keringkasan, dan berguna ketika nilai bentukan itu hanya lewat.</p>
+<p>Nilai bentukan tanpa nama diambil komponennya dengan <code>let</code> dari Bab 3, dengan sebuah tuple nama di sisi kiri pengikatan:</p>
+<pre><code>JUDUL   Konversi Detik menjadi Hari, Jam, Menit, Detik
+
+DEFINISI DAN SPESIFIKASI
+    toDHMS : Integer ≥ 0 → ⟨Integer ≥ 0, Integer [0..23], Integer [0..59], Integer [0..59]⟩
+    { toDHMS (x) menghasilkan ⟨d, h, m, s⟩ sehingga
+      x = 86400*d + 3600*h + 60*m + s }
+
+REALISASI
+    toDHMS (x) :
+        let
+            ⟨d, remD⟩ : divMod (x, 86400)
+            ⟨h, remH⟩ : divMod (remD, 3600)
+            ⟨m, s⟩    : divMod (remH, 60)
+        in
+            ⟨d, h, m, s⟩
+
+APLIKASI
+    ⇒ toDHMS (90061)
+      ⟨1, 1, 1, 1⟩
+    ⇒ toDHMS (59)
+      ⟨0, 0, 0, 59⟩
+</code></pre>
+<p>Bandingkan dengan realisasi yang sama tanpa <code>let</code>:</p>
+<pre><code>toDHMS (x) :
+    ⟨ x div 86400,
+      (x mod 86400) div 3600,
+      ((x mod 86400) mod 3600) div 60,
+      ((x mod 86400) mod 3600) mod 60 ⟩
+</code></pre>
+<p>Keduanya benar dan menghasilkan hal yang sama. Yang kedua menghitung <code>x mod 86400</code> tiga kali dan <code>(x mod 86400) mod 3600</code> dua kali, dan memaksa pembacanya melakukan hal yang sama untuk meyakini bahwa keempat baris itu memang membicarakan satu pemecahan yang sama. Nama antara, sebagaimana pada Bab 3, dipakai bukan untuk menghemat perhitungan melainkan untuk menghemat usaha membaca.</p>
+<p><strong>Kapan sebuah type bentukan perlu diberi nama?</strong> Aturan praktisnya: bila nilai itu mempunyai arti tersendiri dan ada operasi yang berlaku atasnya, berilah ia nama. <code>⟨q, r⟩</code> hasil <code>divMod</code> hanya lewat dan langsung dibongkar (kedua komponennya dipakai secara terpisah), sehingga tuple tanpa nama memadai. Sebaliknya, bila <code>⟨d, h, m, s⟩</code> akan dibandingkan, dijumlahkan, atau dicetak di banyak tempat, ia sudah pantas menjadi <code>type Duration</code>.</p>
+<h2 id="sekilas-type-alternatif"><a class="header" href="#sekilas-type-alternatif">Sekilas: Type Alternatif</a></h2>
+<p>Seluruh bab ini membahas produk, yaitu nilai yang terdiri dari beberapa komponen <strong>sekaligus</strong>. Ada bentuk kedua yang diperkenalkan di sini secukupnya dan baru dibahas tuntas pada Bab 6 dan 7: <strong>alternatif</strong>, yaitu nilai yang merupakan <strong>salah satu</strong> dari beberapa kemungkinan.</p>
+<p>Sebuah <code>Shape</code> adalah sebuah lingkaran <strong>atau</strong> sebuah persegi panjang (atau bangun-bangun lainnya, namun di contoh ini kita batasi dua bangun untuk menyederhanakan persoalan). Tidak pernah keduanya secara bersamaan, dan komponennya berbeda menurut alternatif mana yang berlaku.</p>
+<pre><code>TYPE SHAPE
+</code></pre>
+<pre><code>DEFINISI TYPE
+    type Shape : Circle ⟨r : Real &gt; 0⟩
+               | Rectangle ⟨w : Real &gt; 0, h : Real &gt; 0⟩
+    { Sebuah Shape adalah sebuah lingkaran berjari-jari r,
+      atau sebuah persegi panjang berukuran w × h }
+
+DEFINISI DAN SPESIFIKASI SELEKTOR
+    r : Circle → Real &gt; 0
+    { r (s) memberikan jari-jari s }
+
+    w : Rectangle → Real &gt; 0
+    { w (s) memberikan lebar s }
+
+    h : Rectangle → Real &gt; 0
+    { h (s) memberikan tinggi s }
+
+DEFINISI DAN SPESIFIKASI KONSTRUKTOR
+    makeCircle : Real → Circle
+    { makeCircle (a) membentuk sebuah lingkaran berjari-jari a.
+      Prasyarat: a &gt; 0.0 }
+
+    makeRectangle : Real, Real → Rectangle
+    { makeRectangle (a, b) membentuk sebuah persegi panjang berukuran a × b.
+      Prasyarat: a &gt; 0.0 and b &gt; 0.0 }
+
+DEFINISI DAN SPESIFIKASI PREDIKAT
+    isCircle : Shape → Boolean
+    { isCircle (s) bernilai true bila s adalah sebuah lingkaran }
+
+    isRectangle : Shape → Boolean
+    { isRectangle (s) bernilai true bila s adalah sebuah persegi panjang }
+
+DEFINISI DAN SPESIFIKASI OPERATOR LAIN
+    area : Shape → Real &gt; 0
+    { area (s) adalah luas bentuk s }
+</code></pre>
+<pre><code>REALISASI
+    area (s) :
+        depend on s
+            isCircle (s)    : pi * r (s) * r (s)
+            isRectangle (s) : w (s) * h (s)
+</code></pre>
+<pre><code>APLIKASI
+    ⇒ area (makeCircle (1.0))
+      3.14159
+    ⇒ area (makeRectangle (3.0, 4.0))
+      12.0
+</code></pre>
+<p>Tiga hal yang membuat alternatif berbeda dari produk, dan ketiganya menguntungkan kita:</p>
+<ul>
+<li>Analisis kasus atas type alternatif <strong>selalu lengkap dan disjoint dengan sendirinya</strong>, karena setiap nilai persis merupakan satu alternatif. Syarat yang pada Bab 4 harus dijaga sendiri oleh penulis, di sini dijamin oleh type-nya. Karena itu pula <code>else</code> tidak dipakai pada <code>area</code>: menuliskan <code>isRectangle (s)</code> secara terbuka tidak lebih panjang, dan membuat jaminan tersebut terlihat alih-alih tersembunyi.</li>
+<li>Selektor sebuah alternatif hanya berlaku bagi alternatif itu: <code>r (s)</code> tidak bermakna bila <code>s</code> adalah sebuah persegi panjang.</li>
+<li>Setiap alternatif mempunyai konstruktornya sendiri, dan karena itu prasyaratnya sendiri. Pada produk hanya ada satu pintu masuk ke sebuah type; pada alternatif ada sebanyak alternatifnya.</li>
+</ul>
+<p>Dalam Haskell:</p>
+<pre><code class="language-haskell">data Shape = Circle Double
+           | Rectangle Double Double
+
+-- konstruktor: Circle 1.0, Rectangle 3.0 4.0
+
+area :: Shape -&gt; Double
+-- area s adalah luas bentuk s
+area (Circle r)      = pi * r * r
+area (Rectangle w h) = w * h
+</code></pre>
+<p>Haskell menggabungkan pemilihan kasus dengan pengambilan komponen dalam satu langkah, yang disebut <em>pattern matching</em>: baris pertama sekaligus menyatakan “bila b adalah sebuah lingkaran” dan memberi nama <code>r</code> kepada jari-jarinya. Predikat dan selektor terpisah tidak lagi diperlukan. Kompilator juga memeriksa bahwa seluruh alternatif tertangani. Syarat lengkap yang pada notasi hanya berupa janji, di sini diperiksa oleh mesin.</p>
+<p>Alternatif akan muncul lagi pada Bab 7, karena <strong>list adalah type alternatif</strong>: sebuah list adalah list kosong, atau sebuah elemen diikuti sebuah list.</p>
+<h2 id="ringkasan-padanan"><a class="header" href="#ringkasan-padanan">Ringkasan Padanan</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Notasi fungsional</th><th>Haskell</th></tr>
+</thead>
+<tbody>
+<tr><td><code>type Point : ⟨x : Real, y : Real⟩</code></td><td><code>data Point = Point { x :: Double, y :: Double }</code></td></tr>
+<tr><td><code>makePoint (a, b)</code></td><td><code>Point a b</code></td></tr>
+<tr><td><code>x (p)</code></td><td><code>x p</code></td></tr>
+<tr><td><code>⟨a, b⟩</code> sebagai range</td><td><code>(a, b)</code></td></tr>
+<tr><td><code>let ⟨q, r⟩ : divMod (n, d) in …</code></td><td><code>let (q, r) = divMod n d in ...</code></td></tr>
+<tr><td><code>type T : A ⟨...⟩ | B ⟨...⟩</code></td><td><code>data T = A ... | B ...</code></td></tr>
+<tr><td><code>Integer [1..12]</code></td><td><em>tidak ada padanan; hidup pada spesifikasi</em></td></tr>
+<tr><td><code>d : Integer &gt; 0</code> (invarian)</td><td><em>tidak ada padanan; hidup pada spesifikasi</em></td></tr>
+</tbody>
+</table>
+</div>
+<p>Dua baris terakhir patut diperhatikan. Notasi dapat menyatakan pembatasan yang tidak dapat dinyatakan oleh bahasanya, dan pembatasan itu hilang dalam terjemahan. Sebaliknya, bahasa memberi pemeriksaan yang tidak dapat diberikan notasi. Keduanya bukan versi berbeda dari hal yang sama; keduanya mengerjakan pekerjaan yang berbeda.</p>
+<h2 id="latihan"><a class="header" href="#latihan">Latihan</a></h2>
+<p><strong>Membaca.</strong> Diberikan definisi berikut:</p>
+<pre><code>type Segment : ⟨a : Point, b : Point⟩
+
+g : Segment → Point
+g (s) : makePoint ((x (a (s)) + x (b (s))) / 2.0,
+                    (y (a (s)) + y (b (s))) / 2.0)
+
+h : Segment → Boolean
+h (s) : (x (a (s)) = x (b (s))) or (y (a (s)) = y (b (s)))
+</code></pre>
+<p>Tuliskan spesifikasi kedua fungsi tersebut, lalu usulkan nama yang sesuai dengan konvensi bab ini. Untuk <code>h</code>, adakah kasus yang membuat namanya menyesatkan?</p>
+<p><strong>Memperbaiki.</strong> Berikut sebuah realisasi <code>subFraction</code> (pengurangan pecahan) yang mengandung satu kesalahan:</p>
+<pre><code>subFraction (f1, f2) :
+    makeFraction (numerator (f1) * denominator (f2) -
+                  numerator (f2) * denominator (f1),
+                  denominator (f1) - denominator (f2))
+</code></pre>
+<p>Temukan kesalahannya, dan sebutkan aplikasi yang membuktikannya. Kemudian jawab: invarian type <code>Fraction</code> mana yang dilanggar, dan pada nilai masukan seperti apa pelanggaran itu terjadi?</p>
+<p><strong>Menulis.</strong> Tuliskan kelima bagian secara lengkap: definisi type, selektor, konstruktor, predikat, dan operator lain. Nyatakan prasyarat bila ada, dan pilih contoh aplikasi yang mencakup setiap kasus beserta nilai batasnya.</p>
+<ol>
+<li>Type <code>Line</code> yang dibentuk dari dua <code>Point</code>, beserta predikat untuk menentukan apakah dua garis sejajar, dan operator untuk menghitung panjang sebuah garis. Gunakan kembali <code>distance</code>.</li>
+<li>Type <code>Square</code> yang dibentuk dari titik kiri-atas dan titik kanan-bawah, dengan sisi sejajar sumbu. Sertakan predikat <code>isSquare</code>, yang menentukan apakah kedua titik itu benar-benar membentuk bujur sangkar dan bukan persegi panjang sembarang, serta <code>isInside</code>, yang menentukan apakah sebuah <code>Point</code> terletak di dalamnya. Nyatakan dengan jelas apakah titik pada tepinya termasuk “di dalam” dan sadari bahwa keputusan itu milik Anda, bukan milik persoalannya.</li>
+<li>Type <code>Complex</code> beserta penjumlahan, perkalian, dan modulus. Bandingkan strukturnya dengan <code>Fraction</code>: mana di antara keduanya yang mengalami persoalan “banyak representasi, satu nilai”, dan mengapa?</li>
+<li>Type <code>Time</code> sebagai <code>⟨hour, minute, second⟩</code>, beserta <code>isValidTime</code>, <code>toSeconds</code> yang mengubahnya menjadi jumlah detik sejak tengah malam, dan <code>isBefore</code>. Bandingkan realisasi <code>isBefore</code> Anda dengan versi <code>Date</code> pada bab ini.</li>
+<li>Type <code>DateTime</code> yang dibentuk dari <code>Date</code> dan <code>Time</code>, beserta <code>isBefore</code> atasnya. Berapa banyak kode baru yang sesungguhnya harus Anda tulis, bila <code>isBefore</code> untuk <code>Date</code> dan untuk <code>Time</code> sudah ada?</li>
+</ol>
+<p><strong>Menelusuri.</strong> Tuliskan penelusuran lengkap <code>toDHMS (3661)</code>, dengan menyebutkan pada setiap langkah apakah yang terjadi ekspansi atau reduksi, dan pada langkah mana masing-masing <code>let</code> diikat. Kemudian tuliskan penelusuran <code>isValidDate (31, 2, 2024)</code> dan sebutkan pada kondisi keberapa hasilnya sudah dapat dipastikan.</p>
+<p><strong>Merancang.</strong> Tiga pertanyaan, ketiganya tanpa jawaban tunggal yang benar:</p>
+<ol>
+<li><code>distanceFromOrigin (p)</code> dapat dihapus dan diganti dengan <code>distance (p, makePoint (0.0, 0.0))</code>. Mana yang Anda pilih untuk diktat ini? Apa yang hilang bila <code>distanceFromOrigin</code> dihapus, dan apa yang hilang bila ia dipertahankan?</li>
+<li><code>Fraction</code> dapat dirancang dengan mengharuskan setiap nilainya berada dalam bentuk paling sederhana. Apa yang menjadi lebih mudah, apa yang menjadi lebih sulit, dan bagian mana dari definisi type yang harus berubah? (Fungsi penyederhananya sendiri baru dapat ditulis pada Bab 6.)</li>
+<li><code>type Point : ⟨x : Real, y : Real⟩</code> menyimpan titik dalam koordinat kartesian. Bila ia diganti menjadi koordinat polar <code>⟨r : Real, θ : Real⟩</code>, fungsi mana saja pada Contoh 1 yang harus ditulis ulang, dan fungsi mana yang tidak? Bandingkan jawaban Anda dengan aturan “bekerja lewat selektor” di awal bab. Apakah aturan itu memberikan sebanyak yang dijanjikannya?</li>
+</ol>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="04-ekspresi-kondisional.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="06-ekspresi-rekursif.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="04-ekspresi-kondisional.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="06-ekspresi-rekursif.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-09f2665d.js"></script>
+
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-609e4cb8.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>

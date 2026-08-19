@@ -6,7 +6,7 @@ language = "id"
 [output.html]
 mathjax-support = true
 
-[output.pandoc.profile.pdf]
-output-file = "output.pdf"
-to = "latex"
-pdf-engine = "lualatex"
+# [output.pandoc.profile.pdf]
+# output-file = "output.pdf"
+# to = "latex"
+# pdf-engine = "lualatex"

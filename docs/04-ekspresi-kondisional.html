@@ -1,0 +1,547 @@
+<!DOCTYPE HTML>
+<html lang="id" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Ekspresi Kondisional - Diktat Pemrograman Fungsional</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-e96d0476.css">
+        <link rel="stylesheet" href="css/chrome-d279d366.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex-0ab6a5e0.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-2ab1aa36.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Diktat Pemrograman Fungsional</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="ekspresi-kondisional"><a class="header" href="#ekspresi-kondisional">Ekspresi Kondisional</a></h1>
+<h2 id="analisis-kasus"><a class="header" href="#analisis-kasus">Analisis Kasus</a></h2>
+<p>Tidak semua persoalan dapat dinyatakan dengan satu ekspresi tunggal. Seringkali nilai yang dihasilkan bergantung pada <em>kasus</em> mana yang berlaku bagi nilai masukan: wujud air bergantung pada suhunya, kuadran sebuah titik bergantung pada tanda absis dan ordinatnya, tarif bergantung pada jarak tempuh.</p>
+<p><strong>Analisis kasus</strong> adalah kegiatan memilah domain sebuah fungsi menjadi beberapa bagian, dan menentukan ekspresi yang berlaku bagi masing-masing bagian. Hasilnya dituliskan sebagai <strong>ekspresi kondisional</strong>.</p>
+<p>Analisis kasus adalah keterampilan tersendiri, dan menguasai notasinya tidak dengan sendirinya menguasainya. Sebagian besar isi bab ini membahas cara melakukannya dengan benar, dan cara memeriksa bahwa hasilnya benar.</p>
+<h2 id="notasi-ekspresi-kondisional"><a class="header" href="#notasi-ekspresi-kondisional">Notasi Ekspresi Kondisional</a></h2>
+<p>Bentuk umumnya:</p>
+<pre><code>namaFungsi (x) :
+    depend on *deskripsi domain*
+        *kondisi-1* : *ekspresi-1*
+        *kondisi-2* : *ekspresi-2*
+        *kondisi-3* : *ekspresi-3*
+</code></pre>
+<p>Setiap baris terdiri dari sebuah <strong>kondisi</strong> (ekspresi Boolean atas parameter fungsi) dan sebuah <strong>ekspresi</strong> yang berlaku bila kondisi itu benar.</p>
+<p>Nilai ekspresi kondisional adalah nilai ekspresi yang kondisinya benar.</p>
+<h2 id="dua-syarat-lengkap-dan-disjoint"><a class="header" href="#dua-syarat-lengkap-dan-disjoint">Dua Syarat: Lengkap dan Disjoint</a></h2>
+<p>Rumusan di atas menyembunyikan sebuah janji: <em>ada tepat satu</em> kondisi yang benar. Janji itu tidak dijamin oleh notasi; penulisnyalah yang harus memenuhinya. Ada dua syarat, dan keduanya wajib.</p>
+<p><strong>Lengkap (exhaustive).</strong> Setiap nilai dalam domain harus memenuhi sekurang-kurangnya satu kondisi.</p>
+<p>\[ \text{kondisi-1} \ \textbf{or}\ \text{kondisi-2} \ \textbf{or}\ \text{kondisi-3} \]</p>
+<p>harus bernilai <code>true</code> untuk setiap nilai domain. Bila tidak, ada nilai masukan yang tidak menghasilkan apa-apa, dan sebuah fungsi yang tidak menghasilkan apa-apa untuk sebagian domainnya bukanlah fungsi atas domain itu.</p>
+<p><strong>Disjoint (mutually exclusive).</strong> Tidak boleh ada nilai yang memenuhi lebih dari satu kondisi. Untuk setiap pasangan kondisi:</p>
+<p>\[ \textbf{not}\ (\text{kondisi-}i \ \textbf{and}\ \text{kondisi-}j) \qquad \text{untuk setiap } i \neq j \]</p>
+<p>Bila dua kondisi dapat benar bersamaan, ekspresi menjadi ambigu: ada dua nilai yang sama-sama berhak menjadi hasil.</p>
+<blockquote>
+<p><strong>Urutan kasus tidak berarti.</strong> Dalam notasi ini, urutan penulisan kasus <strong>tidak berarti apa-apa</strong>. Kasus boleh dituliskan dengan urutan mana pun tanpa mengubah arti. Inilah sebabnya syarat disjoint bersifat wajib dan bukan sekadar anjuran: tidak ada aturan “yang pertama cocok, itulah yang dipakai” yang dapat menyelamatkan kita.</p>
+<p>Banyak bahasa pemrograman justru memakai aturan tersebut, dan kelak, ketika menerjemahkan ke bahasa nyata, kemudahan itu akan tersedia. Teks yang bergantung pada urutan hanya dapat dipahami dengan membacanya dari atas ke bawah secara utuh; notasi ini tidak memakainya.</p>
+</blockquote>
+<h2 id="kondisi-else"><a class="header" href="#kondisi-else">Kondisi <code>else</code></a></h2>
+<p>Menuliskan negasi dari seluruh kondisi sebelumnya seringkali panjang. Untuk itu tersedia kondisi khusus <code>else</code>, yang berarti tepat itu:</p>
+<pre><code>namaFungsi (x) :
+    depend on x
+        *kondisi-1* : *ekspresi-1*
+        *kondisi-2* : *ekspresi-2*
+        else        : *ekspresi-3*
+</code></pre>
+<p>setara dengan menuliskan <code>not (*kondisi-1*) and not (*kondisi-2*)</code> pada baris terakhir.</p>
+<p>Dengan <code>else</code>, syarat lengkap otomatis terpenuhi, dan syarat disjoint tinggal berlaku bagi kondisi-kondisi sebelumnya.</p>
+<p>Kemudahan ini ada harganya: <strong><code>else</code> menyembunyikan kasus yang diwakilinya.</strong> Pembaca tidak lagi melihat kasus apa yang sesungguhnya ditangani baris terakhir, dan penulisnya sendiri kadang tidak menyadari bahwa ada kasus yang tidak pernah ia pikirkan namun terlanjur tertampung di situ. Pakailah <code>else</code> bila sisa kasusnya memang satu kelompok yang wajar, dan hindari bila sisanya sebenarnya beberapa kasus berbeda yang kebetulan berbagi hasil.</p>
+<h2 id="bentuk-if-then-else"><a class="header" href="#bentuk-if-then-else">Bentuk <code>if-then-else</code></a></h2>
+<p>Khusus untuk dua kasus yang saling melengkapi, tersedia bentuk yang lebih ringkas:</p>
+<pre><code>if *kondisi* then
+    *ekspresi-1*
+else
+    *ekspresi-2*
+</code></pre>
+<p>yang setara dengan:</p>
+<pre><code>depend on
+    *kondisi*       : *ekspresi-1*
+    not (*kondisi*) : *ekspresi-2*
+</code></pre>
+<p>Bentuk ini sudah dipakai pada <code>max2</code> di Bab 2.</p>
+<p><code>else</code> <strong>tidak boleh dihilangkan</strong>. Bentuk <code>if c then e</code> tanpa <code>else</code> tidak mempunyai arti dalam notasi ini: bila <code>c</code> bernilai <code>false</code>, tidak ada nilai yang dihasilkan. Dalam paradigma imperatif, <code>if</code> tanpa <code>else</code> masuk akal karena yang dilewatkan adalah <em>aksi</em>, dan “tidak melakukan apa-apa” adalah pilihan yang sah. Dalam paradigma fungsional, yang dihasilkan adalah <em>nilai</em>, dan “tidak menghasilkan nilai” bukanlah pilihan.</p>
+<p>Gunakan <code>if-then-else</code> hanya untuk dua kasus. Untuk tiga kasus atau lebih, <code>depend on</code> jauh lebih terbaca daripada <code>if-then-else</code> bersarang, dan membuat syarat lengkap serta disjoint dapat diperiksa dengan sekali pandang.</p>
+<h2 id="contoh-1-pemilahan-berdasarkan-nilai-ambang"><a class="header" href="#contoh-1-pemilahan-berdasarkan-nilai-ambang">Contoh 1: Pemilahan Berdasarkan Nilai Ambang</a></h2>
+<p><strong>Persoalan.</strong> Pada tekanan 1 atm, tentukan wujud air berdasarkan suhunya dalam derajat Celcius. Air membeku pada 0 dan mendidih pada 100; di antara keduanya air berwujud cair.</p>
+<p>Persoalan ini mengandung dua batas, <code>0.0</code> dan <code>100.0</code>, dan tidak menyatakan dengan tegas ke mana batas itu sendiri termasuk. Keputusan harus diambil, dan setelah diambil harus dituliskan pada spesifikasi.</p>
+<pre><code>JUDUL   Wujud Air pada Tekanan 1 atm
+</code></pre>
+<pre><code>DEFINISI DAN SPESIFIKASI
+    stateOfWater : Real → Character
+    { stateOfWater (t) adalah wujud air pada suhu t derajat Celcius dan
+      tekanan 1 atm: 'S' bila padat (solid), 'L' bila cair (liquid), 'G' 
+      bila uap (gas). Nilai di perbatasan dimiliki oleh wujud pada suhu 
+      yang lebih rendah:
+      t = 0.0 menghasilkan 'S', dan t = 100.0 menghasilkan 'L'. }
+</code></pre>
+<pre><code>REALISASI
+    stateOfWater (t) :
+        depend on t
+            t ≤ 0.0                   : 'S'
+            (t &gt; 0.0) and (t ≤ 100.0) : 'L'
+            t &gt; 100.0                 : 'G'
+</code></pre>
+<pre><code>APLIKASI
+    ⇒ stateOfWater (-10.0)
+      'S'
+    ⇒ stateOfWater (0.0)
+      'S'
+    ⇒ stateOfWater (25.0)
+      'L'
+    ⇒ stateOfWater (100.0)
+      'L'
+    ⇒ stateOfWater (150.0)
+      'G'
+</code></pre>
+<p>Periksalah kedua syarat. <strong>Lengkap:</strong> setiap bilangan riil memenuhi salah satu dari <code>t ≤ 0.0</code>, <code>0.0 &lt; t ≤ 100.0</code>, atau <code>t &gt; 100.0</code>. <strong>Disjoint:</strong> ketiganya tidak dapat benar bersamaan, karena masing-masing batas hanya dimiliki oleh satu kasus.</p>
+<p>Kelima contoh aplikasi dipilih dengan sengaja: satu di dalam setiap kasus, dan satu tepat pada masing-masing batas, karena kekeliruan batas hanya tampak bila batasnya diuji.</p>
+<blockquote>
+<p><strong>Catatan.</strong> Menyatakan kategori sebagai karakter <code>'S'</code>, <code>'L'</code>, <code>'G'</code> adalah cara sementara: notasi kita belum mempunyai sarana untuk menyatakan “salah satu dari tiga kemungkinan bernama”. Bab 5 akan menyediakannya.</p>
+</blockquote>
+<p>Dalam Haskell:</p>
+<pre><code class="language-haskell">stateOfWater :: Double -&gt; Char
+-- stateOfWater t adalah wujud air pada suhu t derajat Celcius, tekanan 1 atm
+stateOfWater t
+  | t &lt;= 0.0   = 'S'
+  | t &lt;= 100.0 = 'L'
+  | otherwise  = 'G'
+</code></pre>
+<p>Terjemahan ini <strong>tidak</strong> satu lawan satu:</p>
+<ul>
+<li>Haskell menuliskan kondisi sebagai <em>guard</em> dengan tanda <code>|</code>, dan <code>otherwise</code> adalah padanan <code>else</code>.</li>
+<li>Guard pada Haskell <strong>diperiksa berurutan</strong>: yang pertama bernilai <code>True</code> itulah yang dipakai. Karena itu kondisi kedua cukup ditulis <code>t &lt;= 100.0</code>, tanpa <code>t &gt; 0.0</code>, sebab baris pertama sudah menyaring kasus itu.</li>
+<li>Akibatnya, Haskell <strong>tidak memaksa</strong> syarat disjoint. Teks yang kondisinya tumpang tindih tetap dapat dikompilasi dan dijalankan, dan hasilnya ditentukan oleh urutan penulisan.</li>
+</ul>
+<p>Notasi lebih ketat daripada bahasanya di sini, dan kekakuan itu disengaja: menuliskan kondisi kedua secara lengkap memaksa kita memikirkan batas bawahnya.</p>
+<h2 id="contoh-2-pemilahan-dengan-prasyarat"><a class="header" href="#contoh-2-pemilahan-dengan-prasyarat">Contoh 2: Pemilahan dengan Prasyarat</a></h2>
+<p><strong>Persoalan.</strong> Tentukan kuadran tempat sebuah titik berada, dari absis dan ordinatnya.</p>
+<p>Titik yang terletak pada salah satu sumbu tidak berada dalam kuadran mana pun, demikian pula titik pusat. Kasus-kasus itu tidak dapat dijawab, dan karena itu harus dikeluarkan dari domain melalui prasyarat.</p>
+<pre><code>JUDUL   Kuadran Sebuah Titik
+</code></pre>
+<pre><code>DEFINISI DAN SPESIFIKASI
+    quadrant : Real, Real → Integer [1..4]
+    { quadrant (x, y) adalah nomor kuadran tempat titik (x, y) berada.
+      Prasyarat: x ≠ 0.0 and y ≠ 0.0, yaitu titik tidak terletak pada 
+      sumbu mana pun }
+</code></pre>
+<pre><code>REALISASI
+    quadrant (x, y) :
+        depend on x, y
+            (x &gt; 0.0) and (y &gt; 0.0) : 1
+            (x &lt; 0.0) and (y &gt; 0.0) : 2
+            (x &lt; 0.0) and (y &lt; 0.0) : 3
+            (x &gt; 0.0) and (y &lt; 0.0) : 4
+</code></pre>
+<pre><code>APLIKASI
+    ⇒ quadrant (3.0, 2.0)
+      1
+    ⇒ quadrant (-3.0, 2.0)
+      2
+    ⇒ quadrant (-3.0, -2.0)
+      3
+    ⇒ quadrant (3.0, -2.0)
+      4
+</code></pre>
+<p>Keempat kondisi ini <strong>tidak lengkap</strong> atas seluruh <code>Real, Real</code>: nilai <code>(0.0, 5.0)</code> tidak memenuhi satu pun. Yang membuatnya sah adalah prasyarat: kelengkapan hanya dituntut atas domain yang tersisa <strong>setelah</strong> prasyarat diberlakukan.</p>
+<p>Hubungan antara prasyarat dan analisis kasus berlaku dua arah: setiap kasus yang tidak dapat kita jawab harus dikeluarkan lewat prasyarat, dan setiap prasyarat yang kita tuliskan mempersempit apa yang harus dicakup oleh kasus-kasus kita. Menyusun keduanya bersamaan lebih mudah daripada menyusunnya berurutan.</p>
+<p>Kasus terakhir dapat dipersingkat menjadi <code>else</code>: empat kasus menjadi tiga kasus dan satu <code>else</code>, dan teksnya lebih pendek. Harganya, titik <code>(0.0, 5.0)</code> akan menghasilkan <code>4</code> alih-alih melanggar prasyarat secara terbuka. <code>else</code> mengubah pelanggaran prasyarat menjadi jawaban yang keliru namun tampak wajar.</p>
+<p>Dalam Haskell:</p>
+<pre><code class="language-haskell">quadrant :: Double -&gt; Double -&gt; Integer
+-- quadrant x y adalah nomor kuadran titik (x,y)
+-- Prasyarat: x /= 0.0 &amp;&amp; y /= 0.0
+quadrant x y
+  | (x &gt; 0.0) &amp;&amp; (y &gt; 0.0) = 1
+  | (x &lt; 0.0) &amp;&amp; (y &gt; 0.0) = 2
+  | (x &lt; 0.0) &amp;&amp; (y &lt; 0.0) = 3
+  | (x &gt; 0.0) &amp;&amp; (y &lt; 0.0) = 4
+</code></pre>
+<p>Notasi menuliskan range sebagai <code>Integer [1..4]</code>; Haskell tidak mempunyai padanannya dan hanya menuliskan <code>Integer</code>. Pembatasan itu hilang dalam terjemahan, dan tinggal hidup pada spesifikasi.</p>
+<p>Sebaliknya, Haskell memberi sesuatu yang tidak dapat diberikan notasi. Guard di atas tidak mencakup seluruh kemungkinan, dan bila diminta, kompilator akan memperingatkan bahwa masih ada kasus yang tak tertangani:</p>
+<pre><code class="language-bash">$ ghc -Wincomplete-patterns Kuadran.hs
+</code></pre>
+<p>Peringatan itu tidak berarti programnya salah; di sini memang disengaja, karena prasyaratlah yang menutupi sisanya. Yang berharga adalah peringatannya: setiap kali muncul, jawablah dengan sadar — apakah sisa kasusnya memang tidak mungkin terjadi, atau saya yang lupa memikirkannya?</p>
+<h3 id="pembatasan-pada-domain-dan-range"><a class="header" href="#pembatasan-pada-domain-dan-range">Pembatasan pada Domain dan Range</a></h3>
+<p><code>Integer [1..4]</code> pada definisi <code>quadrant</code> adalah pemakaian pertama sebuah kelengkapan kecil yang akan sering dipakai mulai Bab 5: sebuah type dasar boleh diikuti pembatasan yang mempersempit himpunan nilainya.</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bentuk</th><th>Contoh</th><th>Arti</th></tr>
+</thead>
+<tbody>
+<tr><td>Selang terbatas</td><td><code>Integer [1..12]</code></td><td>nilai bulat dari 1 sampai dengan 12</td></tr>
+<tr><td>Selang tak terbatas</td><td><code>Integer &gt; 0</code>, <code>Real ≤ 13.0</code></td><td>nilai yang dibatasi di satu sisi (batas atas saja atau bawah saja)</td></tr>
+</tbody>
+</table>
+</div>
+<p>Pembatasan ini adalah bagian dari <strong>spesifikasi</strong>, bukan sesuatu yang dapat diperiksa mesin. Spesifikasi menyatakan janji, dan janji itu tetap harus ditegakkan oleh penulisnya. Menuliskannya tetap berharga: ini memindahkan sebagian prasyarat dari kalimat ke dalam definisi, tempat pembaca pasti melihatnya.</p>
+<h2 id="evaluasi-ekspresi-kondisional"><a class="header" href="#evaluasi-ekspresi-kondisional">Evaluasi Ekspresi Kondisional</a></h2>
+<p>Evaluasi sebuah ekspresi kondisional berlangsung dalam dua tahap: kondisi-kondisi dievaluasi hingga ditemukan yang bernilai <code>true</code>, lalu ekspresi yang bersesuaian dievaluasi. Ekspresi pada kasus lain <strong>tidak</strong> dievaluasi.</p>
+<p>Penelusuran <code>stateOfWater (25.0)</code>:</p>
+<pre><code>⇒ stateOfWater (25.0)
+  → depend on 25.0                                   { ekspansi stateOfWater }
+        25.0 ≤ 0.0                       : 'S'
+        (25.0 &gt; 0.0) and (25.0 ≤ 100.0)  : 'L'
+        25.0 &gt; 100.0                     : 'G'
+  → depend on 25.0                                   { reduksi ≤ }
+        false                            : 'S'
+        (25.0 &gt; 0.0) and (25.0 ≤ 100.0)  : 'L'
+        25.0 &gt; 100.0                     : 'G'
+  → depend on 25.0                                   { reduksi &gt;, ≤, and }
+        false                            : 'S'
+        true                             : 'L'
+        25.0 &gt; 100.0                     : 'G'
+  → 'L'
+</code></pre>
+<p>Karena kondisi-kondisi disjoint, penelusuran boleh berhenti pada kondisi pertama yang benar; tidak perlu memeriksa sisanya. Karena urutan pun tidak berarti, kita boleh memulai dari kondisi mana saja; hasilnya tetap sama.</p>
+<h2 id="operator-and-then-dan-or-else"><a class="header" href="#operator-and-then-dan-or-else">Operator <code>and then</code> dan <code>or else</code></a></h2>
+<p>Sifat “tidak semua bagian dievaluasi” dibutuhkan juga di dalam sebuah ekspresi Boolean, bukan hanya di antara kasus.</p>
+<p>Tentukan apakah <code>b</code> membagi habis <code>a</code>. Ekspresi <code>a mod b = 0</code> menjawabnya, tetapi <code>mod</code> tidak terdefinisi bila <code>b</code> bernilai nol. Kita dapat menambahkan prasyarat <code>b ≠ 0</code>, tetapi bila kita justru ingin fungsinya menerima nol dan menjawab <code>false</code>, prasyarat bukan jawabannya.</p>
+<p>Percobaan pertama:</p>
+<pre><code>isDivisor (a, b) : (b ≠ 0) and (a mod b = 0)
+</code></pre>
+<p>Teks ini <strong>tidak benar</strong>. Operator <code>and</code> menuntut kedua operannya bernilai, dan bila <code>b</code> bernilai nol, operan kedua tidak mempunyai nilai. Ekspresi tidak terdefinisi, meskipun operan pertama sudah bernilai <code>false</code>.</p>
+<p>Untuk itu tersedia dua operator tambahan:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Ekspresi</th><th>Setara dengan</th><th>Arti</th></tr>
+</thead>
+<tbody>
+<tr><td><code>A and then B</code></td><td><code>if A then B else false</code></td><td><code>B</code> hanya dievaluasi bila <code>A</code> bernilai <code>true</code></td></tr>
+<tr><td><code>A or else B</code></td><td><code>if A then true else B</code></td><td><code>B</code> hanya dievaluasi bila <code>A</code> bernilai <code>false</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Dengan <code>and then</code>:</p>
+<pre><code>JUDUL   Pembagi Habis
+</code></pre>
+<pre><code>DEFINISI DAN SPESIFIKASI
+    isDivisor : Integer, Integer → Boolean
+    { isDivisor (a, b) bernilai true bila b membagi habis a.
+      Bernilai false bila b = 0 }
+</code></pre>
+<pre><code>REALISASI
+    isDivisor (a, b) : (b ≠ 0) and then (a mod b = 0)
+</code></pre>
+<pre><code>APLIKASI
+    ⇒ isDivisor (12, 3)
+      true
+    ⇒ isDivisor (12, 5)
+      false
+    ⇒ isDivisor (12, 0)
+      false
+</code></pre>
+<p><code>and then</code> <strong>tidak komutatif</strong>: <code>(a mod b = 0) and then (b ≠ 0)</code> tetap tidak terdefinisi bila <code>b</code> nol. Urutan operan menjadi berarti. Ini adalah satu-satunya tempat dalam notasi ini yang urutan operannya berarti. Karena itu, pakailah <code>and then</code> hanya bila memang diperlukan, yaitu bila operan kedua tidak selalu terdefinisi, dan pakailah <code>and</code> biasa di tempat lain.</p>
+<p>Dalam Haskell:</p>
+<pre><code class="language-haskell">isDivisor :: Integer -&gt; Integer -&gt; Bool
+-- isDivisor a b bernilai True bila b membagi habis a; False bila b = 0
+isDivisor a b = (b /= 0) &amp;&amp; (a `mod` b == 0)
+</code></pre>
+<p>Haskell hanya mempunyai <code>&amp;&amp;</code> dan <code>||</code>, dan keduanya <strong>sudah</strong> berperilaku seperti <code>and then</code> dan <code>or else</code>. Perbedaan yang dibuat notasi kita menghilang dalam terjemahan.</p>
+<p>Pembedaan itu tetap berarti bagi pembaca, meskipun tidak bagi mesin: <code>and then</code> menyatakan bahwa penulisnya sadar operan kedua tidak selalu terdefinisi, dan sengaja bersandar pada urutan. Dalam Haskell, maksud itu hanya dapat disampaikan lewat komentar. Ini adalah kebalikan dari keadaan pada Contoh 2, tempat bahasa justru lebih kuat daripada notasi.</p>
+<h2 id="kesalahan-yang-sering-terjadi"><a class="header" href="#kesalahan-yang-sering-terjadi">Kesalahan yang Sering Terjadi</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Kesalahan</th><th>Gejala</th><th>Cara memeriksa</th></tr>
+</thead>
+<tbody>
+<tr><td>Kasus tidak lengkap</td><td>ada masukan yang tidak menghasilkan apa-apa</td><td>ambil nilai ekstrem dan nilai batas; apakah tercakup?</td></tr>
+<tr><td>Kasus tumpang tindih</td><td>dua kasus benar bersamaan</td><td>untuk setiap pasangan kasus, adakah nilai yang memenuhi keduanya?</td></tr>
+<tr><td>Batas salah dimiliki</td><td>hanya keliru tepat pada nilai batas</td><td>uji <strong>setiap</strong> nilai batas, bukan hanya nilai di antaranya</td></tr>
+<tr><td><code>else</code> menutupi lubang</td><td>kasus yang terlupa menghasilkan jawaban yang tampak wajar</td><td>tuliskan sementara kondisi terakhir secara lengkap; masih lengkapkah?</td></tr>
+<tr><td><code>if</code> tanpa <code>else</code></td><td>tidak ada nilai bagi sebagian masukan</td><td>tidak berlaku dalam notasi ini</td></tr>
+<tr><td><code>and</code> untuk operan yang tidak selalu terdefinisi</td><td>tidak terdefinisi padahal seharusnya bernilai</td><td>apakah operan kedua terdefinisi untuk seluruh domain?</td></tr>
+</tbody>
+</table>
+</div>
+<p>Kesalahan batas layak mendapat perhatian khusus. Kesalahan ini tidak pernah tampak pada contoh aplikasi yang dipilih sembarangan, karena nilai sembarang hampir tidak pernah jatuh tepat di batas. Kebiasaan yang dianjurkan: <strong>untuk setiap batas, uji nilai tepat pada batas, tepat di bawahnya, dan tepat di atasnya.</strong></p>
+<h2 id="latihan"><a class="header" href="#latihan">Latihan</a></h2>
+<p><strong>Membaca.</strong> Untuk setiap realisasi berikut, tentukan definisi dan tuliskan spesifikasinya. Kemudian periksa syarat lengkap dan disjoint. Bila salah satu dilanggar, sebutkan nilai masukan yang membuktikannya.</p>
+<pre><code>p (n) :
+    depend on n
+        n &lt; 0  : -1
+        n = 0  : 0
+        n &gt; 0  : 1
+
+q (x) :
+    depend on x
+        x ≤ 10  : 'A'
+        x ≥ 5   : 'B'
+        else    : 'C'
+
+r (a, b) :
+    depend on a, b
+        a &gt; b : a - b
+        a &lt; b : b - a
+</code></pre>
+<p><strong>Memperbaiki.</strong> Fungsi berikut menghitung ongkos kirim menurut tarif yang berlaku. Ketiga contoh aplikasinya menghasilkan jawaban yang benar, dan kasus-kasusnya memenuhi syarat lengkap maupun syarat disjoint. Meskipun demikian, fungsi ini keliru.</p>
+<pre><code>JUDUL   Ongkos Kirim Paket
+</code></pre>
+<pre><code>DEFINISI DAN SPESIFIKASI
+    deliveryFee : Real → Integer
+    { deliveryFee (b) adalah ongkos kirim dalam rupiah bagi paket
+      seberat b kilogram, menurut tarif berikut:
+          paket ringan : sampai dengan 1 kg        → 10000
+          paket sedang : di atas 1 kg s.d. 5 kg    → 20000
+          paket berat  : di atas 5 kg              → 35000
+      Prasyarat: b &gt; 0.0 }
+</code></pre>
+<pre><code>REALISASI
+    deliveryFee (b) :
+        depend on b
+            b &lt; 1.0                   : 10000
+            (b &gt; 1.0) and (b ≤ 5.0)   : 20000
+            else                      : 35000
+</code></pre>
+<pre><code>APLIKASI
+    ⇒ deliveryFee (0.5)
+      10000
+    ⇒ deliveryFee (3.0)
+      20000
+    ⇒ deliveryFee (7.0)
+      35000
+</code></pre>
+<ol>
+<li>Temukan satu nilai masukan yang menghasilkan jawaban keliru. Berapa yang dihasilkan fungsi, dan berapa yang seharusnya menurut spesifikasi?</li>
+<li>Periksa syarat lengkap dan syarat disjoint. Keduanya terpenuhi. Jelaskan mengapa fungsinya tetap salah. Apa sesungguhnya yang dijamin oleh syarat lengkap?</li>
+<li>Spesifikasi dan realisasi bertentangan mengenai satu nilai. Mana yang Anda perbaiki, dan apa alasannya? Pertimbangkan siapa yang membaca spesifikasi dan siapa yang membaca realisasi.</li>
+<li>Tuliskan ulang kondisi <code>else</code> secara lengkap, sebagai negasi dari kedua kondisi sebelumnya. Setelah ditulis lengkap, apakah kekeliruannya lebih mudah terlihat?</li>
+<li>Tambahkan contoh aplikasi sehingga setiap kasus <strong>dan setiap nilai batas</strong> terwakili. Berapa contoh yang diperlukan?</li>
+</ol>
+<p><strong>Menulis.</strong> Tuliskan keempat bagian secara lengkap. Nyatakan prasyarat bila ada, periksa kedua syarat, dan pilih contoh aplikasi yang mencakup setiap kasus <strong>beserta setiap nilai batas</strong>.</p>
+<ol>
+<li>Menghitung nilai mutlak sebuah bilangan bulat, tanpa memakai <code>abs</code>.</li>
+<li>Mengubah nilai angka <code>0..100</code> menjadi indeks huruf <code>'A'</code>, <code>'B'</code>, <code>'C'</code>, <code>'D'</code>, atau <code>'E'</code>. Tentukan sendiri batasnya dan nyatakan pada spesifikasi.</li>
+<li>Menentukan apakah tiga bilangan bulat positif dapat menjadi panjang sisi sebuah segitiga. Bandingkan dengan jawaban Anda pada Bab 3: apakah ekspresi kondisional membuatnya lebih terbaca, atau justru sebaliknya?</li>
+<li>Menghitung tarif parkir: dua jam pertama Rp5.000, setiap jam berikutnya Rp3.000, dengan tarif maksimum sehari Rp50.000. Masukan adalah lama parkir dalam jam.</li>
+<li>Menentukan nilai terbesar dari tiga bilangan bulat, dengan <code>depend on</code> dan tanpa memakai <code>max2</code>. Bandingkan hasilnya dengan penyelesaian memakai <code>max2</code> pada Bab 2, dan sebutkan mana yang lebih mudah diperiksa kebenarannya.</li>
+</ol>
+<p><strong>Menelusuri.</strong> Tuliskan penelusuran lengkap <code>isDivisor (12, 0)</code>. Kemudian tuliskan penelusuran <code>(12 mod 0 = 0) and then (0 ≠ 0)</code> dan jelaskan apa yang terjadi.</p>
+<p><strong>Merancang.</strong> Pada Bab 3, penelusuran <code>isLeapYear (1900)</code> menunjukkan bahwa hasil akhirnya sudah dapat dipastikan sebelum ekspresinya tersisa satu nilai, tetapi hanya setelah kedua operan <code>and</code> yang terluar dihitung, dan urutan pemeriksaannya sama sekali tidak terbaca dari teksnya. Tuliskan ulang <code>isLeapYear</code> sebagai ekspresi kondisional dengan <code>depend on</code>. Apakah versi itu lebih mudah dibaca? Apakah kondisi-kondisinya disjoint? Mana yang akan Anda pilih untuk diktat ini, dan mengapa?</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="03-ekspresi-dasar.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="05-type-bentukan.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="03-ekspresi-dasar.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="05-type-bentukan.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-09f2665d.js"></script>
+
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-609e4cb8.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>

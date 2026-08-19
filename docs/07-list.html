@@ -1,0 +1,870 @@
+<!DOCTYPE HTML>
+<html lang="id" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>List - Diktat Pemrograman Fungsional</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-e96d0476.css">
+        <link rel="stylesheet" href="css/chrome-d279d366.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex-0ab6a5e0.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-2ab1aa36.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Diktat Pemrograman Fungsional</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="list"><a class="header" href="#list">List</a></h1>
+<h2 id="koleksi-objek"><a class="header" href="#koleksi-objek">Koleksi Objek</a></h2>
+<p>Sampai bab ini, sebuah program hanya mampu mengelola type dasar dan type bentukan yang disusun darinya. Pembatasan itu lebih dalam daripada yang terlihat.</p>
+<p>Sebuah <code>Date</code> menyimpan satu tanggal. Bila kita perlu mengelola tiga tanggal, kita dapat menuliskan tiga parameter. Bila kita perlu mengelola seluruh tanggal dalam setahun, cara itu berhenti bekerja. Bahkan bila banyaknya tanggal <strong>tidak diketahui pada saat program ditulis</strong>, cara itu tidak pernah dapat bekerja, karena kita harus menuliskan nama sebanyak nilai yang akan diproses, sedangkan jumlahnya baru diketahui kelak.</p>
+<p>Yang dibutuhkan adalah sebuah <strong>koleksi</strong>: satu nama yang mewakili sekumpulan nilai, beserta cara mencapai setiap anggotanya. Sebuah koleksi mungkin kosong, mungkin berisi satu anggota, mungkin berisi sejuta.</p>
+<p>Ada banyak cara mengorganisasi koleksi, dan masing-masing cara menentukan sebuah type kolektif tersendiri dengan operasi dasarnya sendiri. Bab ini membahas satu di antaranya, yaitu <strong>list</strong>, yang anggotanya berurutan dan dicapai dari satu ujung. List adalah struktur rekursif yang paling sederhana, sehingga seluruh Bab 6 dapat langsung dipakai kembali di sini.</p>
+<h2 id="list-sebagai-type-rekursif"><a class="header" href="#list-sebagai-type-rekursif">List sebagai Type Rekursif</a></h2>
+<p>Bab 6 menutup dengan menyatakan bahwa type rekursif yang paling penting dalam informatika adalah list. Definisinya:</p>
+<ul>
+<li><strong>Basis:</strong> <em>list kosong</em> adalah sebuah list.</li>
+<li><strong>Rekurens:</strong> <em>sebuah elemen yang diikuti oleh sebuah list</em> adalah sebuah list.</li>
+</ul>
+<p>Dua baris itu menghasilkan seluruh isi bab ini.</p>
+<pre><code>TYPE LIST
+</code></pre>
+<pre><code>DEFINISI TYPE
+    type List : Nil
+              | Cons ⟨head : Element, tail : List⟩
+    { Sebuah List adalah list kosong, atau sebuah elemen yang diikuti
+      oleh sebuah List }
+
+DEFINISI DAN SPESIFIKASI SELEKTOR
+    head : Cons → Element
+    { head (L) memberikan elemen pertama L }
+
+    tail : Cons → List
+    { tail (L) memberikan L tanpa elemen pertamanya }
+
+DEFINISI DAN SPESIFIKASI KONSTRUKTOR
+    makeNil : → List
+    { makeNil membentuk sebuah list kosong }
+
+    makeCons : Element, List → List
+    { makeCons (e, L) membentuk sebuah list dengan e sebagai elemen
+      pertama dan L sebagai sisanya }
+
+DEFINISI DAN SPESIFIKASI PREDIKAT
+    isEmpty : List → Boolean
+    { isEmpty (L) bernilai true bila L adalah list kosong }
+
+    isOneElement : List → Boolean
+    { isOneElement (L) bernilai true bila L hanya mempunyai satu elemen }
+</code></pre>
+<p><code>Element</code> bukan sebuah type dasar, melainkan “tempat kosong” yang diisi sekali untuk setiap list: seluruh elemen sebuah list bertype sama, dan type itu ditetapkan pada saat list dipakai. Diktat ini menuliskan <code>List of Integer</code>, <code>List of Character</code>, dan <code>List of Date</code> untuk menyebut list yang <code>Element</code>-nya masing-masing <code>Integer</code>, <code>Character</code>, dan <code>Date</code>. Cara menyatakan hal ini secara tepat, sehingga kompilator ikut memeriksanya, adalah bagian dari sistem type yang berada di luar cakupan diktat ini.</p>
+<blockquote>
+<p><strong>Catatan.</strong> Nama <code>Cons</code> adalah kependekan dari <em>construct</em>, dan berasal dari Lisp, bahasa fungsional tertua yang masih dipakai hingga kini. Di sana <code>cons</code> adalah operasi dasar yang membentuk sebuah list dari sebuah elemen dan sebuah list, dan setiap sel penyusunnya disebut <em>cons cell</em>. Istilah ini bertahan lintas generasi bahasa fungsional. Bahasa acuan diktat ini menuliskannya sebagai operator <code>:</code>, tetapi tetap menyebut selnya dengan nama yang sama, sehingga pembaca akan menemukan kata <em>cons</em> di hampir setiap dokumentasi bahasa fungsional yang dibukanya.</p>
+</blockquote>
+<h3 id="penulisan-singkat"><a class="header" href="#penulisan-singkat">Penulisan singkat</a></h3>
+<p>Menuliskan setiap list dengan konstruktornya cepat menjadi melelahkan. Karena itu tersedia penulisan singkat:</p>
+<pre><code>[]            { setara dengan makeNil }
+[7]           { setara dengan makeCons (7, makeNil) }
+[1, 2, 3]     { setara dengan makeCons (1, makeCons (2, makeCons (3, makeNil))) }
+</code></pre>
+<p>Penulisan singkat adalah <strong>penulisan yang sama</strong>, bukan type yang lain. Pada penelusuran, bentuk panjangnya dipakai kembali setiap kali sebuah konstruktor benar-benar dibongkar atau dibentuk, karena di situlah struktur rekursifnya terlihat.</p>
+<p>Perhatikan bahwa <code>[1, 2, 3]</code> tidak simetris. Elemen <code>1</code> berada di lapis paling luar dan dapat diambil dengan satu aplikasi <code>head</code>, sedangkan <code>3</code> terkubur di lapis paling dalam. Ketidaksimetrisan ini bukan kekurangan yang harus ditutupi, melainkan sifat list yang akan menjelaskan mengapa sebagian operasi murah dan sebagian lain mahal.</p>
+<blockquote>
+<p><strong>Peringatan bagi pembaca bahan lama.</strong> Diktat terdahulu di lingkungan ITB memakai nama <code>Head</code> untuk <strong>list tanpa elemen terakhir</strong>, dan <code>FirstElmt</code> untuk elemen pertama. Diktat ini memakai <code>head</code> untuk elemen pertama dan <code>tail</code> untuk sisanya, mengikuti terminologi yang kini sangat umum digunakan di bahasa pemrograman fungsional. Arti nama <code>head</code> karenanya <strong>berkebalikan</strong> dengan bahan lama. Bila Anda membaca materi arsip atau berdiskusi dengan seseorang yang mempelajarinya dari sana, sepakati lebih dahulu arti kedua nama itu.</p>
+</blockquote>
+<h3 id="basis-0-dan-basis-1"><a class="header" href="#basis-0-dan-basis-1">Basis-0 dan basis-1</a></h3>
+<p>Pada fungsi rekursif yang hanya melibatkan type dasar (misalnya <code>Integer</code>), tidak ada yang membatasi di mana basis boleh diletakkan, dan Bab 6 memperlihatkan basis pada <code>n = 0</code>, <code>n = 1</code>, <code>n &lt; 10</code>, <code>b = 0</code>, serta sepasang <code>n = 0</code> dan <code>n = 1</code>. Memberi nomor pada basis semacam itu tidak menerangkan apa-apa.</p>
+<p>Tidak demikian dengan type koleksi seperti <code>List</code>. Type-nya mempunyai tepat dua konstruktor, sehingga kasus terkecil yang mungkin hanya ada dua, dan keduanya pantas diberi nama:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Istilah</th><th>Basis pada</th><th>Predikat</th><th>Dipakai bila</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Basis-0</strong></td><td>list kosong</td><td><code>isEmpty</code></td><td>fungsi terdefinisi atas list kosong</td></tr>
+<tr><td><strong>Basis-1</strong></td><td>list satu elemen</td><td><code>isOneElement</code></td><td>fungsi <strong>tidak</strong> terdefinisi atas list kosong</td></tr>
+</tbody>
+</table>
+</div>
+<p>Pemilihan di antara keduanya bukan soal selera, melainkan ditentukan oleh satu pertanyaan: <em>apakah fungsi ini mempunyai jawaban untuk list kosong?</em> Banyaknya elemen sebuah list kosong adalah nol, sehingga <code>length</code> berbasis-0. Nilai terbesar dalam list kosong tidak ada, sehingga <code>maxList</code> berbasis-1 dan list kosong dikeluarkan dari domainnya lewat pembatasan, persis sebagaimana <code>quadrant</code> mengeluarkan titik pada sumbu (Bab 4).</p>
+<p>Perhatikan pula apa yang kini datang cuma-cuma. Bab 6 menuntut dua kewajiban yang harus dijaga sendiri oleh penulisnya. Untuk list, keduanya diberikan oleh type-nya: alternatif <code>Nil</code> tidak menyebut dirinya sendiri sehingga ia adalah basisnya, alternatif <code>Cons</code> menyebut dirinya sendiri sehingga ia adalah rekurensnya, dan <code>tail (L)</code> selalu berisi satu elemen lebih sedikit daripada <code>L</code> sehingga konvergensinya terjamin. Yang pada Bab 6 harus dibuktikan, di sini tinggal disebutkan.</p>
+<p>Satu kebiasaan yang berlaku di seluruh bab ini: kondisi rekurens <strong>selalu ditulis utuh</strong> sebagai <code>not (isEmpty (L))</code>, tidak pernah sebagai <code>else</code>. Alasannya sama dengan alasan Bab 5 menuliskan <code>isRectangle (s)</code> secara terbuka. Menuliskannya membuat jaminan yang diberikan type terlihat alih-alih tersembunyi.</p>
+<h2 id="contoh-1-banyaknya-elemen"><a class="header" href="#contoh-1-banyaknya-elemen">Contoh 1: Banyaknya Elemen</a></h2>
+<pre><code>JUDUL   Banyaknya Elemen Sebuah List
+</code></pre>
+<pre><code>DEFINISI DAN SPESIFIKASI
+    length : List → Integer ≥ 0
+    { length (L) adalah banyaknya elemen L, nol bila L kosong }
+    { Basis-0:  isEmpty (L)       → 0
+      Rekurens: not (isEmpty (L)) → 1 + length (tail (L)) }
+</code></pre>
+<pre><code>REALISASI
+    length (L) :
+        depend on L
+            isEmpty (L)       : 0
+            not (isEmpty (L)) : 1 + length (tail (L))
+</code></pre>
+<pre><code>APLIKASI
+    ⇒ length ([])
+      0
+    ⇒ length ([7])
+      1
+    ⇒ length ([1, 2, 3])
+      3
+</code></pre>
+<p>Penelusuran <code>length ([1, 2, 3])</code>:</p>
+<pre><code>⇒ length (makeCons (1, makeCons (2, makeCons (3, makeNil))))
+  → 1 + length (makeCons (2, makeCons (3, makeNil)))    { ekspansi, rekurens }
+  → 1 + (1 + length (makeCons (3, makeNil)))            { ekspansi, rekurens }
+  → 1 + (1 + (1 + length (makeNil)))                    { ekspansi, rekurens }
+  → 1 + (1 + (1 + 0))                                   { ekspansi, basis-0 }
+  → 1 + (1 + 1)                                         { reduksi + }
+  → 1 + 2                                               { reduksi + }
+  → 3                                                   { reduksi + }
+</code></pre>
+<p>Bentuknya persis bentuk <code>factorial (4)</code> pada Bab 6: ekspresi membesar satu lapis pada setiap ekspansi sampai basis tercapai, lalu mengecil satu reduksi pada satu waktu. Yang berbeda hanyalah apa yang mengecil. Pada <code>factorial</code>, sebuah bilangan. Di sini, sebuah struktur.</p>
+<p>Perhatikan bahwa penelusuran ditulis dengan konstruktor, bukan dengan <code>[1, 2, 3]</code>. Justru pembongkaran konstruktor itulah yang sedang diperlihatkan.</p>
+<h2 id="contoh-2-keanggotaan"><a class="header" href="#contoh-2-keanggotaan">Contoh 2: Keanggotaan</a></h2>
+<pre><code>JUDUL   Keanggotaan Sebuah Elemen
+</code></pre>
+<pre><code>DEFINISI DAN SPESIFIKASI
+    isMember : Element, List → Boolean
+    { isMember (x, L) bernilai true bila x adalah salah satu elemen L.
+      Bernilai false bila L kosong }
+    { Basis-0:  isEmpty (L)       → false
+      Rekurens: not (isEmpty (L)) → head (L) = x, atau x anggota tail (L) }
+</code></pre>
+<pre><code>REALISASI
+    isMember (x, L) :
+        depend on L
+            isEmpty (L)       : false
+            not (isEmpty (L)) : (head (L) = x) or else isMember (x, tail (L))
+</code></pre>
+<pre><code>APLIKASI
+    ⇒ isMember (5, [])
+      false
+    ⇒ isMember (2, [1, 2, 3])
+      true
+    ⇒ isMember (9, [1, 2, 3])
+      false
+</code></pre>
+<p>Dua hal patut diperhatikan.</p>
+<p><strong><code>or else</code> dipakai, dan memang diperlukan.</strong> Bab 4 menganjurkan memakai hubung-singkat hanya bila operan kedua tidak selalu terdefinisi. Di sini alasannya berbeda dan sama sahnya: operan kedua <strong>selalu terdefinisi, tetapi mahal</strong>. Dengan <code>or else</code>, <code>isMember (1, [1, 2, ..., 1000])</code> berhenti pada elemen pertama. Dengan <code>or</code> biasa, seluruh seribu elemen tetap ditelusuri untuk menghasilkan jawaban yang sama.</p>
+<p><strong>Hasilnya dapat dipastikan sebelum basis tercapai.</strong> Ini adalah fungsi pertama pada bab ini yang tidak selalu berjalan sampai ke ujung list. Sebagian besar fungsi list tidak mempunyai sifat ini, dan justru karena itu sifatnya layak dikenali ketika muncul.</p>
+<h2 id="contoh-3-sepasang-fungsi-yang-hampir-kembar"><a class="header" href="#contoh-3-sepasang-fungsi-yang-hampir-kembar">Contoh 3: Sepasang Fungsi yang Hampir Kembar</a></h2>
+<pre><code>JUDUL   Jumlah dan Hasil Kali Seluruh Elemen
+</code></pre>
+<pre><code>DEFINISI DAN SPESIFIKASI
+    sumList : List of Integer → Integer
+    { sumList (L) adalah jumlah seluruh elemen L, nol bila L kosong }
+    { Basis-0:  isEmpty (L)       → 0
+      Rekurens: not (isEmpty (L)) → head (L) + sumList (tail (L)) }
+
+    productList : List of Integer → Integer
+    { productList (L) adalah hasil kali seluruh elemen L, satu bila L kosong }
+    { Basis-0:  isEmpty (L)       → 1
+      Rekurens: not (isEmpty (L)) → head (L) * productList (tail (L)) }
+</code></pre>
+<pre><code>REALISASI
+    sumList (L) :
+        depend on L
+            isEmpty (L)       : 0
+            not (isEmpty (L)) : head (L) + sumList (tail (L))
+
+    productList (L) :
+        depend on L
+            isEmpty (L)       : 1
+            not (isEmpty (L)) : head (L) * productList (tail (L))
+</code></pre>
+<pre><code>APLIKASI
+    ⇒ sumList ([])
+      0
+    ⇒ sumList ([1, 2, 3])
+      6
+    ⇒ productList ([])
+      1
+    ⇒ productList ([1, 2, 3])
+      6
+</code></pre>
+<p>Letakkan kedua realisasi berdampingan. Keduanya berbeda <strong>hanya pada dua tempat</strong>: nilai basisnya, dan operatornya.</p>
+<p>Mengapa basis <code>productList</code> bernilai <code>1</code> dan bukan <code>0</code>? Karena basis harus merupakan nilai yang tidak mengubah apa-apa ketika operator diterapkan padanya. Menjumlahkan nol tidak mengubah jumlah, dan mengalikan satu tidak mengubah hasil kali. Bila basis <code>productList</code> diisi <code>0</code>, setiap hasil kali menjadi nol. Aturan ini berlaku umum: <strong>nilai basis ditentukan oleh operator rekurensnya</strong>, dan memilihnya sembarangan adalah salah satu kesalahan yang paling sering terjadi pada bab ini.</p>
+<p>Kekembaran kedua fungsi ini disengaja diperlihatkan, dan akan dibicarakan lagi pada akhir bab.</p>
+<h2 id="contoh-4-nilai-terbesar-dan-basis-1"><a class="header" href="#contoh-4-nilai-terbesar-dan-basis-1">Contoh 4: Nilai Terbesar, dan Basis-1</a></h2>
+<pre><code>JUDUL   Elemen Terbesar Sebuah List
+</code></pre>
+<pre><code>DEFINISI DAN SPESIFIKASI
+    maxList : List of Integer tidak kosong → Integer
+    { maxList (L) adalah nilai elemen terbesar L.
+      Prasyarat: L tidak kosong }
+    { Basis-1:  isOneElement (L)       → head (L)
+      Rekurens: not (isOneElement (L)) → max2 (head (L), maxList (tail (L))) }
+    { Fungsi antara yang dipakai: max2 }
+</code></pre>
+<pre><code>REALISASI
+    maxList (L) :
+        depend on L
+            isOneElement (L)       : head (L)
+            not (isOneElement (L)) : max2 (head (L), maxList (tail (L)))
+</code></pre>
+<pre><code>APLIKASI
+    ⇒ maxList ([7])
+      7
+    ⇒ maxList ([3, 9, 2])
+      9
+    ⇒ maxList ([-5, -1, -8])
+      -1
+</code></pre>
+<p><strong>Mengapa basis-1.</strong> Nilai terbesar dalam list kosong tidak ada, dan tidak ada bilangan yang dapat dituliskan sebagai jawaban. Menuliskan basis-0 dengan hasil <code>0</code> akan membuat <code>maxList ([-5, -1, -8])</code> menghasilkan <code>0</code>, yaitu sebuah nilai yang bahkan bukan anggota list-nya. Kekeliruan semacam itu tampak wajar dan bertahan lama, persis seperti yang diperingatkan Bab 4 tentang <code>else</code>.</p>
+<p>Yang benar adalah mengeluarkan list kosong dari domain. Perhatikan bahwa pembatasan itu muncul di <strong>dua tempat</strong>, yaitu pada baris definisi dan pada prasyarat, sebagaimana dianjurkan sejak Bab 4.</p>
+<p><strong>Konvergensinya tetap terjamin, tetapi argumennya berubah.</strong> Rekurens mengaplikasikan <code>maxList</code> terhadap <code>tail (L)</code>, dan <code>tail (L)</code> harus tetap memenuhi prasyarat. Karena kondisi rekurens adalah <code>not (isOneElement (L))</code>, list-nya berisi sekurang-kurangnya dua elemen, sehingga <code>tail (L)</code> berisi sekurang-kurangnya satu. Prasyarat terpenuhi pada setiap langkah. Fungsi berbasis-1 selalu menuntut pemeriksaan ini, dan melewatkannya adalah kesalahan yang paling khas pada basis-1.</p>
+<p><code>max2</code> diambil kembali dari Bab 2 tanpa ditulis ulang.</p>
+<h2 id="contoh-5-menghasilkan-sebuah-list"><a class="header" href="#contoh-5-menghasilkan-sebuah-list">Contoh 5: Menghasilkan Sebuah List</a></h2>
+<p>Seluruh fungsi sejauh ini menghasilkan nilai tunggal. Sebuah fungsi list dapat pula menghasilkan list.</p>
+<pre><code>JUDUL   Mengkuadratkan Seluruh Elemen
+</code></pre>
+<pre><code>DEFINISI DAN SPESIFIKASI
+    squareAll : List of Integer → List of Integer
+    { squareAll (L) adalah list yang elemennya adalah kuadrat setiap
+      elemen L, dengan urutan yang sama. Banyaknya elemen tidak berubah }
+    { Basis-0:  isEmpty (L)       → []
+      Rekurens: not (isEmpty (L)) → square (head (L)) diikuti squareAll (tail (L)) }
+</code></pre>
+<pre><code>REALISASI
+    squareAll (L) :
+        depend on L
+            isEmpty (L)       : makeNil
+            not (isEmpty (L)) : makeCons (square (head (L)), squareAll (tail (L)))
+</code></pre>
+<pre><code>APLIKASI
+    ⇒ squareAll ([])
+      []
+    ⇒ squareAll ([1, 2, 3])
+      [1, 4, 9]
+</code></pre>
+<p>Sekarang bandingkan dengan persoalan yang terdengar serupa.</p>
+<pre><code>JUDUL   Menyaring Elemen Positif
+</code></pre>
+<pre><code>DEFINISI DAN SPESIFIKASI
+    keepPositive : List of Integer → List of Integer
+    { keepPositive (L) adalah list yang berisi seluruh elemen L yang
+      bernilai positif, dengan urutan yang sama. Banyaknya elemen dapat
+      berkurang }
+    { Basis-0:  isEmpty (L) → []
+      Rekurens: elemen pertama disertakan atau dilewati }
+</code></pre>
+<pre><code>REALISASI
+    keepPositive (L) :
+        depend on L
+            isEmpty (L)                               : makeNil
+            not (isEmpty (L)) and then (head (L) &gt; 0) : makeCons (head (L), keepPositive (tail (L)))
+            not (isEmpty (L)) and then (head (L) ≤ 0) : keepPositive (tail (L))
+</code></pre>
+<pre><code>APLIKASI
+    ⇒ keepPositive ([])
+      []
+    ⇒ keepPositive ([1, -2, 3])
+      [1, 3]
+    ⇒ keepPositive ([-1, -2])
+      []
+</code></pre>
+<p>Tiga hal patut diperhatikan.</p>
+<p><strong><code>and then</code> wajib di sini.</strong> Ekspresi <code>head (L)</code> tidak terdefinisi bila <code>L</code> kosong. Menuliskan <code>not (isEmpty (L)) and (head (L) &gt; 0)</code> dengan <code>and</code> biasa adalah kesalahan yang persis sama dengan <code>isDivisor</code> pada Bab 4. Perhatikan bahwa keperluan ini muncul dengan sendirinya begitu kondisi memeriksa isi list (bukan hanya bentuknya), sehingga bentuk ini akan sering muncul mulai sekarang.</p>
+<p><strong>Rekurensnya mempunyai dua kasus, bukan satu.</strong> <code>squareAll</code> selalu membentuk <code>makeCons</code>; <code>keepPositive</code> kadang membentuknya dan kadang tidak. Di situlah letak perbedaan sesungguhnya antara “mengubah setiap elemen” dan “memilih sebagian elemen”, dan perbedaan itu terlihat pada bentuk teksnya.</p>
+<p><strong>Ketiga kondisinya lengkap dan disjoint.</strong> Diperiksa sebagaimana Bab 4, tanpa keringanan apa pun karena ini list.</p>
+<h2 id="menyusun-list-harga-sebuah-ujung"><a class="header" href="#menyusun-list-harga-sebuah-ujung">Menyusun List: Harga Sebuah Ujung</a></h2>
+<p><code>makeCons</code> menambahkan elemen di <strong>depan</strong> dan menghasilkan list baru dengan satu aplikasi konstruktor. Menambahkan di <strong>belakang</strong> tidak tersedia sebagai konstruktor, dan harus diturunkan.</p>
+<pre><code>JUDUL   Menambahkan Elemen di Akhir List
+</code></pre>
+<pre><code>DEFINISI DAN SPESIFIKASI
+    addLast : List, Element → List
+    { addLast (L, e) adalah list yang berisi seluruh elemen L dengan
+      urutan yang sama, diikuti oleh e sebagai elemen terakhir }
+    { Basis-0:  isEmpty (L)       → [e]
+      Rekurens: not (isEmpty (L)) → head (L) diikuti addLast (tail (L), e) }
+</code></pre>
+<pre><code>REALISASI
+    addLast (L, e) :
+        depend on L
+            isEmpty (L)       : makeCons (e, makeNil)
+            not (isEmpty (L)) : makeCons (head (L), addLast (tail (L), e))
+</code></pre>
+<pre><code>APLIKASI
+    ⇒ addLast ([], 9)
+      [9]
+    ⇒ addLast ([1, 2], 9)
+      [1, 2, 9]
+</code></pre>
+<p>Hitunglah pekerjaannya. <code>makeCons (0, L)</code> menyisipkan di depan dengan <strong>satu</strong> aplikasi konstruktor, berapa pun panjang <code>L</code>. <code>addLast (L, e)</code> untuk <code>L</code> sepanjang <em>n</em> menuntut <em>n</em> + 1 aplikasi <code>addLast</code> dan membangun ulang seluruh <em>n</em> lapis konstruktor.</p>
+<p>Inilah akibat dari ketidaksimetrisan yang disebut di awal bab. Sebuah list mempunyai satu ujung yang murah dan satu ujung yang mahal, dan itu bukan kebetulan, melainkan akibat langsung dari definisi type-nya, yang menyebut dirinya sendiri pada posisi <code>tail</code>.</p>
+<p>Diktat ini karenanya hanya mempunyai <strong>satu</strong> konstruktor. Bahan terdahulu menyediakan konstruktor kedua untuk menambahkan di kanan, sehingga kedua ujung tampak setara. Kesetaraan itu menyesatkan. Dengan menurunkan <code>addLast</code> sebagai fungsi biasa, harganya menjadi terlihat, dan pilihan rancangan yang bersandar padanya menjadi pilihan yang sadar.</p>
+<h3 id="pembalikan-dan-tempat-akumulator-bekerja"><a class="header" href="#pembalikan-dan-tempat-akumulator-bekerja">Pembalikan, dan tempat akumulator bekerja</a></h3>
+<pre><code>JUDUL   Membalik Urutan Elemen
+</code></pre>
+<pre><code>DEFINISI DAN SPESIFIKASI
+    reverse : List → List
+    { reverse (L) adalah list yang berisi seluruh elemen L dengan
+      urutan terbalik }
+</code></pre>
+<pre><code>REALISASI (VERSI PERTAMA)
+    reverse (L) :
+        depend on L
+            isEmpty (L)       : makeNil
+            not (isEmpty (L)) : addLast (reverse (tail (L)), head (L))
+</code></pre>
+<p>Realisasi ini benar dan langsung mengikuti gagasannya. Perhatikan bahwa realisasi ini mahal, karena setiap lapis memanggil <code>addLast</code> yang sendirinya menelusuri seluruh list. Untuk <code>[1, 2, 3]</code>, <code>reverse</code> diaplikasikan empat kali dan <code>addLast</code> enam kali.</p>
+<p>Bab 6 memperkenalkan akumulator, yaitu parameter tambahan yang membawa hasil sementara maju. Persoalan ini adalah tempatnya bekerja:</p>
+<pre><code>REALISASI (VERSI KEDUA)
+    reverseOnto : List, List → List
+    { reverseOnto (L, acc) adalah elemen-elemen L dengan urutan terbalik,
+      diikuti oleh seluruh elemen acc dengan urutannya semula }
+    { Basis-0:  isEmpty (L)       → acc
+      Rekurens: not (isEmpty (L)) → reverseOnto (tail (L), head (L) diikuti acc) }
+
+    reverseOnto (L, acc) :
+        depend on L
+            isEmpty (L)       : acc
+            not (isEmpty (L)) : reverseOnto (tail (L), makeCons (head (L), acc))
+
+    reverse2 (L) : reverseOnto (L, makeNil)
+</code></pre>
+<pre><code>APLIKASI
+    ⇒ reverse2 ([])
+      []
+    ⇒ reverse2 ([1, 2, 3])
+      [3, 2, 1]
+</code></pre>
+<p>Untuk <code>[1, 2, 3]</code>, <code>reverseOnto</code> diaplikasikan empat kali dan <code>addLast</code> tidak dipakai sama sekali. Setiap langkah hanya memerlukan satu <code>makeCons</code>, yaitu operasi yang murah.</p>
+<p>Sebagaimana Bab 6, harganya terletak pada spesifikasinya. Spesifikasi <code>reverse</code> dapat dituliskan dalam satu kalimat. Spesifikasi <code>reverseOnto</code> menuntut kita menjelaskan apa arti <code>acc</code> pada setiap langkah, dan kalimat itu jauh lebih sulit ditulis dengan tepat daripada realisasinya.</p>
+<p><strong>Perhatikan pula bahwa keuntungan ini tidak berlaku umum.</strong> Dari seluruh fungsi pada bab ini, hanya <code>reverse</code> yang jelas diuntungkan oleh akumulator. Menuliskan <code>length</code>, <code>sumList</code>, atau <code>squareAll</code> dalam bentuk berakumulator menghasilkan teks yang lebih panjang tanpa penghematan apa pun, dan untuk <code>squareAll</code> hasilnya bahkan terbalik urutannya sehingga menuntut satu <code>reverse</code> tambahan di ujung. Bentuk berakumulator adalah salah satu alat, bukan bentuk yang lebih maju.</p>
+<h3 id="menyisipkan-pada-tempatnya"><a class="header" href="#menyisipkan-pada-tempatnya">Menyisipkan pada tempatnya</a></h3>
+<pre><code>JUDUL   Penyisipan Terurut
+</code></pre>
+<pre><code>DEFINISI DAN SPESIFIKASI
+    insertSorted : Integer, List of Integer → List of Integer
+    { insertSorted (x, L) adalah list yang berisi seluruh elemen L
+      beserta x, terurut menaik.
+      Prasyarat: L terurut menaik }
+</code></pre>
+<pre><code>REALISASI
+    insertSorted (x, L) :
+        depend on L
+            isEmpty (L)                               : makeCons (x, makeNil)
+            not (isEmpty (L)) and then (x ≤ head (L)) : makeCons (x, L)
+            not (isEmpty (L)) and then (x &gt; head (L)) : makeCons (head (L), insertSorted (x, tail (L)))
+</code></pre>
+<pre><code>APLIKASI
+    ⇒ insertSorted (5, [])
+      [5]
+    ⇒ insertSorted (5, [7, 9])
+      [5, 7, 9]
+    ⇒ insertSorted (5, [1, 3])
+      [1, 3, 5]
+    ⇒ insertSorted (5, [1, 7])
+      [1, 5, 7]
+</code></pre>
+<p>Keterurutan di sini adalah sebuah <strong>invarian</strong>, dalam arti yang persis sama dengan invarian <code>Fraction</code> pada Bab 5. Invarian ini dituliskan sebagai prasyarat, tidak dijamin oleh apa pun, dan ditegakkan dengan disiplin: setiap operator yang menghasilkan list terurut harus memastikan hasilnya tetap terurut. Kasus kedua bersandar penuh pada invarian itu, karena <code>makeCons (x, L)</code> hanya benar bila seluruh isi <code>L</code> sudah dipastikan tidak lebih kecil daripada <code>x</code>, dan yang menjaminnya bukan pemeriksaan melainkan prasyarat.</p>
+<h2 id="list-of-character"><a class="header" href="#list-of-character">List of Character</a></h2>
+<p>Teks adalah list yang elemennya karakter. Tidak ada mekanisme baru yang diperlukan.</p>
+<pre><code>JUDUL   Banyaknya Kemunculan Sebuah Karakter
+</code></pre>
+<pre><code>DEFINISI DAN SPESIFIKASI
+    countChar : Character, List of Character → Integer ≥ 0
+    { countChar (c, L) adalah banyaknya kemunculan c di dalam L }
+</code></pre>
+<pre><code>REALISASI
+    countChar (c, L) :
+        depend on L
+            isEmpty (L)                               : 0
+            not (isEmpty (L)) and then (head (L) = c) : 1 + countChar (c, tail (L))
+            not (isEmpty (L)) and then (head (L) ≠ c) : countChar (c, tail (L))
+</code></pre>
+<pre><code>APLIKASI
+    ⇒ countChar ('a', [])
+      0
+    ⇒ countChar ('a', ['s', 'a', 't', 'r', 'i', 'o'])
+      1
+</code></pre>
+<p>Bentuknya adalah <code>keepPositive</code> dan <code>length</code> yang digabung: rekurensnya bercabang seperti penyaringan, hasilnya sebuah bilangan seperti pencacahan.</p>
+<p>Yang layak diperhatikan bukan fungsinya, melainkan <strong>apa yang tidak perlu ditulis</strong>. Tidak ada type teks tersendiri, tidak ada operasi teks tersendiri, dan <code>length</code>, <code>isMember</code>, serta <code>reverse</code> yang sudah ditulis di atas berlaku atas teks tanpa perubahan satu huruf pun.</p>
+<h2 id="list-of-type-bentukan"><a class="header" href="#list-of-type-bentukan">List of Type Bentukan</a></h2>
+<p>Elemen sebuah list boleh bertype bentukan. Bab 5 menyediakan <code>Date</code> beserta <code>isBefore</code>, dan keduanya dipakai kembali di sini tanpa penyesuaian.</p>
+<pre><code>JUDUL   Tanggal Paling Awal
+</code></pre>
+<pre><code>DEFINISI DAN SPESIFIKASI
+    earliest : List of Date tidak kosong → Date
+    { earliest (L) adalah tanggal paling awal di dalam L.
+      Prasyarat: L tidak kosong }
+    { Basis-1:  isOneElement (L)       → head (L)
+      Rekurens: not (isOneElement (L)) → yang lebih awal antara head (L)
+                                          dan earliest (tail (L)) }
+</code></pre>
+<pre><code>REALISASI
+    earliest (L) :
+        let
+            rest : earliest (tail (L))
+        in
+            depend on L
+                isOneElement (L)                                           : head (L)
+                not (isOneElement (L)) and isBefore (head (L), rest)       : head (L)
+                not (isOneElement (L)) and not (isBefore (head (L), rest)) : rest
+</code></pre>
+<p>Letakkan realisasi ini berdampingan dengan <code>maxList</code>. Keduanya berbasis-1, keduanya membandingkan elemen pertama terhadap hasil rekurens atas sisanya, dan keduanya hanya berbeda pada <strong>cara membandingkan</strong>. Yang satu memakai <code>max2</code> atas <code>Integer</code>, yang lain memakai <code>isBefore</code> atas <code>Date</code>.</p>
+<p>Ini adalah kekembaran ketiga pada bab ini, dan yang paling jauh jangkauannya. Dua fungsi dengan type yang sama sekali berbeda ternyata mempunyai bentuk yang sama.</p>
+<h2 id="himpunan"><a class="header" href="#himpunan">Himpunan</a></h2>
+<p>Sebuah <strong>himpunan</strong> adalah list yang seluruh elemennya berbeda, dengan kata lain, sebuah list dengan sebuah tambahan <strong>invarian</strong>.</p>
+<pre><code>TYPE SET
+</code></pre>
+<pre><code>DEFINISI TYPE
+    type Set : List
+    { Sebuah Set adalah sebuah List yang seluruh elemennya berbeda.
+      Urutan elemen tidak berarti }
+
+DEFINISI DAN SPESIFIKASI KONSTRUKTOR
+    makeEmptySet : → Set
+    { makeEmptySet membentuk himpunan kosong }
+
+    insertSet : Element, Set → Set
+    { insertSet (x, S) adalah himpunan yang beranggotakan seluruh anggota S
+      beserta x. Bila x sudah menjadi anggota S, hasilnya adalah S }
+
+DEFINISI DAN SPESIFIKASI OPERATOR LAIN
+    union : Set, Set → Set
+    { union (S1, S2) adalah himpunan yang beranggotakan seluruh anggota
+      S1 maupun S2 }
+</code></pre>
+<pre><code>REALISASI
+    insertSet (x, S) :
+        if isMember (x, S) then
+            S
+        else
+            makeCons (x, S)
+
+    union (S1, S2) :
+        depend on S1
+            isEmpty (S1)       : S2
+            not (isEmpty (S1)) : insertSet (head (S1), union (tail (S1), S2))
+</code></pre>
+<pre><code>APLIKASI
+    ⇒ insertSet (5, [])
+      [5]
+    ⇒ insertSet (5, [5, 3])
+      [5, 3]
+    ⇒ union ([1, 2], [2, 3])
+      [1, 2, 3]
+</code></pre>
+<p>Satu hal yang perlu benar-benar dipahami: <strong><code>makeCons</code> bukan konstruktor yang sah bagi <code>Set</code>.</strong> Ia dapat menghasilkan list yang mengandung dua elemen sama, sehingga melanggar invarian <code>Set</code>. Setiap pembentukan anggota baru harus melalui <code>insertSet</code>, dan <code>union</code> di atas taat kepada aturan itu dengan memanggil <code>insertSet</code> alih-alih <code>makeCons</code>.</p>
+<p>Inilah “bekerja lewat konstruktor” dari Bab 5, muncul kembali dan kali ini dengan taruhan yang lebih jelas. Satu pemanggilan <code>makeCons</code> yang lolos akan menghasilkan <code>Set</code> yang tidak sah, dan gejalanya akan muncul jauh dari sebabnya.</p>
+<p>Perhatikan bahwa harganya nyata: <code>insertSet</code> memanggil <code>isMember</code> yang menelusuri seluruh himpunan, sehingga menyisipkan ke dalam himpunan jauh lebih mahal daripada menyisipkan ke dalam list. Invarian tidak pernah gratis: ia dibayar oleh setiap operasi yang harus menjaganya, dan dibeli karena hal-hal lain menjadi lebih mudah dipercaya.</p>
+<h2 id="resume-analisis-rekurens"><a class="header" href="#resume-analisis-rekurens">Resume Analisis Rekurens</a></h2>
+<p>Seluruh fungsi rekursif pada Bab 6 dan Bab 7 mengikuti sejumlah kecil pola. Tabel berikut merangkumnya.</p>
+<p><strong>Rekurens terhadap bilangan bulat <code>n</code>:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bagian</th><th>Bentuk</th></tr>
+</thead>
+<tbody>
+<tr><td>Basis</td><td><code>n = 0</code>, atau kondisi lain yang jawabannya diketahui langsung</td></tr>
+<tr><td>Rekurens</td><td><code>f (n - 1)</code>, <code>f (n div 10)</code>, <code>f (n div 2)</code>, dan sebagainya</td></tr>
+<tr><td>Yang wajib dinyatakan</td><td>besaran yang mengecil beserta batas bawahnya</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Rekurens terhadap list <code>L</code>, basis-0:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bagian</th><th>Bentuk</th></tr>
+</thead>
+<tbody>
+<tr><td>Basis</td><td><code>isEmpty (L)</code> : nilai netral terhadap operator rekurensnya</td></tr>
+<tr><td>Rekurens</td><td><code>not (isEmpty (L))</code> : gabungkan <code>head (L)</code> dengan <code>f (tail (L))</code></td></tr>
+<tr><td>Konvergensi</td><td>dijamin oleh type</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Rekurens terhadap list <code>L</code>, basis-1:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bagian</th><th>Bentuk</th></tr>
+</thead>
+<tbody>
+<tr><td>Basis</td><td><code>isOneElement (L)</code> : jawaban bagi satu elemen</td></tr>
+<tr><td>Rekurens</td><td><code>not (isOneElement (L))</code> : gabungkan <code>head (L)</code> dengan <code>f (tail (L))</code></td></tr>
+<tr><td>Yang wajib diperiksa</td><td>apakah <code>tail (L)</code> masih memenuhi prasyarat</td></tr>
+<tr><td>Dipakai bila</td><td>fungsi tidak terdefinisi atas list kosong</td></tr>
+</tbody>
+</table>
+</div>
+<p>Tiga bentuk rekurens yang berulang pada bab ini, menurut apa yang dihasilkannya:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Yang dihasilkan</th><th>Rekurensnya</th><th>Contoh pada bab ini</th></tr>
+</thead>
+<tbody>
+<tr><td>Sebuah nilai tunggal</td><td>gabungkan <code>head (L)</code> dengan hasil atas <code>tail (L)</code></td><td><code>length</code>, <code>sumList</code>, <code>productList</code>, <code>maxList</code>, <code>earliest</code>, <code>countChar</code></td></tr>
+<tr><td>List dengan panjang sama</td><td><code>makeCons (</code><em>ubah</em> <code>head (L), f (tail (L)))</code></td><td><code>squareAll</code></td></tr>
+<tr><td>List yang mungkin lebih pendek</td><td>sertakan atau lewati <code>head (L)</code></td><td><code>keepPositive</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Sekarang lihatlah kembali ketiga pasangan yang sengaja diletakkan berdampingan: <code>sumList</code> dan <code>productList</code>, <code>maxList</code> dan <code>earliest</code>, <code>squareAll</code> dan <code>keepPositive</code>. Beberapa di antaranya berbeda hanya pada dua tanda. Menuliskan hal yang hampir sama berulang kali adalah pekerjaan yang membosankan sekaligus rawan salah, dan ketika sebuah pola muncul sesering ini, wajar bertanya apakah polanya sendiri dapat dituliskan sekali saja. Pertanyaan itu adalah isi Bab 8.</p>
+<h2 id="kesalahan-yang-sering-terjadi"><a class="header" href="#kesalahan-yang-sering-terjadi">Kesalahan yang Sering Terjadi</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Kesalahan</th><th>Gejala</th><th>Cara memeriksa</th></tr>
+</thead>
+<tbody>
+<tr><td>Basis-0 dipakai padahal seharusnya basis-1</td><td>jawaban yang tampak wajar tetapi bukan berasal dari list-nya</td><td>adakah jawaban yang benar untuk list kosong? bila tidak ada, keluarkan dari domain</td></tr>
+<tr><td>Nilai basis salah</td><td>benar untuk list panjang, salah untuk list pendek atau kosong</td><td>apakah nilai basis netral terhadap operator rekurensnya?</td></tr>
+<tr><td><code>tail (L)</code> melanggar prasyarat</td><td>gagal pada list satu elemen</td><td>pada fungsi berbasis-1, apakah kondisi rekurens menjamin sekurangnya dua elemen?</td></tr>
+<tr><td><code>and</code> dipakai padahal <code>and then</code> diperlukan</td><td>tidak terdefinisi pada list kosong</td><td>adakah kondisi yang memakai <code>head (L)</code> atau <code>tail (L)</code>?</td></tr>
+<tr><td>Rekursi pada list yang salah</td><td>menelusuri list yang sama berulang kali, tidak berhenti</td><td>apakah aplikasi rekursif memakai <code>tail (L)</code> dan bukan <code>L</code>?</td></tr>
+<tr><td><code>makeCons</code> dipakai atas <code>Set</code></td><td>himpunan mengandung elemen kembar</td><td>apakah setiap pembentukan melalui <code>insertSet</code>?</td></tr>
+<tr><td>Hasil terbalik urutannya</td><td>seluruh elemen benar, urutannya terbalik</td><td>biasanya akibat akumulator; perlukah <code>reverse</code> di ujungnya?</td></tr>
+</tbody>
+</table>
+</div>
+<p>Baris kelima layak mendapat perhatian. Menuliskan <code>f (L)</code> alih-alih <code>f (tail (L))</code> adalah salah ketik yang mudah dilakukan dan menghasilkan kegagalan yang paling khas pada bab ini: fungsinya tidak menghasilkan jawaban keliru, melainkan tidak menghasilkan apa-apa. Ini adalah pelanggaran kewajiban kedua dari Bab 6, dalam bentuknya yang paling sederhana.</p>
+<h2 id="ringkasan-padanan"><a class="header" href="#ringkasan-padanan">Ringkasan Padanan</a></h2>
+<pre><code class="language-haskell">-- type List tidak perlu didefinisikan; Haskell sudah menyediakannya
+-- []           adalah makeNil
+-- (x : xs)     adalah makeCons (x, xs)
+
+length' :: [a] -&gt; Integer
+-- length' l adalah banyaknya elemen l
+length' []       = 0
+length' (_ : xs) = 1 + length' xs
+
+isMember :: Eq a =&gt; a -&gt; [a] -&gt; Bool
+-- isMember x l bernilai True bila x adalah salah satu elemen l
+isMember _ []       = False
+isMember x (y : ys) = y == x || isMember x ys
+
+keepPositive :: [Integer] -&gt; [Integer]
+-- keepPositive l berisi seluruh elemen l yang bernilai positif
+keepPositive []       = []
+keepPositive (x : xs)
+  | x &gt; 0     = x : keepPositive xs
+  | otherwise = keepPositive xs
+</code></pre>
+<p>Empat hal yang berbeda.</p>
+<p><strong>Pola <code>(x : xs)</code> mengerjakan tiga hal sekaligus.</strong> Pola ini memeriksa bahwa list tidak kosong, mengambil elemen pertamanya, dan mengambil sisanya, dalam satu tulisan. Predikat <code>isEmpty</code> beserta selektor <code>head</code> dan <code>tail</code> tidak lagi perlu disebut. Ini adalah <em>pattern matching</em> yang sudah muncul pada Bab 5 untuk <code>Shape</code> dan pada Bab 6 untuk bilangan, kini dalam bentuk yang paling sering dipakainya.</p>
+<p><strong>Karena itu, keperluan akan <code>and then</code> menghilang.</strong> Tidak ada <code>head (L)</code> yang dapat dievaluasi terlalu dini, karena tidak ada <code>head</code> sama sekali. Perbedaan yang pada notasi harus dijaga dengan hati-hati, di sini lenyap bersama sebabnya.</p>
+<p><strong>Teks adalah list, secara harfiah.</strong> Dalam Haskell, <code>String</code> adalah nama lain bagi <code>[Char]</code>. Seluruh fungsi di atas berlaku atas teks tanpa perubahan apa pun, dan <code>length' "satrio"</code> menghasilkan <code>6</code>. Yang pada notasi merupakan keputusan rancangan, di sini merupakan kenyataan bahasa.</p>
+<p><strong>Pustaka Haskell mengandung fungsi parsial.</strong> <code>head []</code> tidak menghasilkan nilai dan menghentikan program pada saat dijalankan. Notasi menuliskan pembatasannya pada baris definisi (<code>List tidak kosong</code>), sedangkan Haskell menuliskan <code>[a] -&gt; a</code> dan menyerahkan sisanya kepada kedisiplinan pemakainya. Ini adalah keadaan yang sama dengan <code>Integer [1..4]</code> pada Bab 4, kini dengan akibat yang dapat diamati.</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Notasi fungsional</th><th>Haskell</th></tr>
+</thead>
+<tbody>
+<tr><td><code>type List : Nil | Cons ⟨head, tail⟩</code></td><td>sudah tersedia; <code>data [a] = [] | a : [a]</code></td></tr>
+<tr><td><code>makeNil</code></td><td><code>[]</code></td></tr>
+<tr><td><code>makeCons (e, L)</code></td><td><code>e : L</code></td></tr>
+<tr><td><code>head (L)</code>, <code>tail (L)</code></td><td><code>head l</code>, <code>tail l</code>, atau pola <code>(x : xs)</code></td></tr>
+<tr><td><code>isEmpty (L)</code></td><td>pola <code>[]</code>, atau <code>null l</code></td></tr>
+<tr><td><code>isOneElement (L)</code></td><td>pola <code>[x]</code></td></tr>
+<tr><td><code>[1, 2, 3]</code></td><td><code>[1, 2, 3]</code></td></tr>
+<tr><td><code>List of Character</code></td><td><code>String</code>, yaitu <code>[Char]</code></td></tr>
+<tr><td><code>List of Integer tidak kosong</code></td><td><code>[Integer]</code>; pembatasannya hidup pada spesifikasi</td></tr>
+<tr><td><code>type Set : List</code> dengan invarian</td><td>tidak ada padanan; invariannya hidup pada spesifikasi</td></tr>
+</tbody>
+</table>
+</div>
+<p>Perhatikan baris terakhir. Sepanjang bab ini <code>Set</code> adalah gagasan yang seluruhnya ditegakkan oleh disiplin, dan terjemahannya ke Haskell tidak memperbaiki keadaan itu sedikit pun. Bahasa yang memeriksa banyak hal ternyata tetap tidak memeriksa yang satu ini.</p>
+<h2 id="latihan"><a class="header" href="#latihan">Latihan</a></h2>
+<p><strong>Membaca.</strong> Untuk setiap realisasi berikut, tentukan definisinya, tuliskan spesifikasinya, sebutkan basisnya (basis-0 atau basis-1) dan rekurensnya, lalu usulkan nama yang sesuai konvensi.</p>
+<pre><code>p (L) :
+    depend on L
+        isEmpty (L)       : 0
+        not (isEmpty (L)) : head (L) + p (tail (L))
+
+q (L) :
+    depend on L
+        isOneElement (L)       : head (L)
+        not (isOneElement (L)) : q (tail (L))
+
+r (x, L) :
+    depend on L
+        isEmpty (L)                               : makeNil
+        not (isEmpty (L)) and then (head (L) = x) : r (x, tail (L))
+        not (isEmpty (L)) and then (head (L) ≠ x) : makeCons (head (L), r (x, tail (L)))
+</code></pre>
+<p>Untuk <code>q</code>, jawablah juga: mengapa fungsi ini berbasis-1, dan apa yang terjadi bila basisnya diubah menjadi basis-0? Untuk <code>r</code>, sebutkan sebuah aplikasi yang membuat hasilnya lebih pendek daripada masukannya, dan sebuah aplikasi yang membuatnya sama panjang.</p>
+<p><strong>Memperbaiki.</strong> Fungsi berikut seharusnya menghapus elemen kembar yang berdampingan, sehingga <code>[1, 1, 2]</code> menjadi <code>[1, 2]</code>.</p>
+<pre><code>JUDUL   Menghapus Kembar Berdampingan
+</code></pre>
+<pre><code>DEFINISI DAN SPESIFIKASI
+    removeAdjacent : List of Integer → List of Integer
+    { removeAdjacent (L) adalah L tanpa elemen yang sama dengan elemen
+      tepat sebelumnya }
+</code></pre>
+<pre><code>REALISASI
+    removeAdjacent (L) :
+        depend on L
+            isEmpty (L)                                  : makeNil
+            isOneElement (L)                             : L
+            not (isEmpty (L)) and not (isOneElement (L)) and then
+                (head (L) = head (tail (L)))             : removeAdjacent (tail (L))
+            not (isEmpty (L)) and not (isOneElement (L)) and then
+                (head (L) ≠ head (tail (L)))             : makeCons (head (L), removeAdjacent (tail (L)))
+</code></pre>
+<pre><code>APLIKASI
+    ⇒ removeAdjacent ([])
+      []
+    ⇒ removeAdjacent ([1, 1, 2])
+      [1, 2]
+    ⇒ removeAdjacent ([1, 2, 3])
+      [1, 2, 3]
+</code></pre>
+<ol>
+<li>Ketiga contoh aplikasi menghasilkan jawaban yang benar. Temukan sebuah masukan yang menghasilkan jawaban keliru, dan sebutkan apa yang dihasilkan serta apa yang seharusnya.</li>
+<li>Kekeliruannya terletak pada kasus ketiga. Jelaskan apa yang terjadi terhadap elemen yang <strong>baru saja</strong> menjadi elemen pertama sesudah rekurens dilakukan.</li>
+<li>Perbaiki realisasinya. Periksa bahwa perbaikan Anda masih memenuhi syarat lengkap dan disjoint.</li>
+<li>Tambahkan contoh aplikasi yang, seandainya sudah ada sejak semula, akan menampakkan kekeliruan itu. Berapa contoh yang diperlukan, dan apa cirinya?</li>
+</ol>
+<p><strong>Menulis.</strong> Tuliskan keempat bagian secara lengkap. Sebutkan basisnya, nyatakan prasyarat bila ada, dan pilih contoh aplikasi yang mencakup list kosong, list satu elemen, dan list yang lebih panjang.</p>
+<ol>
+<li><code>append (L1, L2)</code>, yang menghasilkan seluruh elemen <code>L1</code> diikuti seluruh elemen <code>L2</code>. Kemudian jawab: mengapa rekursinya dilakukan terhadap <code>L1</code> dan bukan terhadap <code>L2</code>?</li>
+<li><code>nth (n, L)</code>, yang menghasilkan elemen ke-<code>n</code> dari <code>L</code> dengan elemen pertama bernomor 1. Nyatakan prasyaratnya dengan cermat. Berapa aplikasi yang diperlukan untuk mencapai elemen terakhir sebuah list sepanjang seribu?</li>
+<li><code>countIf</code>-serupa: <code>countEven (L)</code>, yang mencacah elemen genap. Bandingkan bentuknya dengan <code>countChar</code> pada bab ini.</li>
+<li><code>sort (L)</code>, yang mengurutkan sebuah list menaik, dengan memakai kembali <code>insertSorted</code>. Rekursinya hanya membutuhkan tiga baris. Sebutkan invarian apa yang dijamin oleh <code>insertSorted</code> dan mengapa hal ini membuat <code>sort</code> menjadi sesingkat itu.</li>
+<li><code>intersection (S1, S2)</code> atas <code>Set</code>. Pastikan hasilnya tetap memenuhi invarian himpunan, dan sebutkan di mana Anda menjaminnya.</li>
+</ol>
+<p><strong>Menelusuri.</strong></p>
+<ol>
+<li>Telusuri <code>reverse ([1, 2, 3])</code> versi pertama secara lengkap, dengan konstruktor dan bukan penulisan singkat. Hitung aplikasi <code>reverse</code> dan aplikasi <code>addLast</code> secara terpisah.</li>
+<li>Telusuri <code>reverse2 ([1, 2, 3])</code>. Hitung aplikasinya, dan sebutkan isi <code>acc</code> pada setiap langkah.</li>
+<li>Telusuri <code>isMember (1, [1, 2, 3])</code> dan <code>isMember (9, [1, 2, 3])</code>. Jelaskan mengapa panjang keduanya berbeda, dan operator apa yang menyebabkannya.</li>
+<li>Telusuri <code>union ([1, 2], [2, 3])</code> dan hitung berapa kali <code>isMember</code> diaplikasikan seluruhnya.</li>
+</ol>
+<p><strong>Merancang.</strong> Tiga pertanyaan, ketiganya tanpa jawaban tunggal yang benar.</p>
+<ol>
+<li>Bahan terdahulu menyediakan dua konstruktor list, satu untuk menambahkan di kiri dan satu di kanan, sehingga kedua ujung tampak setara. Diktat ini hanya menyediakan satu dan menurunkan <code>addLast</code> sebagai fungsi biasa. Dengan memakai hitungan aplikasi pada bagian <em>Menyusun List</em>, argumenkan kedua pilihan itu. Apa yang menjadi lebih mudah dan apa yang menjadi tersembunyi pada masing-masing?</li>
+<li>Bab ini mengandaikan seluruh elemen sebuah list bertype sama. Rancanglah teks type bagi sebuah list yang elemennya boleh berupa <code>Integer</code> <strong>atau</strong> berupa list, dengan memakai type alternatif dari Bab 5. Kemudian tuliskan definisi dan spesifikasi (tanpa realisasi) sebuah fungsi yang menjumlahkan seluruh bilangan di dalamnya, betapa pun dalam sarangnya. Berapa banyak kasus yang harus ditangani rekurensnya, dan mengapa lebih banyak daripada fungsi mana pun pada bab ini?</li>
+<li><code>sumList</code> dan <code>productList</code> berbeda hanya pada dua tanda, dan <code>maxList</code> serta <code>earliest</code> berbeda hanya pada cara membandingkan. Usulkan <strong>mekanisme apa pun</strong>, dalam notasi apa pun yang Anda rancang sendiri, yang memungkinkan pasangan semacam itu dituliskan sekali saja. Kemudian jawab pertanyaan yang menentukan: apa yang harus dapat diperlakukan sebagai <strong>nilai</strong> oleh mekanisme Anda, yang sampai sekarang belum pernah diperlakukan demikian dalam diktat ini?</li>
+</ol>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="06-ekspresi-rekursif.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="08-fungsi-sebagai-nilai.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="06-ekspresi-rekursif.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="08-fungsi-sebagai-nilai.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-09f2665d.js"></script>
+
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-609e4cb8.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>

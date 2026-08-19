@@ -1,0 +1,598 @@
+<!DOCTYPE HTML>
+<html lang="id" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Fungsi Sebagai Nilai - Diktat Pemrograman Fungsional</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-e96d0476.css">
+        <link rel="stylesheet" href="css/chrome-d279d366.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex-0ab6a5e0.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-2ab1aa36.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Diktat Pemrograman Fungsional</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="fungsi-sebagai-nilai"><a class="header" href="#fungsi-sebagai-nilai">Fungsi Sebagai Nilai</a></h1>
+<p>Bab 7 ditutup dengan sebuah pertanyaan: apa yang harus dapat diperlakukan sebagai <strong>nilai</strong>, agar sepasang fungsi yang hampir kembar dapat dituliskan sekali saja?</p>
+<p>Jawabannya adalah <strong>fungsi itu sendiri</strong>.</p>
+<p>Sampai Bab 7, sebuah nilai selalu berupa bilangan, karakter, boolean, sebuah type bentukan, atau sebuah list. Nilai dapat diberi nama lewat <code>let</code>, diserahkan sebagai argumen, dan dihasilkan sebagai range. Fungsi tidak pernah diperlakukan demikian. Fungsi adalah sesuatu yang <em>diaplikasikan</em>, bukan sesuatu yang <em>diberikan</em>.</p>
+<p>Pembatasan itu tidak pernah dinyatakan sebagai aturan, dan memang tidak pernah ada aturannya. Bab 2 menyatakan bahwa fungsi adalah pemetaan dari satu type ke type lain, dan tidak menyatakan apa pun tentang type apa saja yang boleh menjadi domain atau range. Bila fungsi adalah nilai, maka sebuah fungsi boleh menerima fungsi, dan boleh menghasilkan fungsi.</p>
+<p>Fungsi yang menerima atau menghasilkan fungsi disebut <strong>fungsi orde tinggi</strong>.</p>
+<p>Bab ini tidak memperkenalkan satu pun persoalan baru. Setiap fungsi yang ditulis di sini sudah pernah ditulis pada Bab 6 atau Bab 7. Yang berubah hanyalah cara menuliskannya, dan seberapa banyak yang harus ditulis.</p>
+<h2 id="fungsi-sebagai-parameter"><a class="header" href="#fungsi-sebagai-parameter">Fungsi sebagai Parameter</a></h2>
+<p>Bab 7 menuliskan <code>squareAll</code>, yang mengkuadratkan setiap elemen sebuah list. Seandainya kita membutuhkan fungsi yang menegatifkan setiap elemen, atau yang menambahkan satu pada setiap elemen, teksnya akan hampir sama persis. Yang berbeda hanya satu hal: apa yang dikerjakan terhadap setiap elemen.</p>
+<p>Jadikan hal itu sebagai parameter.</p>
+<pre><code>JUDUL   Menerapkan Sebuah Fungsi pada Setiap Elemen
+</code></pre>
+<pre><code>DEFINISI DAN SPESIFIKASI
+    applyToAll : (Element → Element), List → List
+    { applyToAll (f, L) adalah list yang elemen ke-i-nya adalah f
+      diaplikasikan terhadap elemen ke-i dari L. Banyaknya elemen
+      dan urutannya tidak berubah }
+    { Basis-0:  isEmpty (L)       → []
+      Rekurens: not (isEmpty (L)) → f (head (L)) diikuti applyToAll (f, tail (L)) }
+</code></pre>
+<pre><code>REALISASI
+    applyToAll (f, L) :
+        depend on L
+            isEmpty (L)       : makeNil
+            not (isEmpty (L)) : makeCons (f (head (L)), applyToAll (f, tail (L)))
+</code></pre>
+<pre><code>APLIKASI
+    ⇒ applyToAll (square, [1, 2, 3])
+      [1, 4, 9]
+    ⇒ applyToAll (abs, [-1, 2, -3])
+      [1, 2, 3]
+</code></pre>
+<p>Perhatikan baris definisinya. Parameter pertama bertype <code>(Element → Element)</code>, yaitu <strong>sebuah fungsi</strong> dari <code>Element</code> ke <code>Element</code>. Kurung di sekelilingnya <strong>wajib</strong> dituliskan, sebagaimana kurung pada operan <code>not</code> di Bab 3 dan dengan alasan yang sama: agar tidak ada keraguan sedikit pun tentang sampai di mana sebuah panah berlaku.</p>
+<p>Perhatikan pula bahwa realisasinya adalah realisasi <code>squareAll</code> dengan <code>square</code> diganti oleh <code>f</code>. Tidak ada mekanisme baru. Satu-satunya hal yang baru: <code>f</code> datang dari luar.</p>
+<p>Argumen pada contoh aplikasi adalah <code>square</code> dan <code>abs</code>, dituliskan <strong>tanpa kurung dan tanpa argumen</strong>. <code>square</code> di situ bukan aplikasi <code>square</code>, melainkan fungsi <code>square</code> itu sendiri. Perbedaan antara <code>square</code> dan <code>square (3)</code> adalah perbedaan antara sebuah fungsi dan sebuah bilangan, dan mulai sekarang keduanya sama-sama dapat dituliskan.</p>
+<h2 id="ekspresi-lambda"><a class="header" href="#ekspresi-lambda">Ekspresi Lambda</a></h2>
+<p>Menuliskan <code>applyToAll (square, L)</code> menuntut adanya fungsi bernama <code>square</code>. Untuk fungsi yang hanya dipakai sekali di satu tempat, mengarangkan nama justru menambah pekerjaan tanpa menambah kejelasan. Bab 3 menghadapi persoalan yang serupa untuk nilai, dan menjawabnya dengan nama antara. Di sini jawabannya adalah <strong>membuang namanya sama sekali</strong>.</p>
+<p>Sebuah <strong>ekspresi lambda</strong> adalah fungsi yang dituliskan tanpa nama:</p>
+<pre><code>λ x : *ekspresi*
+λ (x, y) : *ekspresi*
+</code></pre>
+<p>Dibaca: “fungsi yang, diberi <code>x</code>, menghasilkan <em>ekspresi</em>”. Tanda <code>:</code> adalah tanda yang sama dengan yang dipakai pada realisasi fungsi dan pada <code>let</code>, dan artinya pun sama.</p>
+<pre><code>APLIKASI
+    ⇒ applyToAll (λ x : x * x, [1, 2, 3])
+      [1, 4, 9]
+    ⇒ applyToAll (λ x : x + 1, [1, 2, 3])
+      [2, 3, 4]
+    ⇒ (λ x : x * 2) (5)
+      10
+</code></pre>
+<p>Baris ketiga memperlihatkan bahwa sebuah lambda dapat langsung diaplikasikan. Bentuk itu jarang berguna, tetapi ia menegaskan bahwa lambda adalah fungsi biasa yang kebetulan tidak diberi nama.</p>
+<p><strong>Sebuah lambda tidak dapat rekursif.</strong> Realisasi rekursif menuntut nama, karena rekurens bekerja dengan menyebut fungsi yang sedang didefinisikan. Fungsi tanpa nama tidak mempunyai apa pun untuk disebut. Setiap fungsi rekursif pada Bab 6 dan Bab 7 karenanya harus tetap diberi nama, dan lambda hanya berguna bagi bagian yang <strong>tidak</strong> rekursif.</p>
+<p><strong>Kapan memberi nama, kapan tidak.</strong> Pertanyaannya sama dengan pertanyaan Bab 3 tentang nama antara dan fungsi antara: <em>apakah hal ini pantas diberi nama dan dijelaskan kepada orang lain?</em> <code>λ x : x * x</code> sudah terbaca sepenuhnya dari bentuknya, sehingga menamainya tidak menambah apa-apa. Sebaliknya, sebuah lambda sepanjang tiga baris yang menghitung sesuatu yang mempunyai nama dalam persoalannya hampir selalu lebih baik dijadikan fungsi antara bernama, lengkap dengan definisi dan spesifikasinya. Lambda menghemat nama, dan nama tidak selalu pantas dihemat.</p>
+<h2 id="pola-pertama-map"><a class="header" href="#pola-pertama-map">Pola Pertama: <code>map</code></a></h2>
+<p><code>applyToAll</code> sudah merupakan pola umum, dan namanya yang lazim dipakai adalah <code>map</code>. Mulai sekarang diktat ini memakai nama itu.</p>
+<pre><code>DEFINISI DAN SPESIFIKASI
+    map : (Element → Element), List → List
+    { map (f, L) adalah list yang elemen ke-i-nya adalah f (elemen ke-i L).
+      Banyaknya elemen dan urutannya tidak berubah }
+</code></pre>
+<pre><code>REALISASI
+    map (f, L) :
+        depend on L
+            isEmpty (L)       : makeNil
+            not (isEmpty (L)) : makeCons (f (head (L)), map (f, tail (L)))
+</code></pre>
+<p>Sekarang seluruh fungsi Bab 7 yang berbentuk “ubah setiap elemen” menjadi satu baris:</p>
+<pre><code>squareAll (L)  : map (λ x : x * x, L)
+negateAll (L)  : map (λ x : -x, L)
+absAll (L)     : map (abs, L)
+</code></pre>
+<p>Dua hal yang dijamin oleh <code>map</code> dan pantas disadari: hasilnya <strong>selalu</strong> sepanjang masukannya, dan urutannya <strong>selalu</strong> terjaga. Pembaca yang melihat <code>map</code> sudah mengetahui kedua hal itu tanpa membaca lambdanya. Inilah keuntungan sesungguhnya dari memberi nama pada sebuah pola. Yang dihemat bukan huruf, melainkan hal-hal yang harus diperiksa ulang oleh pembaca.</p>
+<h2 id="pola-kedua-filter"><a class="header" href="#pola-kedua-filter">Pola Kedua: <code>filter</code></a></h2>
+<pre><code>DEFINISI DAN SPESIFIKASI
+    filter : (Element → Boolean), List → List
+    { filter (p, L) adalah list yang berisi seluruh elemen L yang
+      memenuhi p, dengan urutan yang sama. Banyaknya elemen dapat berkurang }
+</code></pre>
+<pre><code>REALISASI
+    filter (p, L) :
+        depend on L
+            isEmpty (L)                                   : makeNil
+            not (isEmpty (L)) and then (p (head (L)))     : makeCons (head (L), filter (p, tail (L)))
+            not (isEmpty (L)) and then not (p (head (L))) : filter (p, tail (L))
+</code></pre>
+<pre><code>APLIKASI
+    ⇒ filter (λ x : x &gt; 0, [1, -2, 3])
+      [1, 3]
+    ⇒ filter (isEven, [1, 2, 3, 4])
+      [2, 4]
+</code></pre>
+<p>Parameter <code>p</code> bertype <code>(Element → Boolean)</code>, yaitu sebuah <strong>predikat</strong>, sesuai istilah Bab 3.</p>
+<p>Perhatikan bahwa rekurens dengan dua kasus dari <code>keepPositive</code> tidak hilang. Ia berpindah ke dalam <code>filter</code>, dan ditulis <strong>sekali</strong> di sana. Inilah yang sesungguhnya terjadi setiap kali sebuah pola diangkat: pekerjaannya tidak berkurang, tetapi ia berhenti diulang-ulang.</p>
+<p>Perhatikan pula bahwa <code>and then</code> tetap diperlukan, dengan alasan yang persis sama seperti pada Bab 7.</p>
+<p><code>keepPositive</code> kini menjadi <code>filter (λ x : x &gt; 0, L)</code>.</p>
+<h2 id="pola-ketiga-fold"><a class="header" href="#pola-ketiga-fold">Pola Ketiga: <code>fold</code></a></h2>
+<p>Bab 7 meletakkan <code>sumList</code> dan <code>productList</code> berdampingan dan menunjukkan bahwa keduanya berbeda hanya pada dua tempat: <strong>nilai basisnya</strong> dan <strong>operatornya</strong>. Jadikan keduanya parameter.</p>
+<pre><code>DEFINISI DAN SPESIFIKASI
+    fold : (Element, Element → Element), Element, List → Element
+    { fold (g, z, L) menggabungkan seluruh elemen L dengan g, dimulai
+      dari elemen terakhir dan berakhir pada elemen pertama, dengan z
+      sebagai nilai bagi list kosong:
+      fold (g, z, [a, b, c]) adalah g (a, g (b, g (c, z))) }
+    { Basis-0:  isEmpty (L)       → z
+      Rekurens: not (isEmpty (L)) → g (head (L), fold (g, z, tail (L))) }
+</code></pre>
+<pre><code>REALISASI
+    fold (g, z, L) :
+        depend on L
+            isEmpty (L)       : z
+            not (isEmpty (L)) : g (head (L), fold (g, z, tail (L)))
+
+APLIKASI
+    ⇒ fold (λ (a, b) : a + b, 0, [1, 2, 3])
+      6
+    ⇒ fold (λ (a, b) : a * b, 1, [1, 2, 3])
+      6
+    ⇒ fold (λ (a, b) : 1 + b, 0, [7, 8, 9])
+      3
+</code></pre>
+<p>Sekarang seluruh fungsi Bab 7 yang menghasilkan nilai tunggal menjadi satu baris:</p>
+<pre><code>sumList (L)     : fold (λ (a, b) : a + b, 0, L)
+productList (L) : fold (λ (a, b) : a * b, 1, L)
+length (L)      : fold (λ (a, b) : 1 + b, 0, L)
+</code></pre>
+<p>Perhatikan <code>length</code>. Lambdanya mengabaikan <code>a</code> sama sekali dan hanya menambahkan satu, yang memang persis yang dikerjakan <code>length</code> pada Bab 7. Bahwa pencacahan ternyata adalah penjumlahan yang mengabaikan isinya adalah pengamatan yang tidak terlihat sampai kedua fungsi dituliskan dalam bentuk yang sama.</p>
+<p><strong>Sekarang aturan nilai basis dari Bab 7 dapat dijelaskan.</strong> Bab 7 menyatakan bahwa nilai basis harus netral terhadap operator rekurensnya: nol untuk penjumlahan, satu untuk perkalian. Dalam <code>fold</code>, nilai itu adalah <code>z</code>, dan ia bukan lagi bagian dari realisasi melainkan sebuah argumen yang harus dipilih pemakainya. Aturan yang pada Bab 7 berupa nasihat, di sini menjadi kewajiban yang terlihat: <code>z</code> adalah jawaban bagi list kosong, dan memilihnya keliru adalah kesalahan yang hanya menampakkan diri pada list kosong.</p>
+<p><code>fold</code> adalah yang paling umum di antara ketiga pola ini. <code>map</code> maupun <code>filter</code> dapat dituliskan dengan <code>fold</code>, dan salah satunya ditanyakan pada Latihan.</p>
+<h2 id="arah-lipatan"><a class="header" href="#arah-lipatan">Arah Lipatan</a></h2>
+<p><code>fold</code> di atas menggabungkan dari elemen <strong>terakhir</strong> menuju elemen pertama. Itulah bentuk yang dimiliki setiap fungsi pada Bab 7, karena setiap rekurensnya menggabungkan <code>head (L)</code> dengan hasil atas <code>tail (L)</code>, sehingga penggabungan sesungguhnya baru terjadi setelah rekurens mencapai dasar.</p>
+<p>Ada satu fungsi pada Bab 7 yang tidak berbentuk demikian, yaitu <code>reverseOnto</code>. Ia membawa hasil sementara <strong>maju</strong> sebagai akumulator, sehingga penggabungan terjadi dari elemen pertama menuju elemen terakhir. Bentuk itu adalah lipatan ke arah yang berlawanan.</p>
+<p>Kedua arah menghasilkan jawaban yang sama bila operatornya asosiatif dan nilai netralnya benar, misalnya pada penjumlahan. Untuk operator lain, keduanya berbeda. Bahasa acuan menyediakan keduanya dengan nama <code>foldr</code> dan <code>foldl</code>, dan pemilihan di antaranya mempunyai akibat terhadap eksekusi yang cukup halus untuk pantas dibicarakan tersendiri. Bab 9 dan Suplemen S10 membahasnya. Diktat ini memakai satu arah saja, yaitu arah yang sudah dikenal pembaca dari seluruh Bab 7.</p>
+<h2 id="fungsi-sebagai-hasil"><a class="header" href="#fungsi-sebagai-hasil">Fungsi sebagai Hasil</a></h2>
+<p>Sebuah fungsi boleh pula <strong>menghasilkan</strong> fungsi.</p>
+<pre><code>JUDUL   Pembuat Fungsi Penambah
+</code></pre>
+<pre><code>DEFINISI DAN SPESIFIKASI
+    makeAdder : Integer → (Integer → Integer)
+    { makeAdder (n) adalah sebuah fungsi yang, diberi sebuah bilangan
+      bulat, menghasilkan bilangan itu ditambah n }
+</code></pre>
+<pre><code>REALISASI
+    makeAdder (n) : λ x : x + n
+</code></pre>
+<pre><code>APLIKASI
+    ⇒ makeAdder (3) (10)
+      13
+    ⇒ map (makeAdder (1), [1, 2, 3])
+      [2, 3, 4]
+</code></pre>
+<p>Bacalah baris definisinya dengan cermat. Range <code>makeAdder</code> adalah <code>(Integer → Integer)</code>, yaitu sebuah fungsi. Kurungnya wajib.</p>
+<p>Perhatikan aplikasi pertama. <code>makeAdder (3)</code> menghasilkan sebuah fungsi, dan fungsi itu kemudian diaplikasikan terhadap <code>10</code>. Dua pasang kurung berurutan berarti dua aplikasi berurutan: yang pertama menghasilkan fungsi, yang kedua menghasilkan bilangan.</p>
+<p>Perhatikan pula bahwa <code>makeAdder (3)</code> tidak dapat disederhanakan menjadi sebuah bilangan. Ia <strong>adalah</strong> sebuah nilai, dan nilai itu kebetulan berupa fungsi. Ia dapat diberi nama lewat <code>let</code>, disimpan di dalam list, dan diserahkan kepada <code>map</code>, persis seperti nilai lainnya.</p>
+<p>Sesuatu yang penting terjadi di sini, dan pantas dinyatakan terpisah. Ekspresi <code>λ x : x + n</code> menyebut <code>n</code>, padahal <code>n</code> bukan parameternya melainkan parameter <code>makeAdder</code>. Fungsi yang dihasilkan karenanya <strong>membawa serta</strong> nilai <code>n</code> yang berlaku pada saat ia dibentuk. <code>makeAdder (3)</code> dan <code>makeAdder (5)</code> adalah dua fungsi berbeda yang lahir dari satu realisasi yang sama. Notasi ini tidak menyediakan istilah bagi hal tersebut, dan bahasa acuan menyebutnya <em>closure</em>. Yang perlu disadari sekarang hanyalah bahwa hal itu memang terjadi, dan bahwa transparansi referensial dari Bab 2 tetap utuh: <code>n</code> tidak pernah berubah, ia hanya terikat pada nilai yang berbeda pada dua pembentukan yang berbeda.</p>
+<h2 id="komposisi"><a class="header" href="#komposisi">Komposisi</a></h2>
+<p>Merangkai dua fungsi, yaitu menerapkan yang satu terhadap hasil yang lain, sering dilakukan sehingga pantas mempunyai operatornya sendiri.</p>
+<pre><code>DEFINISI DAN SPESIFIKASI
+    ∘ : (B → C), (A → B) → (A → C)
+    { (f ∘ g) adalah fungsi yang, diberi x, menghasilkan f (g (x)) }
+</code></pre>
+<pre><code>REALISASI
+    (f ∘ g) (x) : f (g (x))
+</code></pre>
+<pre><code>APLIKASI
+    ⇒ (square ∘ abs) (-3)
+      9
+    ⇒ map (square ∘ abs, [-1, 2, -3])
+      [1, 4, 9]
+</code></pre>
+<p><code>g</code> bekerja lebih dahulu, <code>f</code> kemudian. Urutan penulisannya karenanya <strong>berlawanan</strong> dengan urutan pengerjaannya, dan itu adalah sumber kekeliruan yang wajar bagi siapa pun yang baru memakainya. Bentuk ini diwarisi dari matematika, tempat <code>f ∘ g</code> dibaca “f setelah g”.</p>
+<p>Nilai komposisi terlihat ketika rangkaiannya panjang. Bandingkan:</p>
+<pre><code>map (λ x : square (abs (x)), L)
+map (square ∘ abs, L)
+</code></pre>
+<p>Keduanya benar. Yang kedua menyebutkan kedua fungsi tanpa mengarang nama parameter yang tidak diperlukan, dan ketika rangkaiannya berisi empat atau lima fungsi, perbedaannya menjadi jauh lebih terasa.</p>
+<h2 id="contoh-terpadu-pengurutan-dengan-perbandingan-yang-diserahkan"><a class="header" href="#contoh-terpadu-pengurutan-dengan-perbandingan-yang-diserahkan">Contoh Terpadu: Pengurutan dengan Perbandingan yang Diserahkan</a></h2>
+<p>Bab 7 meminta pembaca menuliskan <code>sort</code> dari <code>insertSorted</code>. Kedua fungsi itu mengurutkan <code>List of Integer</code> menaik, dan hanya itu. Untuk mengurutkan menurun, atau untuk mengurutkan <code>List of Date</code>, seluruh teksnya harus ditulis ulang.</p>
+<p>Yang berbeda di antara semua versi itu hanyalah satu hal: <strong>cara membandingkan dua elemen</strong>. Jadikan hal itu sebagai parameter.</p>
+<pre><code>JUDUL   Pengurutan dengan Perbandingan yang Diserahkan
+</code></pre>
+<pre><code>DEFINISI DAN SPESIFIKASI
+    insertBy : (Element, Element → Boolean), Element, List → List
+    { insertBy (before, x, L) menyisipkan x ke dalam L pada tempat yang
+      menjaga keterurutan menurut before.
+      Prasyarat: L sudah terurut menurut before }
+
+    sortBy : (Element, Element → Boolean), List → List
+    { sortBy (before, L) adalah list yang berisi seluruh elemen L,
+      terurut menurut before.
+      before (a, b) harus bernilai true bila a layak mendahului b }
+</code></pre>
+<pre><code>REALISASI
+    insertBy (before, x, L) :
+        depend on L
+            isEmpty (L)                                           : makeCons (x, makeNil)
+            not (isEmpty (L)) and then before (x, head (L))       : makeCons (x, L)
+            not (isEmpty (L)) and then not (before (x, head (L))) :
+                makeCons (head (L), insertBy (before, x, tail (L)))
+
+    sortBy (before, L) :
+        depend on L
+            isEmpty (L)       : makeNil
+            not (isEmpty (L)) : insertBy (before, head (L), sortBy (before, tail (L)))
+</code></pre>
+<pre><code>APLIKASI
+    ⇒ sortBy (λ (a, b) : a ≤ b, [3, 1, 2])
+      [1, 2, 3]
+    ⇒ sortBy (λ (a, b) : a ≥ b, [3, 1, 2])
+      [3, 2, 1]
+    ⇒ sortBy (isBefore, [makeDate (1, 3, 2024), makeDate (31, 12, 2023)])
+      [⟨31, 12, 2023⟩, ⟨1, 3, 2024⟩]
+</code></pre>
+<p>Perhatikan aplikasi ketiga. <code>isBefore</code> berasal dari Bab 5, ditulis untuk membandingkan dua <code>Date</code> dan sama sekali tidak ditulis dengan pengurutan dalam pikiran. Ia diserahkan kepada <code>sortBy</code> tanpa penyesuaian satu huruf pun, dan hasilnya adalah pengurutan tanggal.</p>
+<p>Inilah yang dimaksud ketika dikatakan bahwa fungsi orde tinggi menaikkan tingkat abstraksi. Satu <code>sortBy</code> adalah <strong>setiap</strong> pengurutan yang mungkin atas type apa pun, asalkan pemakainya dapat menyatakan apa artinya “mendahului” bagi type itu.</p>
+<p>Perhatikan pula bahwa prasyarat <code>insertBy</code> kini menyebut <code>before</code>, yaitu sebuah parameter. Sebuah prasyarat dapat berbicara tentang fungsi yang diserahkan kepadanya, dan di sini prasyarat itu memikul beban yang nyata: bila <code>before</code> yang diserahkan tidak konsisten, misalnya menyatakan bahwa <code>a</code> mendahului <code>b</code> sekaligus <code>b</code> mendahului <code>a</code>, hasilnya tidak dapat dipertanggungjawabkan. Tanggung jawab itu jatuh kepada pemakai, sebagaimana seluruh prasyarat sejak Bab 3.</p>
+<blockquote>
+<p><strong>Pola yang sama di luar paradigma fungsional.</strong> Menyerahkan “cara membandingkan” kepada fungsi pengurutan bukan gagasan yang khas fungsional. Pustaka standar C menyediakan <code>qsort</code>, yang menerima sebuah <em>pointer to function</em> sebagai pembandingnya. Python menuliskan <code>sorted(xs, key=...)</code>. Java menyerahkan sebuah <code>Comparator</code>.</p>
+<p>Ketiganya adalah <code>sortBy</code>. Yang berbeda hanyalah seberapa nyaman bahasanya menuliskan fungsi tanpa nama, dan seberapa jauh bahasanya memperlakukan fungsi sebagai nilai secara umum ketimbang sebagai perkecualian yang disediakan untuk keperluan tertentu. Gagasan yang dipelajari di sini karenanya tidak berhenti di bahasa fungsional, sebagaimana sudah dinyatakan pada Bab 1.</p>
+</blockquote>
+<h2 id="batas-notasi-mengapa-haskell-menuliskan-dua-panah"><a class="header" href="#batas-notasi-mengapa-haskell-menuliskan-dua-panah">Batas Notasi: Mengapa Haskell Menuliskan Dua Panah</a></h2>
+<p>Bab 2 menyisakan sebuah janji. Ketika <code>max2</code> diterjemahkan, type-nya dituliskan <code>Integer -&gt; Integer -&gt; Integer</code> dan bukan <code>(Integer, Integer) -&gt; Integer</code>, dan pembaca diminta membacanya untuk sementara sebagai “menerima dua Integer”. Alasannya dijanjikan pada Bab 8.</p>
+<p>Inilah alasannya.</p>
+<p><strong>Dalam bahasa acuan, setiap fungsi menerima tepat satu argumen.</strong> Tidak ada perkecualian. Fungsi yang tampak menerima dua argumen sesungguhnya menerima satu argumen dan menghasilkan <strong>sebuah fungsi</strong> yang menunggu argumen berikutnya. Panah <code>-&gt;</code> berasosiasi ke kanan, sehingga</p>
+<pre><code class="language-haskell">max2 :: Integer -&gt; Integer -&gt; Integer
+</code></pre>
+<p>sesungguhnya berarti</p>
+<pre><code class="language-haskell">max2 :: Integer -&gt; (Integer -&gt; Integer)
+</code></pre>
+<p>Bandingkan baris kedua itu dengan definisi <code>makeAdder</code> pada bab ini. Bentuknya sama persis. <code>max2</code> adalah fungsi yang, diberi sebuah bilangan, menghasilkan sebuah fungsi.</p>
+<p>Akibatnya langsung dapat dipakai:</p>
+<pre><code class="language-haskell">max2 3           -- sebuah fungsi: "yang lebih besar antara 3 dan argumennya"
+max2 3 7         -- 7
+
+map (max2 0) [-3, 5, -1]     -- [0, 5, 0]
+</code></pre>
+<p><code>max2 0</code> diserahkan kepada <code>map</code> sebagaimana <code>makeAdder (1)</code> diserahkan kepada <code>map</code> pada bab ini. Menyediakan sebagian argumen dan menyisakan sisanya disebut <strong>aplikasi parsial</strong>, dan dalam bahasa acuan ia tersedia bagi <strong>setiap</strong> fungsi tanpa persiapan apa pun.</p>
+<p><strong>Notasi kita tidak dapat melakukannya.</strong> Bab 2 menyatakan, tentang koma pada <code>max2 : Integer, Integer → Integer</code>, bahwa koma menandakan fungsinya mempunyai dua parameter dan bukan sebuah type tersendiri. Kalimat itu tampak sepele ketika ditulis. Akibatnya baru terlihat sekarang: koma mengikat kedua parameter menjadi satu aplikasi yang tidak dapat dibelah. <code>max2 (3)</code> tidak berarti apa-apa dalam notasi ini. Ia bukan sebuah fungsi, bukan sebuah nilai, melainkan sebuah aplikasi yang kekurangan argumen.</p>
+<p>Yang dapat dituliskan notasi ini hanyalah menyediakan lambda secara manual:</p>
+<pre><code>map (λ x : max2 (0, x), L)
+</code></pre>
+<p>dan itu memang selalu mungkin. Tetapi ia adalah pekerjaan yang dalam bahasa acuan tidak perlu dilakukan sama sekali.</p>
+<p><strong>Inilah pertama kalinya notasi kalah tanpa imbalan.</strong> Setiap perbedaan sejak Bab 2 selalu berupa pertukaran. Notasi lebih ketat pada syarat disjoint, bahasa memeriksa kelengkapan pola. Notasi dapat menuliskan <code>Integer [1..4]</code>, bahasa tidak. Notasi membedakan <code>and</code> dari <code>and then</code>, bahasa tidak. Kali ini tidak ada yang diterima sebagai gantinya. Koma membuat baris definisi lebih mudah dibaca oleh manusia yang belum terbiasa, dan harganya adalah sebuah kemampuan yang hilang seluruhnya.</p>
+<p>Notasi ini adalah alat berpikir, dan Bab 2 sudah menyatakan bahwa ia tidak mencakup seluruh konsep pemrograman fungsional. Di sinilah pernyataan itu menjadi konkret. Sebuah alat berpikir yang tidak mengakui batasnya sendiri berhenti menjadi alat berpikir yang jujur, dan mulai dari sini yang terbaik adalah membaca dan menulis langsung dalam bahasanya. Bab 9 dan Suplemen mengambil alih, dan Suplemen S5 mengumpulkan seluruh batas semacam ini dalam satu daftar.</p>
+<p>Latihan Merancang pada akhir bab ini menanyakan apa yang harus dikorbankan seandainya notasi ini hendak diperbaiki agar aplikasi parsial menjadi mungkin.</p>
+<h2 id="kapan-fungsi-orde-tinggi-tidak-dipakai"><a class="header" href="#kapan-fungsi-orde-tinggi-tidak-dipakai">Kapan Fungsi Orde Tinggi Tidak Dipakai</a></h2>
+<p>Tiga pola pada bab ini kuat, dan justru karena itu ada godaan untuk memaksakan setiap fungsi ke dalam salah satunya. Tahanlah godaan itu.</p>
+<p><strong>Tidak setiap rekursi berbentuk <code>map</code>, <code>filter</code>, atau <code>fold</code>.</strong> Perhatikan <code>insertSorted</code> dari Bab 7. Rekurensnya berhenti di tengah list begitu tempat penyisipan ditemukan, dan sisanya dipakai kembali utuh tanpa disentuh. Tidak ada satu pun dari ketiga pola yang berbentuk demikian. Memaksakannya menghasilkan teks yang lebih panjang, lebih lambat, dan lebih sulit diyakini kebenarannya.</p>
+<p>Hal yang sama berlaku bagi <code>gcd</code> pada Bab 6, yang sama sekali tidak bekerja atas list, dan bagi <code>insertBy</code> pada bab ini, yang justru <strong>ditulis rekursif</strong> meskipun bab ini seluruhnya tentang menghindari penulisan rekursi berulang.</p>
+<p><strong>Nama yang jelas mengalahkan pola yang benar.</strong> Sebuah <code>fold</code> yang lambdanya sepanjang empat baris hampir selalu lebih sulit dibaca daripada fungsi rekursif bernama yang mempunyai definisi dan spesifikasinya sendiri. Pola dipakai ketika ia membuat maksudnya lebih terlihat, bukan ketika ia sekadar dapat dipakai.</p>
+<p>Aturan praktisnya: bila Anda dapat menyebutkan dalam satu kalimat pendek apa yang dikerjakan terhadap setiap elemen, pakailah pola. Bila kalimat itu menjadi panjang, atau bila kalimat itu mengandung kata “kecuali”, tulislah fungsi rekursif bernama.</p>
+<h2 id="kesalahan-yang-sering-terjadi"><a class="header" href="#kesalahan-yang-sering-terjadi">Kesalahan yang Sering Terjadi</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Kesalahan</th><th>Gejala</th><th>Cara memeriksa</th></tr>
+</thead>
+<tbody>
+<tr><td>Menyerahkan aplikasi, bukan fungsi</td><td>tidak berarti apa-apa</td><td>apakah tertulis <code>square</code> atau <code>square (x)</code>? argumen fungsi orde tinggi tidak berkurung</td></tr>
+<tr><td>Nilai awal <code>fold</code> keliru</td><td>benar untuk list tidak kosong, salah untuk list kosong</td><td>apakah <code>z</code> netral terhadap operatornya? ujilah dengan <code>[]</code></td></tr>
+<tr><td><code>map</code> dipakai padahal panjangnya berubah</td><td>hasilnya selalu sepanjang masukan, padahal seharusnya menyaring</td><td>apakah setiap elemen menghasilkan tepat satu elemen? bila tidak, itu <code>filter</code></td></tr>
+<tr><td><code>filter</code> dipakai padahal elemennya berubah</td><td>elemennya tidak berubah, padahal seharusnya berubah</td><td><code>filter</code> hanya memilih, tidak pernah mengubah</td></tr>
+<tr><td>Urutan komposisi terbalik</td><td>hasilnya salah pada fungsi yang tidak komutatif</td><td>pada <code>f ∘ g</code>, <code>g</code> bekerja lebih dahulu</td></tr>
+<tr><td>Lambda dibuat rekursif</td><td>tidak ada nama untuk disebut</td><td>fungsi rekursif harus bernama</td></tr>
+<tr><td>Pola dipaksakan</td><td>teksnya lebih panjang daripada versi rekursifnya</td><td>tulislah keduanya dan bandingkan; yang lebih pendek biasanya yang lebih benar</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="ringkasan-padanan"><a class="header" href="#ringkasan-padanan">Ringkasan Padanan</a></h2>
+<pre><code class="language-haskell">map' :: (a -&gt; b) -&gt; [a] -&gt; [b]
+-- map' f l menerapkan f pada setiap elemen l
+map' _ []       = []
+map' f (x : xs) = f x : map' f xs
+
+filter' :: (a -&gt; Bool) -&gt; [a] -&gt; [a]
+-- filter' p l berisi seluruh elemen l yang memenuhi p
+filter' _ [] = []
+filter' p (x : xs)
+  | p x       = x : filter' p xs
+  | otherwise = filter' p xs
+
+fold' :: (a -&gt; b -&gt; b) -&gt; b -&gt; [a] -&gt; b
+-- fold' g z l menggabungkan elemen l dengan g, mulai dari kanan
+fold' _ z []       = z
+fold' g z (x : xs) = g x (fold' g z xs)
+</code></pre>
+<p>Empat hal yang berbeda.</p>
+<p><strong>Ketiganya sudah tersedia.</strong> Bahasa acuan menyediakan <code>map</code>, <code>filter</code>, dan <code>foldr</code> dalam pustaka standarnya, dan itulah sebabnya versi di atas diberi tanda kutip. Sikapnya sama dengan sikap terhadap <code>gcd</code> pada Bab 6 dan <code>length</code> pada Bab 7: keduanya tetap ditulis sendiri, karena menuliskannya adalah latihannya.</p>
+<p><strong>Type-nya lebih longgar daripada notasi kita.</strong> Perhatikan <code>map' :: (a -&gt; b) -&gt; [a] -&gt; [b]</code>. Type masukan dan keluaran boleh <strong>berbeda</strong>, sehingga <code>map</code> dapat mengubah list bilangan menjadi list boolean. Notasi kita menuliskan <code>(Element → Element)</code> dan karenanya mengharuskan keduanya sama. Ini adalah pembatasan notasi kita, bukan pembatasan gagasannya, dan ia berasal dari keputusan Bab 7 untuk memakai satu nama <code>Element</code> saja.</p>
+<p><strong>Lambda hampir sama.</strong> <code>\x -&gt; x * x</code> berbanding <code>λ x : x * x</code>. Inilah salah satu di antara sedikit tempat sepanjang diktat ini yang notasi dan bahasanya nyaris berimpit.</p>
+<p><strong>Tersedia jalan pintas yang tidak dimiliki notasi.</strong> Karena setiap fungsi menerima satu argumen, ekspresi seperti <code>(+1)</code>, <code>(*2)</code>, dan <code>(&gt; 0)</code> adalah fungsi yang sah tanpa lambda sama sekali, sehingga <code>map (+1) [1,2,3]</code> menghasilkan <code>[2,3,4]</code>. Bentuk ini adalah aplikasi parsial yang dibicarakan di atas, dalam bentuknya yang paling ringkas.</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Notasi fungsional</th><th>Haskell</th></tr>
+</thead>
+<tbody>
+<tr><td><code>λ x : e</code></td><td><code>\x -&gt; e</code></td></tr>
+<tr><td><code>λ (x, y) : e</code></td><td><code>\x y -&gt; e</code></td></tr>
+<tr><td><code>(A → B)</code> sebagai domain</td><td><code>(a -&gt; b)</code></td></tr>
+<tr><td><code>map (f, L)</code></td><td><code>map f l</code></td></tr>
+<tr><td><code>filter (p, L)</code></td><td><code>filter p l</code></td></tr>
+<tr><td><code>fold (g, z, L)</code></td><td><code>foldr g z l</code></td></tr>
+<tr><td><code>f ∘ g</code></td><td><code>f . g</code></td></tr>
+<tr><td><code>sortBy (before, L)</code></td><td><code>sortBy</code> pada <code>Data.List</code>, dengan hasil <code>Ordering</code> dan bukan <code>Boolean</code></td></tr>
+<tr><td><code>makeAdder (n) : λ x : x + n</code></td><td><code>makeAdder n = \x -&gt; x + n</code>, atau <code>makeAdder n x = x + n</code></td></tr>
+<tr><td><code>max2 (3)</code></td><td><em>tidak ada padanan; lihat §Batas Notasi</em></td></tr>
+</tbody>
+</table>
+</div>
+<p>Baris terakhir adalah satu-satunya baris pada seluruh tabel padanan sepanjang diktat ini yang kosong ke arah ini. Setiap tabel sebelumnya mempunyai baris yang kosong ke arah sebaliknya, yaitu hal yang dapat dinyatakan notasi tetapi tidak dapat dinyatakan bahasanya. Perhatikan pula baris kedua dari bawah: apa yang dalam notasi menuntut lambda, dalam bahasanya cukup ditulis sebagai fungsi dengan dua parameter, dan keduanya adalah hal yang persis sama.</p>
+<h2 id="latihan"><a class="header" href="#latihan">Latihan</a></h2>
+<p><strong>Membaca.</strong> Untuk setiap ekspresi berikut, tuliskan dalam bahasa Indonesia apa yang dihasilkannya, lalu tuliskan ulang sebagai fungsi rekursif bernama lengkap dengan definisi dan spesifikasinya.</p>
+<pre><code>map (λ x : x mod 2 = 0, L)
+
+fold (λ (a, b) : max2 (a, b), 0, L)
+
+filter (λ x : isMember (x, S), L)
+
+length (filter (λ x : x &gt; 0, L))
+
+(map (λ x : x * 2)) ∘ (filter (λ x : x &gt; 0))
+</code></pre>
+<p>Untuk ekspresi kedua, jawablah juga: untuk masukan seperti apa hasilnya keliru, dan apa hubungannya dengan pilihan basis <code>maxList</code> pada Bab 7?</p>
+<p>Untuk ekspresi kelima, sebutkan fungsi mana yang bekerja lebih dahulu, dan tuliskan hasilnya untuk <code>[-1, 2, -3, 4]</code>.</p>
+<p><strong>Memperbaiki.</strong> Fungsi berikut seharusnya menghasilkan hasil kali seluruh elemen positif sebuah list.</p>
+<pre><code>REALISASI
+    productOfPositive (L) :
+        fold (λ (a, b) : a * b, 0, filter (λ x : x &gt; 0, L))
+</code></pre>
+<pre><code>APLIKASI
+    ⇒ productOfPositive ([2, 3])
+      0
+    ⇒ productOfPositive ([1, -2, 5])
+      0
+</code></pre>
+<ol>
+<li>Kedua contoh aplikasi menghasilkan jawaban yang keliru, dan keduanya keliru dengan cara yang sama. Apa yang seharusnya dihasilkan?</li>
+<li>Kesalahannya terletak pada satu argumen. Sebutkan yang mana, dan jelaskan mengapa akibatnya sama untuk setiap masukan.</li>
+<li>Aturan mana dari Bab 7 yang dilanggar, dan mengapa aturan itu lebih mudah dilupakan dalam bentuk <code>fold</code> daripada dalam bentuk rekursif?</li>
+<li>Perbaiki, lalu sebutkan berapa hasilnya untuk <code>[]</code> dan untuk <code>[-1, -2]</code>. Apakah kedua jawaban itu masuk akal menurut spesifikasinya?</li>
+</ol>
+<p><strong>Menulis.</strong> Untuk setiap persoalan, tuliskan realisasinya dengan fungsi orde tinggi, <strong>dan</strong> tuliskan versi rekursif bernamanya. Bandingkan keduanya dan sebutkan mana yang Anda pilih beserta alasannya.</p>
+<ol>
+<li><code>countEven (L)</code> dari Bab 7, dengan memakai <code>filter</code> dan <code>length</code>.</li>
+<li><code>any (p, L)</code>, yang bernilai true bila sekurang-kurangnya satu elemen memenuhi <code>p</code>, dan <code>all (p, L)</code>, yang bernilai true bila seluruhnya memenuhi. Tuliskan keduanya dengan <code>fold</code>, dan perhatikan nilai <code>z</code> masing-masing.</li>
+<li><code>makeMultiplier (n)</code>, yang menghasilkan fungsi pengali. Kemudian tuliskan <code>map (makeMultiplier (3), [1, 2, 3])</code>.</li>
+<li><code>compose3 (f, g, h)</code>, yang menghasilkan komposisi ketiganya. Berapa panjang realisasinya bila <code>∘</code> sudah tersedia?</li>
+<li><code>map</code> dituliskan dengan <code>fold</code>. Petunjuk: apa yang harus menjadi <code>z</code>, dan apa yang harus dikerjakan <code>g</code> terhadap <code>head (L)</code>?</li>
+</ol>
+<p><strong>Menelusuri.</strong></p>
+<ol>
+<li>Telusuri <code>fold (λ (a, b) : a + b, 0, [1, 2, 3])</code> secara lengkap. Pada langkah keberapa <code>0</code> benar-benar dipakai?</li>
+<li>Telusuri <code>(square ∘ abs) (-3)</code> dan <code>(abs ∘ square) (-3)</code>. Jelaskan mengapa hasilnya sama, dan sebutkan sebuah masukan yang membuat keduanya berbeda.</li>
+<li>Telusuri <code>sortBy (λ (a, b) : a ≤ b, [3, 1, 2])</code> sampai selesai. Hitung berapa kali <code>insertBy</code> diaplikasikan dan berapa kali lambdanya dievaluasi.</li>
+<li>Telusuri <code>map (makeAdder (2), [1, 2])</code>. Pada langkah mana <code>makeAdder (2)</code> menghasilkan sebuah fungsi, dan berapa kali fungsi itu dibentuk?</li>
+</ol>
+<p><strong>Merancang.</strong> Tiga pertanyaan, ketiganya tanpa jawaban tunggal yang benar.</p>
+<ol>
+<li>Pada Latihan Merancang Bab 7 Anda diminta mengusulkan sebuah mekanisme agar sepasang fungsi kembar dapat dituliskan sekali saja. Bacalah kembali jawaban Anda dan bandingkan dengan <code>fold</code>. Bagian mana yang sudah Anda temukan sendiri, bagian mana yang tidak, dan apa yang menghalangi Anda menemukannya saat itu?</li>
+<li><code>insertSorted</code> menolak dituliskan sebagai <code>map</code>, <code>filter</code>, maupun <code>fold</code>. Jelaskan sifat apa dari rekurensnya yang menyebabkan hal itu. Kemudian carilah satu fungsi lain dari Bab 6 atau Bab 7 yang menolak dengan alasan yang sama, dan satu yang menolak dengan alasan yang berbeda.</li>
+<li>Notasi ini tidak dapat menyatakan aplikasi parsial, karena koma pada <code>f : A, B → C</code> mengikat kedua parameter menjadi satu. Usulkan perubahan notasi yang membuat aplikasi parsial menjadi mungkin. Kemudian, dan inilah bagian yang sesungguhnya dinilai: telusurilah Bab 2 sampai Bab 7 dan sebutkan apa saja yang menjadi lebih sulit dibaca akibat usulan Anda. Setelah menimbang keduanya, apakah Anda tetap mengusulkannya untuk pembaca yang baru pertama kali belajar?</li>
+</ol>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="07-list.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="09-dari-notasi-ke-program.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="07-list.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="09-dari-notasi-ke-program.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-09f2665d.js"></script>
+
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-609e4cb8.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>

@@ -1,0 +1,396 @@
+<!DOCTYPE HTML>
+<html lang="id" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Dari Notasi ke Program - Diktat Pemrograman Fungsional</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-e96d0476.css">
+        <link rel="stylesheet" href="css/chrome-d279d366.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex-0ab6a5e0.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-2ab1aa36.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Diktat Pemrograman Fungsional</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="dari-notasi-ke-program"><a class="header" href="#dari-notasi-ke-program">Dari Notasi ke Program</a></h1>
+<p>Delapan bab telah menuliskan rancangan. Setiap rancangan itu pada akhirnya harus dijalankan mesin, dan pada saat itu muncul pertanyaan-pertanyaan yang sepanjang delapan bab tersebut sengaja tidak dijawab.</p>
+<p>Bab 2 menyatakan bahwa notasi ini tidak mencakup strategi evaluasi, tidak mencakup efek, masukan, dan keluaran. Bab 3 menyatakan bahwa notasi tidak menetapkan urutan evaluasi, karena tidak perlu. Bab 6 menghitung banyaknya aplikasi tetapi tidak mengatakan apa-apa tentang apa yang terjadi di dalam mesin. Bab 8 memperkenalkan lipatan dan menunda pembicaraan tentang arahnya.</p>
+<p>Seluruh penundaan itu bermuara pada tiga pertanyaan:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Pertanyaan</th><th>Dijawab oleh</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Kapan</strong> sebuah bagian ekspresi dihitung?</td><td>bahasa, bukan rancangan</td></tr>
+<tr><td><strong>Berapa kali</strong>, dan dengan sumber daya berapa?</td><td>bahasa dan mesin</td></tr>
+<tr><td>Bagaimana program berurusan dengan <strong>dunia di luar dirinya</strong>?</td><td>bahasa dan sistem operasi</td></tr>
+</tbody>
+</table>
+</div>
+<p>Ketiganya adalah pertanyaan eksekusi. Notasi menolak menjawabnya bukan karena lalai, melainkan karena jawabannya berbeda-beda menurut bahasa yang dipakai, sedangkan rancangan yang baik seharusnya tetap sah ketika bahasanya diganti.</p>
+<p>Bab ini menjawab ketiganya <strong>sejauh jawabannya tidak bergantung pada bahasa</strong>, dan menunjukkan di mana jawaban bagi bahasa acuan berada. Pembagian itu bukan kehati-hatian yang berlebihan. Jawaban yang bergantung pada bahasa akan berubah ketika bahasanya diganti, dan sebagian di antaranya berubah sampai terbalik; yang dituliskan di bawah ini tidak. Bab ini adalah bab terakhir Diktat.</p>
+<h2 id="kapan-strategi-evaluasi"><a class="header" href="#kapan-strategi-evaluasi">Kapan: Strategi Evaluasi</a></h2>
+<p>Bab 3 menelusuri <code>distance (1.0, 3.0, 5.0, 6.0)</code> dengan dua urutan yang berbeda dan memperoleh hasil yang sama. Kesimpulannya: urutan evaluasi tidak mengubah hasil, dan karena itu notasi tidak perlu menetapkannya.</p>
+<p>Kesimpulan itu benar, dan tidak lengkap. Yang tidak berubah adalah <strong>hasilnya</strong>. Yang berubah adalah <strong>pekerjaannya</strong>.</p>
+<p>Perhatikan fungsi berikut:</p>
+<pre><code>first (a, b) : a
+</code></pre>
+<p>lalu perhatikan aplikasi <code>first (5, factorial (20))</code>.</p>
+<p>Menurut spesifikasinya, hasilnya adalah <code>5</code>. Pertanyaannya: apakah <code>factorial (20)</code> dihitung?</p>
+<p>Ada dua jawaban, dan keduanya dipakai oleh bahasa nyata.</p>
+<p><strong>Evaluasi ketat (<em>strict</em>).</strong> Seluruh argumen dihitung lebih dahulu, baru fungsinya diaplikasikan.</p>
+<pre><code>⇒ first (5, factorial (20))
+  → first (5, 2432902008176640000)    { reduksi factorial, 21 aplikasi }
+  → 5                                 { ekspansi first }
+</code></pre>
+<p><strong>Evaluasi malas (<em>lazy</em>).</strong> Argumen baru dihitung bila dan ketika nilainya benar-benar dibutuhkan.</p>
+<pre><code>⇒ first (5, factorial (20))
+  → 5                                 { ekspansi first }
+</code></pre>
+<p>Hasilnya sama. Pekerjaannya berbeda dua puluh satu aplikasi.</p>
+<p>Kebanyakan bahasa bersifat ketat: C, Python, Java, OCaml. Sebagian kecil bersifat malas. Pilihan di antara keduanya adalah salah satu keputusan rancangan sebuah bahasa yang paling menentukan, dan akibatnya terasa pada hampir setiap program yang cukup besar.</p>
+<p>Perhatikan bahwa notasi kita tetap benar dalam kedua keadaan. Itulah sebabnya urutan tidak ditetapkan. Rancangan yang sama dapat dijalankan oleh bahasa ketat maupun malas, dan spesifikasinya tidak berubah sedikit pun.</p>
+<p>Yang berubah adalah <strong>pekerjaannya</strong>, dan pekerjaan adalah urusan bahasa. Pilihan yang diambil bahasa acuan Anda, beserta akibat yang perlu diketahui, dibahas pada Suplemen S10.</p>
+<h2 id="berapa-kali-posisi-ekor"><a class="header" href="#berapa-kali-posisi-ekor">Berapa Kali: Posisi Ekor</a></h2>
+<p>Bab 6 meletakkan <code>fibFrom</code> berdampingan dengan sebuah loop dan menyatakan bahwa keduanya berbentuk sama. Pertanyaan yang ditunda saat itu adalah apakah keduanya juga <strong>dijalankan</strong> dengan cara yang sama.</p>
+<p>Perbedaannya terletak pada satu hal. Perhatikan kedua rekurens ini:</p>
+<pre><code>factorial (n) : ... n * factorial (n - 1)
+fibFrom (k, a, b) : ... fibFrom (k - 1, b, a + b)
+</code></pre>
+<p>Pada <code>factorial</code>, aplikasi rekursifnya <strong>bukan</strong> hal terakhir yang dikerjakan. Setelah <code>factorial (n - 1)</code> menghasilkan nilai, masih ada perkalian yang menunggu. Pada <code>fibFrom</code>, aplikasi rekursifnya <strong>adalah</strong> hal terakhir; hasilnya langsung menjadi hasil keseluruhan tanpa ada yang menunggu.</p>
+<p>Aplikasi yang merupakan hal terakhir yang dikerjakan disebut berada pada <strong>posisi ekor</strong> (<em>tail position</em>), dan fungsi yang seluruh rekurensnya berada pada posisi ekor disebut <strong>rekursif ekor</strong> (<em>tail-recursive</em>).</p>
+<p>Perbedaan ini terlihat pada penelusuran Bab 6. <code>factorial (4)</code> membesar lebih dahulu sampai basis, baru mengecil, karena setiap lapis menyimpan perkalian yang tertunda. <code>fibFrom</code> tidak pernah membesar; setiap langkah menggantikan langkah sebelumnya seluruhnya.</p>
+<p>Pada bahasa yang menjaminnya (Scheme, OCaml, Lua, dan lainnya), aplikasi pada posisi ekor tidak memerlukan tempat baru sama sekali: fungsi rekursif ekor dijalankan dengan sumber daya tetap, persis seperti loop. Jaminan itu mempunyai nama, yaitu <em>tail call optimisation</em>, dan pada bahasa-bahasa tersebut jaminan itu adalah bagian dari definisi bahasanya, bukan kemurahan hati kompilatornya.</p>
+<p>Tidak semua bahasa memberikan jaminan tersebut. Yang lebih perlu diwaspadai: pada sebagian bahasa yang memberikannya, bentuk berakumulator <strong>tetap</strong> tidak lebih hemat, karena sumber daya yang kritis di sana bukan tempat penyimpanan perhitungan yang tertunda melainkan hal lain sama sekali. Karena itu kalimat yang sering diucapkan, yaitu <em>fungsi rekursif ekor diterjemahkan menjadi loop</em>, tidak berlaku umum dan tidak boleh dipercaya begitu saja. Apa yang sesungguhnya terjadi pada bahasa acuan Anda dibahas pada Suplemen S10, dan jawabannya mungkin mengejutkan.</p>
+<p>Satu hal yang pantas dibawa dari sini, dan sifatnya rancangan alih-alih eksekusi: <strong>posisi ekor dapat dilihat langsung dari teks realisasi</strong>, sebelum bahasa apa pun dipilih. Kemampuan melihatnya adalah milik perancang. Apa yang kemudian dilakukan mesin terhadapnya adalah milik bahasanya, dan kedua hal itu sebaiknya tidak dicampur.</p>
+<h2 id="mengapa-bentuk-non-akumulator-tetap-diajarkan"><a class="header" href="#mengapa-bentuk-non-akumulator-tetap-diajarkan">Mengapa Bentuk Non-Akumulator Tetap Diajarkan</a></h2>
+<p>Bab 6 menunda pertanyaan ini, dan sekarang jawabannya dapat diberikan utuh.</p>
+<p><strong>Karena spesifikasinya jauh lebih mudah ditulis dengan benar.</strong> Inilah alasan yang paling kuat dan paling sering diremehkan. Bab 6 sudah memperlihatkannya pada <code>fibFrom</code>, dan Bab 7 pada <code>reverseOnto</code>: realisasinya lebih pendek, spesifikasinya jauh lebih sulit. Kesalahan pada fungsi berakumulator hampir selalu terletak pada nilai awal akumulatornya, dan kesalahan itu hanya dapat ditemukan oleh orang yang sudah menuliskan artinya dengan tepat.</p>
+<p><strong>Karena sebagian besar fungsi tidak diuntungkan olehnya.</strong> Bab 7 menyatakan hal ini dan menyebutkan bahwa dari seluruh fungsi di sana, hanya <code>reverse</code> yang jelas diuntungkan. Untuk <code>squareAll</code>, bentuk berakumulator bahkan menuntut satu <code>reverse</code> tambahan di ujung.</p>
+<p><strong>Karena bentuknya sesuai dengan type-nya.</strong> Rekursi yang menggabungkan <code>head (L)</code> dengan hasil atas <code>tail (L)</code> mengikuti bentuk definisi list itu sendiri, dan justru karena itulah Bab 7 dapat menyatakan bahwa basis dan konvergensinya datang cuma-cuma dari type-nya. Bentuk berakumulator meninggalkan kesesuaian tersebut dan menggantinya dengan sesuatu yang harus dijaga sendiri.</p>
+<p><strong>Karena keputusan ini berumur lebih pendek daripada rancangannya.</strong> Bahasa berganti, kompilator membaik, dan apa yang hari ini mahal mungkin besok tidak. Spesifikasi yang jelas bertahan melewati semuanya.</p>
+<h2 id="dunia-luar-kemurnian"><a class="header" href="#dunia-luar-kemurnian">Dunia Luar: Kemurnian</a></h2>
+<p>Ada satu sifat yang dimiliki <strong>setiap</strong> fungsi yang ditulis sejak Bab 2, dan yang belum pernah diberi nama.</p>
+<p>Sebuah fungsi disebut <strong>murni</strong> (<em>pure</em>) bila:</p>
+<ul>
+<li>hasilnya ditentukan sepenuhnya oleh argumennya, sehingga argumen yang sama selalu menghasilkan nilai yang sama; dan</li>
+<li>mengaplikasikannya tidak mengubah apa pun di luar dirinya.</li>
+</ul>
+<p>Seluruh isi Bab 2 sampai Bab 8 murni, tanpa satu perkecualian. Hal itu bukan kebetulan, dan bukan pula pembatasan yang diberlakukan diam-diam. Notasi ini memang tidak menyediakan cara untuk menulis yang tidak murni.</p>
+<p>Bandingkan dengan fungsi berikut, yang ditulis dalam bahasa yang mungkin lebih dikenal pembaca:</p>
+<pre><code class="language-c">int counter = 0;
+
+int next(void) {
+    counter = counter + 1;
+    return counter;
+}
+</code></pre>
+<p><code>next()</code> menghasilkan nilai yang berbeda setiap kali dipanggil dengan argumen yang sama, yaitu tanpa argumen sama sekali. Fungsi tersebut juga mengubah sesuatu di luar dirinya, sehingga kedua syarat kemurnian dilanggar sekaligus.</p>
+<p>Sekarang perhatikan apa yang hilang bersama kemurnian. Bab 2 menyatakan bahwa sebuah ekspresi dapat digantikan oleh nilainya tanpa mengubah arti program, dan menyebutnya transparansi referensial. Untuk <code>next()</code>, penggantian itu tidak sah: <code>next() + next()</code> tidak sama dengan <code>2 * next()</code>. Untuk <code>square (3)</code>, penggantian itu selalu sah.</p>
+<p><strong>Apa yang dibeli oleh kemurnian</strong>, dikumpulkan dari delapan bab:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Yang diperoleh</th><th>Pertama muncul</th></tr>
+</thead>
+<tbody>
+<tr><td>Ekspresi dapat digantikan oleh nilainya</td><td>Bab 2</td></tr>
+<tr><td>Urutan evaluasi tidak mengubah hasil</td><td>Bab 3</td></tr>
+<tr><td>Bagian yang saling bebas dapat dievaluasi bersamaan</td><td>Bab 3</td></tr>
+<tr><td>Sebuah ekspresi dapat dipahami dengan membacanya saja</td><td>Bab 3</td></tr>
+<tr><td>Penelusuran di atas kertas dapat dipercaya</td><td>Bab 3 dan seterusnya</td></tr>
+<tr><td>Fungsi dapat diserahkan ke mana saja tanpa khawatir</td><td>Bab 8</td></tr>
+<tr><td>Pengujian tidak memerlukan penyiapan keadaan</td><td>bab ini</td></tr>
+</tbody>
+</table>
+</div>
+<p>Baris terakhir pantas diperhatikan. Untuk menguji <code>next()</code>, kita harus tahu sudah berapa kali fungsi itu dipanggil sebelumnya. Untuk menguji <code>sumDigits</code>, tidak ada yang perlu disiapkan. Seluruh yang dibutuhkan adalah argumennya.</p>
+<h2 id="masukan-dan-keluaran"><a class="header" href="#masukan-dan-keluaran">Masukan dan Keluaran</a></h2>
+<p>Kemurnian menimbulkan pertanyaan yang wajar. Membaca dari papan ketik menghasilkan nilai yang berbeda setiap kali. Menulis ke layar mengubah sesuatu di luar program. Bila seluruh fungsi harus murni, bagaimana program fungsional dapat berguna sama sekali?</p>
+<p>Bab 2 sudah memberikan jawabannya dalam satu kalimat: aksi membaca dan menulis diwakili oleh interaksi pemakai dengan lingkungan eksekusi, bukan oleh program. Sekarang kalimat itu dapat dijelaskan.</p>
+<p>Kuncinya adalah membedakan <strong>deskripsi sebuah aksi</strong> dari <strong>pelaksanaan aksi tersebut</strong>. “Bacalah sebuah baris dari papan ketik” adalah sebuah kalimat; menuliskan kalimat itu, menyalinnya, atau merangkainya dengan kalimat lain tidak membaca apa pun. Yang membaca adalah pihak yang akhirnya menjalankannya, dan pihak itu adalah lingkungan eksekusi, bukan program. Menyusun deskripsi tetap murni sepenuhnya. Sebuah program fungsional karenanya bukan rangkaian aksi, melainkan sebuah <strong>nilai</strong> yang menggambarkan aksi apa yang hendak dilakukan, yang lalu diserahkan kepada lingkungannya untuk dijalankan.</p>
+<p>Bahasa berbeda dalam satu hal, dan perbedaannya besar: <strong>apakah perbedaan antara perhitungan dan aksi ditulis ke dalam type, atau tidak.</strong></p>
+<ul>
+<li>Bila <strong>ya</strong>, sebuah fungsi yang boleh membaca papan ketik mempunyai type yang berbeda dari fungsi yang tidak boleh, dan kompilator menolak yang melanggar. Batas antara inti yang murni dan tepi yang berefek berhenti menjadi janji dan menjadi sesuatu yang diperiksa mesin.</li>
+<li>Bila <strong>tidak</strong>, batas itu tetap ada dan tetap sama pentingnya, hanya saja penegakannya diserahkan kepada disiplin penulisnya. Keadaannya persis seperti invarian <code>Set</code> pada Bab 7: benar, penting, dan tidak diperiksa siapa pun.</li>
+</ul>
+<p>Yang dilakukan bahasa acuan Anda dibahas pada Suplemen S3 dan S6.</p>
+<p>Perhatikan bahwa kemungkinan pertama adalah <strong>pembalikan</strong> dari apa yang berulang sepanjang Diktat. Bab 4 dan Bab 5 memperlihatkan notasi menuliskan pembatasan yang tidak dapat diperiksa bahasanya. Sebuah bahasa yang menuliskan efek ke dalam type melakukan yang sebaliknya: menuliskan pembatasan yang notasi kita tidak mempunyai sarana untuk menyatakannya sama sekali.</p>
+<p>Satu bentuk berlaku dalam kedua keadaan dan pantas dijadikan kebiasaan sejak sekarang: <strong>inti yang murni, dikelilingi tepi yang menangani efek</strong>, dengan tepi itu dibuat setipis mungkin. Seluruh fungsi yang pembaca tulis sejak Bab 2 adalah calon isi inti tersebut dan tidak perlu diubah sedikit pun untuk dipakai di dalam sebuah program yang berinteraksi; yang ditambahkan hanyalah lapisan tipis di sekelilingnya. Gagasan ini berlaku jauh melampaui bahasa fungsional, dan pembaca yang tertarik dirujuk ke [7].</p>
+<p>Mekanisme yang dipakai bahasa-bahasa fungsional untuk merangkai deskripsi aksi mempunyai nama, yaitu <strong>monad</strong>. Mekanisme tersebut adalah salah satu gagasan penting dalam pemrograman fungsional modern, dan berada di luar cakupan diktat ini sebagaimana dinyatakan pada Bab 1. Namanya disebutkan di sini agar pembaca dapat mencarinya sendiri.</p>
+<h2 id="menguji-rancangan-terhadap-spesifikasi"><a class="header" href="#menguji-rancangan-terhadap-spesifikasi">Menguji Rancangan terhadap Spesifikasi</a></h2>
+<p>Pembaca sudah menguji program sejak Bab 2 tanpa istilah itu dipakai.</p>
+<p>Bab 2 menganjurkan menuliskan hasil yang diharapkan <strong>sebelum</strong> menjalankan, dan menjelaskan alasannya: hal itu mengubah eksekusi dari “mari lihat apa yang keluar” menjadi “mari periksa apakah dugaan saya benar”. Bab 3 memilih empat aplikasi <code>isLeapYear</code> sehingga setiap cabang tersentuh. Bab 4 menuntut setiap nilai batas diuji. Bab 5 dan Bab 7 menuntut list kosong dan list satu elemen selalu ada di antara contoh aplikasinya.</p>
+<p>Semua itu adalah pengujian, dilakukan dengan tangan.</p>
+<p>Yang berubah pada saat program dijalankan hanyalah siapa yang mengerjakannya. Setiap baris <code>APLIKASI</code> yang sudah pembaca tuliskan adalah sepasang ekspresi dan hasil yang diharapkan, dan pasangan semacam itu dapat dituliskan sebagai program yang memeriksa dirinya sendiri: kumpulkan seluruhnya, bandingkan hasil sesungguhnya dengan hasil yang diharapkan, dan hasilkan <code>true</code> bila semuanya cocok. Bentuknya dalam bahasa acuan dibahas pada Suplemen S8. Cara ini sederhana sampai terasa remeh, dan sudah menangkap sebagian besar kesalahan yang dibuat pada saat menulis.</p>
+<p>Ada bentuk pengujian yang lebih kuat dan sangat cocok bagi program murni. Alih-alih memeriksa contoh satu per satu, kita menyatakan <strong>sifat</strong> yang harus berlaku bagi seluruh masukan, lalu mesin mencobanya dengan ratusan masukan yang dibangkitkan sendiri. Sifat semacam “membalik sebuah list dua kali menghasilkan list semula” atau “hasil <code>sortBy</code> selalu sepanjang masukannya” dapat dituliskan langsung sebagai program. Gagasan ini disebut <strong>pengujian berbasis sifat</strong> (<em>property-based testing</em>), dan perkakasnya tersedia bagi hampir setiap bahasa. Cara memilih sifat dibahas pada Suplemen S7, dan cara menjalankannya pada S8.</p>
+<p>Perhatikan bahwa kemurnian membuat semua ini murah. Tidak ada keadaan yang harus disiapkan sebelum menguji dan tidak ada yang harus dibersihkan sesudahnya, karena tidak ada fungsi yang meninggalkan jejak.</p>
+<h2 id="arah-lanjutan"><a class="header" href="#arah-lanjutan">Arah Lanjutan</a></h2>
+<p>Bab 1 menyatakan bahwa setelah menyelesaikan diktat ini, pembaca <strong>belum</strong> menjadi pemrogram fungsional. Pernyataan itu sekarang dapat dirinci.</p>
+<p><strong>Yang sudah dapat dilakukan pembaca.</strong> Menyatakan sebuah persoalan sebagai definisi, spesifikasi, realisasi, dan aplikasi. Melakukan analisis kasus yang lengkap dan disjoint, dan mengenali di mana kesalahan batas bersembunyi. Merancang type bentukan beserta invariannya. Melakukan analisis rekurens atas bilangan dan atas struktur, dan membuktikan bahwa evaluasinya berhenti. Mengenali pola berulang dan mengangkatnya menjadi fungsi orde tinggi. Membaca dan menelusuri program yang ditulis orang lain. Menerjemahkan semuanya ke sebuah bahasa nyata dan memeriksanya terhadap spesifikasi yang ditulis sendiri.</p>
+<p><strong>Yang belum.</strong> Sistem type secara mendalam, termasuk polimorfisme yang membuat <code>map</code> dapat mengubah type elemennya, dan cara sebuah bahasa menuliskan prasyarat pada type. Monad dan penanganan efek secara sistematis. Struktur data fungsional yang efisien, karena list bukan satu-satunya dan sering bukan yang terbaik. Analisis kompleksitas, yang akan pembaca temui dalam materi lain dan yang akan terasa akrab karena sudah terbiasa menghitung aplikasi sejak Bab 6. Pemrograman fungsional untuk perangkat lunak skala besar.</p>
+<p><strong>Ke mana melanjutkan.</strong> Untuk pendalaman bahasa acuan secara sistematis, [1] atau [2]. Untuk cara berpikir fungsional yang lebih matang dengan contoh yang lebih besar, [4]. Untuk argumen tentang mengapa semua ini penting, dalam dua puluh halaman yang masih relevan setelah tiga dekade, [5]. Untuk penerapan gagasan ini di luar bahasa fungsional, yaitu di tempat kebanyakan pembaca akan bekerja, [7]. Untuk pembaca yang mempertanyakan efisiensi struktur data fungsional, [8].</p>
+<p><strong>Suplemen</strong> melanjutkan langsung dari bab ini dan menjawab bagian yang sengaja tidak dijawab di sini: apa yang sesungguhnya dilakukan bahasa acuan terhadap ketiga pertanyaan di atas, padanan yang lengkap bagi seluruh konstruk notasi, perkakas, dan pengujian. Suplemen juga memuat sebagian besar latihan di depan mesin untuk bab ini.</p>
+<p><strong>Bab 10</strong> membahas pohon, dan bersifat opsional. Bab tersebut berdiri di luar alur utama Diktat karena tujuannya berbeda: sebuah struktur yang sama dirancang dua kali, secara fungsional dan secara imperatif, lalu dibandingkan. Pembaca yang mempelajari struktur data dalam paradigma lain akan menemukan bab itu paling berguna sebagai jembatan.</p>
+<p><strong>Bab 11</strong> membahas list yang elemennya boleh berupa list, dan juga opsional. Bab tersebut tidak memperkenalkan mesin baru sama sekali; seluruh isinya adalah penerapan Bab 5, 6, 7, dan 10 atas sebuah struktur yang secara tradisional diperlakukan sebagai pokok bahasan tersendiri. Bentuknya adalah bentuk soal panjang, dan pembaca yang mengerjakannya akan menemukan bahwa perangkat operasi rangkap yang biasa menyertai struktur ini tidak pernah diperlukan.</p>
+<p>Terakhir, notasi yang dipakai sepanjang delapan bab ini tidak dapat dieksekusi, dan Bab 8 memperlihatkan bahwa ada hal yang bahkan tidak dapat dinyatakannya. Pembaca berhak bertanya apakah notasi tersebut sepadan. Jawaban diktat ini sudah dinyatakan sejak Bab 2 dan tidak berubah: notasi memaksa penulisnya menyatakan apa yang dihitung sebelum bagaimana menghitungnya, dan paksaan itu mudah dilewati bila kita langsung mengetik di depan mesin. Mulai sekarang pembaca akan mengetik langsung. Pertanyaan yang pantas dibawa serta adalah apakah kebiasaan menyatakan definisi dan spesifikasi lebih dahulu ikut terbawa, atau ditinggalkan bersama notasinya.</p>
+<h2 id="latihan"><a class="header" href="#latihan">Latihan</a></h2>
+<p>Latihan bab ini terbagi dua. Yang di bawah ini dikerjakan <strong>di atas kertas</strong> dan tidak memerlukan mesin, karena seluruhnya menyangkut hal yang berlaku bagi bahasa fungsional mana pun. Latihan yang dikerjakan <strong>di depan mesin</strong> berada pada Suplemen S3 sampai S10, dan sebaiknya dikerjakan berdampingan dengan bab ini.</p>
+<p><strong>Membaca.</strong> Untuk setiap realisasi berikut, tentukan apakah aplikasi rekursifnya berada pada posisi ekor. Jawablah dengan menunjuk pekerjaan apa yang masih menunggu setelah aplikasi rekursifnya menghasilkan nilai; bila tidak ada, aplikasi tersebut berada pada posisi ekor.</p>
+<pre><code>sumDigits (n)      : depend on n
+                         n &lt; 10  : n
+                         n ≥ 10  : (n mod 10) + sumDigits (n div 10)
+
+fibFrom (k, a, b)  : depend on k
+                         k = 0   : a
+                         k &gt; 0   : fibFrom (k - 1, b, a + b)
+
+isMember (x, L)    : depend on L
+                         isEmpty (L)       : false
+                         not (isEmpty (L)) : (head (L) = x) or else isMember (x, tail (L))
+
+reverseOnto (L, R) : depend on L
+                         isEmpty (L)       : R
+                         not (isEmpty (L)) : reverseOnto (tail (L), makeCons (head (L), R))
+
+union (S1, S2)     : depend on S1
+                         isEmpty (S1)       : S2
+                         not (isEmpty (S1)) : insertSet (head (S1), union (tail (S1), S2))
+</code></pre>
+<p>Untuk <code>isMember</code>, jawabannya bergantung pada satu hal yang halus. Sebutkan apa.</p>
+<p><strong>Menelusuri.</strong> Perhatikan <code>first (a, b) : a</code> dan aplikasi <code>first (5, factorial (20))</code>.</p>
+<ol>
+<li>Tuliskan penelusurannya menurut evaluasi ketat, dan hitung banyaknya aplikasi.</li>
+<li>Tuliskan penelusurannya menurut evaluasi malas, dan hitung banyaknya aplikasi.</li>
+<li>Kedua penelusuran menghasilkan nilai yang sama. Apa yang membuat hal itu terjamin, dan sifat apa dari Bab 2 yang menjaminnya?</li>
+<li>Susunlah sebuah aplikasi yang, dengan evaluasi ketat, <strong>tidak menghasilkan nilai sama sekali</strong>, tetapi dengan evaluasi malas menghasilkan nilai. Petunjuk: pakailah sebuah fungsi yang tidak terdefinisi bagi argumen tertentu, misalnya pembagian dengan nol.</li>
+</ol>
+<p><strong>Merancang.</strong> Tiga pertanyaan, ketiganya tanpa jawaban tunggal yang benar.</p>
+<ol>
+<li>Bab 8 menunjukkan bahwa notasi ini tidak dapat menyatakan aplikasi parsial, dan bab ini menunjukkan bahwa perbedaan antara perhitungan dan aksi juga tidak dapat dinyatakannya. Susunlah daftar hal-hal yang tidak dapat dinyatakan notasi tetapi dapat dinyatakan sebuah bahasa nyata, dan daftar sebaliknya. Setelah kedua daftar itu tersusun, jawablah: apakah notasi ini sepadan dengan waktu yang dihabiskan untuk mempelajarinya? Jawaban “tidak” dapat dipertanggungjawabkan bila alasannya kuat. Bandingkan daftar Anda dengan Suplemen S5 sesudahnya, bukan sebelumnya.</li>
+<li>Bab ini menganjurkan inti yang murni dikelilingi tepi yang menangani efek. Ambil sebuah program yang pernah Anda tulis dalam paradigma prosedural, dan tandai bagian mana yang sesungguhnya murni dan bagian mana yang tidak. Seberapa besar bagian yang murni, dan apakah batasnya terlihat dari teksnya?</li>
+<li>Suatu saat Anda akan menulis program dalam bahasa yang tidak fungsional, tanpa siapa pun yang menuntut Anda menuliskan definisi dan spesifikasi lebih dahulu. Kebiasaan mana dari diktat ini yang akan Anda bawa, kebiasaan mana yang akan Anda tinggalkan, dan apa yang akan menjadi ongkosnya masing-masing?</li>
+</ol>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="08-fungsi-sebagai-nilai.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="10-pohon.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="08-fungsi-sebagai-nilai.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="10-pohon.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-09f2665d.js"></script>
+
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-609e4cb8.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>

@@ -1,0 +1,575 @@
+<!DOCTYPE HTML>
+<html lang="id" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>List of List - Diktat Pemrograman Fungsional</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-e96d0476.css">
+        <link rel="stylesheet" href="css/chrome-d279d366.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex-0ab6a5e0.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-2ab1aa36.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Diktat Pemrograman Fungsional</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="list-of-list"><a class="header" href="#list-of-list">List of List</a></h1>
+<p>Bab ini berdiri di luar alur utama Diktat, sebagaimana Bab 10, tetapi dengan cara yang berbeda. Bab 10 memperkenalkan sebuah struktur baru. Bab ini tidak memperkenalkan apa pun. Seluruh isinya dapat diturunkan dari Bab 5, 6, 7, dan 10, dan justru itulah yang hendak diperlihatkan.</p>
+<p>Bab ini juga bukan bab yang dirancang untuk diajarkan, melainkan untuk dikerjakan sendiri: sedikit yang dituliskan lengkap, banyak yang ditanyakan. Topik yang selama puluhan tahun diperlakukan sebagai pokok bahasan tersendiri, dengan seperangkat operasi dasarnya sendiri, ternyata tidak memerlukan satu pun operasi baru—itulah yang dikerjakan pembaca untuk membuktikannya sendiri.</p>
+<p>Bab ini mengandaikan Bab 10 sudah dibaca.</p>
+<h2 id="dua-hal-yang-bernama-sama"><a class="header" href="#dua-hal-yang-bernama-sama">Dua Hal yang Bernama Sama</a></h2>
+<p>Istilah <em>list of list</em> dipakai untuk dua struktur yang berbeda, dan sebagian besar kesulitan yang melekat padanya berasal dari kedua struktur itu tidak dibedakan.</p>
+<p><strong>Sarang teratur.</strong> Setiap elemen sebuah list adalah sebuah list, dan seluruhnya bertype sama:</p>
+<pre><code>[[1, 2, 3], [4, 5], [], [6]]
+</code></pre>
+<p>Sebuah matriks, sebuah teks sebagai list kata dengan kata sebagai list karakter, sebuah tabel nilai per mahasiswa. Type-nya adalah <code>List of (List of Integer)</code>, dan bentuknya sepenuhnya diketahui sebelum nilainya diperiksa: dua lapis, tidak pernah satu, tidak pernah tiga.</p>
+<p><strong>Sarang tak teratur.</strong> Sebuah elemen mungkin sebuah bilangan, mungkin pula sebuah list:</p>
+<pre><code>[1, [2, [3, 4]], 5, []]
+</code></pre>
+<p>Kedalamannya tidak seragam dan tidak terbatas. Bentuknya tidak diketahui dari type-nya, melainkan harus diperiksa pada setiap elemen.</p>
+<p>Keduanya ditulis dengan lambang yang sama, yaitu kurung siku, dan di situlah letak kekeliruan yang paling sering terjadi. Bagian berikut memperlihatkan bahwa yang pertama sama sekali bukan persoalan baru, sehingga seluruh sisa bab ini menyangkut yang kedua.</p>
+<h2 id="sarang-teratur-yang-bukan-persoalan-baru"><a class="header" href="#sarang-teratur-yang-bukan-persoalan-baru">Sarang Teratur: yang Bukan Persoalan Baru</a></h2>
+<p>Bab 7 menyatakan bahwa <code>Element</code> adalah tempat kosong yang diisi sekali untuk setiap list, dan bahwa isinya boleh berupa type apa pun. Bab 7 sudah mengisinya dengan <code>Integer</code>, <code>Character</code>, dan <code>Date</code>. Mengisinya dengan <code>List of Integer</code> tidak menuntut kesepakatan baru apa pun.</p>
+<pre><code>JUDUL   Jumlah Seluruh Bilangan pada Sebuah Matriks
+</code></pre>
+<pre><code>DEFINISI DAN SPESIFIKASI
+    sumRows : List of (List of Integer) → Integer
+    { sumRows (M) adalah jumlah seluruh bilangan pada seluruh baris M,
+      nol bila M kosong }
+    { Basis-0:  isEmpty (M)       → 0
+      Rekurens: not (isEmpty (M)) → sumList (head (M)) + sumRows (tail (M)) }
+</code></pre>
+<pre><code>REALISASI
+    sumRows (M) :
+        depend on M
+            isEmpty (M)       : 0
+            not (isEmpty (M)) : sumList (head (M)) + sumRows (tail (M))
+</code></pre>
+<pre><code>APLIKASI
+    ⇒ sumRows ([])
+      0
+    ⇒ sumRows ([[], []])
+      0
+    ⇒ sumRows ([[1, 2, 3], [4, 5], [], [6]])
+      21
+</code></pre>
+<p>Letakkan realisasi ini berdampingan dengan <code>length</code> pada Bab 7. Bentuknya sama persis. Rekurensnya berjalan <strong>satu arah</strong>, yaitu sepanjang <code>tail</code>, dan <code>head (M)</code> diserahkan kepada <code>sumList</code> yang sudah ada. Sarangnya terlihat pada type, tidak pada rekurensnya.</p>
+<p>Inilah yang berlaku umum bagi seluruh sarang teratur. Bila kedalamannya tetap dan diketahui, setiap lapis dikerjakan oleh fungsinya sendiri, dan setiap fungsi tersebut adalah fungsi list biasa sebagaimana Bab 7. Tiga lapis menuntut tiga fungsi, bukan mesin baru.</p>
+<p>Karena itu sarang teratur selesai di sini.</p>
+<h2 id="sarang-tak-teratur-merancang-type-nya"><a class="header" href="#sarang-tak-teratur-merancang-type-nya">Sarang Tak Teratur: Merancang Type-nya</a></h2>
+<p>Sekarang persoalan yang sesungguhnya. Sebuah elemen boleh berupa bilangan <strong>atau</strong> berupa list. Bab 5 sudah memberikan alat untuk menyatakan “salah satu dari”, yaitu type alternatif, dan Bab 6 sudah memberikan izin bagi sebuah type untuk menyebut dirinya sendiri.</p>
+<pre><code>TYPE ITEM
+</code></pre>
+<pre><code>DEFINISI TYPE
+    type Item : Atom ⟨value : Integer⟩
+              | Nested ⟨items : List of Item⟩
+    { Sebuah Item adalah sebuah bilangan, atau sebuah list yang
+      elemennya juga Item }
+
+DEFINISI DAN SPESIFIKASI SELEKTOR
+    value : Atom → Integer
+    { value (I) memberikan bilangan yang tersimpan pada I }
+
+    items : Nested → List of Item
+    { items (I) memberikan list Item yang tersimpan pada I }
+
+DEFINISI DAN SPESIFIKASI KONSTRUKTOR
+    makeAtom : Integer → Atom
+    { makeAtom (n) membentuk sebuah Item berisi bilangan n }
+
+    makeNested : List of Item → Nested
+    { makeNested (L) membentuk sebuah Item berisi list L }
+
+DEFINISI DAN SPESIFIKASI PREDIKAT
+    isAtom : Item → Boolean
+    { isAtom (I) bernilai true bila I adalah sebuah bilangan }
+
+    isNested : Item → Boolean
+    { isNested (I) bernilai true bila I adalah sebuah list }
+</code></pre>
+<p>Kotak di atas tidak memuat satu pun konstruktor list baru, tidak satu pun selektor list baru, tidak satu pun predikat list baru. <code>makeNil</code>, <code>makeCons</code>, <code>head</code>, <code>tail</code>, <code>isEmpty</code>, dan <code>isOneElement</code> dari Bab 7 berlaku seluruhnya dan tanpa perubahan, karena <code>List of Item</code> adalah sebuah list biasa yang <code>Element</code>-nya kebetulan bernama <code>Item</code>. Yang bertambah hanya satu type, beserta konstruktor, selektor, dan predikatnya sendiri, persis sebagaimana <code>Shape</code> pada Bab 5.</p>
+<blockquote>
+<p><strong>Peringatan bagi pembaca bahan lama.</strong> Diktat terdahulu di lingkungan ITB memperlakukan <em>list of list</em> sebagai type tersendiri dengan seperangkat operasi dasarnya sendiri: <code>KonsLo</code>, <code>KonsL•</code>, <code>FirstList</code>, <code>TailList</code>, <code>LastList</code>, <code>HeadList</code>, di samping <code>IsAtom</code> dan <code>IsList</code>. Delapan nama baru untuk pekerjaan yang, pada diktat ini, dikerjakan oleh dua konstruktor dan dua selektor yang sudah ada sejak Bab 7. Perangkat rangkap tersebut bukan kesalahan penulisnya, melainkan akibat dari tidak tersedianya cara untuk menyatakan bahwa sebuah elemen boleh berupa salah satu dari dua hal. Setelah type alternatif tersedia, perangkat rangkap itu menjadi tidak diperlukan. Bila Anda membaca materi arsip, sepadankan <code>KonsLo</code> dengan <code>makeCons</code>, <code>FirstList</code> dengan <code>head</code>, dan <code>TailList</code> dengan <code>tail</code>.</p>
+</blockquote>
+<h3 id="penulisan-singkat-dan-bahayanya"><a class="header" href="#penulisan-singkat-dan-bahayanya">Penulisan singkat, dan bahayanya</a></h3>
+<p>Sebagaimana Bab 7, menuliskan setiap nilai dengan konstruktornya melelahkan:</p>
+<pre><code>3                    { setara dengan makeAtom (3) }
+[]                   { setara dengan makeNested (makeNil) }
+[1, 2]               { setara dengan makeNested (makeCons (makeAtom (1),
+                                        makeCons (makeAtom (2), makeNil))) }
+[1, [2, 3]]          { sebuah Nested berisi sebuah Atom dan sebuah Nested }
+</code></pre>
+<p>Penulisan singkat ini memakai kurung siku yang sama dengan penulisan singkat list pada Bab 7, sehingga <code>[1, 2]</code> kini mungkin berarti dua hal yang berlainan: sebuah <code>List of Integer</code>, atau sebuah <code>Item</code> bertype <code>Nested</code>. Keduanya tidak dapat dibedakan dari bentuk tertulisnya.</p>
+<p>Kerancuan itu bukan kecelakaan penulisan, melainkan tepat kerancuan yang membuat topik ini sukar selama ini. Sepanjang bab ini, setiap kali sebuah struktur sedang dibongkar, tulislah konstruktornya.</p>
+<h3 id="konvensi-penamaan-bab-ini"><a class="header" href="#konvensi-penamaan-bab-ini">Konvensi penamaan bab ini</a></h3>
+<p>Type-nya menyebut dirinya sendiri <strong>melalui</strong> sebuah list: <code>Item</code> memuat <code>List of Item</code>, dan <code>List of Item</code> memuat <code>Item</code>. Dua type saling menyebut, dan Bab 6 menyebut keadaan semacam ini rekursi tidak langsung.</p>
+<p>Akibatnya, fungsi atas <code>Item</code> datang <strong>berpasangan</strong>: satu bekerja atas sebuah <code>Item</code>, satu lagi atas sebuah <code>List of Item</code>. Sepanjang bab ini pasangan tersebut diberi nama dengan pola yang dipakai pada latihan Bab 10: nama dasar untuk <code>Item</code>, nama dasar berakhiran <code>List</code> untuk <code>List of Item</code>.</p>
+<h2 id="contoh-menjumlahkan-seluruh-bilangan"><a class="header" href="#contoh-menjumlahkan-seluruh-bilangan">Contoh: Menjumlahkan Seluruh Bilangan</a></h2>
+<pre><code>JUDUL   Jumlah Seluruh Bilangan di Dalam Sebuah Item
+</code></pre>
+<pre><code>DEFINISI DAN SPESIFIKASI
+    sumItem : Item → Integer
+    { sumItem (I) adalah jumlah seluruh bilangan di dalam I,
+      betapa pun dalam sarangnya }
+    { Basis:    isAtom (I)   → value (I)
+      Rekurens: isNested (I) → sumItemList (items (I)) }
+
+    sumItemList : List of Item → Integer
+    { sumItemList (L) adalah jumlah seluruh bilangan di dalam seluruh
+      elemen L, nol bila L kosong }
+    { Basis-0:  isEmpty (L)       → 0
+      Rekurens: not (isEmpty (L)) → sumItem (head (L)) + sumItemList (tail (L)) }
+</code></pre>
+<pre><code>REALISASI
+    sumItem (I) :
+        depend on I
+            isAtom (I)   : value (I)
+            isNested (I) : sumItemList (items (I))
+
+    sumItemList (L) :
+        depend on L
+            isEmpty (L)       : 0
+            not (isEmpty (L)) : sumItem (head (L)) + sumItemList (tail (L))
+</code></pre>
+<pre><code>APLIKASI
+    ⇒ sumItem (makeAtom (7))
+      7
+    ⇒ sumItem ([])
+      0
+    ⇒ sumItem ([1, [2, [3, 4]], 5])
+      15
+    ⇒ sumItem ([[], [[]]])
+      0
+</code></pre>
+<p>Dua hal pantas dicatat pada realisasi di atas.</p>
+<p><strong>Setiap fungsi mengikuti satu type, dan hanya satu.</strong> <code>sumItem</code> menganalisis kasus atas kedua alternatif <code>Item</code>; <code>sumItemList</code> menganalisis kasus atas kedua alternatif <code>List</code>. Tidak ada satu pun kondisi yang mencampur keduanya. Kelengkapan dan disjointness kedua analisis kasus itu dijamin oleh type-nya masing-masing, sebagaimana Bab 5 menyatakannya.</p>
+<p><strong>Konvergensinya terjamin dari dua arah.</strong> <code>items (I)</code> menghasilkan sebuah list, dan <code>sumItemList</code> selalu memanggil dirinya atas <code>tail (L)</code> yang lebih pendek, atau memanggil <code>sumItem</code> atas <code>head (L)</code> yang berada satu lapis lebih dalam. Setiap langkah mengurangi salah satu dari dua ukuran: panjang list yang tersisa, atau kedalaman sarang yang tersisa. Keduanya berhingga.</p>
+<p>Penelusuran <code>sumItem ([1, [2]])</code>, dengan konstruktor:</p>
+<pre><code>⇒ sumItem (makeNested (makeCons (makeAtom (1),
+                       makeCons (makeNested (makeCons (makeAtom (2), makeNil)),
+                                 makeNil))))
+  → sumItemList (makeCons (makeAtom (1), makeCons (makeNested (...), makeNil)))
+                                                       { ekspansi, isNested }
+  → sumItem (makeAtom (1)) + sumItemList (makeCons (makeNested (...), makeNil))
+                                                       { ekspansi, rekurens }
+  → 1 + sumItemList (makeCons (makeNested (...), makeNil))
+                                                       { ekspansi, isAtom }
+  → 1 + (sumItem (makeNested (...)) + sumItemList (makeNil))
+                                                       { ekspansi, rekurens }
+  → 1 + (sumItemList (makeCons (makeAtom (2), makeNil)) + sumItemList (makeNil))
+                                                       { ekspansi, isNested }
+  → 1 + ((2 + 0) + 0)                                  { beberapa langkah }
+  → 3
+</code></pre>
+<p>Bandingkan bentuk penelusuran ini dengan penelusuran <code>length</code> pada Bab 7. Pada <code>length</code>, ekspresi tumbuh sebagai sebuah rantai lurus. Di sini ia tumbuh <strong>bercabang</strong>, dan bentuk bercabang itu adalah bentuk struktur yang sedang ditelusuri.</p>
+<h2 id="rekurens-dengan-dua-arah"><a class="header" href="#rekurens-dengan-dua-arah">Rekurens dengan Dua Arah</a></h2>
+<p>Pasangan <code>sumItem</code> dan <code>sumItemList</code> bukan satu-satunya bentuk yang mungkin. Bentuk kedua menghapus salah satunya dan mengerjakan seluruhnya dalam satu fungsi atas <code>List of Item</code>:</p>
+<pre><code>REALISASI (BENTUK KEDUA)
+    sumAll (L) :
+        depend on L
+            isEmpty (L)                                    : 0
+            not (isEmpty (L)) and then isAtom (head (L))   : value (head (L))
+                                                             + sumAll (tail (L))
+            not (isEmpty (L)) and then isNested (head (L)) : sumAll (items (head (L)))
+                                                             + sumAll (tail (L))
+</code></pre>
+<p>Bentuk inilah yang dipakai bahan terdahulu, dan bentuk inilah yang dipakai hampir seluruh literatur Lisp. Ia lebih pendek: satu fungsi, bukan dua.</p>
+<p>Kasus ketiga memuat <strong>dua</strong> aplikasi rekursif dalam satu ekspresi, dan keduanya mengerjakan hal yang berlainan. <code>sumAll (items (head (L)))</code> bergerak <strong>turun</strong>, masuk ke dalam sarang. <code>sumAll (tail (L))</code> bergerak <strong>maju</strong>, sepanjang list yang sama. Tidak ada fungsi mana pun pada Bab 7 yang memiliki sifat ini; di sana rekursi selalu bergerak maju saja.</p>
+<p>Perbandingan kedua bentuk:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th></th><th>Pasangan <code>sumItem</code>/<code>sumItemList</code></th><th>Tunggal <code>sumAll</code></th></tr>
+</thead>
+<tbody>
+<tr><td>Banyaknya fungsi</td><td>dua</td><td>satu</td></tr>
+<tr><td>Analisis kasus per fungsi</td><td>atas satu type saja</td><td>atas dua type sekaligus</td></tr>
+<tr><td>Kelengkapan dan disjointness</td><td>dijamin type-nya</td><td>harus dijaga sendiri</td></tr>
+<tr><td><code>and then</code></td><td>tidak diperlukan</td><td>diperlukan, dan wajib</td></tr>
+<tr><td>Arah rekursi</td><td>terpisah pada dua fungsi</td><td>bercampur dalam satu ekspresi</td></tr>
+<tr><td>Padanan langsung ke type-nya</td><td>ada</td><td>tidak ada</td></tr>
+</tbody>
+</table>
+</div>
+<p>Baris keempat menunjukkan: pada bentuk tunggal, <code>isAtom (head (L))</code> tidak terdefinisi bila <code>L</code> kosong, sehingga <code>and</code> tidak cukup dan <code>and then</code> menjadi wajib, persis sebagaimana Bab 4 menyatakannya. Pada bentuk pasangan, keadaan tersebut tidak pernah muncul, karena <code>head (L)</code> hanya disebut sesudah kekosongan <code>L</code> disingkirkan oleh fungsi yang lain.</p>
+<p>Diktat ini memilih bentuk pasangan. Alasannya bukan bahwa bentuk tunggal keliru — keduanya benar dan menghasilkan nilai yang sama — melainkan bahwa bentuk pasangan <strong>mengikuti bentuk type-nya</strong>. Dua type yang saling menyebut dilayani oleh dua fungsi yang saling memanggil. Aturan yang sama dipakai sejak Bab 5, dan tidak ada alasan untuk melepasnya di sini.</p>
+<h2 id="pertemuan-dengan-bab-10"><a class="header" href="#pertemuan-dengan-bab-10">Pertemuan dengan Bab 10</a></h2>
+<p>Letakkan kedua definisi type berdampingan:</p>
+<pre><code>type Tree : Node ⟨info : Element, children : List of Tree⟩
+
+type Item : Atom   ⟨value : Integer⟩
+          | Nested ⟨items : List of Item⟩
+</code></pre>
+<p>Keduanya menyebut dirinya sendiri melalui sebuah list. Keduanya menempatkan basis rekurensnya di dalam list tersebut, bukan pada sebuah alternatif tersendiri. Keduanya melahirkan fungsi berpasangan.</p>
+<p>Perbedaannya hanya satu: <strong>letak nilainya</strong>. Sebuah <code>Tree</code> menyimpan <code>info</code> pada setiap simpul, termasuk simpul dalam. Sebuah <code>Item</code> menyimpan nilai hanya pada daunnya; simpul dalamnya, yaitu <code>Nested</code>, tidak membawa apa pun selain anak-anaknya.</p>
+<p>Sebuah <em>list of list</em> dengan sarang tak teratur, karenanya, adalah sebuah pohon n-aire yang nilainya seluruhnya berada di daun. Kedua bab ini membahas satu struktur yang sama, dan bab ini menemukannya dari arah yang berlawanan: Bab 10 berangkat dari gagasan hierarki, bab ini berangkat dari gagasan list yang elemennya boleh berupa list.</p>
+<p>Dua pertanyaan yang pantas dijawab sendiri, dan tidak dijawab di sini:</p>
+<ol>
+<li><code>Nested (makeNil)</code>, yaitu <code>[]</code>, adalah sebuah <code>Item</code> yang sah dan tidak memuat satu pun bilangan. Padanan apakah yang dimilikinya pada <code>Tree</code>? Bab 10 menyatakan bahwa tidak ada pohon kosong. Apakah pernyataan tersebut masih berlaku di sini, dan bila ya, apa akibatnya bagi range <code>sumItem</code>?</li>
+<li>Bila sebuah persoalan dapat dinyatakan dengan <code>Tree</code> maupun dengan <code>Item</code>, mana yang lebih jujur? Pertimbangkan dua persoalan: struktur bab sebuah buku, dan sebuah ekspresi aritmatika. Bab 10 memodelkan yang kedua sebagai <code>Tree</code> dengan operator pada simpul dalam. Dapatkah ia dimodelkan sebagai <code>Item</code>, dan apa yang hilang bila demikian?</li>
+</ol>
+<h2 id="soal-soal"><a class="header" href="#soal-soal">Soal-soal</a></h2>
+<p>Seluruh fungsi berikut dituliskan lengkap sebagai contoh pada bahan terdahulu dan pada literatur Lisp. Di sini semuanya diserahkan kepada pembaca.</p>
+<p>Untuk setiap nomor, tuliskan keempat bagian secara lengkap. Pakailah bentuk pasangan. Sebutkan basis kedua fungsinya, dan sertakan contoh aplikasi yang mencakup sekurang-kurangnya: sebuah atom tunggal, <code>[]</code>, sebuah sarang datar, dan sebuah sarang berlapis tiga.</p>
+<ol>
+<li>
+<p><strong><code>countAtoms</code></strong> — mencacah banyaknya bilangan di dalam sebuah <code>Item</code>, betapa pun dalam sarangnya. Sesudah selesai, bandingkan realisasi Anda dengan <code>sumItem</code> pada bab ini. Berapa lambang yang berbeda di antara keduanya? Pertanyaan yang sama dibangkitkan oleh <code>sumList</code> dan <code>productList</code> pada Bab 7, dan jawabannya menunggu pada Bab 8.</p>
+</li>
+<li>
+<p><strong><code>depth</code></strong> — menghasilkan kedalaman sarang sebuah <code>Item</code>. Sebelum menulis apa pun, tetapkanlah lebih dahulu: berapa kedalaman <code>makeAtom (3)</code>, dan berapa kedalaman <code>[]</code>? Kedua jawaban itu adalah basis Anda, dan seluruh sisa fungsi bergantung padanya. Bandingkan kesulitan ini dengan <code>height</code> pada Bab 10.</p>
+</li>
+<li>
+<p><strong><code>flatten</code></strong> — menghasilkan sebuah <code>List of Integer</code> yang berisi seluruh bilangan di dalam sebuah <code>Item</code> dengan urutan kiri ke kanan, tanpa sarang. Perhatikan bahwa hasilnya bertype <strong>lain</strong> dari masukannya. Anda memerlukan <code>append</code> dari latihan Bab 7. Sesudah selesai, jawablah: mengapa <code>makeCons</code> saja tidak cukup di sini, padahal pada seluruh fungsi Bab 7 yang menghasilkan list ia selalu cukup?</p>
+</li>
+<li>
+<p><strong><code>maxItem</code></strong> — menghasilkan bilangan terbesar di dalam sebuah <code>Item</code>. Fungsi ini <strong>tidak terdefinisi</strong> bagi sebagian masukan. Sebutkan bagi masukan yang mana, nyatakan prasyaratnya dengan cermat, dan bandingkan dengan cara <code>maxList</code> pada Bab 7 mengeluarkan list kosong dari domainnya. Perhatikan bahwa prasyarat di sini lebih sukar dinyatakan daripada di sana; jelaskan mengapa.</p>
+</li>
+<li>
+<p><strong><code>isEqualItem</code></strong> — memeriksa apakah dua buah <code>Item</code> sama, yaitu berbentuk sarang sama dan berisi bilangan sama pada tempat yang sama. Analisis kasusnya menyangkut <strong>dua</strong> parameter sekaligus. Berapa kasus yang harus dijawab, dan berapa di antaranya menghasilkan <code>false</code> tanpa rekursi?</p>
+</li>
+<li>
+<p><strong><code>removeValue</code></strong> — menghasilkan sebuah <code>Item</code> yang sama dengan masukannya, kecuali seluruh kemunculan sebuah bilangan tertentu dihapus, pada segala kedalaman. Struktur sarangnya dipertahankan, sehingga <code>removeValue (1, [[1], 2])</code> menghasilkan <code>[[], 2]</code> dan bukan <code>[2]</code>. Fungsi ini dikenal luas dengan nama <code>rember*</code> [9]. Sesudah selesai, jawablah: apa yang harus diubah agar sarang yang menjadi kosong ikut terhapus, dan mengapa perubahan tersebut lebih sukar daripada tampaknya?</p>
+</li>
+</ol>
+<h2 id="catatan-sejarah"><a class="header" href="#catatan-sejarah">Catatan Sejarah</a></h2>
+<p>Struktur pada bab ini adalah <em>S-expression</em>, dan berasal dari Lisp (1958), bahasa fungsional tertua yang masih dipakai. Di sana ia bukan sebuah topik lanjut, melainkan satu-satunya struktur data yang ada, dan sekaligus bentuk penulisan program itu sendiri: sebuah program Lisp adalah sebuah S-expression, sehingga program dapat diperlakukan sebagai data tanpa perkakas tambahan apa pun. Gagasan tersebut dibahas panjang lebar dalam [6].</p>
+<p>Lisp tidak mempunyai sistem type, sehingga <code>IsAtom</code> dan <code>IsList</code> di sana adalah pemeriksaan yang dilakukan pada saat eksekusi terhadap nilai yang bentuknya tidak dijamin oleh apa pun. Bahan terdahulu mewarisi keadaan tersebut beserta perangkat operasi rangkapnya. Bab ini memperlihatkan bahwa begitu sarang tak teratur dinyatakan sebagai type alternatif yang rekursif, perangkat rangkap itu lenyap, dan yang tersisa adalah dua alternatif dengan konstruktor dan selektornya sendiri, tidak berbeda dari <code>Shape</code> pada Bab 5.</p>
+<p>Sejumlah fungsi pada bagian sebelumnya, khususnya <code>removeValue</code>, dikenal luas dari [9], yang membahas struktur ini secara panjang lebar melalui tanya jawab dan tanpa satu pun definisi type.</p>
+<h2 id="kesalahan-yang-sering-terjadi"><a class="header" href="#kesalahan-yang-sering-terjadi">Kesalahan yang Sering Terjadi</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Kesalahan</th><th>Gejala</th><th>Cara memeriksa</th></tr>
+</thead>
+<tbody>
+<tr><td>Sarang teratur diperlakukan sebagai tak teratur</td><td>type alternatif dibuat padahal tidak diperlukan</td><td>apakah kedalamannya diketahui dari type-nya?</td></tr>
+<tr><td>Satu fungsi dipakai untuk dua type</td><td>analisis kasus mencampur <code>isEmpty</code> dengan <code>isAtom</code></td><td>apakah setiap fungsi mengikuti satu type saja?</td></tr>
+<tr><td><code>and</code> dipakai pada bentuk tunggal</td><td>tidak terdefinisi pada list kosong</td><td>adakah kondisi yang memakai <code>head (L)</code>?</td></tr>
+<tr><td>Rekursi hanya bergerak maju</td><td>bilangan di dalam sarang tidak ikut terhitung</td><td>apakah <code>items (head (L))</code> pernah direkursi?</td></tr>
+<tr><td>Rekursi hanya bergerak turun</td><td>elemen sesudah sarang pertama terabaikan</td><td>apakah <code>tail (L)</code> pernah direkursi?</td></tr>
+<tr><td><code>makeCons</code> dipakai untuk menggabung dua list</td><td>hasil <code>flatten</code> bersarang, bukan datar</td><td>apakah yang disambung sebuah elemen atau sebuah list?</td></tr>
+<tr><td>Kasus <code>[]</code> disamakan dengan kasus atom</td><td><code>depth</code> dan <code>maxItem</code> keliru pada sarang kosong</td><td>apakah <code>makeNested (makeNil)</code> diuji tersendiri?</td></tr>
+<tr><td>Penulisan singkat dipakai pada penelusuran</td><td>struktur sarang tidak terlihat, kekeliruan tersembunyi</td><td>apakah konstruktor dituliskan saat dibongkar?</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="ringkasan-padanan"><a class="header" href="#ringkasan-padanan">Ringkasan Padanan</a></h2>
+<pre><code class="language-haskell">data Item = Atom Integer
+          | Nested [Item]
+          deriving Show
+
+sumItem :: Item -&gt; Integer
+-- sumItem i adalah jumlah seluruh bilangan di dalam i
+sumItem (Atom n)   = n
+sumItem (Nested l) = sumItemList l
+
+sumItemList :: [Item] -&gt; Integer
+-- sumItemList l adalah jumlah seluruh bilangan di dalam elemen l
+sumItemList []       = 0
+sumItemList (i : is) = sumItem i + sumItemList is
+</code></pre>
+<p>Tiga hal yang layak dicatat.</p>
+<p><strong>Rekursi tidak langsung pada type-nya lenyap.</strong> Notasi menuntut <code>List of Item</code> disebut sebagai type tersendiri; Haskell menuliskannya <code>[Item]</code>, dan karena <code>[]</code> sudah tersedia sebagai type bawaan, hanya <code>Item</code> yang perlu didefinisikan. Yang pada notasi tampak sebagai dua type yang saling menyebut, di sini tampak sebagai satu type saja.</p>
+<p><strong>Pasangan fungsinya dapat diciutkan menjadi satu, dengan perkakas Bab 8:</strong></p>
+<pre><code class="language-haskell">sumItem :: Item -&gt; Integer
+sumItem (Atom n)   = n
+sumItem (Nested l) = sum (map sumItem l)
+</code></pre>
+<p><code>map sumItem l</code> mengerjakan seluruh isi <code>sumItemList</code>, dan <code>sum</code> menjumlahkannya. Pasangan fungsi yang dituntut oleh dua type yang saling menyebut ternyata adalah pola berulang, dan pola berulang itulah yang diangkat oleh fungsi orde tinggi. Pengamatan yang sama berlaku bagi <code>countAtoms</code> dan <code>flatten</code>, yang masing-masing menjadi satu baris dengan <code>sum . map</code> dan <code>concatMap</code>.</p>
+<p><strong>Yang tetap tidak dapat dinyatakan</strong> adalah prasyarat <code>maxItem</code>, yaitu bahwa sebuah <code>Item</code> sekurang-kurangnya memuat satu bilangan. Prasyarat tersebut hidup pada spesifikasi dan tidak diperiksa oleh apa pun, persis sebagaimana invarian pohon terurut pada Bab 10.</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Notasi fungsional</th><th>Haskell</th></tr>
+</thead>
+<tbody>
+<tr><td><code>type Item : Atom ⟨value⟩ | Nested ⟨items⟩</code></td><td><code>data Item = Atom Integer | Nested [Item]</code></td></tr>
+<tr><td><code>makeAtom (n)</code></td><td><code>Atom n</code></td></tr>
+<tr><td><code>makeNested (L)</code></td><td><code>Nested l</code></td></tr>
+<tr><td><code>isAtom (I)</code>, <code>value (I)</code></td><td>pola <code>(Atom n)</code></td></tr>
+<tr><td><code>isNested (I)</code>, <code>items (I)</code></td><td>pola <code>(Nested l)</code></td></tr>
+<tr><td>pasangan <code>f</code>/<code>fList</code></td><td><code>f</code> tunggal dengan <code>map</code></td></tr>
+<tr><td><code>List of (List of Integer)</code></td><td><code>[[Integer]]</code></td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="latihan"><a class="header" href="#latihan">Latihan</a></h2>
+<p><strong>Membaca.</strong> Untuk setiap pasangan berikut, tentukan definisinya, tuliskan spesifikasinya, sebutkan basis kedua fungsinya, lalu usulkan nama yang sesuai konvensi.</p>
+<pre><code>p (I) :
+    depend on I
+        isAtom (I)   : makeAtom (value (I))
+        isNested (I) : makeNested (pList (items (I)))
+
+pList (L) :
+    depend on L
+        isEmpty (L)       : makeNil
+        not (isEmpty (L)) : addLast (pList (tail (L)), p (head (L)))
+
+
+q (I) :
+    depend on I
+        isAtom (I)   : 1
+        isNested (I) : qList (items (I))
+
+qList (L) :
+    depend on L
+        isEmpty (L)       : 0
+        not (isEmpty (L)) : max2 (q (head (L)), qList (tail (L)))
+</code></pre>
+<p>Untuk <code>p</code>, terapkan atas <code>[1, [2, 3]]</code> dan tuliskan hasilnya. Kemudian jawab: apakah <code>p (p (I))</code> sama dengan <code>I</code>? Untuk <code>q</code>, terapkan atas <code>makeAtom (7)</code>, <code>[]</code>, dan <code>[1, [2, [3]]]</code>. Ketiga hasilnya cukup untuk menyimpulkan apa yang dihitung <code>q</code>; jelaskan mengapa hasil kedua adalah yang paling menerangkan.</p>
+<p><strong>Memperbaiki.</strong> Fungsi berikut seharusnya mencacah seluruh bilangan di dalam sebuah <code>Item</code>.</p>
+<pre><code>REALISASI
+    countAtoms (L) :
+        depend on L
+            isEmpty (L)                                    : 0
+            not (isEmpty (L)) and then isAtom (head (L))   : 1 + countAtoms (tail (L))
+            not (isEmpty (L)) and then isNested (head (L)) : countAtoms (items (head (L)))
+</code></pre>
+<pre><code>APLIKASI
+    ⇒ countAtoms ([])
+      0
+    ⇒ countAtoms ([1, 2, 3])
+      3
+    ⇒ countAtoms ([[1, 2]])
+      2
+</code></pre>
+<ol>
+<li>Ketiga contoh aplikasi menghasilkan jawaban yang benar. Temukan sebuah masukan yang menghasilkan jawaban keliru, dan sebutkan apa yang dihasilkan serta apa yang seharusnya.</li>
+<li>Kesalahannya terletak pada kasus ketiga. Sebutkan arah rekursi mana yang ada dan arah mana yang hilang.</li>
+<li>Jelaskan mengapa <code>[[1, 2]]</code> tidak menampakkannya, dan sebutkan ciri masukan yang diperlukan agar kesalahan semacam ini tampak.</li>
+<li>Perbaiki, lalu tuliskan ulang seluruhnya dalam bentuk pasangan. Jawablah: apakah kesalahan ini mungkin terjadi pada bentuk pasangan? Apa yang mencegahnya, dan apakah pencegahan itu berupa jaminan atau sekadar kemudahan?</li>
+</ol>
+<p><strong>Menulis.</strong> Kerjakan seluruh soal pada bagian <em>Soal-soal</em>. Untuk nomor 3 dan 6, sertakan pula penelusuran lengkap atas sebuah masukan berlapis dua.</p>
+<p><strong>Menelusuri.</strong></p>
+<ol>
+<li>Telusuri <code>sumItem ([1, [2, [3]]])</code> secara lengkap dengan konstruktor. Hitung aplikasi <code>sumItem</code> dan aplikasi <code>sumItemList</code> secara terpisah. Kemudian nyatakan keduanya sebagai fungsi dari banyaknya <code>Atom</code> dan banyaknya <code>Nested</code> pada masukannya.</li>
+<li>Telusuri <code>sumAll ([1, [2, [3]]])</code> pada bentuk tunggal. Hitung aplikasinya, dan bandingkan jumlahnya dengan hasil nomor 1. Apakah kedua bentuk mengerjakan pekerjaan yang sama banyak?</li>
+<li>Telusuri <code>flatten ([[1], [2]])</code> menurut realisasi Anda sendiri, dan hitung aplikasi <code>append</code> secara terpisah. Bandingkan hasilnya dengan hitungan <code>reverse</code> versi pertama pada Bab 7. Apakah kedua fungsi tersebut mahal karena alasan yang sama?</li>
+</ol>
+<p><strong>Merancang.</strong> Tiga pertanyaan, ketiganya tanpa jawaban tunggal yang benar.</p>
+<ol>
+<li>Bab ini membatasi atom pada <code>Integer</code>. Bahan terdahulu mengizinkan pula atom simbolik, sehingga <code>[a, [b, c]]</code> adalah nilai yang sah. Rancanglah type yang mengizinkan keduanya, lalu tuliskan definisi dan spesifikasi (tanpa realisasi) <code>sumItem</code> atasnya. Apa yang harus dijawab oleh spesifikasi Anda yang sebelumnya tidak perlu dijawab? Kemudian pertimbangkan: keluwesan yang diperoleh sepadan dengan apa yang harus dibayar?</li>
+<li>Bagian <em>Pertemuan dengan Bab 10</em> menyatakan bahwa <code>Item</code> adalah <code>Tree</code> yang nilainya seluruhnya di daun. Tuliskan sepasang fungsi penerjemah, <code>itemToTree</code> dan <code>treeToItem</code>, sekurang-kurangnya sebagai definisi dan spesifikasi. Salah satunya tidak dapat ditulis tanpa prasyarat; sebutkan yang mana dan apa prasyaratnya. Apa yang diberitahukan ketidaksimetrisan tersebut tentang hubungan kedua type itu?</li>
+<li>Seluruh bab ini dapat dihapus tanpa satu pun bab lain berubah. Argumenkan kedua pilihan: mempertahankannya sebagai bab, atau menciutkannya menjadi satu soal pada Bab 7. Apa yang hilang pada masing-masing? Dalam menjawab, pertimbangkan bahwa bahan terdahulu memperlakukannya sebagai pokok bahasan penuh dengan delapan operasi dasar tersendiri.</li>
+</ol>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="10-pohon.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="98-daftar-pustaka.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="10-pohon.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="98-daftar-pustaka.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-09f2665d.js"></script>
+
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-609e4cb8.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>

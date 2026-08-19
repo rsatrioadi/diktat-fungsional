@@ -1,0 +1,797 @@
+<!DOCTYPE HTML>
+<html lang="id" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Ekspresi Rekursif - Diktat Pemrograman Fungsional</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-e96d0476.css">
+        <link rel="stylesheet" href="css/chrome-d279d366.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex-0ab6a5e0.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-2ab1aa36.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Diktat Pemrograman Fungsional</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="ekspresi-rekursif"><a class="header" href="#ekspresi-rekursif">Ekspresi Rekursif</a></h1>
+<p>Bab 2 menyebutkan tiga bentuk komposisi ekspresi: ekspresi dasar (dibahas pada Bab 3), ekspresi kondisional (Bab 4), dan ekspresi rekursif. Bab ini membahas yang ketiga dan terakhir.</p>
+<p>Sebuah definisi disebut <strong>rekursif</strong> bila definisi itu menyebut dirinya sendiri. Hal ini berlaku baik bagi fungsi maupun bagi type.</p>
+<p>Perhatikan bahwa bab ini hampir tidak menambahkan notasi baru. <code>depend on</code>, <code>if-then-else</code>, <code>let</code>, tuple, dan alternatif <code>|</code> semuanya sudah tersedia sejak Bab 5. Yang ditambahkan hanyalah sebuah <strong>izin</strong>: nama sebuah fungsi boleh muncul di dalam realisasinya sendiri, dan nama sebuah type boleh muncul di dalam definisinya sendiri.</p>
+<p>Penambahan yang kecil, tetapi akibatnya besar. Sampai Bab 5, setiap fungsi hanya dapat mengerjakan sejumlah pekerjaan yang sudah tertulis di dalam teksnya. Dengan rekursi, sebuah teks yang panjangnya tetap dapat mengerjakan pekerjaan sebanyak yang dituntut oleh masukannya.</p>
+<h2 id="analisis-rekurens"><a class="header" href="#analisis-rekurens">Analisis Rekurens</a></h2>
+<p><strong>Analisis rekurens</strong> adalah penalaran yang menghasilkan sebuah definisi rekursif. Penalaran ini menuntut dua hal, dan <strong>keduanya sama wajibnya</strong>.</p>
+<ul>
+<li>
+<p><strong>Kewajiban pertama: ada kasus yang berhenti.</strong> Sekurang-kurangnya satu kasus harus mempunyai realisasi yang <strong>tidak</strong> mengandung aplikasi terhadap fungsi itu sendiri. Kasus semacam itu disebut <strong>basis</strong>. Sebuah fungsi boleh mempunyai lebih dari satu basis.</p>
+</li>
+<li>
+<p><strong>Kewajiban kedua: rekurens menuju basis.</strong> Setiap aplikasi rekursif harus dilakukan terhadap argumen yang lebih “dekat” kepada sebuah basis daripada argumen semula, dan kedekatan itu harus dapat dinyatakan. Cara menyatakannya: sebutkan besaran apa yang mendekati basis pada setiap langkah, dan sebutkan batasnya.</p>
+</li>
+</ul>
+<p>Pelanggaran kewajiban-kewajiban ini membuat fungsi tidak berhenti (tidak pernah menghasilkan nilai).
+Pelanggaran kewajiban pertama mudah terlihat dari spesifikasi dan realisasinya: tidak ada kondisi yang menyebabkan fungsi langsung berhenti.
+Pelanggaran kewajiban kedua lebih sulit dilihat: sebuah fungsi dapat mempunyai basis yang sah, memenuhi syarat lengkap dan syarat disjoint, dan tetap tidak pernah menghasilkan nilai. Contohnya diberikan sebentar lagi.</p>
+<p>Kedua kewajiban itu dituliskan sebagai komentar pada spesifikasi, dengan bentuk yang tetap:</p>
+<pre><code>{ Basis:    *kondisi* → *hasil*
+  Rekurens: *kondisi* → *ekspresi rekursif* }
+</code></pre>
+<p>Menuliskannya bukan formalitas. Analisis rekurens adalah bagian dari rancangan, dan rancangan itu harus terbaca oleh orang lain tanpa membongkar realisasinya.</p>
+<h2 id="bentuk-umum-fungsi-rekursif"><a class="header" href="#bentuk-umum-fungsi-rekursif">Bentuk Umum Fungsi Rekursif</a></h2>
+<pre><code>namaFungsi (x) :
+    depend on x
+        *kondisi basis*    : *ekspresi tanpa aplikasi namaFungsi*
+        *kondisi rekurens* : *ekspresi dengan aplikasi namaFungsi*
+</code></pre>
+<p>Syarat lengkap dan syarat disjoint dari Bab 4 berlaku persis seperti biasa, dan di sini keduanya memberi keuntungan tambahan. Karena kondisi basis dan kondisi rekurens harus dituliskan <strong>utuh</strong>, pemilahan antara keduanya menjadi terlihat pada teksnya. Dalam banyak bahasa pemrograman, kondisi rekurens cukup dituliskan sebagai “selain itu”, sehingga pembaca harus menyimpulkan sendiri kasus mana yang sesungguhnya ditangani. Perbedaan ini akan muncul lagi pada bagian terjemahan di akhir bab.</p>
+<h2 id="contoh-1-faktorial"><a class="header" href="#contoh-1-faktorial">Contoh 1: Faktorial</a></h2>
+<p><strong>Persoalan.</strong> Tuliskan sebuah fungsi yang menghitung faktorial sebuah bilangan bulat tak negatif.</p>
+<pre><code>JUDUL   Faktorial
+</code></pre>
+<pre><code>DEFINISI DAN SPESIFIKASI
+    factorial : Integer ≥ 0 → Integer &gt; 0
+    { factorial (n) adalah n!, yaitu hasil kali seluruh bilangan bulat
+      dari 1 sampai dengan n. factorial (0) bernilai 1 }
+    { Basis:    n = 0 → 1
+      Rekurens: n &gt; 0 → n * factorial (n - 1) }
+</code></pre>
+<pre><code>REALISASI
+    factorial (n) :
+        depend on n
+            n = 0 : 1
+            n &gt; 0 : n * factorial (n - 1)
+</code></pre>
+<pre><code>APLIKASI
+    ⇒ factorial (0)
+      1
+    ⇒ factorial (1)
+      1
+    ⇒ factorial (5)
+      120
+</code></pre>
+<p>Periksalah kedua kewajiban.</p>
+<ul>
+<li><strong>Basis:</strong> kasus <code>n = 0</code> menghasilkan <code>1</code> tanpa mengaplikasikan <code>factorial</code>.</li>
+<li><strong>Konvergensi:</strong> pada setiap rekurens, <code>n</code> berkurang satu, dan <code>n</code> terbatas di bawah oleh <code>0</code>, sehingga sesudah sejumlah berhingga langkah kondisi basis pasti tercapai.</li>
+</ul>
+<p>Ketiga contoh aplikasi dipilih sebagaimana biasa: satu tepat pada basis, satu tepat di atasnya, satu jauh di dalam daerah rekurens.</p>
+<h3 id="versi-kedua-basis-yang-lain"><a class="header" href="#versi-kedua-basis-yang-lain">Versi kedua: basis yang lain</a></h3>
+<p>Faktorial dapat pula ditulis dengan basis <code>n = 1</code>:</p>
+<pre><code>DEFINISI DAN SPESIFIKASI
+    factorial : Integer &gt; 0 → Integer &gt; 0
+    { Basis:    n = 1 → 1
+      Rekurens: n &gt; 1 → n * factorial (n - 1) }
+</code></pre>
+<pre><code>REALISASI
+    factorial (n) :
+        depend on n
+            n = 1 : 1
+            n &gt; 1 : n * factorial (n - 1)
+</code></pre>
+<p>Realisasinya hampir tidak berubah. Yang berubah adalah <strong>domainnya</strong>: versi kedua tidak terdefinisi untuk <code>n = 0</code>.</p>
+<p>Ini adalah instansi keempat dari satu persoalan dengan beberapa realisasi, sesudah <code>cube</code> pada Bab 2, <code>distance</code> pada Bab 3, dan <code>toDHMS</code> pada Bab 5. Kali ini yang berbeda bukan hanya keterbacaannya, melainkan apa yang boleh diterima fungsinya. Memilih basis berarti memilih domain, dan keduanya tidak dapat diputuskan terpisah.</p>
+<p>Diktat ini memakai versi pertama, dengan dua alasan. Pertama, <code>0! = 1</code> benar secara matematika dan menghapusnya berarti mempersempit fungsi tanpa keuntungan. Kedua, basis yang berupa “kasus kosong” adalah pola yang akan berulang terus mulai Bab 7, dan di sana basisnya adalah list kosong. Membiasakan diri sekarang membuat bab itu terasa lebih akrab.</p>
+<h2 id="menelusuri-ekspresi-rekursif"><a class="header" href="#menelusuri-ekspresi-rekursif">Menelusuri Ekspresi Rekursif</a></h2>
+<p>Penelusuran <code>factorial (4)</code>, ditulis lengkap:</p>
+<pre><code>⇒ factorial (4)
+  → depend on 4                                  { ekspansi factorial }
+        4 = 0 : 1
+        4 &gt; 0 : 4 * factorial (4 - 1)
+  → 4 * factorial (3)                            { reduksi kondisi, pilih rekurens }
+  → 4 * (3 * factorial (2))                      { ekspansi factorial }
+  → 4 * (3 * (2 * factorial (1)))                { ekspansi factorial }
+  → 4 * (3 * (2 * (1 * factorial (0))))          { ekspansi factorial }
+  → 4 * (3 * (2 * (1 * 1)))                      { ekspansi factorial, basis }
+  → 4 * (3 * (2 * 1))                            { reduksi * }
+  → 4 * (3 * 2)                                  { reduksi * }
+  → 4 * 6                                        { reduksi * }
+  → 24                                           { reduksi * }
+</code></pre>
+<p>Mulai sekarang, langkah <code>depend on</code> boleh disingkat sebagaimana pada baris kedua di atas, karena bentuknya selalu sama. Yang tidak boleh disingkat adalah keterangan di sebelah kanan.</p>
+<p>Perhatikan bentuk penelusuran ini. Ekspresi <strong>membesar</strong> lebih dahulu, satu lapis pada setiap ekspansi, sampai basis tercapai. Baru setelah itu <strong>mengecil</strong>, satu reduksi pada satu waktu, sampai tersisa sebuah nilai. Dua fase itu adalah ciri khas rekursi, dan mengenalinya membuat penelusuran fungsi rekursif yang lebih rumit jauh lebih mudah diikuti.</p>
+<p>Perhatikan pula bahwa perkalian yang sesungguhnya baru terjadi <strong>setelah</strong> seluruh ekspansi selesai. Tidak ada satu pun perkalian yang dapat dihitung sebelum <code>factorial (0)</code> mencapai basisnya. Sifat ini akan menjadi persoalan kelak, dan dibicarakan pada Bab 9.</p>
+<h2 id="rumus-yang-benar-program-yang-salah"><a class="header" href="#rumus-yang-benar-program-yang-salah">Rumus yang Benar, Program yang Salah</a></h2>
+<p>Perhatikan realisasi berikut:</p>
+<pre><code>factorial (n) :
+    depend on n
+        n = 1 : 1
+        n &gt; 1 : factorial (n + 1) / (n + 1)
+</code></pre>
+<p>Rumusnya <strong>benar</strong>. Secara matematis, <code>(n+1)! = (n+1) × n!</code> sama dengan <code>n! = (n+1)! / (n+1)</code>, dan kesamaan itu berlaku untuk setiap <code>n &gt; 0</code>.</p>
+<p>Fungsinya mempunyai basis, yaitu <code>n = 1</code>. Kedua kondisinya disjoint. Atas domain <code>Integer &gt; 0</code> keduanya lengkap. Seluruh syarat terpenuhi.</p>
+<p>Meskipun demikian, <code>factorial (3)</code> tidak menghasilkan apa-apa. Ekspansinya adalah <code>factorial (4)</code>, lalu <code>factorial (5)</code>, lalu <code>factorial (6)</code>, dan seterusnya tanpa akhir. Argumennya <strong>menjauhi</strong> basis alih-alih mendekatinya, sehingga kewajiban kedua dilanggar.</p>
+<p>Inilah sebabnya kedua kewajiban dinyatakan terpisah dan sama wajibnya. Kebenaran rumus tidak menjamin apa-apa tentang berhentinya evaluasi. Setiap kali sebuah rekurens dituliskan, sebutkan besaran yang mengecil beserta batas bawahnya. Bila besaran itu tidak dapat disebutkan, teksnya belum selesai.</p>
+<h2 id="contoh-2-jumlah-digit"><a class="header" href="#contoh-2-jumlah-digit">Contoh 2: Jumlah Digit</a></h2>
+<p><strong>Persoalan.</strong> Tuliskan sebuah fungsi yang menghitung jumlah seluruh digit sebuah bilangan bulat tak negatif dalam penulisan desimal.</p>
+<pre><code>JUDUL   Jumlah Digit Sebuah Bilangan
+</code></pre>
+<pre><code>DEFINISI DAN SPESIFIKASI
+    sumDigits : Integer ≥ 0 → Integer ≥ 0
+    { sumDigits (n) adalah jumlah seluruh digit n dalam penulisan desimal }
+    { Basis:    n &lt; 10 → n
+      Rekurens: n ≥ 10 → (n mod 10) + sumDigits (n div 10) }
+</code></pre>
+<pre><code>REALISASI
+    sumDigits (n) :
+        depend on n
+            n &lt; 10 : n
+            n ≥ 10 : (n mod 10) + sumDigits (n div 10)
+</code></pre>
+<pre><code>APLIKASI
+    ⇒ sumDigits (0)
+      0
+    ⇒ sumDigits (7)
+      7
+    ⇒ sumDigits (10)
+      1
+    ⇒ sumDigits (2026)
+      10
+</code></pre>
+<p>Dua hal patut diperhatikan, dan keduanya melawan dugaan yang wajar.</p>
+<p><strong>Basisnya bukan sebuah nilai tunggal,</strong> melainkan seluruh kelompok nilai <code>0</code> sampai <code>9</code>. Tidak ada aturan yang mengharuskan basis berupa satu nilai, dan memaksakannya di sini justru akan memperumit teks. Yang dituntut hanyalah bahwa kasus itu berhenti.</p>
+<p><strong>Rekurensnya tidak mengurangi satu.</strong> Argumennya dibagi sepuluh. Besaran yang mengecil adalah <code>n</code> itu sendiri, karena <code>n div 10 &lt; n</code> untuk setiap <code>n ≥ 10</code>, dan batas bawahnya adalah <code>10</code>. Konvergensinya terjamin, dan jauh lebih cepat daripada pengurangan satu: <code>sumDigits (1000000)</code> mencapai basisnya dalam tujuh langkah, bukan sejuta.</p>
+<p>Contoh ini menekankan bahwa rekursi tidak selalu berarti <code>n - 1</code>. Yang dituntut hanyalah bahwa argumen <strong>mendekati</strong> basis. Seberapa besar langkahnya, dan besaran apa yang dipakai untuk mengukur kedekatan itu, ditentukan oleh persoalannya.</p>
+<p>Realisasi lain dengan basis <code>n = 0</code> dan rekurens <code>n &gt; 0</code> juga benar, dan menghasilkan nilai yang sama untuk seluruh domain. Bandingkan keduanya, dan perhatikan berapa langkah masing-masing memerlukan untuk <code>sumDigits (7)</code>.</p>
+<h2 id="contoh-3-pembagi-persekutuan-terbesar"><a class="header" href="#contoh-3-pembagi-persekutuan-terbesar">Contoh 3: Pembagi Persekutuan Terbesar</a></h2>
+<p>Type <code>Fraction</code> pada Bab 5 mempunyai persoalan “beberapa representasi, satu nilai”, dan salah satu jalan keluarnya menuntut penyederhanaan pecahan, yang menuntut faktor persekutuan terbesar, yang definisinya rekursif. Mari kita tinjau fungsi untuk menghitungnya, yang diberi nama <code>gcd</code> (<em>greatest common divisor</em>):</p>
+<pre><code>JUDUL   Faktor Persekutuan Terbesar
+</code></pre>
+<pre><code>DEFINISI DAN SPESIFIKASI
+    gcd : Integer ≥ 0, Integer ≥ 0 → Integer &gt; 0
+    { gcd (a, b) adalah bilangan bulat positif terbesar yang membagi
+      habis a maupun b.
+      Prasyarat: a dan b tidak keduanya nol }
+    { Basis:    b = 0 → a
+      Rekurens: b &gt; 0 → gcd (b, a mod b) }
+</code></pre>
+<pre><code>REALISASI
+    gcd (a, b) :
+        depend on b
+            b = 0 : a
+            b &gt; 0 : gcd (b, a mod b)
+</code></pre>
+<pre><code>APLIKASI
+    ⇒ gcd (12, 18)
+      6
+    ⇒ gcd (17, 5)
+      1
+    ⇒ gcd (9, 0)
+      9
+</code></pre>
+<p>Fungsi ini padat, dan setiap bagiannya pantas diperiksa.</p>
+<p><strong>Basisnya bukan nilai yang “kecil”.</strong> Kondisi basis adalah <code>b = 0</code>, dan <code>a</code> boleh berapa saja. Basis tidak selalu berarti masukan terkecil, melainkan kasus yang jawabannya diketahui tanpa perlu bertanya lagi.</p>
+<p><strong>Pemilahan kasus hanya menyebut satu parameter.</strong> Fungsinya menerima dua argumen, tetapi <code>depend on b</code> sudah memadai, karena hanya <code>b</code> yang menentukan apakah kita sudah selesai.</p>
+<p><strong>Argumennya bertukar tempat.</strong> Pada rekurens, <code>b</code> berpindah ke posisi pertama. Penelusuran <code>gcd (12, 18)</code> memperlihatkan akibatnya:</p>
+<pre><code>⇒ gcd (12, 18)
+  → gcd (18, 12 mod 18)     → gcd (18, 12)     { ekspansi, lalu reduksi mod }
+  → gcd (12, 18 mod 12)     → gcd (12, 6)      { ekspansi, lalu reduksi mod }
+  → gcd (6, 12 mod 6)       → gcd (6, 0)       { ekspansi, lalu reduksi mod }
+  → 6                                          { basis }
+</code></pre>
+<p>Langkah pertama sekadar menukar kedua argumen, karena <code>12 mod 18</code> adalah <code>12</code>. Sesudah itu barulah nilainya mengecil.</p>
+<p><strong>Konvergensinya perlu dinyatakan dengan hati-hati.</strong> Besaran yang mengecil adalah parameter <strong>kedua</strong>. Untuk setiap <code>b &gt; 0</code> berlaku <code>a mod b &lt; b</code>, sehingga argumen kedua berkurang secara tegas pada setiap langkah, dan ia terbatas di bawah oleh <code>0</code>. Perhatikan bahwa <code>a</code> sendiri tidak selalu mengecil, dan pada langkah pertama di atas ia justru membesar. Yang wajib mengecil bukanlah setiap argumen, melainkan besaran yang kita pilih sebagai ukuran kedekatan terhadap basis.</p>
+<p>Bahwa <code>gcd (a, b) = gcd (b, a mod b)</code> adalah kebenaran matematika yang pembuktiannya di luar cakupan diktat ini. Yang menjadi urusan kita hanyalah ini: sesudah kebenaran itu diterima, teks di atas berhenti.</p>
+<h3 id="penyederhanaan-pecahan"><a class="header" href="#penyederhanaan-pecahan">Penyederhanaan pecahan</a></h3>
+<p>Dengan <code>gcd</code>, kita dapat membuat fungsi untuk menyederhanakan pecahan:</p>
+<pre><code>JUDUL   Penyederhanaan Pecahan
+</code></pre>
+<pre><code>DEFINISI DAN SPESIFIKASI
+    simplify : Fraction → Fraction
+    { simplify (f) adalah pecahan yang bernilai sama dengan f dan berada
+      dalam bentuk paling sederhana, yaitu pembilang dan penyebutnya tidak
+      mempunyai pembagi persekutuan selain 1 }
+    { Fungsi antara yang dipakai: gcd }
+</code></pre>
+<pre><code>REALISASI
+    simplify (f) :
+        let
+            g : gcd (abs (numerator (f)), denominator (f))
+        in
+            makeFraction (numerator (f) div g, denominator (f) div g)
+</code></pre>
+<pre><code>APLIKASI
+    ⇒ simplify (makeFraction (6, 12))
+      ⟨1, 2⟩
+    ⇒ simplify (makeFraction (5, 6))
+      ⟨5, 6⟩
+    ⇒ simplify (mulFraction (makeFraction (2, 3), makeFraction (3, 4)))
+      ⟨1, 2⟩
+</code></pre>
+<p>Tiga hal yang layak diperhatikan.</p>
+<p><strong><code>simplify</code> sendiri tidak rekursif.</strong> Yang rekursif adalah <code>gcd</code>. Sebuah fungsi boleh memakai rekursi tanpa menjadi rekursif, dan justru itulah bentuk yang paling sering ditemui dalam program nyata: rekursinya terkurung di dalam satu fungsi antara yang kecil dan dapat diperiksa sendiri.</p>
+<p><strong><code>abs</code> diperlukan.</strong> Invarian <code>Fraction</code> menyatakan bahwa penyebutnya positif dan tanda pecahan dibawa oleh pembilangnya, sehingga pembilang boleh negatif, sedangkan domain <code>gcd</code> adalah <code>Integer ≥ 0</code>.</p>
+<p><strong>Prasyarat <code>gcd</code> terpenuhi dengan sendirinya.</strong> Prasyarat ini menuntut bahwa kedua argumennya tidak keduanya nol, dan invarian <code>Fraction</code> menjamin <code>denominator (f) &gt; 0</code>. Inilah imbalan dari menuliskan invarian pada Bab 5. Sebuah prasyarat yang harus diperiksa di satu tempat ternyata sudah dijamin oleh rancangan type di tempat lain.</p>
+<p>Setelah <code>simplify</code> tersedia, pertanyaan Merancang nomor 2 pada Bab 5 kini dapat dijawab sungguh-sungguh. Pertanyaan ini diajukan kembali pada akhir bab ini.</p>
+<h2 id="contoh-4-pemangkatan-dan-harga-sebuah-realisasi"><a class="header" href="#contoh-4-pemangkatan-dan-harga-sebuah-realisasi">Contoh 4: Pemangkatan, dan Harga Sebuah Realisasi</a></h2>
+<p><strong>Persoalan.</strong> Tuliskan sebuah fungsi yang memangkatkan sebuah bilangan bulat dengan sebuah bilangan bulat tak negatif.</p>
+<pre><code>JUDUL   Pemangkatan
+</code></pre>
+<pre><code>DEFINISI DAN SPESIFIKASI
+    power : Integer, Integer ≥ 0 → Integer
+    { power (x, n) adalah x pangkat n. power (x, 0) bernilai 1 }
+    { Basis:    n = 0 → 1
+      Rekurens: n &gt; 0 → x * power (x, n - 1) }
+</code></pre>
+<pre><code>REALISASI
+    power (x, n) :
+        depend on n
+            n = 0 : 1
+            n &gt; 0 : x * power (x, n - 1)
+</code></pre>
+<pre><code>APLIKASI
+    ⇒ power (2, 0)
+      1
+    ⇒ power (2, 10)
+      1024
+    ⇒ power (-3, 3)
+      -27
+</code></pre>
+<p>Realisasi ini langsung mengikuti definisi pemangkatan dan tidak perlu dipertanyakan kebenarannya. Namun <code>power (2, 10)</code> menuntut sebelas kali aplikasi <code>power</code>, dan <code>power (2, 100)</code> menuntut seratus satu.</p>
+<p>Ada realisasi lain bagi spesifikasi yang <strong>persis sama</strong>:</p>
+<pre><code>REALISASI (versi kedua)
+    fastPower (x, n) :
+        depend on n
+            n = 0                     : 1
+            (n &gt; 0) and (n mod 2 = 0) : square (fastPower (x, n div 2))
+            (n &gt; 0) and (n mod 2 = 1) : x * fastPower (x, n - 1)
+</code></pre>
+<pre><code>APLIKASI
+    ⇒ fastPower (2, 10)
+      1024
+    ⇒ fastPower (-3, 3)
+      -27
+</code></pre>
+<p>Dasarnya adalah dua kesamaan: <code>x^n = (x^(n div 2))²</code> bila <code>n</code> genap, dan <code>x^n = x × x^(n-1)</code> bila <code>n</code> ganjil. <code>square</code> diambil kembali dari Bab 2 tanpa ditulis ulang.</p>
+<p>Ketiga kondisi lengkap dan disjoint atas <code>Integer ≥ 0</code>. Konvergensinya: pada kasus genap <code>n div 2 &lt; n</code>, pada kasus ganjil <code>n - 1 &lt; n</code>, dan keduanya terbatas di bawah oleh <code>0</code>. Perhatikan pula bahwa kasus ganjil selalu menghasilkan <code>n</code> genap, sehingga kedua kasus rekurens tidak dapat saling memanggil tanpa henti.</p>
+<p>Sekarang hitunglah aplikasinya. Untuk <code>n = 10</code>, <code>fastPower</code> diaplikasikan pada <code>n</code> bernilai 10, 5, 4, 2, 1, dan 0, yaitu enam kali, sedangkan <code>power</code> sebelas kali. Untuk <code>n = 100</code>, <code>fastPower</code> sepuluh kali, <code>power</code> seratus satu kali. Selisihnya melebar dengan cepat.</p>
+<p>Inilah pertama kalinya dalam diktat ini dua realisasi dari satu spesifikasi berbeda bukan pada keterbacaannya, melainkan pada <strong>banyaknya pekerjaan</strong> yang dilakukan. Sampai Bab 5, pemilihan antara dua realisasi selalu berupa pertimbangan selera dan kejelasan. Mulai sekarang ada sumbu ketiga.</p>
+<p>Sumbu itu tidak gratis. <code>power</code> dapat diyakini kebenarannya dengan sekali baca, sedangkan <code>fastPower</code> menuntut pembacanya memeriksa dua kesamaan aljabar, tiga kondisi, dan dua argumen konvergensi. Yang lebih cepat adalah yang lebih sulit dipercaya. Kapan pertukaran itu pantas dilakukan bukan pertanyaan teknis, dan Latihan Merancang menanyakannya.</p>
+<p>Perhatikan pula apa yang <strong>tidak</strong> dilakukan di sini. Kita menghitung banyaknya aplikasi, dan berhenti sampai di situ. Cara menyatakan pertumbuhan itu secara umum, beserta notasinya, adalah bahan tersendiri yang berada di luar cakupan diktat ini.</p>
+<h2 id="contoh-5-fibonacci"><a class="header" href="#contoh-5-fibonacci">Contoh 5: Fibonacci</a></h2>
+<p><strong>Persoalan.</strong> Tuliskan sebuah fungsi yang menghasilkan suku ke-<code>n</code> deret Fibonacci, dengan dua suku pertamanya <code>0</code> dan <code>1</code>.</p>
+<pre><code>JUDUL   Bilangan Fibonacci
+</code></pre>
+<pre><code>DEFINISI DAN SPESIFIKASI
+    fibonacci : Integer ≥ 0 → Integer ≥ 0
+    { fibonacci (n) adalah suku ke-n deret Fibonacci, dengan
+      fibonacci (0) = 0, fibonacci (1) = 1, dan setiap suku berikutnya
+      adalah jumlah dua suku sebelumnya }
+    { Basis:    n = 0 → 0
+      Basis:    n = 1 → 1
+      Rekurens: n &gt; 1 → fibonacci (n - 1) + fibonacci (n - 2) }
+</code></pre>
+<pre><code>REALISASI
+    fibonacci (n) :
+        depend on n
+            n = 0 : 0
+            n = 1 : 1
+            n &gt; 1 : fibonacci (n - 1) + fibonacci (n - 2)
+</code></pre>
+<pre><code>APLIKASI
+    ⇒ fibonacci (0)
+      0
+    ⇒ fibonacci (1)
+      1
+    ⇒ fibonacci (7)
+      13
+</code></pre>
+<p><strong>Mengapa dua basis?</strong> Karena rekurensnya menjangkau dua langkah ke belakang. Dengan basis <code>n = 0</code> saja, evaluasi <code>fibonacci (1)</code> akan menuntut <code>fibonacci (0) + fibonacci (-1)</code>, dan <code>-1</code> berada di luar domain. Aturan umumnya: banyaknya basis ditentukan oleh sejauh mana rekurens melangkah mundur, bukan oleh selera. Rekurens yang melangkah dua, memerlukan dua.</p>
+<p><strong>Dua aplikasi rekursif dalam satu ekspresi.</strong> Sampai sekarang setiap rekurens hanya mengandung satu aplikasi, sehingga penelusurannya berupa satu garis. Di sini penelusurannya bercabang menjadi <strong>pohon</strong>:</p>
+<pre><code>fibonacci (5)
+├── fibonacci (4)
+│   ├── fibonacci (3)
+│   │   ├── fibonacci (2)
+│   │   │   ├── fibonacci (1)
+│   │   │   └── fibonacci (0)
+│   │   └── fibonacci (1)
+│   └── fibonacci (2)
+│       ├── fibonacci (1)
+│       └── fibonacci (0)
+└── fibonacci (3)
+    ├── fibonacci (2)
+    │   ├── fibonacci (1)
+    │   └── fibonacci (0)
+    └── fibonacci (1)
+</code></pre>
+<p>Hitunglah simpulnya: lima belas aplikasi untuk <code>fibonacci (5)</code>. Hitunglah pula berapa kali masing-masing muncul. <code>fibonacci (3)</code> dihitung dua kali, <code>fibonacci (2)</code> tiga kali, <code>fibonacci (1)</code> lima kali.</p>
+<p>Transparansi referensial dari Bab 3 menjamin bahwa setiap perhitungan ulang itu menghasilkan nilai yang sama persis. Justru karena itulah seluruhnya adalah pekerjaan yang sia-sia. Sifat yang membuat program fungsional mudah dinalar sekaligus membuat pemborosan semacam ini terlihat jelas sebagai pemborosan.</p>
+<h3 id="membawa-hasil-ke-depan-akumulasi"><a class="header" href="#membawa-hasil-ke-depan-akumulasi">Membawa hasil ke depan: akumulasi</a></h3>
+<p>Pemborosan itu berasal dari bentuk rekursinya. Pada <code>fibonacci</code>, hasil disusun <strong>pada saat kembali</strong> dari basis, sehingga setiap cabang harus turun sendiri sampai ke dasar. Ada bentuk lain, yang membawa informasi yang sudah diperoleh <strong>maju</strong> sebagai parameter tambahan.</p>
+<pre><code>JUDUL   Bilangan Fibonacci dengan Akumulasi
+</code></pre>
+<pre><code>DEFINISI DAN SPESIFIKASI
+    fibFrom : Integer ≥ 0, Integer, Integer → Integer
+    { fibFrom (k, a, b) adalah suku ke-k dari sebuah deret Fibonacci
+      yang dua suku pertamanya a dan b }
+    { Basis:    k = 0 → a
+      Rekurens: k &gt; 0 → fibFrom (k - 1, b, a + b) }
+
+    fibonacci2 : Integer ≥ 0 → Integer ≥ 0
+    { fibonacci2 (n) menghasilkan nilai yang sama dengan fibonacci (n) }
+    { Fungsi antara yang dipakai: fibFrom }
+</code></pre>
+<pre><code>REALISASI
+    fibFrom (k, a, b) :
+        depend on k
+            k = 0 : a
+            k &gt; 0 : fibFrom (k - 1, b, a + b)
+
+    fibonacci2 (n) : fibFrom (n, 0, 1)
+</code></pre>
+<pre><code>APLIKASI
+    ⇒ fibonacci2 (0)
+      0
+    ⇒ fibonacci2 (7)
+      13
+</code></pre>
+<p>Penelusuran <code>fibonacci2 (7)</code> berupa satu garis lurus, dan <code>fibFrom</code> diaplikasikan delapan kali. Bandingkan dengan <code>fibonacci (7)</code>, yang menuntut empat puluh satu aplikasi.</p>
+<p>Parameter <code>a</code> dan <code>b</code> disebut <strong>akumulator</strong>: keduanya membawa hasil sementara maju ke langkah berikutnya. Pola ini akan muncul berulang kali mulai Bab 7.</p>
+<p>Kesulitannya tidak terletak pada realisasi, yang justru lebih pendek. Kesulitan terletak pada <strong>spesifikasinya</strong>. Spesifikasi <code>fibonacci</code> dapat dituliskan dalam satu kalimat yang dipahami siapa pun. Spesifikasi <code>fibFrom</code> menuntut kita menjelaskan apa arti <code>a</code> dan <code>b</code> pada setiap langkah, dan menjelaskannya dengan tepat adalah bagian tersulit dari seluruh konstruksi ini. Sebuah fungsi berakumulator yang spesifikasinya asal-asalan hampir selalu keliru, dan kekeliruannya hampir selalu terletak pada nilai awal akumulatornya.</p>
+<blockquote>
+<h3 id="ke-mana-perginya-pengulangan"><a class="header" href="#ke-mana-perginya-pengulangan">Ke mana perginya pengulangan?</a></h3>
+<p>Pembaca yang terbiasa dengan bahasa prosedural mungkin sudah menyadari sesuatu. Letakkan <code>fibFrom</code> berdampingan dengan sebuah loop:</p>
+<pre><code>fibFrom (k, a, b) :
+    depend on k
+        k = 0 : a
+        k &gt; 0 : fibFrom (k - 1, b, a + b)
+</code></pre>
+<pre><code>while (k &gt; 0) do
+    t ← a + b
+    a ← b
+    b ← t
+    k ← k - 1
+→ a
+</code></pre>
+<p>Keduanya adalah hal yang sama. Ketiga parameter <code>k</code>, <code>a</code>, dan <code>b</code> memainkan peran yang persis sama dengan ketiga variabel pada loop, setiap aplikasi rekursif adalah satu putaran, dan kondisi basis adalah kondisi berhentinya. Bahkan urutan penulisan <code>b, a + b</code> bersesuaian dengan ketiga baris penugasan di dalam loop, termasuk keperluan akan variabel sementara <code>t</code>.</p>
+<p>Pengamatan ini penting, dan mudah disalahartikan ke dua arah.</p>
+<p><strong>Ini tidak berarti bahwa program fungsional sesungguhnya prosedural.</strong> Pada versi prosedural, ketiga variabel itu <strong>berubah nilai</strong>, dan untuk mengetahui nilai <code>a</code> kita harus tahu sudah berapa putaran berlalu. Pada versi fungsional tidak ada yang berubah sama sekali. Setiap aplikasi <code>fibFrom</code> adalah aplikasi baru terhadap argumen yang berbeda, dan setiap nama tetap terikat pada satu nilai selama hidupnya. Transparansi referensial dari Bab 2 utuh. Yang sama pada keduanya adalah <strong>bentuknya</strong>, bukan artinya.</p>
+<p><strong>Ini juga tidak berarti bahwa bentuk berakumulator selalu lebih baik.</strong> Bentuk rekursif berakumulator lebih baik di sini, karena persoalannya memang berbentuk pengulangan sederhana. Bab 7 akan memperlihatkan bahwa sebagian besar fungsi atas list justru paling jelas dalam bentuk yang bukan akumulator, dan memaksakan akumulator ke dalamnya menghasilkan teks yang lebih panjang sekaligus lebih lambat.</p>
+<p>Yang wajar ditanyakan sesudah ini adalah pertanyaan tentang mesin. Bila keduanya berbentuk sama, apakah keduanya dijalankan dengan cara yang sama, dan apakah salah satunya lebih hemat? Pertanyaan itu adalah pertanyaan eksekusi, bukan pertanyaan rancangan, dan jawabannya berbeda-beda menurut bahasanya. Bab 9 membahasnya.</p>
+</blockquote>
+<h2 id="rekursi-tidak-langsung"><a class="header" href="#rekursi-tidak-langsung">Rekursi Tidak Langsung</a></h2>
+<p>Sebuah fungsi tidak harus mengaplikasikan dirinya sendiri untuk menjadi rekursif. Sebuah fungsi \(f\) dapat mengaplikasikan fungsi lain \(g\) yang pada gilirannya mengaplikasikan \(f\).</p>
+<pre><code>DEFINISI DAN SPESIFIKASI
+    isEven : Integer ≥ 0 → Boolean
+    { isEven (n) bernilai true bila n genap }
+    { Basis:    n = 0 → true
+      Rekurens: n &gt; 0 → isOdd (n - 1) }
+
+    isOdd : Integer ≥ 0 → Boolean
+    { isOdd (n) bernilai true bila n ganjil }
+    { Basis:    n = 0 → false
+      Rekurens: n &gt; 0 → isEven (n - 1) }
+</code></pre>
+<pre><code>REALISASI
+    isEven (n) :
+        depend on n
+            n = 0 : true
+            n &gt; 0 : isOdd (n - 1)
+
+    isOdd (n) :
+        depend on n
+            n = 0 : false
+            n &gt; 0 : isEven (n - 1)
+</code></pre>
+<p>Bentuk ini disebut <strong>rekursi tidak langsung</strong> atau <strong>saling rekursif</strong>. Kedua kewajiban tetap berlaku dan tetap dapat diperiksa: masing-masing mempunyai basis pada <code>n = 0</code>, dan <code>n</code> berkurang satu pada setiap langkah tanpa memandang fungsi mana yang mengambil alih.</p>
+<p>Sebagai cara menguji keganjilan sebuah bilangan, cara di atas tentu saja kalah oleh <code>n mod 2 = 0</code> yang sudah Anda tuliskan pada Latihan Bab 2. Cara ini dicantumkan di sini bukan karena berguna, melainkan karena <strong>bentuknya</strong> akan diperlukan kelak. Pada Bab 10, sebuah pohon dan daftar anaknya didefinisikan saling merujuk, sehingga fungsi atas keduanya juga harus saling merujuk.</p>
+<h2 id="type-rekursif"><a class="header" href="#type-rekursif">Type Rekursif</a></h2>
+<p>Sebuah type disebut <strong>rekursif</strong> bila definisinya menyebut dirinya sendiri. Notasi untuk itu sudah tersedia sejak Bab 5, yaitu type alternatif, dan tidak ada yang perlu ditambahkan selain izin untuk menyebut nama type yang sedang didefinisikan.</p>
+<pre><code>TYPE NAT
+</code></pre>
+<pre><code>DEFINISI TYPE
+    type Nat : Zero
+             | Succ ⟨pred : Nat⟩
+    { Sebuah Nat adalah bilangan nol, atau penerus dari sebuah Nat }
+
+DEFINISI DAN SPESIFIKASI SELEKTOR
+    pred : Succ → Nat
+    { pred (n) memberikan Nat yang diteruskan oleh n }
+
+DEFINISI DAN SPESIFIKASI KONSTRUKTOR
+    makeZero : → Nat
+    { makeZero membentuk bilangan nol }
+
+    makeSucc : Nat → Nat
+    { makeSucc (n) membentuk penerus dari n }
+
+DEFINISI DAN SPESIFIKASI PREDIKAT
+    isZero : Nat → Boolean
+    { isZero (n) bernilai true bila n adalah bilangan nol }
+
+DEFINISI DAN SPESIFIKASI OPERATOR LAIN
+    toInteger : Nat → Integer ≥ 0
+    { toInteger (n) adalah nilai n sebagai bilangan bulat }
+    { Basis:    isZero (n)        → 0
+      Rekurens: not (isZero (n))  → 1 + toInteger (pred (n)) }
+</code></pre>
+<pre><code>REALISASI
+    toInteger (n) :
+        depend on n
+            isZero (n)       : 0
+            not (isZero (n)) : 1 + toInteger (pred (n))
+</code></pre>
+<pre><code>APLIKASI
+    ⇒ toInteger (makeZero)
+      0
+    ⇒ toInteger (makeSucc (makeSucc (makeZero)))
+      2
+</code></pre>
+<p>Nilai-nilai <code>Nat</code> adalah <code>Zero</code>, lalu <code>Succ ⟨Zero⟩</code>, lalu <code>Succ ⟨Succ ⟨Zero⟩⟩</code>, dan seterusnya. Setiap nilai dibangun dalam sejumlah <strong>berhingga</strong> langkah, mulai dari <code>Zero</code>.</p>
+<p>Justru di sinilah letak nilai gagasan ini, dan sebaiknya diperhatikan baik-baik sebelum Bab 7.</p>
+<p><strong>Untuk type rekursif, kedua kewajiban diberikan oleh type-nya.</strong> Bab 5 menyatakan bahwa analisis kasus atas type alternatif selalu lengkap dan disjoint dengan sendirinya. Sekarang tambahkan hal berikut: alternatif yang <strong>tidak</strong> menyebut dirinya sendiri adalah basisnya, alternatif yang menyebut dirinya sendiri adalah rekurensnya, dan konvergensi terjamin karena setiap nilai hanya tersusun dari berhingga lapis. Ketiga hal yang pada Contoh 1 sampai 5 harus dijaga sendiri oleh penulisnya, di sini datang cuma-cuma bersama definisi type.</p>
+<p><strong><code>Integer</code> bukan type rekursif dalam diktat ini.</strong> Ia adalah type dasar, sebagaimana ditetapkan sejak Bab 2. Yang kita lakukan pada seluruh contoh sebelumnya bukanlah membongkar sebuah struktur rekursif, melainkan <strong>menalar secara rekursif</strong> terhadap sebuah type yang tidak rekursif. Itulah sebabnya setiap contoh menuntut argumen konvergensi yang ditulis sendiri, dan mengapa <code>factorial (n + 1) / (n + 1)</code> sempat lolos dari seluruh pemeriksaan Bab 4.</p>
+<p>Perbedaan ini punya akibat pada peristilahan. Untuk type rekursif, banyaknya kemungkinan basis ditentukan oleh banyaknya konstruktornya, sehingga wajar bila masing-masing diberi nama. Untuk <code>Integer</code>, tidak ada yang membatasi di mana basis boleh diletakkan, dan kelima contoh di bab ini membuktikannya dengan basis <code>n = 0</code>, <code>n = 1</code>, <code>n &lt; 10</code>, <code>b = 0</code>, serta pasangan <code>n = 0</code> dan <code>n = 1</code>. Peristilahan <strong>basis-0</strong> dan <strong>basis-1</strong> yang dipakai secara luas di lingkungan kuliah karenanya baru diperkenalkan pada Bab 7, dan di sana masing-masing mengacu pada list kosong dan list satu elemen.</p>
+<p>Type rekursif yang paling penting dalam informatika adalah <strong>list</strong>: sebuah list adalah list kosong, atau sebuah elemen diikuti oleh sebuah list. Bab 7 mengambil alih dari sini.</p>
+<h2 id="kesalahan-yang-sering-terjadi"><a class="header" href="#kesalahan-yang-sering-terjadi">Kesalahan yang Sering Terjadi</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Kesalahan</th><th>Gejala</th><th>Cara memeriksa</th></tr>
+</thead>
+<tbody>
+<tr><td>Tidak ada basis</td><td>tidak pernah menghasilkan nilai</td><td>adakah sekurang-kurangnya satu kasus yang realisasinya tidak mengandung nama fungsi itu sendiri?</td></tr>
+<tr><td>Rekurens tidak menuju basis</td><td>tidak pernah menghasilkan nilai, meskipun rumusnya benar</td><td>sebutkan besaran yang mengecil pada setiap rekurens beserta batas bawahnya; bila tidak dapat disebutkan, teksnya belum selesai</td></tr>
+<tr><td>Basis kurang</td><td>benar untuk masukan besar, gagal untuk masukan kecil</td><td>bila rekurens melangkah mundur <em>k</em> langkah, adakah <em>k</em> buah basis?</td></tr>
+<tr><td>Rekurens melompati basis</td><td>gagal untuk sebagian masukan saja, misalnya yang ganjil</td><td>telusuri masukan terkecil pada daerah rekurens; apakah ia mendarat tepat pada basis?</td></tr>
+<tr><td>Rekurens keluar dari domain</td><td>tidak terdefinisi untuk masukan tertentu</td><td>apakah argumen rekursifnya masih memenuhi domain dan prasyarat fungsi itu sendiri?</td></tr>
+<tr><td>Kasus tidak disjoint</td><td>ambigu</td><td>berlaku persis seperti Bab 4; basis dan rekurens adalah kasus biasa</td></tr>
+<tr><td>Pekerjaan berulang</td><td>hasilnya benar, tetapi sangat lambat untuk masukan sedang</td><td>gambarkan pohon aplikasinya; adakah aplikasi yang sama muncul lebih dari sekali?</td></tr>
+</tbody>
+</table>
+</div>
+<p>Baris kedua patut mendapat perhatian khusus, karena ini adalah satu-satunya kesalahan pada tabel yang tidak dapat ditemukan dengan mencoba nilai batas. Sebuah fungsi yang rekurensnya menjauhi basis tidak menghasilkan jawaban keliru yang dapat diperiksa; ia tidak menghasilkan apa-apa sama sekali.</p>
+<h2 id="ringkasan-padanan"><a class="header" href="#ringkasan-padanan">Ringkasan Padanan</a></h2>
+<p>Faktorial dalam Haskell:</p>
+<pre><code class="language-haskell">factorial :: Integer -&gt; Integer
+-- factorial n adalah n!
+factorial 0 = 1
+factorial n = n * factorial (n - 1)
+</code></pre>
+<p>Pembagi persekutuan terbesar dan Fibonacci:</p>
+<pre><code class="language-haskell">gcd' :: Integer -&gt; Integer -&gt; Integer
+-- gcd' a b adalah pembagi persekutuan terbesar a dan b
+gcd' a 0 = a
+gcd' a b = gcd' b (a `mod` b)
+
+fibonacci :: Integer -&gt; Integer
+-- fibonacci n adalah suku ke-n deret Fibonacci
+fibonacci 0 = 0
+fibonacci 1 = 1
+fibonacci n = fibonacci (n - 1) + fibonacci (n - 2)
+</code></pre>
+<blockquote>
+<p><strong>Catatan:</strong> Fungsi diberi nama <code>gcd'</code> karena Haskell sudah mempunyai fungsi bawaan <code>gcd</code>.</p>
+</blockquote>
+<p>Empat hal yang berbeda, dan keempatnya sudah menjadi pola yang akrab.</p>
+<p><strong>Haskell mencocokkan langsung pada nilai.</strong> <code>factorial 0 = 1</code> menyatakan kasus basis tanpa menuliskan kondisi apa pun. Fasilitas ini disebut pencocokan pola (<em>pattern matching</em>), dan sudah muncul pada Bab 5 untuk type alternatif. Di sini, pencocokan pola diterapkan pada bilangan.</p>
+<p><strong>Persamaan diperiksa berurutan, dan lubangnya tidak terlihat.</strong> Baris kedua <code>factorial n = ...</code> berlaku bagi <strong>setiap</strong> <code>n</code> yang tidak nol, termasuk <code>-1</code>. Aplikasi <code>factorial (-1)</code> karenanya tidak pernah berhenti. Notasi menuliskan <code>n &gt; 0</code> secara terbuka, dan pembatasan domain <code>Integer ≥ 0</code> pada barisan definisi memaksa penulisnya memikirkan hal itu. Ini adalah keketatan yang sama dengan yang dibicarakan pada Bab 4, muncul kembali di tempat baru: apa yang di sana menyangkut batas kasus, di sini menyangkut batas domain.</p>
+<p><strong><code>Integer</code> pada Haskell tidak terbatas.</strong> <code>factorial 100</code> menghasilkan bilangan seratus lima puluh delapan digit, tepat dan utuh. Program yang sama dalam C dengan <code>long long</code> menghasilkan bilangan yang salah tanpa peringatan apa pun, karena hasilnya melampaui daya tampung typenya. Perhatikan bahwa yang berbeda di sini bukan paradigmanya, melainkan pilihan rancangan type dasarnya, dan bahwa persoalan itu sama sekali tidak muncul dalam notasi kita karena <code>Integer</code> di sana memang berarti bilangan bulat tanpa batas.</p>
+<p><strong>Haskell sudah mempunyai <code>gcd</code> dan <code>^</code>.</strong> Keduanya tersedia sebagai fungsi pustaka, dan itulah sebabnya contoh di atas dinamai <code>gcd'</code>. Sikap terhadap hal ini sama dengan sikap terhadap daftar fungsi dasar yang sengaja dibuat pendek pada Bab 3: keduanya tetap dituliskan sendiri, karena menuliskannya adalah latihannya.</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Notasi fungsional</th><th>Haskell</th></tr>
+</thead>
+<tbody>
+<tr><td><code>namaFungsi (x) : depend on x</code> dengan basis dan rekurens</td><td>beberapa persamaan, atau <em>guard</em></td></tr>
+<tr><td><code>n = 0 : 1</code></td><td><code>factorial 0 = 1</code> atau <code>| n == 0 = 1</code></td></tr>
+<tr><td><code>n &gt; 0 : n * factorial (n - 1)</code></td><td><code>factorial n = n * factorial (n - 1)</code></td></tr>
+<tr><td><code>Integer ≥ 0</code> sebagai domain</td><td><code>Integer</code>; pembatasannya hidup pada spesifikasi</td></tr>
+<tr><td><code>{ Basis: … Rekurens: … }</code></td><td>komentar</td></tr>
+<tr><td><code>type Nat : Zero | Succ ⟨pred : Nat⟩</code></td><td><code>data Nat = Zero | Succ Nat</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Perhatikan baris terakhir. Definisi type rekursif diterjemahkan hampir tanpa perubahan, dan kompilator memeriksa bahwa seluruh alternatifnya tertangani. Sebaliknya, baris keempat memperlihatkan bahwa pembatasan domain yang justru paling menentukan berhentinya evaluasi adalah hal yang tidak dapat dinyatakan oleh bahasanya. Sebagaimana pada Bab 5, keduanya bukan versi berbeda dari hal yang sama.</p>
+<h2 id="latihan"><a class="header" href="#latihan">Latihan</a></h2>
+<p><strong>Membaca.</strong> Untuk setiap realisasi berikut, tentukan definisinya, tuliskan spesifikasinya, sebutkan basis dan rekurensnya, lalu <strong>buktikan bahwa evaluasinya berhenti</strong> dengan menyebutkan besaran yang mengecil beserta batas bawahnya.</p>
+<pre><code>p (n) :
+    depend on n
+        n = 0 : 0
+        n &gt; 0 : n + p (n - 1)
+
+q (a, b) :
+    depend on b
+        b = 0 : 0
+        b &gt; 0 : a + q (a, b - 1)
+
+r (n) :
+    depend on n
+        n = 1                     : 1
+        (n &gt; 1) and (n mod 2 = 0) : r (n div 2)
+        (n &gt; 1) and (n mod 2 = 1) : r (3 * n + 1)
+</code></pre>
+<p>Untuk <code>q</code>, jawablah juga: apa yang terjadi bila <code>b</code> boleh negatif, dan bagaimana Anda mencegahnya?</p>
+<p>Untuk <code>r</code>, telusurilah <code>r (6)</code> dan <code>r (7)</code>, lalu cobalah menyebutkan besaran yang mengecil. Bila Anda tidak berhasil, itu bukan kegagalan Anda. Apakah teks ini berhenti untuk setiap masukan adalah persoalan matematika yang sampai hari ini belum terjawab, meskipun sudah diperiksa untuk bilangan yang sangat besar. Jelaskan apa yang diajarkan oleh keadaan ini tentang kewajiban kedua.</p>
+<p><strong>Memperbaiki.</strong> Fungsi berikut menghitung banyaknya digit sebuah bilangan. Ketiga contoh aplikasinya menghasilkan jawaban yang benar, kedua kondisinya lengkap dan disjoint, dan evaluasinya selalu berhenti. Meskipun demikian, fungsi ini keliru.</p>
+<pre><code>JUDUL   Banyaknya Digit
+</code></pre>
+<pre><code>DEFINISI DAN SPESIFIKASI
+    nDigits : Integer ≥ 0 → Integer &gt; 0
+    { nDigits (n) adalah banyaknya digit n dalam penulisan desimal.
+      nDigits (0) bernilai 1 }
+    { Basis:    n = 0 → 0
+      Rekurens: n &gt; 0 → 1 + nDigits (n div 10) }
+</code></pre>
+<pre><code>REALISASI
+    nDigits (n) :
+        depend on n
+            n = 0 : 0
+            n &gt; 0 : 1 + nDigits (n div 10)
+</code></pre>
+<pre><code>APLIKASI
+    ⇒ nDigits (7)
+      1
+    ⇒ nDigits (42)
+      2
+    ⇒ nDigits (2026)
+      4
+</code></pre>
+<ol>
+<li>Temukan satu nilai masukan yang menghasilkan jawaban keliru. Berapa yang dihasilkan fungsi, dan berapa yang seharusnya menurut spesifikasi?</li>
+<li>Hasil pada nomor 1 melanggar sesuatu yang dituliskan pada baris <strong>definisi</strong>, bukan pada spesifikasi. Apa itu?</li>
+<li>Spesifikasi dan realisasi bertentangan mengenai satu nilai. Mana yang Anda perbaiki, dan mengapa?</li>
+<li>Perbaiki realisasinya. Bandingkan basis Anda dengan basis <code>sumDigits</code> pada Contoh 2, dan jelaskan mengapa keduanya berbeda meskipun kedua fungsi memakai rekurens yang sama.</li>
+<li>Tambahkan contoh aplikasi sehingga setiap kasus dan setiap nilai batas terwakili.</li>
+</ol>
+<p><strong>Menulis.</strong> Tuliskan keempat bagian secara lengkap. Nyatakan prasyarat bila ada, tuliskan basis dan rekurens pada spesifikasi, sebutkan argumen konvergensinya, lalu terjemahkan dan jalankan.</p>
+<ol>
+<li><code>dayOfYear (d)</code>, yang menghasilkan nomor urut sebuah <code>Date</code> di dalam tahunnya, sehingga 1 Januari menghasilkan 1. Gunakan kembali <code>nDaysInMonth</code> dari Bab 5, dan rekursikan terhadap nomor bulan.</li>
+<li><code>daysBetween (d1, d2)</code>, yang menghasilkan selisih dua <code>Date</code> dalam hari. Mulailah dengan kasus keduanya berada pada tahun yang sama. Bila Anda melanjutkan ke tahun yang berbeda, nyatakan dengan jelas apa yang Anda rekursikan.</li>
+<li><code>reverseDigits (n)</code>, yang membalik urutan digit sebuah bilangan bulat tak negatif, sehingga <code>1230</code> menghasilkan <code>321</code>. Perhatikan baik-baik apa yang terjadi pada digit nol di ujung.</li>
+<li><code>isPalindromeNumber (n)</code>, dengan memakai kembali <code>reverseDigits</code>.</li>
+<li><code>isPrime (n)</code>, yang menentukan apakah sebuah bilangan bulat lebih besar dari 1 adalah bilangan prima. Fungsi ini menuntut sebuah fungsi antara dengan parameter tambahan yang menyatakan pembagi mana yang sedang diperiksa. Tuliskan spesifikasi fungsi antara itu lebih dahulu, dan perhatikan bahwa itulah bagian tersulitnya.</li>
+</ol>
+<p><strong>Menelusuri.</strong></p>
+<ol>
+<li>Gambarkan pohon aplikasi <code>fibonacci (6)</code>. Berapa banyak aplikasi seluruhnya, dan berapa kali <code>fibonacci (2)</code> muncul?</li>
+<li>Telusuri <code>fibonacci2 (6)</code>. Berapa banyak aplikasi <code>fibFrom</code>? Bandingkan dengan nomor 1.</li>
+<li>Telusuri <code>gcd (48, 18)</code>, lalu <code>gcd (18, 48)</code>. Bandingkan panjang keduanya dan jelaskan selisihnya.</li>
+<li>Hitunglah banyaknya aplikasi <code>power (3, 8)</code> dan <code>fastPower (3, 8)</code>. Kemudian lakukan hal yang sama untuk pangkat <code>7</code>, dan jelaskan mengapa selisihnya berbeda.</li>
+</ol>
+<p><strong>Merancang.</strong> Tiga pertanyaan, ketiganya tanpa jawaban tunggal yang benar.</p>
+<ol>
+<li>Faktorial ditulis dengan dua basis pada bab ini, <code>n = 0</code> dan <code>n = 1</code>. Diktat ini memilih yang pertama beserta alasannya. Setujukah Anda? Apa yang akan berubah pada Bab 7 seandainya pilihannya kebalikannya?</li>
+<li>Pertanyaan Merancang nomor 2 pada Bab 5 kini dapat dijawab sungguh-sungguh. Bila setiap <code>Fraction</code> diharuskan selalu berada dalam bentuk paling sederhana, bagian mana dari teks type-nya yang berubah? Apakah <code>isEqFraction</code> masih perlu direalisasi? Apakah <code>addFraction</code> masih menjamin invariannya? Dan siapa yang bertanggung jawab memanggil <code>simplify</code>, konstruktornya atau pemakainya?</li>
+<li><code>fastPower</code> lebih hemat dan lebih sulit dipercaya. Sebutkan satu keadaan yang membuat Anda tetap memilih <code>power</code>, dan satu keadaan yang membuat Anda memilih <code>fastPower</code>. Kemudian jawab pertanyaan yang lebih tajam: seandainya diktat ini hanya boleh memuat satu di antara keduanya, mana yang Anda buang?</li>
+</ol>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="05-type-bentukan.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="07-list.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="05-type-bentukan.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="07-list.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-09f2665d.js"></script>
+
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-609e4cb8.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>

@@ -12,5 +12,7 @@
 - [Fungsi Sebagai Nilai](./08-fungsi-sebagai-nilai.md)
 - [Dari Notasi ke Program](./09-dari-notasi-ke-program.md)
 - [Pohon](./10-pohon.md)
+- [List of List](./11-list-of-list.md)
 
-[Daftar Pustaka](./99-daftar-pustaka.md)
+[Daftar Pustaka](./98-daftar-pustaka.md)
+[Daftar Perubahan](./99-changes.md)

@@ -70,7 +70,7 @@ Sebuah fungsi dikonstruksi dalam empat tahap yang **selalu** dituliskan dengan u
 
 Definisi dan spesifikasi ditulis berdampingan karena keterkaitannya sangat erat: yang satu menyatakan bentuk, yang lain menyatakan makna.
 
-Perhatikan bahwa **definisi dan spesifikasi tidak mengandaikan realisasi tertentu**. Satu definisi dan spesifikasi yang sama dapat direalisasikan oleh beberapa ekspresi yang berbeda. Inilah yang membuat keduanya berguna: pemakai sebuah fungsi cukup membaca definisi dan spesifikasinya, tanpa perlu membaca realisasinya.
+**Definisi dan spesifikasi tidak mengandaikan realisasi tertentu**. Satu definisi dan spesifikasi yang sama dapat direalisasikan oleh beberapa ekspresi yang berbeda. Inilah yang membuat keduanya berguna: pemakai sebuah fungsi cukup membaca definisi dan spesifikasinya, tanpa perlu membaca realisasinya.
 
 Nama-nama yang muncul pada sisi kiri realisasi disebut **parameter**. Nilai yang diberikan pada saat aplikasi disebut **argumen**.
 
@@ -104,7 +104,7 @@ Judul adalah deskripsi sangat ringkas yang memudahkan pencarian, bukan bagian da
 
 Komentar dituliskan di antara kurung kurawal `{ }`.
 
-Perhatikan bahwa pada realisasi tidak ada kata kunci semacam `function` atau `def`. Yang dituliskan hanyalah persamaan: nama beserta parameternya di sebelah kiri, ekspresi di sebelah kanan. Sebuah **konstanta** ditulis dengan bentuk yang sama, hanya tanpa parameter, dan memang, konstanta dapat dipandang sebagai fungsi tanpa argumen.
+Pada realisasi tidak ada kata kunci semacam `function` atau `def`. Yang dituliskan hanyalah persamaan: nama beserta parameternya di sebelah kiri, ekspresi di sebelah kanan. Sebuah **konstanta** ditulis dengan bentuk yang sama, hanya tanpa parameter, dan memang, konstanta dapat dipandang sebagai fungsi tanpa argumen.
 
 ## Contoh 1: Ekspresi Numerik Sederhana
 
@@ -312,7 +312,7 @@ Namun perlu dinyatakan bahwa notasi ini **tidak** mencakup seluruh konsep pada p
 - Efek, masukan, dan keluaran: dibicarakan pada Bab 9.
 - Modularitas: pustaka, ruang nama, dan kompilasi terpisah.
 
-Notasi ini adalah alat berpikir, bukan bahasa pemrograman. Kekurangannya justru menjadi kelebihannya.
+Notasi ini adalah alat berpikir, bukan bahasa pemrograman.
 
 ## Alur Kerja yang Disarankan
 

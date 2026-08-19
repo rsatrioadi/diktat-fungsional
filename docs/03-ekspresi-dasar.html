@@ -1,0 +1,546 @@
+<!DOCTYPE HTML>
+<html lang="id" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Ekspresi Dasar dan Evaluasi - Diktat Pemrograman Fungsional</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-e96d0476.css">
+        <link rel="stylesheet" href="css/chrome-d279d366.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex-0ab6a5e0.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-2ab1aa36.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Diktat Pemrograman Fungsional</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="ekspresi-dasar-dan-evaluasi"><a class="header" href="#ekspresi-dasar-dan-evaluasi">Ekspresi Dasar dan Evaluasi</a></h1>
+<h2 id="ekspresi"><a class="header" href="#ekspresi">Ekspresi</a></h2>
+<p><strong>Ekspresi</strong> adalah teks yang tersusun dari nama, konstanta, operator, aplikasi fungsi, dan tanda kurung, yang bila dievaluasi menghasilkan sebuah nilai.</p>
+<p>Pada bab sebelumnya, realisasi setiap fungsi berupa sebuah ekspresi. Bab ini membahas bentuk ekspresi yang paling dasar: yang hanya memakai operator dan fungsi yang sudah tersedia, beserta cara menelusuri evaluasinya.</p>
+<p>Sebagai titik awal, dinyatakan bahwa notasi ini menyediakan tiga kelompok operator dan sejumlah kecil fungsi dasar. Segala sesuatu yang lain harus didefinisikan sendiri.</p>
+<h2 id="operator-dasar"><a class="header" href="#operator-dasar">Operator Dasar</a></h2>
+<h3 id="operator-aritmatika"><a class="header" href="#operator-aritmatika">Operator aritmatika</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Operator</th><th>Domain</th><th>Range</th><th>Keterangan</th></tr>
+</thead>
+<tbody>
+<tr><td><code>+</code> <code>-</code> <code>*</code></td><td><code>Integer</code> atau <code>Real</code></td><td>sama dengan operan</td><td>penjumlahan, pengurangan, perkalian</td></tr>
+<tr><td><code>-</code> (uner)</td><td><code>Integer</code> atau <code>Real</code></td><td>sama dengan operan</td><td>negasi, ditulis <code>-x</code></td></tr>
+<tr><td><code>/</code></td><td><code>Real</code></td><td><code>Real</code></td><td>pembagian riil</td></tr>
+<tr><td><code>div</code></td><td><code>Integer</code></td><td><code>Integer</code></td><td>hasil bagi bulat</td></tr>
+<tr><td><code>mod</code></td><td><code>Integer</code></td><td><code>Integer</code></td><td>sisa bagi</td></tr>
+</tbody>
+</table>
+</div>
+<p>Kedua operan sebuah operator aritmatika harus bertype sama. Notasi ini tidak mengenal konversi otomatis antara <code>Integer</code> dan <code>Real</code>: bila keduanya perlu dicampur, konversi harus dinyatakan secara eksplisit.</p>
+<h3 id="operator-relasional"><a class="header" href="#operator-relasional">Operator relasional</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Operator</th><th>Domain</th><th>Range</th></tr>
+</thead>
+<tbody>
+<tr><td><code>=</code> <code>≠</code></td><td>dua nilai bertype sama</td><td><code>Boolean</code></td></tr>
+<tr><td><code>&lt;</code> <code>&gt;</code> <code>≤</code> <code>≥</code></td><td><code>Integer</code>, <code>Real</code>, atau <code>Character</code></td><td><code>Boolean</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Perhatikan bahwa <code>=</code> di sini berarti <strong>perbandingan</strong>, bukan definisi. Notasi ini memakai <code>:</code> untuk definisi, sehingga <code>=</code> tidak pernah bermakna ganda. Beberapa bahasa pemrograman tidak seberuntung itu, dan harus memakai dua lambang yang berbeda.</p>
+<h3 id="operator-boolean"><a class="header" href="#operator-boolean">Operator Boolean</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Operator</th><th>Domain</th><th>Range</th></tr>
+</thead>
+<tbody>
+<tr><td><code>and</code> <code>or</code></td><td>dua <code>Boolean</code></td><td><code>Boolean</code></td></tr>
+<tr><td><code>not</code></td><td>satu <code>Boolean</code></td><td><code>Boolean</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Operan <code>not</code> <strong>selalu</strong> dituliskan di dalam kurung: <code>not (x &lt; y)</code>. Aturan ini dibuat agar tidak ada keraguan tentang sejauh mana negasi berlaku, dan agar teks tetap terbaca sama oleh pembaca yang terbiasa dengan bahasa pemrograman yang berbeda-beda.</p>
+<h2 id="fungsi-dasar"><a class="header" href="#fungsi-dasar">Fungsi Dasar</a></h2>
+<p>Selain operator di atas, diasumsikan tersedia sejumlah kecil fungsi dasar:</p>
+<pre><code>abs    : Integer → Integer    { abs (x) adalah nilai mutlak x }
+sqrt   : Real → Real          { sqrt (x) adalah akar kuadrat x. Prasyarat: x ≥ 0.0 }
+asReal : Integer → Real       { asReal (x) adalah nilai x sebagai bilangan riil }
+pi     : → Real               { pi adalah konstanta matematika π }
+</code></pre>
+<p>Daftar ini sengaja dibuat pendek. Setiap fungsi lain yang dibutuhkan (bahkan yang sesederhana <code>max2</code>) harus didefinisikan sendiri, karena mendefinisikannya adalah latihan yang justru ingin diberikan.</p>
+<p>Dua di antaranya ada karena memang tidak dapat didefinisikan sendiri. <code>asReal</code> adalah satu-satunya jalan menyeberang dari <code>Integer</code> ke <code>Real</code>; fungsi ini diperlukan karena notasi ini tidak mengenal konversi otomatis. Tidak ada kebalikannya: menyeberang dari <code>Real</code> ke <code>Integer</code> menuntut keputusan pembulatan, dan keputusan itu harus dituliskan sebagai fungsi tersendiri beserta spesifikasinya. <code>pi</code> adalah sebuah nilai, bukan sebuah perhitungan, dan menuliskannya sebagai <code>3.14159</code> di banyak tempat hanya memperbanyak kesempatan salah ketik.</p>
+<p>Dalam Haskell, <code>asReal</code> bersesuaian dengan <code>fromIntegral</code> dan <code>pi</code> tersedia dengan nama yang sama.</p>
+<h2 id="presedensi"><a class="header" href="#presedensi">Presedensi</a></h2>
+<p>Bila sebuah ekspresi mengandung beberapa operator tanpa kurung, urutan evaluasinya ditentukan oleh presedensi:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Presedensi</th><th>Operator</th></tr>
+</thead>
+<tbody>
+<tr><td>tertinggi</td><td>aplikasi fungsi</td></tr>
+<tr><td></td><td><code>-</code> uner</td></tr>
+<tr><td></td><td><code>*</code> <code>/</code> <code>div</code> <code>mod</code></td></tr>
+<tr><td></td><td><code>+</code> <code>-</code></td></tr>
+<tr><td></td><td><code>=</code> <code>≠</code> <code>&lt;</code> <code>&gt;</code> <code>≤</code> <code>≥</code></td></tr>
+<tr><td>terendah</td><td><code>and</code> <code>or</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Contoh: <code>3 + 4 * 5</code> dievaluasi sebagai <code>3 + (4 * 5)</code>, menghasilkan <code>23</code>.</p>
+<p>Aturan presedensi ada supaya ekspresi tetap ringkas, bukan supaya kurung boleh dihilangkan. Bila sebuah ekspresi mulai sulit dibaca, tambahkan kurung; pembaca berikutnya tidak wajib menghafal tabel di atas. Untuk <code>and</code> dan <code>or</code> yang bercampur dalam satu ekspresi, kurung <strong>wajib</strong> dituliskan.</p>
+<h2 id="jenis-ekspresi"><a class="header" href="#jenis-ekspresi">Jenis Ekspresi</a></h2>
+<p>Ekspresi digolongkan menurut type nilai yang dihasilkannya:</p>
+<ul>
+<li><strong>Ekspresi numerik</strong> menghasilkan <code>Integer</code> atau <code>Real</code>. Contoh: <code>(a + b) div 2</code>.</li>
+<li><strong>Ekspresi Boolean</strong> menghasilkan <code>Boolean</code>. Contoh: <code>(x &gt; 0) and (y &gt; 0)</code>.</li>
+<li><strong>Ekspresi relasional</strong> adalah ekspresi Boolean yang operator terluarnya relasional dan operannya numerik. Contoh: <code>a * a ≤ 100</code>. Ini adalah kasus khusus ekspresi Boolean, bukan jenis yang terpisah.</li>
+</ul>
+<p>Fungsi yang menghasilkan <code>Boolean</code> disebut <strong>predikat</strong>, dan namanya diawali <code>is</code> sesuai konvensi pada Bab 2.</p>
+<p>Operator biner pada notasi ini selalu ditulis <strong>infix</strong> (di antara kedua operannya) karena bentuk itulah yang paling dekat dengan kebiasaan menulis matematika. Bentuk penulisan lain dimungkinkan:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Bentuk</th><th>Ekspresi numerik</th><th>Ekspresi relasional</th></tr>
+</thead>
+<tbody>
+<tr><td>Infix</td><td><code>(3 + 4) * 5</code></td><td><code>3 &lt; 5</code></td></tr>
+<tr><td>Prefix</td><td><code>* (+ 3 4) 5</code></td><td><code>&lt; 3 5</code></td></tr>
+<tr><td>Postfix</td><td><code>3 4 + 5 *</code></td><td><code>3 5 &lt;</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Bentuk prefix dan postfix tidak memerlukan kurung maupun presedensi, dan karena itu lebih mudah diproses mesin. Keduanya akan muncul kembali sebagai representasi pohon ekspresi.</p>
+<h2 id="prasyarat-dan-operator-parsial"><a class="header" href="#prasyarat-dan-operator-parsial">Prasyarat dan Operator Parsial</a></h2>
+<p>Beberapa operator dan fungsi tidak terdefinisi untuk seluruh domainnya:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Ekspresi</th><th>Tidak terdefinisi bila</th></tr>
+</thead>
+<tbody>
+<tr><td><code>a div b</code>, <code>a mod b</code></td><td><code>b = 0</code></td></tr>
+<tr><td><code>a / b</code></td><td><code>b = 0.0</code></td></tr>
+<tr><td><code>sqrt (x)</code></td><td><code>x &lt; 0.0</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Bila sebuah fungsi yang kita tulis memakai salah satunya, keterbatasan itu <strong>harus</strong> dinyatakan sebagai prasyarat pada spesifikasi:</p>
+<pre><code>JUDUL   Rata-Rata Dua Bilangan Bulat
+</code></pre>
+<pre><code>DEFINISI DAN SPESIFIKASI
+    average2 : Integer, Integer → Integer
+    { average2 (a, b) adalah rata-rata a dan b, dibulatkan ke bawah }
+</code></pre>
+<pre><code>REALISASI
+    average2 (a, b) : (a + b) div 2
+</code></pre>
+<p>Fungsi ini tidak memerlukan prasyarat: pembaginya konstanta <code>2</code>, sehingga tidak pernah nol. Bandingkan dengan:</p>
+<pre><code>JUDUL   Rata-Rata Sebagian
+</code></pre>
+<pre><code>DEFINISI DAN SPESIFIKASI
+    averagePart : Integer, Integer → Integer
+    { averagePart (jumlah, n) adalah rata-rata dari n buah nilai yang
+      jumlahnya adalah jumlah, dibulatkan ke bawah.
+      Prasyarat: n &gt; 0 }
+</code></pre>
+<pre><code>REALISASI
+    averagePart (jumlah, n) : jumlah div n
+</code></pre>
+<p>Prasyarat bukan sekadar catatan, melainkan bagian dari kontrak: pemakai fungsi berjanji memenuhinya, dan sebagai imbalannya penulis fungsi tidak perlu memeriksanya. Menuliskan prasyarat sejak awal juga memaksa kita memikirkan kembali apakah <strong>domain</strong> sudah dipilih dengan tepat. Kadang ternyata domainnya yang seharusnya dipersempit, bukan prasyaratnya yang ditambahkan.</p>
+<h2 id="contoh-1-ekspresi-numerik-dengan-fungsi-antara"><a class="header" href="#contoh-1-ekspresi-numerik-dengan-fungsi-antara">Contoh 1: Ekspresi Numerik dengan Fungsi Antara</a></h2>
+<p><strong>Persoalan.</strong> Tuliskan sebuah fungsi yang menghitung jarak antara dua titik pada bidang, yang masing-masing dinyatakan oleh absis dan ordinatnya.</p>
+<p>Jarak antara titik \( (x_1, y_1) \) dan \( (x_2, y_2) \) adalah \( \sqrt{(x_1-x_2)^2 + (y_1-y_2)^2} \). Bentuk \( (a-b)^2 \) muncul dua kali, sehingga pantas dijadikan fungsi antara.</p>
+<pre><code>JUDUL   Jarak Dua Titik pada Bidang
+</code></pre>
+<pre><code>DEFINISI DAN SPESIFIKASI
+    sqrDif : Real, Real → Real
+    { sqrDif (a, b) adalah kuadrat dari selisih a dan b }
+
+    distance : Real, Real, Real, Real → Real
+    { distance (x1, y1, x2, y2) adalah jarak antara titik (x1, y1)
+      dan titik (x2, y2) pada bidang }
+    { Fungsi antara yang dipakai: sqrDif }
+</code></pre>
+<pre><code>REALISASI
+    sqrDif (a, b) : (a - b) * (a - b)
+
+    distance (x1, y1, x2, y2) : sqrt (sqrDif (x1, x2) + sqrDif (y1, y2))
+</code></pre>
+<pre><code>APLIKASI
+    ⇒ distance (1.0, 3.0, 5.0, 6.0)
+      5.0
+    ⇒ distance (2.0, 2.0, 2.0, 2.0)
+      0.0
+</code></pre>
+<p>Perhatikan bahwa <code>distance</code> tidak memerlukan prasyarat meskipun memakai <code>sqrt</code>: jumlah dua bilangan kuadrat tidak mungkin negatif. Alasan semacam ini pantas dituliskan sebagai komentar bila tidak segera terlihat.</p>
+<p>Perhatikan pula bahwa <code>square</code> dari Bab 2 <strong>tidak</strong> dapat dipakai di sini. Domainnya <code>Integer</code>, sedangkan yang hendak dikuadratkan adalah <code>Real</code>, dan notasi ini tidak menyeberangkan keduanya diam-diam. Aturan yang tampak rewel di awal bab baru terasa gunanya di sini: ini memaksa perbedaan itu muncul pada saat menulis, bukan pada saat menjalankan.</p>
+<p>Dalam Haskell:</p>
+<pre><code class="language-haskell">sqrDif :: Double -&gt; Double -&gt; Double
+-- sqrDif a b adalah kuadrat dari selisih a dan b
+sqrDif a b = (a - b) * (a - b)
+
+distance :: Double -&gt; Double -&gt; Double -&gt; Double -&gt; Double
+-- distance x1 y1 x2 y2 adalah jarak antara titik (x1,y1) dan (x2,y2)
+distance x1 y1 x2 y2 = sqrt (sqrDif x1 x2 + sqrDif y1 y2)
+</code></pre>
+<h2 id="nama-antara"><a class="header" href="#nama-antara">Nama Antara</a></h2>
+<p>Sebuah ekspresi antara yang dipakai lebih dari satu kali, atau yang cukup panjang sehingga menyulitkan pembacaan, dapat diberi <strong>nama antara</strong>. Nama ini hanya berlaku di dalam realisasi tempat ia dituliskan, dan tidak dikenal di luarnya.</p>
+<p>Bentuk penulisannya:</p>
+<pre><code>REALISASI
+    namaFungsi (x) :
+        let
+            n1 : *ekspresi*
+            n2 : *ekspresi*
+        in
+            *ekspresi yang memakai n1 dan n2*
+</code></pre>
+<p>Type sebuah nama antara tidak perlu dituliskan: type dapat disimpulkan dari ekspresinya. Nama-nama diikat berurutan dari atas ke bawah, sehingga sebuah nama boleh memakai nama yang sudah diikat di atasnya. Perhatikan bahwa <code>:</code> di sini adalah tanda yang sama dengan yang dipakai pada realisasi fungsi, dan artinya pun sama: <em>ini didefinisikan sebagai itu</em>. Notasi ini tidak pernah memakai <code>=</code> untuk mendefinisikan.</p>
+<p>Fungsi <code>distance</code> dapat direalisasikan ulang dengan nama antara, tanpa fungsi antara:</p>
+<pre><code>REALISASI
+    distance (x1, y1, x2, y2) :
+        let
+            dx : x1 - x2
+            dy : y1 - y2
+        in
+            sqrt (dx * dx + dy * dy)
+</code></pre>
+<p>Definisi dan spesifikasinya tidak berubah sedikit pun. Ini adalah contoh kedua, setelah <code>cube</code> pada Bab 2, dari satu spesifikasi yang direalisasikan dengan dua cara berbeda.</p>
+<h3 id="nama-antara-atau-fungsi-antara"><a class="header" href="#nama-antara-atau-fungsi-antara">Nama Antara atau Fungsi Antara?</a></h3>
+<p>Keduanya menghilangkan pengulangan, tetapi dengan akibat yang berbeda:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th></th><th>Nama antara</th><th>Fungsi antara</th></tr>
+</thead>
+<tbody>
+<tr><td>Jangkauan</td><td>hanya di dalam satu realisasi</td><td>dapat dipakai di mana saja</td></tr>
+<tr><td>Menambah perbendaharaan?</td><td>tidak</td><td>ya</td></tr>
+<tr><td>Perlu definisi dan spesifikasi?</td><td>tidak</td><td>ya</td></tr>
+<tr><td>Cocok bila</td><td>nilainya khas untuk fungsi ini</td><td>konsepnya berdiri sendiri</td></tr>
+</tbody>
+</table>
+</div>
+<p>Pertanyaan yang membantu memutuskan: <em>apakah hal ini pantas diberi nama dan dijelaskan kepada orang lain?</em> <code>sqrDif</code> (kuadrat selisih) adalah konsep yang berdiri sendiri dan mungkin berguna di tempat lain, sehingga pantas menjadi fungsi. <code>dx</code> hanyalah selisih absis dalam perhitungan ini, dan tidak berarti apa-apa di luar konteksnya, sehingga cukup menjadi nama antara.</p>
+<p>Kecenderungan yang sehat bagi pemula adalah membuat terlalu banyak fungsi antara, bukan terlalu sedikit.</p>
+<h2 id="contoh-2-ekspresi-boolean"><a class="header" href="#contoh-2-ekspresi-boolean">Contoh 2: Ekspresi Boolean</a></h2>
+<p><strong>Persoalan.</strong> Tuliskan sebuah predikat yang menentukan apakah suatu tahun adalah tahun kabisat. Sebuah tahun adalah kabisat bila habis dibagi 4, kecuali bila habis dibagi 100 tetapi tidak habis dibagi 400.</p>
+<pre><code>JUDUL   Tahun Kabisat
+</code></pre>
+<pre><code>DEFINISI DAN SPESIFIKASI
+    isLeapYear : Integer → Boolean
+    { isLeapYear (y) bernilai true bila y adalah tahun kabisat.
+      Prasyarat: y &gt; 0 }
+</code></pre>
+<pre><code>REALISASI
+    isLeapYear (y) :
+        (y mod 4 = 0) and ((y mod 100 ≠ 0) or (y mod 400 = 0))
+</code></pre>
+<pre><code>APLIKASI
+    ⇒ isLeapYear (2024)
+      true
+    ⇒ isLeapYear (1900)
+      false
+    ⇒ isLeapYear (2000)
+      true
+    ⇒ isLeapYear (2023)
+      false
+</code></pre>
+<p>Keempat aplikasi di atas dipilih dengan sengaja, dan bukan sekadar diambil sembarangan: <code>2024</code> habis dibagi 4 saja, <code>1900</code> habis dibagi 100 tetapi tidak 400, <code>2000</code> habis dibagi 400, dan <code>2023</code> tidak habis dibagi 4. Bersama-sama keempatnya menyentuh setiap cabang ekspresi. Memilih contoh aplikasi dengan cara ini, satu untuk setiap kemungkinan, adalah bentuk pengujian yang paling sederhana, dan sudah dapat dilakukan sekarang, jauh sebelum ada perkakas pengujian.</p>
+<p>Dalam Haskell:</p>
+<pre><code class="language-haskell">isLeapYear :: Integer -&gt; Bool
+-- isLeapYear y bernilai True bila y adalah tahun kabisat
+-- Prasyarat: y &gt; 0
+isLeapYear y = (y `mod` 4 == 0) &amp;&amp; ((y `mod` 100 /= 0) || (y `mod` 400 == 0))
+</code></pre>
+<h2 id="evaluasi-ekspresi"><a class="header" href="#evaluasi-ekspresi">Evaluasi Ekspresi</a></h2>
+<p>Mengevaluasi sebuah ekspresi berarti menggantinya berulang kali dengan ekspresi yang lebih sederhana, sampai tersisa sebuah nilai. Hanya ada dua macam langkah:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Langkah</th><th>Yang terjadi</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Ekspansi</strong></td><td>Aplikasi sebuah fungsi diganti oleh realisasinya, dengan setiap parameter diganti oleh argumennya</td></tr>
+<tr><td><strong>Reduksi</strong></td><td>Sebuah operator atau fungsi dasar dihitung, menghasilkan nilai</td></tr>
+</tbody>
+</table>
+</div>
+<p>Berikut penelusuran lengkap <code>distance (1.0, 3.0, 5.0, 6.0)</code>, memakai realisasi dengan fungsi antara:</p>
+<pre><code>⇒ distance (1.0, 3.0, 5.0, 6.0)
+  → sqrt (sqrDif (1.0, 5.0) + sqrDif (3.0, 6.0))            { ekspansi distance }
+  → sqrt ((1.0 - 5.0) * (1.0 - 5.0) + sqrDif (3.0, 6.0))    { ekspansi sqrDif }
+  → sqrt ((-4.0) * (-4.0) + sqrDif (3.0, 6.0))              { reduksi - }
+  → sqrt (16.0 + sqrDif (3.0, 6.0))                         { reduksi * }
+  → sqrt (16.0 + (3.0 - 6.0) * (3.0 - 6.0))                 { ekspansi sqrDif }
+  → sqrt (16.0 + (-3.0) * (-3.0))                           { reduksi - }
+  → sqrt (16.0 + 9.0)                                       { reduksi * }
+  → sqrt (25.0)                                             { reduksi + }
+  → 5.0                                                     { reduksi sqrt }
+</code></pre>
+<p>Sembilan langkah, masing-masing hanya menyentuh satu bagian ekspresi. Menelusuri secara tertulis seperti ini adalah cara paling andal untuk memahami program yang ditulis orang lain <em>dan</em> menemukan kesalahan pada program yang kita tulis sendiri.</p>
+<h2 id="urutan-evaluasi"><a class="header" href="#urutan-evaluasi">Urutan Evaluasi</a></h2>
+<p>Pada penelusuran di atas, <code>sqrDif (1.0, 5.0)</code> dievaluasi lebih dahulu. Pilihan itu tidak wajib. Kita dapat mengevaluasi <code>sqrDif (3.0, 6.0)</code> lebih dahulu:</p>
+<pre><code>⇒ distance (1.0, 3.0, 5.0, 6.0)
+  → sqrt (sqrDif (1.0, 5.0) + sqrDif (3.0, 6.0))            { ekspansi distance }
+  → sqrt (sqrDif (1.0, 5.0) + (3.0 - 6.0) * (3.0 - 6.0))    { ekspansi sqrDif }
+  → sqrt (sqrDif (1.0, 5.0) + (-3.0) * (-3.0))              { reduksi - }
+  → sqrt (sqrDif (1.0, 5.0) + 9.0)                          { reduksi * }
+  → ...
+  → 5.0
+</code></pre>
+<p>Hasilnya sama. Ini bukan kebetulan, melainkan akibat langsung dari transparansi referensial yang dibicarakan pada Bab 2: sebuah ekspresi hanya bergantung pada nilai bagian-bagiannya, tidak pada kapan bagian-bagian itu dihitung. Karena itu:</p>
+<ul>
+<li>Urutan evaluasi tidak mengubah hasil.</li>
+<li>Bagian-bagian yang saling bebas secara teoritis dapat dievaluasi bersamaan.</li>
+<li>Sebuah ekspresi dapat dipahami dengan membaca ekspresi itu saja, tanpa perlu mengetahui apa yang terjadi sebelumnya di tempat lain dalam program.</li>
+</ul>
+<p>Ketiganya tidak berlaku pada program imperatif yang mengubah state, dan ketiganya adalah alasan utama mengapa paradigma ini layak dipelajari.</p>
+<p>Notasi ini karenanya <strong>tidak menetapkan</strong> urutan evaluasi, karena tidak perlu. Bahasa pemrograman nyata harus menetapkannya, dan pilihan yang diambil masing-masing bahasa mempunyai akibat yang perlu diketahui pada saat program benar-benar dijalankan. Bab 9 membahas pilihan-pilihan yang tersedia, dan Suplemen S10 membahas pilihan yang diambil bahasa acuan.</p>
+<h2 id="latihan"><a class="header" href="#latihan">Latihan</a></h2>
+<p><strong>Membaca.</strong> Tentukan definisi (nama, domain, range) setiap realisasi berikut, tuliskan spesifikasinya dalam bahasa Indonesia, dan sebutkan prasyaratnya bila ada. Kemudian usulkan nama yang sesuai konvensi penamaan.</p>
+<pre><code>p (a, b, c) : (a + b + c) div 3
+
+q (x)       : (x mod 2 = 0) and (x mod 3 = 0)
+
+r (a, b)    :
+    let
+        s : a + b
+    in
+        s * s - 4.0 * a * b
+
+t (n)       : abs (n) = n
+</code></pre>
+<p>Untuk <code>t</code>, jawablah juga: apakah spesifikasi Anda lebih pendek bila dituliskan sebagai “bernilai true bila …” ketimbang menyalin ulang ekspresinya? Spesifikasi yang baik menyatakan <strong>arti</strong>, bukan mengulang realisasi dengan kata-kata.</p>
+<p><strong>Menulis.</strong> Untuk setiap persoalan berikut, tuliskan keempat bagian secara lengkap. Nyatakan prasyarat bila ada. Pilih contoh aplikasi yang menyentuh setiap kemungkinan, tuliskan hasil yang Anda harapkan, lalu terjemahkan dan jalankan.</p>
+<ol>
+<li>Menentukan apakah tiga bilangan bulat positif dapat menjadi panjang sisi sebuah segitiga.</li>
+<li>Menghitung jumlah menit dari sebuah durasi yang dinyatakan dalam jam dan menit, misalnya 2 jam 30 menit menjadi 150.</li>
+<li>Kebalikan dari nomor 2: menghitung banyaknya jam penuh dari sejumlah menit.</li>
+<li>Menentukan apakah sebuah bilangan bulat merupakan kuadrat sempurna. Gunakan <code>sqrt</code>, dan pikirkan baik-baik prasyaratnya.</li>
+<li>Menghitung keliling sebuah segitiga dari koordinat ketiga titik sudutnya. Gunakan kembali <code>distance</code>.</li>
+</ol>
+<p><strong>Menelusuri.</strong> Tuliskan penelusuran lengkap <code>isLeapYear (1900)</code>, dengan menyebutkan pada setiap langkah apakah yang terjadi ekspansi atau reduksi. Kemudian jawab: pada langkah keberapa hasil akhirnya sudah dapat dipastikan, meskipun ekspresinya belum tersisa satu nilai?</p>
+<p><strong>Merancang.</strong> Fungsi <code>distance</code> ditulis dengan dua realisasi berbeda pada bab ini. Untuk persoalan <em>Menulis</em> nomor 5 di atas, mana yang Anda pilih sebagai dasar, dan mengapa? Tidak ada jawaban yang salah, yang dinilai adalah alasannya.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="02-notasi-fungsional.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="04-ekspresi-kondisional.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="02-notasi-fungsional.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="04-ekspresi-kondisional.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-09f2665d.js"></script>
+
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-609e4cb8.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>
