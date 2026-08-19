@@ -42,9 +42,9 @@ Untuk menyelaraskan dengan perkembangan paradigma pemrograman fungsional arus ut
 
 - **Reorganisasi Topik Pohon dan List of List:**
 
-  - **Versi 2014:** Tabel, Rekursi, List, Pohon, Lambda.
-
-  - **Versi 2026:** Pohon (Bab 10) dan List of List (Bab 11) ditempatkan sebagai **bab pengayaan/opsional** di akhir diktat untuk jembatan ke struktur data imperatif.
+  - **Versi 2014:** List of List adalah subbab (9.5) di dalam Bab List, bukan bab tersendiri; Pohon (10) dan Lambda (11) menutup diktat secara berurutan.
+  
+  - **Versi 2026:** List of List diangkat menjadi Bab 11 tersendiri (opsional), sejajar dengan Pohon (Bab 10, juga eksplisit opsional). Fungsi Orde Tinggi/Lambda dipindah lebih awal ke Bab 8, tidak lagi jadi penutup.
 
 ### 4. Pembaharuan Metodologis dan Pedagogis
 
