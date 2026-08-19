@@ -141,7 +141,7 @@ Capaian 4 sering luput dari perhatian dalam pengajaran: kemampuan membaca progra
 | 8 | **Fungsi sebagai Nilai** | ekspresi lambda, fungsi orde tinggi, `map`/`filter`/`fold`, komposisi, aplikasi parsial |
 | 9 | **Dari Notasi ke Program** | kemurnian fungsi, masukan/keluaran, strategi evaluasi, arah lanjutan |
 | 10 | **Pohon** | pohon n-aire dan biner, representasi prefix/infix/postfix, pohon ekspresi |
-| 11 | **List of List** — sarang teratur dan tak teratur; type alternatif rekursif; hubungannya dengan pohon |
+| 11 | **List of List** | sarang teratur dan tak teratur; type alternatif rekursif; hubungannya dengan pohon |
 
 Bab 6 dan 7 memikul bobot terbesar dan sebaiknya diberi porsi waktu paling banyak; analisis rekurens adalah landasan bagi seluruh bab sesudahnya. Bab 8 sengaja diletakkan **sesudah** Bab 7, bukan sebelumnya: fungsi orde tinggi baru terasa nilainya ketika pembaca sudah menuliskan sendiri sejumlah fungsi list secara rekursif dan dapat melihat pola yang berulang di antaranya.
 
