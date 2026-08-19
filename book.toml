@@ -3,6 +3,9 @@ title = "Diktat Pemrograman Fungsional"
 authors = ["Satrio Adi Rukmono"]
 language = "id"
 
+[build]
+build-dir = "docs"
+
 [output.html]
 mathjax-support = true
 
