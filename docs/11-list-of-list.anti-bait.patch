@@ -1,0 +1,138 @@
+--- a/11-list-of-list.md	2026-08-27 02:44:44.444890206 +0000
++++ b/11-list-of-list.md	2026-08-27 02:45:17.569627633 +0000
+@@ -1,14 +1,14 @@
+ # List of List
+ 
+-Bab ini berdiri di luar alur utama Diktat, sebagaimana Bab 10, tetapi dengan cara yang berbeda. Bab 10 memperkenalkan sebuah struktur baru. Bab ini tidak memperkenalkan apa pun. Seluruh isinya dapat diturunkan dari Bab 5, 6, 7, dan 10, dan justru itulah yang hendak diperlihatkan.
++Bab ini berdiri di luar alur utama Diktat, sebagaimana Bab 10, tetapi dengan cara yang berbeda: Bab 10 memperkenalkan sebuah struktur baru, sedangkan bab ini tidak memperkenalkan satu pun type, operasi, atau notasi yang belum ada. Seluruh isinya diturunkan dari Bab 5, 6, 7, dan 10, dan pekerjaan bab ini adalah memperlihatkan penurunan itu.
+ 
+-Bab ini juga bukan bab yang dirancang untuk diajarkan, melainkan untuk dikerjakan sendiri: sedikit yang dituliskan lengkap, banyak yang ditanyakan. Topik yang selama puluhan tahun diperlakukan sebagai pokok bahasan tersendiri, dengan seperangkat operasi dasarnya sendiri, ternyata tidak memerlukan satu pun operasi baru—itulah yang dikerjakan pembaca untuk membuktikannya sendiri.
++Bab ini juga dirancang untuk dikerjakan sendiri, bukan untuk diajarkan: sedikit yang dituliskan lengkap, banyak yang ditanyakan. Bahan terdahulu di lingkungan ITB, mengikuti literatur Lisp, memperlakukan topik ini sebagai pokok bahasan tersendiri dengan delapan operasi dasarnya sendiri. Pembaca bab ini mengerjakan seluruh topik tersebut tanpa satu pun operasi baru.
+ 
+ Bab ini mengandaikan Bab 10 sudah dibaca.
+ 
+ ## Dua Hal yang Bernama Sama
+ 
+-Istilah *list of list* dipakai untuk dua struktur yang berbeda, dan sebagian besar kesulitan yang melekat padanya berasal dari kedua struktur itu tidak dibedakan.
++Istilah *list of list* dipakai untuk dua struktur yang berbeda, dan keduanya menuntut penanganan yang berlainan.
+ 
+ **Sarang teratur.** Setiap elemen sebuah list adalah sebuah list, dan seluruhnya bertype sama:
+ 
+@@ -16,7 +16,7 @@
+ [[1, 2, 3], [4, 5], [], [6]]
+ ```
+ 
+-Sebuah matriks, sebuah teks sebagai list kata dengan kata sebagai list karakter, sebuah tabel nilai per mahasiswa. Type-nya adalah `List of (List of Integer)`, dan bentuknya sepenuhnya diketahui sebelum nilainya diperiksa: dua lapis, tidak pernah satu, tidak pernah tiga.
++Sebuah matriks, sebuah teks sebagai list kata dengan kata sebagai list karakter, sebuah tabel nilai per mahasiswa. Type-nya adalah `List of (List of Integer)`, dan bentuknya sepenuhnya diketahui sebelum nilainya diperiksa: selalu dua lapis.
+ 
+ **Sarang tak teratur.** Sebuah elemen mungkin sebuah bilangan, mungkin pula sebuah list:
+ 
+@@ -26,7 +26,7 @@
+ 
+ Kedalamannya tidak seragam dan tidak terbatas. Bentuknya tidak diketahui dari type-nya, melainkan harus diperiksa pada setiap elemen.
+ 
+-Keduanya ditulis dengan lambang yang sama, yaitu kurung siku, dan di situlah letak kekeliruan yang paling sering terjadi. Bagian berikut memperlihatkan bahwa yang pertama sama sekali bukan persoalan baru, sehingga seluruh sisa bab ini menyangkut yang kedua.
++Keduanya ditulis dengan lambang yang sama, yaitu kurung siku, sehingga keduanya mudah tertukar. Sarang teratur bukan persoalan baru dan diselesaikan pada bagian berikut; seluruh sisa bab ini menyangkut sarang tak teratur.
+ 
+ ## Sarang Teratur: yang Bukan Persoalan Baru
+ 
+@@ -65,13 +65,11 @@
+ 
+ Letakkan realisasi ini berdampingan dengan `length` pada Bab 7. Bentuknya sama persis. Rekurensnya berjalan **satu arah**, yaitu sepanjang `tail`, dan `head (M)` diserahkan kepada `sumList` yang sudah ada. Sarangnya terlihat pada type, tidak pada rekurensnya.
+ 
+-Inilah yang berlaku umum bagi seluruh sarang teratur. Bila kedalamannya tetap dan diketahui, setiap lapis dikerjakan oleh fungsinya sendiri, dan setiap fungsi tersebut adalah fungsi list biasa sebagaimana Bab 7. Tiga lapis menuntut tiga fungsi, bukan mesin baru.
+-
+-Karena itu sarang teratur selesai di sini.
++Hal yang sama berlaku bagi seluruh sarang teratur. Bila kedalamannya tetap dan diketahui, setiap lapis dikerjakan oleh fungsinya sendiri, dan setiap fungsi tersebut adalah fungsi list biasa sebagaimana Bab 7. Tiga lapis menuntut tiga fungsi semacam itu.
+ 
+ ## Sarang Tak Teratur: Merancang Type-nya
+ 
+-Sekarang persoalan yang sesungguhnya. Sebuah elemen boleh berupa bilangan **atau** berupa list. Bab 5 sudah memberikan alat untuk menyatakan "salah satu dari", yaitu type alternatif, dan Bab 6 sudah memberikan izin bagi sebuah type untuk menyebut dirinya sendiri.
++Pada sarang tak teratur, sebuah elemen boleh berupa bilangan **atau** berupa list. Bab 5 sudah memberikan alat untuk menyatakan "salah satu dari", yaitu type alternatif, dan Bab 6 sudah memberikan izin bagi sebuah type untuk menyebut dirinya sendiri.
+ 
+ ```
+ TYPE ITEM
+@@ -106,7 +104,7 @@
+     { isNested (I) bernilai true bila I adalah sebuah list }
+ ```
+ 
+-Kotak di atas tidak memuat satu pun konstruktor list baru, tidak satu pun selektor list baru, tidak satu pun predikat list baru. `makeNil`, `makeCons`, `head`, `tail`, `isEmpty`, dan `isOneElement` dari Bab 7 berlaku seluruhnya dan tanpa perubahan, karena `List of Item` adalah sebuah list biasa yang `Element`-nya kebetulan bernama `Item`. Yang bertambah hanya satu type, beserta konstruktor, selektor, dan predikatnya sendiri, persis sebagaimana `Shape` pada Bab 5.
++Kotak di atas tidak memuat satu pun konstruktor, selektor, atau predikat list yang baru. `makeNil`, `makeCons`, `head`, `tail`, `isEmpty`, dan `isOneElement` dari Bab 7 berlaku seluruhnya dan tanpa perubahan, karena `List of Item` adalah sebuah list biasa yang `Element`-nya kebetulan bernama `Item`. Yang bertambah hanya satu type, beserta konstruktor, selektor, dan predikatnya sendiri, persis sebagaimana `Shape` pada Bab 5.
+ 
+ > **Peringatan bagi pembaca bahan lama.** Diktat terdahulu di lingkungan ITB memperlakukan *list of list* sebagai type tersendiri dengan seperangkat operasi dasarnya sendiri: `KonsLo`, `KonsL•`, `FirstList`, `TailList`, `LastList`, `HeadList`, di samping `IsAtom` dan `IsList`. Delapan nama baru untuk pekerjaan yang, pada diktat ini, dikerjakan oleh dua konstruktor dan dua selektor yang sudah ada sejak Bab 7. Perangkat rangkap tersebut bukan kesalahan penulisnya, melainkan akibat dari tidak tersedianya cara untuk menyatakan bahwa sebuah elemen boleh berupa salah satu dari dua hal. Setelah type alternatif tersedia, perangkat rangkap itu menjadi tidak diperlukan. Bila Anda membaca materi arsip, sepadankan `KonsLo` dengan `makeCons`, `FirstList` dengan `head`, dan `TailList` dengan `tail`.
+ 
+@@ -124,7 +122,7 @@
+ 
+ Penulisan singkat ini memakai kurung siku yang sama dengan penulisan singkat list pada Bab 7, sehingga `[1, 2]` kini mungkin berarti dua hal yang berlainan: sebuah `List of Integer`, atau sebuah `Item` bertype `Nested`. Keduanya tidak dapat dibedakan dari bentuk tertulisnya.
+ 
+-Kerancuan itu bukan kecelakaan penulisan, melainkan tepat kerancuan yang membuat topik ini sukar selama ini. Sepanjang bab ini, setiap kali sebuah struktur sedang dibongkar, tulislah konstruktornya.
++Kerancuan itu melekat pada penulisan singkatnya, bukan pada type-nya. Sepanjang bab ini, setiap kali sebuah struktur sedang dibongkar, tulislah konstruktornya.
+ 
+ ### Konvensi penamaan bab ini
+ 
+@@ -178,8 +176,6 @@
+       0
+ ```
+ 
+-Dua hal pantas dicatat pada realisasi di atas.
+-
+ **Setiap fungsi mengikuti satu type, dan hanya satu.** `sumItem` menganalisis kasus atas kedua alternatif `Item`; `sumItemList` menganalisis kasus atas kedua alternatif `List`. Tidak ada satu pun kondisi yang mencampur keduanya. Kelengkapan dan disjointness kedua analisis kasus itu dijamin oleh type-nya masing-masing, sebagaimana Bab 5 menyatakannya.
+ 
+ **Konvergensinya terjamin dari dua arah.** `items (I)` menghasilkan sebuah list, dan `sumItemList` selalu memanggil dirinya atas `tail (L)` yang lebih pendek, atau memanggil `sumItem` atas `head (L)` yang berada satu lapis lebih dalam. Setiap langkah mengurangi salah satu dari dua ukuran: panjang list yang tersisa, atau kedalaman sarang yang tersisa. Keduanya berhingga.
+@@ -221,7 +217,7 @@
+                                                              + sumAll (tail (L))
+ ```
+ 
+-Bentuk inilah yang dipakai bahan terdahulu, dan bentuk inilah yang dipakai hampir seluruh literatur Lisp. Ia lebih pendek: satu fungsi, bukan dua.
++Bentuk inilah yang dipakai bahan terdahulu dan literatur Lisp. Ia lebih pendek: satu fungsi, bukan dua.
+ 
+ Kasus ketiga memuat **dua** aplikasi rekursif dalam satu ekspresi, dan keduanya mengerjakan hal yang berlainan. `sumAll (items (head (L)))` bergerak **turun**, masuk ke dalam sarang. `sumAll (tail (L))` bergerak **maju**, sepanjang list yang sama. Tidak ada fungsi mana pun pada Bab 7 yang memiliki sifat ini; di sana rekursi selalu bergerak maju saja.
+ 
+@@ -238,7 +234,7 @@
+ 
+ Baris keempat menunjukkan: pada bentuk tunggal, `isAtom (head (L))` tidak terdefinisi bila `L` kosong, sehingga `and` tidak cukup dan `and then` menjadi wajib, persis sebagaimana Bab 4 menyatakannya. Pada bentuk pasangan, keadaan tersebut tidak pernah muncul, karena `head (L)` hanya disebut sesudah kekosongan `L` disingkirkan oleh fungsi yang lain.
+ 
+-Diktat ini memilih bentuk pasangan. Alasannya bukan bahwa bentuk tunggal keliru — keduanya benar dan menghasilkan nilai yang sama — melainkan bahwa bentuk pasangan **mengikuti bentuk type-nya**. Dua type yang saling menyebut dilayani oleh dua fungsi yang saling memanggil. Aturan yang sama dipakai sejak Bab 5, dan tidak ada alasan untuk melepasnya di sini.
++Diktat ini memilih bentuk pasangan. Alasannya bukan bahwa bentuk tunggal keliru — keduanya benar dan menghasilkan nilai yang sama — melainkan bahwa bentuk pasangan **mengikuti bentuk type-nya**. Dua type yang saling menyebut dilayani oleh dua fungsi yang saling memanggil. Aturan yang sama dipakai sejak Bab 5.
+ 
+ ## Pertemuan dengan Bab 10
+ 
+@@ -272,9 +268,9 @@
+ 
+ 2. **`depth`** — menghasilkan kedalaman sarang sebuah `Item`. Sebelum menulis apa pun, tetapkanlah lebih dahulu: berapa kedalaman `makeAtom (3)`, dan berapa kedalaman `[]`? Kedua jawaban itu adalah basis Anda, dan seluruh sisa fungsi bergantung padanya. Bandingkan kesulitan ini dengan `height` pada Bab 10.
+ 
+-3. **`flatten`** — menghasilkan sebuah `List of Integer` yang berisi seluruh bilangan di dalam sebuah `Item` dengan urutan kiri ke kanan, tanpa sarang. Perhatikan bahwa hasilnya bertype **lain** dari masukannya. Anda memerlukan `append` dari latihan Bab 7. Sesudah selesai, jawablah: mengapa `makeCons` saja tidak cukup di sini, padahal pada seluruh fungsi Bab 7 yang menghasilkan list ia selalu cukup?
++3. **`flatten`** — menghasilkan sebuah `List of Integer` yang berisi seluruh bilangan di dalam sebuah `Item` dengan urutan kiri ke kanan, tanpa sarang. Hasilnya bertype **lain** dari masukannya. Anda memerlukan `append` dari latihan Bab 7. Sesudah selesai, jawablah: mengapa `makeCons` saja tidak cukup di sini, padahal pada seluruh fungsi Bab 7 yang menghasilkan list ia selalu cukup?
+ 
+-4. **`maxItem`** — menghasilkan bilangan terbesar di dalam sebuah `Item`. Fungsi ini **tidak terdefinisi** bagi sebagian masukan. Sebutkan bagi masukan yang mana, nyatakan prasyaratnya dengan cermat, dan bandingkan dengan cara `maxList` pada Bab 7 mengeluarkan list kosong dari domainnya. Perhatikan bahwa prasyarat di sini lebih sukar dinyatakan daripada di sana; jelaskan mengapa.
++4. **`maxItem`** — menghasilkan bilangan terbesar di dalam sebuah `Item`. Fungsi ini **tidak terdefinisi** bagi sebagian masukan. Sebutkan bagi masukan yang mana, nyatakan prasyaratnya dengan cermat, dan bandingkan dengan cara `maxList` pada Bab 7 mengeluarkan list kosong dari domainnya. Prasyarat di sini lebih sukar dinyatakan daripada di sana; jelaskan mengapa.
+ 
+ 5. **`isEqualItem`** — memeriksa apakah dua buah `Item` sama, yaitu berbentuk sarang sama dan berisi bilangan sama pada tempat yang sama. Analisis kasusnya menyangkut **dua** parameter sekaligus. Berapa kasus yang harus dijawab, dan berapa di antaranya menghasilkan `false` tanpa rekursi?
+ 
+@@ -284,7 +280,7 @@
+ 
+ Struktur pada bab ini adalah *S-expression*, dan berasal dari Lisp (1958), bahasa fungsional tertua yang masih dipakai. Di sana ia bukan sebuah topik lanjut, melainkan satu-satunya struktur data yang ada, dan sekaligus bentuk penulisan program itu sendiri: sebuah program Lisp adalah sebuah S-expression, sehingga program dapat diperlakukan sebagai data tanpa perkakas tambahan apa pun. Gagasan tersebut dibahas panjang lebar dalam [6].
+ 
+-Lisp tidak mempunyai sistem type, sehingga `IsAtom` dan `IsList` di sana adalah pemeriksaan yang dilakukan pada saat eksekusi terhadap nilai yang bentuknya tidak dijamin oleh apa pun. Bahan terdahulu mewarisi keadaan tersebut beserta perangkat operasi rangkapnya. Bab ini memperlihatkan bahwa begitu sarang tak teratur dinyatakan sebagai type alternatif yang rekursif, perangkat rangkap itu lenyap, dan yang tersisa adalah dua alternatif dengan konstruktor dan selektornya sendiri, tidak berbeda dari `Shape` pada Bab 5.
++Lisp tidak mempunyai sistem type, sehingga `IsAtom` dan `IsList` di sana adalah pemeriksaan yang dilakukan pada saat eksekusi terhadap nilai yang bentuknya tidak dijamin oleh apa pun. Bahan terdahulu mewarisi keadaan tersebut beserta perangkat operasi rangkapnya. Begitu sarang tak teratur dinyatakan sebagai type alternatif yang rekursif, perangkat rangkap itu tidak lagi diperlukan, dan yang tersisa adalah dua alternatif dengan konstruktor dan selektornya sendiri, tidak berbeda dari `Shape` pada Bab 5.
+ 
+ Sejumlah fungsi pada bagian sebelumnya, khususnya `removeValue`, dikenal luas dari [9], yang membahas struktur ini secara panjang lebar melalui tanya jawab dan tanpa satu pun definisi type.
+ 
+@@ -319,8 +315,6 @@
+ sumItemList (i : is) = sumItem i + sumItemList is
+ ```
+ 
+-Tiga hal yang layak dicatat.
+-
+ **Rekursi tidak langsung pada type-nya lenyap.** Notasi menuntut `List of Item` disebut sebagai type tersendiri; Haskell menuliskannya `[Item]`, dan karena `[]` sudah tersedia sebagai type bawaan, hanya `Item` yang perlu didefinisikan. Yang pada notasi tampak sebagai dua type yang saling menyebut, di sini tampak sebagai satu type saja.
+ 
+ **Pasangan fungsinya dapat diciutkan menjadi satu, dengan perkakas Bab 8:**
+@@ -331,7 +325,7 @@
+ sumItem (Nested l) = sum (map sumItem l)
+ ```
+ 
+-`map sumItem l` mengerjakan seluruh isi `sumItemList`, dan `sum` menjumlahkannya. Pasangan fungsi yang dituntut oleh dua type yang saling menyebut ternyata adalah pola berulang, dan pola berulang itulah yang diangkat oleh fungsi orde tinggi. Pengamatan yang sama berlaku bagi `countAtoms` dan `flatten`, yang masing-masing menjadi satu baris dengan `sum . map` dan `concatMap`.
++`map sumItem l` mengerjakan seluruh isi `sumItemList`, dan `sum` menjumlahkannya. Pasangan fungsi yang dituntut oleh dua type yang saling menyebut adalah sebuah pola berulang, dan fungsi orde tinggi Bab 8 mengangkat pola semacam itu. Hal yang sama berlaku bagi `countAtoms` dan `flatten`, yang masing-masing menjadi satu baris dengan `sum . map` dan `concatMap`.
+ 
+ **Yang tetap tidak dapat dinyatakan** adalah prasyarat `maxItem`, yaitu bahwa sebuah `Item` sekurang-kurangnya memuat satu bilangan. Prasyarat tersebut hidup pada spesifikasi dan tidak diperiksa oleh apa pun, persis sebagaimana invarian pohon terurut pada Bab 10.
+ 
