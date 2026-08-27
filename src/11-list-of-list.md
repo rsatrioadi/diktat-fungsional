@@ -110,7 +110,7 @@ Kotak di atas tidak memuat satu pun konstruktor, selektor, atau predikat list ya
 
 ### Penulisan singkat, dan bahayanya
 
-Sebagaimana Bab 7, menuliskan setiap nilai dengan konstruktornya melelahkan:
+Sebagaimana Bab 7, menuliskan setiap nilai dengan konstruktornya itu melelahkan. Maka digunakan penulisan singkat:
 
 ```
 3                    { setara dengan makeAtom (3) }
@@ -234,7 +234,7 @@ Perbandingan kedua bentuk:
 
 Baris keempat menunjukkan: pada bentuk tunggal, `isAtom (head (L))` tidak terdefinisi bila `L` kosong, sehingga `and` tidak cukup dan `and then` menjadi wajib, persis sebagaimana Bab 4 menyatakannya. Pada bentuk pasangan, keadaan tersebut tidak pernah muncul, karena `head (L)` hanya disebut sesudah kekosongan `L` disingkirkan oleh fungsi yang lain.
 
-Diktat ini memilih bentuk pasangan. Alasannya bukan bahwa bentuk tunggal keliru — keduanya benar dan menghasilkan nilai yang sama — melainkan bahwa bentuk pasangan **mengikuti bentuk type-nya**. Dua type yang saling menyebut dilayani oleh dua fungsi yang saling memanggil. Aturan yang sama dipakai sejak Bab 5.
+Diktat ini memilih bentuk pasangan. Alasannya bukan bahwa bentuk tunggal keliru—keduanya benar dan menghasilkan nilai yang sama—melainkan bahwa bentuk pasangan **mengikuti bentuk type-nya**. Dua type yang saling menyebut dilayani oleh dua fungsi yang saling memanggil. Aturan yang sama dipakai sejak Bab 5.
 
 ## Pertemuan dengan Bab 10
 
@@ -264,17 +264,17 @@ Seluruh fungsi berikut dituliskan lengkap sebagai contoh pada bahan terdahulu da
 
 Untuk setiap nomor, tuliskan keempat bagian secara lengkap. Pakailah bentuk pasangan. Sebutkan basis kedua fungsinya, dan sertakan contoh aplikasi yang mencakup sekurang-kurangnya: sebuah atom tunggal, `[]`, sebuah sarang datar, dan sebuah sarang berlapis tiga.
 
-1. **`countAtoms`** — mencacah banyaknya bilangan di dalam sebuah `Item`, betapa pun dalam sarangnya. Sesudah selesai, bandingkan realisasi Anda dengan `sumItem` pada bab ini. Berapa lambang yang berbeda di antara keduanya? Pertanyaan yang sama dibangkitkan oleh `sumList` dan `productList` pada Bab 7, dan jawabannya menunggu pada Bab 8.
+1. **`countAtoms`**: mencacah banyaknya bilangan di dalam sebuah `Item`, betapa pun dalam sarangnya. Sesudah selesai, bandingkan realisasi Anda dengan `sumItem` pada bab ini. Berapa lambang yang berbeda di antara keduanya? Pertanyaan yang sama dibangkitkan oleh `sumList` dan `productList` pada Bab 7, dan jawabannya menunggu pada Bab 8.
 
-2. **`depth`** — menghasilkan kedalaman sarang sebuah `Item`. Sebelum menulis apa pun, tetapkanlah lebih dahulu: berapa kedalaman `makeAtom (3)`, dan berapa kedalaman `[]`? Kedua jawaban itu adalah basis Anda, dan seluruh sisa fungsi bergantung padanya. Bandingkan kesulitan ini dengan `height` pada Bab 10.
+2. **`depth`**: menghasilkan kedalaman sarang sebuah `Item`. Sebelum menulis apa pun, tetapkanlah lebih dahulu: berapa kedalaman `makeAtom (3)`, dan berapa kedalaman `[]`? Kedua jawaban itu adalah basis Anda, dan seluruh sisa fungsi bergantung padanya. Bandingkan kesulitan ini dengan `height` pada Bab 10.
 
-3. **`flatten`** — menghasilkan sebuah `List of Integer` yang berisi seluruh bilangan di dalam sebuah `Item` dengan urutan kiri ke kanan, tanpa sarang. Hasilnya bertype **lain** dari masukannya. Anda memerlukan `append` dari latihan Bab 7. Sesudah selesai, jawablah: mengapa `makeCons` saja tidak cukup di sini, padahal pada seluruh fungsi Bab 7 yang menghasilkan list ia selalu cukup?
+3. **`flatten`**: menghasilkan sebuah `List of Integer` yang berisi seluruh bilangan di dalam sebuah `Item` dengan urutan kiri ke kanan, tanpa sarang. Hasilnya bertype **lain** dari masukannya. Anda memerlukan `append` dari latihan Bab 7. Sesudah selesai, jawablah: mengapa `makeCons` saja tidak cukup di sini, padahal pada seluruh fungsi Bab 7 yang menghasilkan list ia selalu cukup?
 
-4. **`maxItem`** — menghasilkan bilangan terbesar di dalam sebuah `Item`. Fungsi ini **tidak terdefinisi** bagi sebagian masukan. Sebutkan bagi masukan yang mana, nyatakan prasyaratnya dengan cermat, dan bandingkan dengan cara `maxList` pada Bab 7 mengeluarkan list kosong dari domainnya. Prasyarat di sini lebih sukar dinyatakan daripada di sana; jelaskan mengapa.
+4. **`maxItem`**: menghasilkan bilangan terbesar di dalam sebuah `Item`. Fungsi ini **tidak terdefinisi** bagi sebagian masukan. Sebutkan bagi masukan yang mana, nyatakan prasyaratnya dengan cermat, dan bandingkan dengan cara `maxList` pada Bab 7 mengeluarkan list kosong dari domainnya. Prasyarat di sini lebih sukar dinyatakan daripada di sana; jelaskan mengapa.
 
-5. **`isEqualItem`** — memeriksa apakah dua buah `Item` sama, yaitu berbentuk sarang sama dan berisi bilangan sama pada tempat yang sama. Analisis kasusnya menyangkut **dua** parameter sekaligus. Berapa kasus yang harus dijawab, dan berapa di antaranya menghasilkan `false` tanpa rekursi?
+5. **`isEqualItem`**: memeriksa apakah dua buah `Item` sama, yaitu berbentuk sarang sama dan berisi bilangan sama pada tempat yang sama. Analisis kasusnya menyangkut **dua** parameter sekaligus. Berapa kasus yang harus dijawab, dan berapa di antaranya menghasilkan `false` tanpa rekursi?
 
-6. **`removeValue`** — menghasilkan sebuah `Item` yang sama dengan masukannya, kecuali seluruh kemunculan sebuah bilangan tertentu dihapus, pada segala kedalaman. Struktur sarangnya dipertahankan, sehingga `removeValue (1, [[1], 2])` menghasilkan `[[], 2]` dan bukan `[2]`. Fungsi ini dikenal luas dengan nama `rember*` [9]. Sesudah selesai, jawablah: apa yang harus diubah agar sarang yang menjadi kosong ikut terhapus, dan mengapa perubahan tersebut lebih sukar daripada tampaknya?
+6. **`removeValue`**: menghasilkan sebuah `Item` yang sama dengan masukannya, kecuali seluruh kemunculan sebuah bilangan tertentu dihapus, pada segala kedalaman. Struktur sarangnya dipertahankan, sehingga `removeValue (1, [[1], 2])` menghasilkan `[[], 2]` dan bukan `[2]`. Fungsi ini dikenal luas dengan nama `rember*` [9]. Sesudah selesai, jawablah: apa yang harus diubah agar sarang yang menjadi kosong ikut terhapus, dan mengapa perubahan tersebut lebih sukar daripada tampaknya?
 
 ## Catatan Sejarah
 
@@ -406,4 +406,4 @@ APLIKASI
 
 1. Bab ini membatasi atom pada `Integer`. Bahan terdahulu mengizinkan pula atom simbolik, sehingga `[a, [b, c]]` adalah nilai yang sah. Rancanglah type yang mengizinkan keduanya, lalu tuliskan definisi dan spesifikasi (tanpa realisasi) `sumItem` atasnya. Apa yang harus dijawab oleh spesifikasi Anda yang sebelumnya tidak perlu dijawab? Kemudian pertimbangkan: keluwesan yang diperoleh sepadan dengan apa yang harus dibayar?
 2. Bagian *Pertemuan dengan Bab 10* menyatakan bahwa `Item` adalah `Tree` yang nilainya seluruhnya di daun. Tuliskan sepasang fungsi penerjemah, `itemToTree` dan `treeToItem`, sekurang-kurangnya sebagai definisi dan spesifikasi. Salah satunya tidak dapat ditulis tanpa prasyarat; sebutkan yang mana dan apa prasyaratnya. Apa yang diberitahukan ketidaksimetrisan tersebut tentang hubungan kedua type itu?
-3. Seluruh bab ini dapat dihapus tanpa satu pun bab lain berubah. Argumenkan kedua pilihan: mempertahankannya sebagai bab, atau menciutkannya menjadi satu soal pada Bab 7. Apa yang hilang pada masing-masing? Dalam menjawab, pertimbangkan bahwa bahan terdahulu memperlakukannya sebagai pokok bahasan penuh dengan delapan operasi dasar tersendiri.
+3. Seluruh bab ini dapat dihapus tanpa satu pun bab lain berubah. Argumenkan kedua pilihan: mempertahankannya sebagai bab, atau menciutkannya menjadi satu soal latihan pada Bab 7. Apa yang hilang pada masing-masing? Dalam menjawab, pertimbangkan bahwa bahan terdahulu memperlakukannya sebagai pokok bahasan penuh dengan delapan operasi dasar tersendiri.

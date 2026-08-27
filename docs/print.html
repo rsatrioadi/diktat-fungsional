@@ -38,7 +38,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-b1021b2a.js";
+            window.path_to_searchindex_js = "searchindex-a0d4e031.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-2ab1aa36.js"></script>
@@ -4066,7 +4066,7 @@ DEFINISI DAN SPESIFIKASI PREDIKAT
 <p><strong>Peringatan bagi pembaca bahan lama.</strong> Diktat terdahulu di lingkungan ITB memperlakukan <em>list of list</em> sebagai type tersendiri dengan seperangkat operasi dasarnya sendiri: <code>KonsLo</code>, <code>KonsL⏺</code>, <code>FirstList</code>, <code>TailList</code>, <code>LastList</code>, <code>HeadList</code>, di samping <code>IsAtom</code> dan <code>IsList</code>. Delapan nama baru untuk pekerjaan yang, pada diktat ini, dikerjakan oleh dua konstruktor dan dua selektor yang sudah ada sejak Bab 7. Perangkat rangkap tersebut bukan kesalahan penulisnya, melainkan akibat dari tidak tersedianya cara untuk menyatakan bahwa sebuah elemen boleh berupa salah satu dari dua hal. Setelah type alternatif tersedia, perangkat rangkap itu menjadi tidak diperlukan. Bila Anda membaca materi arsip, sepadankan <code>KonsLo</code> dengan <code>makeCons</code>, <code>FirstList</code> dengan <code>head</code>, dan <code>TailList</code> dengan <code>tail</code>.</p>
 </blockquote>
 <h3 id="penulisan-singkat-dan-bahayanya"><a class="header" href="#penulisan-singkat-dan-bahayanya">Penulisan singkat, dan bahayanya</a></h3>
-<p>Sebagaimana Bab 7, menuliskan setiap nilai dengan konstruktornya melelahkan:</p>
+<p>Sebagaimana Bab 7, menuliskan setiap nilai dengan konstruktornya itu melelahkan. Maka digunakan penulisan singkat:</p>
 <pre><code>3                    { setara dengan makeAtom (3) }
 []                   { setara dengan makeNested (makeNil) }
 [1, 2]               { setara dengan makeNested (makeCons (makeAtom (1),
@@ -4165,7 +4165,7 @@ DEFINISI DAN SPESIFIKASI PREDIKAT
 </table>
 </div>
 <p>Baris keempat menunjukkan: pada bentuk tunggal, <code>isAtom (head (L))</code> tidak terdefinisi bila <code>L</code> kosong, sehingga <code>and</code> tidak cukup dan <code>and then</code> menjadi wajib, persis sebagaimana Bab 4 menyatakannya. Pada bentuk pasangan, keadaan tersebut tidak pernah muncul, karena <code>head (L)</code> hanya disebut sesudah kekosongan <code>L</code> disingkirkan oleh fungsi yang lain.</p>
-<p>Diktat ini memilih bentuk pasangan. Alasannya bukan bahwa bentuk tunggal keliru — keduanya benar dan menghasilkan nilai yang sama — melainkan bahwa bentuk pasangan <strong>mengikuti bentuk type-nya</strong>. Dua type yang saling menyebut dilayani oleh dua fungsi yang saling memanggil. Aturan yang sama dipakai sejak Bab 5.</p>
+<p>Diktat ini memilih bentuk pasangan. Alasannya bukan bahwa bentuk tunggal keliru—keduanya benar dan menghasilkan nilai yang sama—melainkan bahwa bentuk pasangan <strong>mengikuti bentuk type-nya</strong>. Dua type yang saling menyebut dilayani oleh dua fungsi yang saling memanggil. Aturan yang sama dipakai sejak Bab 5.</p>
 <h2 id="pertemuan-dengan-bab-10"><a class="header" href="#pertemuan-dengan-bab-10">Pertemuan dengan Bab 10</a></h2>
 <p>Letakkan kedua definisi type berdampingan:</p>
 <pre><code>type Tree : Node ⟨info : Element, children : List of Tree⟩
@@ -4186,22 +4186,22 @@ type Item : Atom   ⟨value : Integer⟩
 <p>Untuk setiap nomor, tuliskan keempat bagian secara lengkap. Pakailah bentuk pasangan. Sebutkan basis kedua fungsinya, dan sertakan contoh aplikasi yang mencakup sekurang-kurangnya: sebuah atom tunggal, <code>[]</code>, sebuah sarang datar, dan sebuah sarang berlapis tiga.</p>
 <ol>
 <li>
-<p><strong><code>countAtoms</code></strong> — mencacah banyaknya bilangan di dalam sebuah <code>Item</code>, betapa pun dalam sarangnya. Sesudah selesai, bandingkan realisasi Anda dengan <code>sumItem</code> pada bab ini. Berapa lambang yang berbeda di antara keduanya? Pertanyaan yang sama dibangkitkan oleh <code>sumList</code> dan <code>productList</code> pada Bab 7, dan jawabannya menunggu pada Bab 8.</p>
+<p><strong><code>countAtoms</code></strong>: mencacah banyaknya bilangan di dalam sebuah <code>Item</code>, betapa pun dalam sarangnya. Sesudah selesai, bandingkan realisasi Anda dengan <code>sumItem</code> pada bab ini. Berapa lambang yang berbeda di antara keduanya? Pertanyaan yang sama dibangkitkan oleh <code>sumList</code> dan <code>productList</code> pada Bab 7, dan jawabannya menunggu pada Bab 8.</p>
 </li>
 <li>
-<p><strong><code>depth</code></strong> — menghasilkan kedalaman sarang sebuah <code>Item</code>. Sebelum menulis apa pun, tetapkanlah lebih dahulu: berapa kedalaman <code>makeAtom (3)</code>, dan berapa kedalaman <code>[]</code>? Kedua jawaban itu adalah basis Anda, dan seluruh sisa fungsi bergantung padanya. Bandingkan kesulitan ini dengan <code>height</code> pada Bab 10.</p>
+<p><strong><code>depth</code></strong>: menghasilkan kedalaman sarang sebuah <code>Item</code>. Sebelum menulis apa pun, tetapkanlah lebih dahulu: berapa kedalaman <code>makeAtom (3)</code>, dan berapa kedalaman <code>[]</code>? Kedua jawaban itu adalah basis Anda, dan seluruh sisa fungsi bergantung padanya. Bandingkan kesulitan ini dengan <code>height</code> pada Bab 10.</p>
 </li>
 <li>
-<p><strong><code>flatten</code></strong> — menghasilkan sebuah <code>List of Integer</code> yang berisi seluruh bilangan di dalam sebuah <code>Item</code> dengan urutan kiri ke kanan, tanpa sarang. Hasilnya bertype <strong>lain</strong> dari masukannya. Anda memerlukan <code>append</code> dari latihan Bab 7. Sesudah selesai, jawablah: mengapa <code>makeCons</code> saja tidak cukup di sini, padahal pada seluruh fungsi Bab 7 yang menghasilkan list ia selalu cukup?</p>
+<p><strong><code>flatten</code></strong>: menghasilkan sebuah <code>List of Integer</code> yang berisi seluruh bilangan di dalam sebuah <code>Item</code> dengan urutan kiri ke kanan, tanpa sarang. Hasilnya bertype <strong>lain</strong> dari masukannya. Anda memerlukan <code>append</code> dari latihan Bab 7. Sesudah selesai, jawablah: mengapa <code>makeCons</code> saja tidak cukup di sini, padahal pada seluruh fungsi Bab 7 yang menghasilkan list ia selalu cukup?</p>
 </li>
 <li>
-<p><strong><code>maxItem</code></strong> — menghasilkan bilangan terbesar di dalam sebuah <code>Item</code>. Fungsi ini <strong>tidak terdefinisi</strong> bagi sebagian masukan. Sebutkan bagi masukan yang mana, nyatakan prasyaratnya dengan cermat, dan bandingkan dengan cara <code>maxList</code> pada Bab 7 mengeluarkan list kosong dari domainnya. Prasyarat di sini lebih sukar dinyatakan daripada di sana; jelaskan mengapa.</p>
+<p><strong><code>maxItem</code></strong>: menghasilkan bilangan terbesar di dalam sebuah <code>Item</code>. Fungsi ini <strong>tidak terdefinisi</strong> bagi sebagian masukan. Sebutkan bagi masukan yang mana, nyatakan prasyaratnya dengan cermat, dan bandingkan dengan cara <code>maxList</code> pada Bab 7 mengeluarkan list kosong dari domainnya. Prasyarat di sini lebih sukar dinyatakan daripada di sana; jelaskan mengapa.</p>
 </li>
 <li>
-<p><strong><code>isEqualItem</code></strong> — memeriksa apakah dua buah <code>Item</code> sama, yaitu berbentuk sarang sama dan berisi bilangan sama pada tempat yang sama. Analisis kasusnya menyangkut <strong>dua</strong> parameter sekaligus. Berapa kasus yang harus dijawab, dan berapa di antaranya menghasilkan <code>false</code> tanpa rekursi?</p>
+<p><strong><code>isEqualItem</code></strong>: memeriksa apakah dua buah <code>Item</code> sama, yaitu berbentuk sarang sama dan berisi bilangan sama pada tempat yang sama. Analisis kasusnya menyangkut <strong>dua</strong> parameter sekaligus. Berapa kasus yang harus dijawab, dan berapa di antaranya menghasilkan <code>false</code> tanpa rekursi?</p>
 </li>
 <li>
-<p><strong><code>removeValue</code></strong> — menghasilkan sebuah <code>Item</code> yang sama dengan masukannya, kecuali seluruh kemunculan sebuah bilangan tertentu dihapus, pada segala kedalaman. Struktur sarangnya dipertahankan, sehingga <code>removeValue (1, [[1], 2])</code> menghasilkan <code>[[], 2]</code> dan bukan <code>[2]</code>. Fungsi ini dikenal luas dengan nama <code>rember*</code> [9]. Sesudah selesai, jawablah: apa yang harus diubah agar sarang yang menjadi kosong ikut terhapus, dan mengapa perubahan tersebut lebih sukar daripada tampaknya?</p>
+<p><strong><code>removeValue</code></strong>: menghasilkan sebuah <code>Item</code> yang sama dengan masukannya, kecuali seluruh kemunculan sebuah bilangan tertentu dihapus, pada segala kedalaman. Struktur sarangnya dipertahankan, sehingga <code>removeValue (1, [[1], 2])</code> menghasilkan <code>[[], 2]</code> dan bukan <code>[2]</code>. Fungsi ini dikenal luas dengan nama <code>rember*</code> [9]. Sesudah selesai, jawablah: apa yang harus diubah agar sarang yang menjadi kosong ikut terhapus, dan mengapa perubahan tersebut lebih sukar daripada tampaknya?</p>
 </li>
 </ol>
 <h2 id="catatan-sejarah"><a class="header" href="#catatan-sejarah">Catatan Sejarah</a></h2>
@@ -4322,7 +4322,7 @@ qList (L) :
 <ol>
 <li>Bab ini membatasi atom pada <code>Integer</code>. Bahan terdahulu mengizinkan pula atom simbolik, sehingga <code>[a, [b, c]]</code> adalah nilai yang sah. Rancanglah type yang mengizinkan keduanya, lalu tuliskan definisi dan spesifikasi (tanpa realisasi) <code>sumItem</code> atasnya. Apa yang harus dijawab oleh spesifikasi Anda yang sebelumnya tidak perlu dijawab? Kemudian pertimbangkan: keluwesan yang diperoleh sepadan dengan apa yang harus dibayar?</li>
 <li>Bagian <em>Pertemuan dengan Bab 10</em> menyatakan bahwa <code>Item</code> adalah <code>Tree</code> yang nilainya seluruhnya di daun. Tuliskan sepasang fungsi penerjemah, <code>itemToTree</code> dan <code>treeToItem</code>, sekurang-kurangnya sebagai definisi dan spesifikasi. Salah satunya tidak dapat ditulis tanpa prasyarat; sebutkan yang mana dan apa prasyaratnya. Apa yang diberitahukan ketidaksimetrisan tersebut tentang hubungan kedua type itu?</li>
-<li>Seluruh bab ini dapat dihapus tanpa satu pun bab lain berubah. Argumenkan kedua pilihan: mempertahankannya sebagai bab, atau menciutkannya menjadi satu soal pada Bab 7. Apa yang hilang pada masing-masing? Dalam menjawab, pertimbangkan bahwa bahan terdahulu memperlakukannya sebagai pokok bahasan penuh dengan delapan operasi dasar tersendiri.</li>
+<li>Seluruh bab ini dapat dihapus tanpa satu pun bab lain berubah. Argumenkan kedua pilihan: mempertahankannya sebagai bab, atau menciutkannya menjadi satu soal latihan pada Bab 7. Apa yang hilang pada masing-masing? Dalam menjawab, pertimbangkan bahwa bahan terdahulu memperlakukannya sebagai pokok bahasan penuh dengan delapan operasi dasar tersendiri.</li>
 </ol>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="daftar-pustaka"><a class="header" href="#daftar-pustaka">Daftar Pustaka</a></h1>
