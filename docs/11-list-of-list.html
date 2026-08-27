@@ -37,7 +37,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-c8e86df3.js";
+            window.path_to_searchindex_js = "searchindex-b1021b2a.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-2ab1aa36.js"></script>
@@ -251,7 +251,7 @@ DEFINISI DAN SPESIFIKASI PREDIKAT
 </code></pre>
 <p>Kotak di atas tidak memuat satu pun konstruktor, selektor, atau predikat list yang baru. <code>makeNil</code>, <code>makeCons</code>, <code>head</code>, <code>tail</code>, <code>isEmpty</code>, dan <code>isOneElement</code> dari Bab 7 berlaku seluruhnya dan tanpa perubahan, karena <code>List of Item</code> adalah sebuah list biasa yang <code>Element</code>-nya kebetulan bernama <code>Item</code>. Yang bertambah hanya satu type, beserta konstruktor, selektor, dan predikatnya sendiri, persis sebagaimana <code>Shape</code> pada Bab 5.</p>
 <blockquote>
-<p><strong>Peringatan bagi pembaca bahan lama.</strong> Diktat terdahulu di lingkungan ITB memperlakukan <em>list of list</em> sebagai type tersendiri dengan seperangkat operasi dasarnya sendiri: <code>KonsLo</code>, <code>KonsL•</code>, <code>FirstList</code>, <code>TailList</code>, <code>LastList</code>, <code>HeadList</code>, di samping <code>IsAtom</code> dan <code>IsList</code>. Delapan nama baru untuk pekerjaan yang, pada diktat ini, dikerjakan oleh dua konstruktor dan dua selektor yang sudah ada sejak Bab 7. Perangkat rangkap tersebut bukan kesalahan penulisnya, melainkan akibat dari tidak tersedianya cara untuk menyatakan bahwa sebuah elemen boleh berupa salah satu dari dua hal. Setelah type alternatif tersedia, perangkat rangkap itu menjadi tidak diperlukan. Bila Anda membaca materi arsip, sepadankan <code>KonsLo</code> dengan <code>makeCons</code>, <code>FirstList</code> dengan <code>head</code>, dan <code>TailList</code> dengan <code>tail</code>.</p>
+<p><strong>Peringatan bagi pembaca bahan lama.</strong> Diktat terdahulu di lingkungan ITB memperlakukan <em>list of list</em> sebagai type tersendiri dengan seperangkat operasi dasarnya sendiri: <code>KonsLo</code>, <code>KonsL⏺</code>, <code>FirstList</code>, <code>TailList</code>, <code>LastList</code>, <code>HeadList</code>, di samping <code>IsAtom</code> dan <code>IsList</code>. Delapan nama baru untuk pekerjaan yang, pada diktat ini, dikerjakan oleh dua konstruktor dan dua selektor yang sudah ada sejak Bab 7. Perangkat rangkap tersebut bukan kesalahan penulisnya, melainkan akibat dari tidak tersedianya cara untuk menyatakan bahwa sebuah elemen boleh berupa salah satu dari dua hal. Setelah type alternatif tersedia, perangkat rangkap itu menjadi tidak diperlukan. Bila Anda membaca materi arsip, sepadankan <code>KonsLo</code> dengan <code>makeCons</code>, <code>FirstList</code> dengan <code>head</code>, dan <code>TailList</code> dengan <code>tail</code>.</p>
 </blockquote>
 <h3 id="penulisan-singkat-dan-bahayanya"><a class="header" href="#penulisan-singkat-dan-bahayanya">Penulisan singkat, dan bahayanya</a></h3>
 <p>Sebagaimana Bab 7, menuliskan setiap nilai dengan konstruktornya melelahkan:</p>
