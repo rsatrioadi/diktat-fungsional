@@ -37,7 +37,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-a0d4e031.js";
+            window.path_to_searchindex_js = "searchindex-d157845e.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-2ab1aa36.js"></script>
@@ -178,7 +178,7 @@
                     <main>
                         <h1 id="pohon"><a class="header" href="#pohon">Pohon</a></h1>
 <p>Bab ini berdiri di luar alur utama Diktat. Bab 9 sudah menutup pembahasan, dan pembaca yang berhenti di sana sudah menyelesaikan modul ini secara utuh.</p>
-<p>Tujuan bab ini berbeda dari kesembilan bab sebelumnya. Sepanjang Bab 2 sampai Bab 9, perbandingan yang berulang adalah perbandingan antara notasi fungsional dan bahasa acuannya. Perbandingan tersebut sudah selesai. Yang dibandingkan di sini adalah dua <strong>paradigma</strong>: sebuah struktur yang sama dirancang dua kali, sekali secara fungsional dan sekali secara prosedural, lalu keduanya diletakkan berdampingan.</p>
+<p>Yang dibandingkan pada bab ini adalah dua <strong>paradigma</strong>: sebuah struktur yang sama dirancang dua kali, sekali secara fungsional dan sekali secara prosedural, lalu keduanya diletakkan berdampingan. Perbandingan tersebut berbeda dari perbandingan yang berulang sepanjang Bab 2 sampai Bab 9, yaitu perbandingan antara notasi fungsional dan bahasa acuannya, yang sudah selesai pada Bab 9.</p>
 <p>Pohon dipilih sebagai bahan perbandingan karena dua alasan. Pertama, pohon adalah type rekursif, sehingga seluruh Bab 5, 6, dan 7 langsung dapat dipakai kembali tanpa mesin baru. Kedua, pohon adalah struktur pertama yang perbedaan kedua rancangannya benar-benar terasa. Untuk bilangan dan untuk list, kedua paradigma menghasilkan teks yang tidak terlalu jauh berbeda. Untuk pohon, perbedaannya besar dan pantas diperiksa.</p>
 <p>Bab ini hampir tidak memperkenalkan mesin baru. Yang dituliskan di sini adalah type alternatif dari Bab 5, analisis rekurens dari Bab 6, dan list sebagai hasil dari Bab 7.</p>
 <h2 id="pohon-1"><a class="header" href="#pohon-1">Pohon</a></h2>
@@ -199,14 +199,14 @@
 </tbody>
 </table>
 </div>
-<p>Baris terakhir pada tabel di atas adalah kunci seluruh bab ini. Sebuah upapohon <strong>adalah sebuah pohon</strong>, dan pernyataan tersebut persis merupakan bentuk sebuah definisi rekursif.</p>
+<p>Baris terakhir pada tabel di atas berbentuk definisi rekursif: sebuah upapohon <strong>adalah sebuah pohon</strong>. Setiap type dan setiap fungsi pada bab ini mengikuti bentuk tersebut.</p>
 <p>Persoalan yang berbentuk pohon banyak ditemui: struktur bab sebuah buku, klasifikasi makhluk hidup, silsilah keluarga, susunan berkas dalam sebuah sistem operasi, menu sebuah aplikasi, dan ekspresi aritmatika. Yang terakhir dibahas tersendiri pada bab ini.</p>
 <h2 id="pohon-n-aire"><a class="header" href="#pohon-n-aire">Pohon N-aire</a></h2>
 <p>Bentuk yang paling umum tidak membatasi banyaknya anak sebuah simpul. Definisi rekursifnya:</p>
 <ul>
 <li>Sebuah pohon adalah sebuah simpul berisi nilai, beserta sebuah <strong>list</strong> pohon sebagai anak-anaknya.</li>
 </ul>
-<p>Perhatikan bahwa tidak ada basis yang terpisah. Basisnya tersembunyi di dalam list: sebuah daun adalah simpul yang list anaknya kosong.</p>
+<p>Definisi tersebut tidak mempunyai basis yang terpisah. Basisnya tersembunyi di dalam list: sebuah daun adalah simpul yang list anaknya kosong.</p>
 <pre><code>TYPE TREE
 </code></pre>
 <pre><code>DEFINISI TYPE
@@ -232,8 +232,8 @@ DEFINISI DAN SPESIFIKASI PREDIKAT
 <pre><code>REALISASI
     isLeaf (T) : isEmpty (children (T))
 </code></pre>
-<p>Perhatikan bahwa type ini hanya mempunyai satu alternatif, dan alternatif tersebut menuntut sebuah <code>info</code>. Karena itu <strong>tidak ada pohon kosong</strong>: setiap <code>Tree</code> sekurang-kurangnya mempunyai akar. Hal ini sesuai dengan pengertian pohon sebagai struktur yang berakar; “pohon tanpa akar” bukan pohon yang kebetulan kecil, melainkan sesuatu yang lain. Yang boleh kosong adalah <strong>list anaknya</strong>, dan di situlah basis rekurensnya berada. Perhatikan akibatnya pada range <code>sizeTree</code>, yaitu <code>Integer &gt; 0</code> dan bukan <code>Integer ≥ 0</code>.</p>
-<p>Sekarang perhatikan apa yang terjadi ketika kita menghitung banyaknya simpul.</p>
+<p>Type ini hanya mempunyai satu alternatif, dan alternatif tersebut menuntut sebuah <code>info</code>. Karena itu <strong>tidak ada pohon kosong</strong>: setiap <code>Tree</code> sekurang-kurangnya mempunyai akar. Hal ini sesuai dengan pengertian pohon sebagai struktur yang berakar; sesuatu yang tidak mempunyai akar tidak mempunyai <code>info</code>, sehingga bukan sebuah <code>Tree</code>. Yang boleh kosong adalah <strong>list anaknya</strong>, dan di situlah basis rekurensnya berada. Akibatnya tampak pada range <code>sizeTree</code>, yaitu <code>Integer &gt; 0</code> dan bukan <code>Integer ≥ 0</code>.</p>
+<p>Menghitung banyaknya simpul pada type tersebut menuntut sebuah bentuk yang sudah diperkenalkan Bab 6 tetapi belum pernah dipakai.</p>
 <pre><code>JUDUL   Banyaknya Simpul Sebuah Pohon N-aire
 </code></pre>
 <pre><code>DEFINISI DAN SPESIFIKASI
@@ -261,8 +261,8 @@ DEFINISI DAN SPESIFIKASI PREDIKAT
       3
 </code></pre>
 <p><code>sizeTree</code> mengaplikasikan <code>sizeForest</code>, dan <code>sizeForest</code> mengaplikasikan <code>sizeTree</code>. Inilah <strong>rekursi tidak langsung</strong> dari Bab 6, yang di sana diperkenalkan lewat <code>isEven</code> dan <code>isOdd</code> dengan catatan terbuka bahwa contohnya tidak berguna dan bentuknya baru akan diperlukan pada bab ini.</p>
-<p>Alasan kemunculannya sekarang jelas. Type-nya sendiri saling merujuk: sebuah <code>Tree</code> menyebut <code>List of Tree</code>, dan sebuah <code>List of Tree</code> menyebut <code>Tree</code>. Fungsi yang mengikuti bentuk type-nya karenanya juga harus saling merujuk. Kedua kewajiban Bab 6 tetap terpenuhi dan kini datang dari type-nya: <code>sizeForest</code> mempunyai basis pada list kosong, dan setiap aplikasi bekerja atas struktur yang lebih kecil daripada semula.</p>
-<p>Perhatikan pula bahwa <code>sizeForest</code> berbentuk lipatan. Dengan Bab 8, seluruh fungsi tersebut dapat diganti oleh satu baris:</p>
+<p>Bentuk tersebut muncul di sini karena type-nya sendiri saling merujuk: sebuah <code>Tree</code> menyebut <code>List of Tree</code>, dan sebuah <code>List of Tree</code> menyebut <code>Tree</code>. Fungsi yang mengikuti bentuk type-nya karenanya juga harus saling merujuk. Kedua kewajiban Bab 6 tetap terpenuhi dan kini datang dari type-nya: <code>sizeForest</code> mempunyai basis pada list kosong, dan setiap aplikasi bekerja atas struktur yang lebih kecil daripada semula.</p>
+<p><code>sizeForest</code> sendiri berbentuk lipatan. Dengan Bab 8, seluruh fungsi tersebut dapat diganti oleh satu baris:</p>
 <pre><code>sizeTree (T) : 1 + sumList (map (sizeTree, children (T)))
 </code></pre>
 <p>Rekursi tidak langsungnya hilang, dan yang tersisa hanyalah satu fungsi rekursif biasa. Hal ini tidak selalu mungkin, tetapi cukup sering mungkin sehingga pantas diperiksa setiap kali sepasang fungsi saling memanggil.</p>
@@ -305,8 +305,8 @@ DEFINISI DAN SPESIFIKASI PREDIKAT
 <pre><code>REALISASI
     isLeafNode (T) : isEmptyTree (left (T)) and isEmptyTree (right (T))
 </code></pre>
-<p>Berbeda dengan <code>Tree</code> pada bagian sebelumnya, type ini <strong>mempunyai</strong> alternatif kosong. Sekali lagi, perbedaannya bukan soal selera. Sebuah simpul biner mempunyai dua tempat yang keduanya harus terisi, sehingga “tidak mempunyai anak kiri” harus dapat dituliskan secara eksplisit. Tanpa <code>Empty</code>, type ini menuntut empat alternatif, yaitu daun, bercabang kiri saja, bercabang kanan saja, dan bercabang keduanya, dan setiap fungsi atasnya menuntut analisis empat kasus.</p>
-<p>Akibatnya, basis kedua type ini berada di tempat yang berbeda. Pada <code>Tree</code>, basis rekurensnya adalah list anak yang kosong. Pada <code>BinaryTree</code>, basisnya adalah pohonnya sendiri yang kosong. Keduanya sah, dan pilihan di antara keduanya ditentukan oleh bentuk strukturnya, bukan oleh kebiasaan.</p>
+<p>Berbeda dengan <code>Tree</code> pada bagian sebelumnya, type ini <strong>mempunyai</strong> alternatif kosong. Sebuah simpul biner mempunyai dua tempat yang keduanya harus terisi, sehingga “tidak mempunyai anak kiri” harus dapat dituliskan secara eksplisit. Tanpa <code>Empty</code>, type ini menuntut empat alternatif, yaitu daun, bercabang kiri saja, bercabang kanan saja, dan bercabang keduanya, dan setiap fungsi atasnya menuntut analisis empat kasus.</p>
+<p>Akibatnya, basis kedua type ini berada di tempat yang berbeda. Pada <code>Tree</code>, basis rekurensnya adalah list anak yang kosong. Pada <code>BinaryTree</code>, basisnya adalah pohonnya sendiri yang kosong. Keduanya sah, dan yang menentukan pilihan adalah bentuk strukturnya.</p>
 <p>Dua fungsi dasar:</p>
 <pre><code>JUDUL   Ukuran dan Tinggi Pohon Biner
 </code></pre>
@@ -345,7 +345,7 @@ DEFINISI DAN SPESIFIKASI PREDIKAT
       2
 </code></pre>
 <p>Kedua fungsi tersebut mengandung <strong>dua</strong> aplikasi rekursif dalam satu ekspresi, sebagaimana <code>fibonacci</code> pada Bab 6, sehingga penelusurannya berupa pohon dan bukan garis. Perbedaannya dengan <code>fibonacci</code>: di sini tidak ada pekerjaan yang terulang, karena upapohon kiri dan kanan memang berisi simpul yang berbeda.</p>
-<p>Perhatikan bahwa nilai basis <code>height</code> adalah keputusan yang harus dinyatakan, bukan sesuatu yang terberi. Sebagian penulis menetapkan tinggi pohon dengan satu simpul sebagai nol dan bukan satu. Kedua pilihan sah, dan yang tidak sah adalah membiarkannya tidak tertulis. Spesifikasi di atas menyatakannya secara terbuka pada dua nilai batas sekaligus.</p>
+<p>Nilai basis <code>height</code> adalah keputusan yang harus dinyatakan, bukan sesuatu yang terberi. Sebagian penulis menetapkan tinggi pohon dengan satu simpul sebagai nol dan bukan satu. Kedua pilihan sah, dan yang tidak sah adalah membiarkannya tidak tertulis. Spesifikasi di atas menyatakannya secara terbuka pada dua nilai batas sekaligus.</p>
 <h2 id="rancangan-yang-sama-dalam-paradigma-prosedural"><a class="header" href="#rancangan-yang-sama-dalam-paradigma-prosedural">Rancangan yang Sama dalam Paradigma Prosedural</a></h2>
 <p>Sekarang letakkan rancangan yang sama dalam notasi prosedural. Rincian notasinya berbeda-beda menurut bahan yang dipakai; yang penting di sini adalah bentuknya, bukan lambangnya.</p>
 <pre><code>KAMUS
@@ -385,13 +385,13 @@ ALGORITMA
 <p>Perbandingan di atas akan menyesatkan bila berhenti di situ, karena baris terakhir tabel bekerja ke dua arah.</p>
 <ul>
 <li>
-<p><strong>Yang diperoleh rancangan fungsional.</strong> Kasus kosong tidak dapat terlupakan tanpa terlihat. Basis dan konvergensi rekurensnya datang dari type-nya. Penelusuran di atas kertas dapat dipercaya, karena tidak ada simpul yang diam-diam berubah di tengah jalan. Sesudah sebuah penyisipan pun, pohon yang lama <strong>tetap ada dan tetap sah</strong>, sehingga dua versi sebuah struktur dapat hidup berdampingan tanpa disalin. Sifat terakhir tersebut disebut <em>persistence</em>, dan merupakan salah satu keunggulan struktur data fungsional yang paling nyata.</p>
+<p><strong>Yang diperoleh rancangan fungsional.</strong> Kasus kosong tidak dapat terlupakan tanpa terlihat. Basis dan konvergensi rekurensnya datang dari type-nya. Penelusuran di atas kertas dapat dipercaya, karena tidak ada simpul yang diam-diam berubah di tengah jalan. Sesudah sebuah penyisipan pun, pohon yang lama <strong>tetap ada dan tetap sah</strong>, sehingga dua versi sebuah struktur dapat hidup berdampingan tanpa disalin. Sifat terakhir tersebut disebut <em>persistence</em>, dan menjadi dasar sebagian besar struktur data yang dibahas dalam [8].</p>
 </li>
 <li>
 <p><strong>Yang hilang.</strong> Sebuah penyisipan fungsional membangun ulang seluruh simpul di sepanjang jalur dari akar sampai tempat penyisipan. Untuk pohon setinggi <em>h</em>, hal itu berarti <em>h</em> simpul baru dibentuk, sedangkan rancangan prosedural cukup mengubah satu pengait. Simpul lama memang masih dipakai bersama oleh kedua versi, sehingga yang dibangun ulang hanyalah jalurnya dan bukan seluruh pohon, tetapi pekerjaan tambahan itu nyata. Bila sebuah struktur diubah berjuta kali dan versi lamanya tidak pernah dibutuhkan, rancangan prosedural lebih hemat.</p>
 </li>
 <li>
-<p><strong>Kesimpulan yang jujur.</strong> Pertanyaan “paradigma mana yang lebih baik” tidak terjawab oleh perbandingan ini, dan memang bukan pertanyaan yang terumuskan dengan baik. Yang terjawab adalah pertanyaan lain: <em>apa yang dipermudah dan apa yang dipersulit oleh masing-masing.</em> Bab 1 sudah menyatakan bahwa satu paradigma tidak akan cocok untuk semua kelas persoalan, dan bahwa fanatisme terhadap satu paradigma mempersempit wawasan. Pohon adalah tempat pernyataan tersebut dapat diperiksa sendiri alih-alih diterima begitu saja.</p>
+<p><strong>Yang tidak terjawab.</strong> Pertanyaan “paradigma mana yang lebih baik” tidak terjawab oleh perbandingan ini, dan memang bukan pertanyaan yang terumuskan dengan baik. Yang terjawab adalah pertanyaan lain: <em>apa yang dipermudah dan apa yang dipersulit oleh masing-masing.</em> Bab 1 sudah menyatakan bahwa satu paradigma tidak akan cocok untuk semua kelas persoalan, dan bahwa fanatisme terhadap satu paradigma mempersempit wawasan. Pohon adalah tempat pernyataan tersebut dapat diperiksa sendiri alih-alih diterima begitu saja.</p>
 </li>
 </ul>
 <h2 id="penelusuran-pohon"><a class="header" href="#penelusuran-pohon">Penelusuran Pohon</a></h2>
@@ -431,7 +431,7 @@ ALGORITMA
                                                 makeCons (info (T), makeNil)))
 </code></pre>
 <p><code>append</code> berasal dari Latihan Menulis Bab 7. Ketiga realisasi tersebut memakai kembali seluruh mesin list tanpa menambah apa pun.</p>
-<p>Perhatikan bahwa ketiganya mempunyai struktur rekurens yang <strong>persis sama</strong>, dan berbeda hanya pada tempat <code>info (T)</code> disisipkan. Kekembaran ini adalah kekembaran keempat sepanjang diktat ini, sesudah tiga pasang pada Bab 7, dan pembaca yang sudah mengerjakan Bab 8 kini mempunyai perkakas untuk menanganinya.</p>
+<p>Ketiganya mempunyai struktur rekurens yang <strong>persis sama</strong>, dan berbeda hanya pada tempat <code>info (T)</code> disisipkan. Kekembaran ini adalah kekembaran keempat sepanjang diktat ini, sesudah tiga pasang pada Bab 7, dan pembaca yang sudah mengerjakan Bab 8 kini mempunyai perkakas untuk menanganinya.</p>
 <h2 id="pohon-ekspresi"><a class="header" href="#pohon-ekspresi">Pohon Ekspresi</a></h2>
 <p>Bab 3 menuliskan sebuah tabel yang membandingkan tiga bentuk penulisan ekspresi, lalu menyatakan bahwa bentuk prefix dan postfix akan muncul kembali sebagai representasi pohon ekspresi. Janji tersebut dibayar di sini.</p>
 <p>Sebuah ekspresi aritmatika berbentuk pohon: setiap operator biner mempunyai dua operan, dan setiap operan dapat berupa bilangan atau ekspresi lain.</p>
@@ -478,7 +478,7 @@ DEFINISI DAN SPESIFIKASI OPERATOR LAIN
                            '*', Operand ⟨5⟩⟩)
       35
 </code></pre>
-<p>Enam baris <code>evaluate</code> mengerjakan sesuatu yang tampak besar. Kuncinya: struktur pohonnya sudah menyatakan seluruh pengelompokan, sehingga presedensi dan kurung dari Bab 3 tidak berperan sama sekali. Presedensi adalah aturan untuk <strong>membaca teks</strong>, bukan bagian dari ekspresinya.</p>
+<p>Enam baris <code>evaluate</code> tidak menyebut presedensi maupun kurung sama sekali, karena struktur pohonnya sudah menyatakan seluruh pengelompokan yang pada Bab 3 dinyatakan oleh keduanya. Presedensi adalah aturan untuk <strong>membaca teks</strong>, bukan bagian dari ekspresinya.</p>
 <h3 id="tiga-penelusuran-tiga-notasi"><a class="header" href="#tiga-penelusuran-tiga-notasi">Tiga penelusuran, tiga notasi</a></h3>
 <p>Sekarang telusuri pohon ekspresi <code>(3 + 4) * 5</code> dengan ketiga cara di atas:</p>
 <div class="table-wrapper">
@@ -494,8 +494,8 @@ DEFINISI DAN SPESIFIKASI OPERATOR LAIN
 </table>
 </div>
 <p>Bandingkan baris pertama dan ketiga dengan tabel Bab 3. Keduanya sama persis, sampai ke urutan lambangnya.</p>
-<p>Baris kedua <strong>tidak</strong> sama, dan justru di situlah letak pelajarannya. Bab 3 menuliskan bentuk infix sebagai <code>(3 + 4) * 5</code>, lengkap dengan kurung. Penelusuran inorder menghasilkan <code>3 + 4 * 5</code>, tanpa kurung, dan ekspresi tersebut bernilai <code>23</code> alih-alih <code>35</code>.</p>
-<p>Kesimpulannya tegas. Dari hasil preorder maupun postorder, pohon semula dapat dibangun kembali dengan tepat. Dari hasil inorder, pohon semula <strong>tidak</strong> dapat dibangun kembali, kecuali kurung ikut dituliskan. Inilah alasan sesungguhnya di balik pernyataan Bab 3 bahwa bentuk prefix dan postfix tidak memerlukan kurung maupun presedensi, sehingga lebih mudah diproses mesin. Kedua bentuk tersebut menyimpan strukturnya; bentuk infix membuangnya dan menggantinya dengan aturan pembacaan.</p>
+<p>Baris kedua <strong>tidak</strong> sama. Bab 3 menuliskan bentuk infix sebagai <code>(3 + 4) * 5</code>, lengkap dengan kurung. Penelusuran inorder menghasilkan <code>3 + 4 * 5</code>, tanpa kurung, dan ekspresi tersebut bernilai <code>23</code> alih-alih <code>35</code>.</p>
+<p>Dari hasil preorder maupun postorder, pohon semula dapat dibangun kembali dengan tepat. Dari hasil inorder, pohon semula <strong>tidak</strong> dapat dibangun kembali, kecuali kurung ikut dituliskan. Inilah alasan di balik pernyataan Bab 3 bahwa bentuk prefix dan postfix tidak memerlukan kurung maupun presedensi, sehingga lebih mudah diproses mesin. Kedua bentuk tersebut menyimpan strukturnya; bentuk infix membuangnya dan menggantinya dengan aturan pembacaan.</p>
 <h2 id="pohon-terurut"><a class="header" href="#pohon-terurut">Pohon Terurut</a></h2>
 <p>Sebuah <strong>pohon terurut</strong> (<em>binary search tree</em>) adalah pohon biner dengan sebuah invarian: bagi setiap simpul, seluruh nilai pada upapohon kirinya lebih kecil daripada nilai simpul tersebut, dan seluruh nilai pada upapohon kanannya lebih besar.</p>
 <p>Invarian ini adalah invarian dalam arti yang persis sama dengan invarian <code>Fraction</code> pada Bab 5 dan invarian keterurutan pada <code>insertSorted</code> di Bab 7. Tidak ada yang menjaminnya selain disiplin, dan setiap operator yang menghasilkan pohon baru wajib mempertahankannya.</p>
@@ -532,7 +532,7 @@ DEFINISI DAN SPESIFIKASI OPERATOR LAIN
     ⇒ inorder (insertTree (3, insertTree (7, insertTree (5, makeEmptyTree))))
       [3, 5, 7]
 </code></pre>
-<p>Tiga hal patut diperhatikan.</p>
+<p>Realisasi tersebut mempunyai tiga sifat berikut.</p>
 <ul>
 <li>
 <p><strong>Bandingkan dengan <code>insertSorted</code> pada Bab 7.</strong> Keduanya menyisipkan sebuah nilai ke dalam struktur terurut, keduanya bersandar pada invarian yang dinyatakan sebagai prasyarat, dan keduanya membangun ulang bagian struktur yang dilewatinya sambil memakai kembali sisanya utuh. Yang berbeda hanyalah strukturnya. <code>insertSorted</code> melewati rata-rata separuh list; <code>insertTree</code> melewati sepanjang tingginya saja. Rancangan yang sama, ditempatkan pada struktur yang berbeda, memberikan hasil yang berbeda.</p>
@@ -541,12 +541,12 @@ DEFINISI DAN SPESIFIKASI OPERATOR LAIN
 <p><strong><code>isMemberTree</code> membuang separuh pohon pada setiap langkah.</strong> Bandingkan dengan <code>isMember</code> atas list pada Bab 7, yang harus memeriksa elemen satu per satu. Inilah imbalan dari invariannya, dan sebagaimana Bab 7 sudah menyatakan tentang himpunan, invarian tidak pernah gratis: harganya dibayar oleh setiap penyisipan yang harus menjaganya.</p>
 </li>
 <li>
-<p><strong>Penelusuran inorder sebuah pohon terurut menghasilkan list yang terurut menaik.</strong> Aplikasi terakhir di atas memperlihatkannya. Hal ini bukan kebetulan, melainkan akibat langsung dari invariannya, dan merupakan salah satu cara mengurutkan sebuah kumpulan nilai.</p>
+<p><strong>Penelusuran inorder sebuah pohon terurut menghasilkan list yang terurut menaik.</strong> Aplikasi terakhir di atas memperlihatkannya. Hal itu adalah akibat langsung dari invariannya, dan merupakan salah satu cara mengurutkan sebuah kumpulan nilai.</p>
 </li>
 </ul>
 <h3 id="ketika-pohon-terurut-kehilangan-keunggulannya"><a class="header" href="#ketika-pohon-terurut-kehilangan-keunggulannya">Ketika pohon terurut kehilangan keunggulannya</a></h3>
 <p>Sisipkan <code>1</code>, lalu <code>2</code>, lalu <code>3</code>, lalu <code>4</code>, lalu <code>5</code> ke dalam pohon kosong. Karena setiap nilai lebih besar daripada seluruh nilai sebelumnya, setiap penyisipan jatuh ke upapohon kanan, dan hasilnya adalah pohon setinggi lima tanpa satu pun cabang kiri. Pohon tersebut adalah sebuah list yang ditulis dengan cara yang lebih rumit, dan seluruh keunggulan <code>isMemberTree</code> lenyap.</p>
-<p>Ada cara merancang pohon yang menjaga tingginya tetap kecil apa pun urutan penyisipannya, dan cara tersebut merupakan pokok bahasan tersendiri yang termasuk dalam materi struktur data dan algoritma. Pembaca yang tertarik pada versi fungsionalnya dirujuk ke [8]. Yang perlu dibawa dari sini hanyalah kesadaran bahwa keunggulan sebuah struktur data selalu bersyarat, dan bahwa syaratnya pantas ditanyakan sebelum struktur itu dipilih.</p>
+<p>Ada cara merancang pohon yang menjaga tingginya tetap kecil apa pun urutan penyisipannya, dan cara tersebut merupakan pokok bahasan tersendiri yang termasuk dalam materi struktur data dan algoritma. Pembaca yang tertarik pada versi fungsionalnya dirujuk ke [8]. Keunggulan sebuah struktur data selalu bersyarat, dan syaratnya pantas ditanyakan sebelum struktur itu dipilih.</p>
 <h2 id="kesalahan-yang-sering-terjadi"><a class="header" href="#kesalahan-yang-sering-terjadi">Kesalahan yang Sering Terjadi</a></h2>
 <div class="table-wrapper">
 <table>
@@ -584,13 +584,13 @@ inorder :: BinaryTree a -&gt; [a]
 inorder Empty        = []
 inorder (Node l v r) = inorder l ++ [v] ++ inorder r
 </code></pre>
-<p>Dua hal yang layak dicatat, dan keduanya kecil karena bab ini memang hampir tidak memperkenalkan mesin baru.</p>
+<p>Dua hal berikut kecil, karena bab ini memang hampir tidak memperkenalkan mesin baru.</p>
 <ul>
 <li>
 <p><strong>Definisi type diterjemahkan hampir huruf demi huruf,</strong> dan pola <code>Node l v r</code> mengerjakan empat hal sekaligus: memastikan pohonnya tidak kosong, lalu mengambil ketiga komponennya. Pengamatan yang sama sudah dibuat pada Bab 5 untuk <code>Shape</code> dan pada Bab 7 untuk list. Pada pohon, penghematannya paling terasa, karena tanpa pola tersebut ketiga selektor harus disebut berulang kali di dalam satu ekspresi.</p>
 </li>
 <li>
-<p><strong><code>deriving Show</code> menghasilkan bentuk tercetak secara cuma-cuma,</strong> dan bentuk tercetak tersebut ternyata adalah penelusuran preorder dengan nama konstruktor ikut dituliskan. Hal ini bukan kebetulan: bentuk preorder memang menyimpan seluruh struktur pohonnya, sebagaimana ditunjukkan pada bagian pohon ekspresi.</p>
+<p><strong><code>deriving Show</code> menghasilkan bentuk tercetak secara cuma-cuma,</strong> dan bentuk tercetak tersebut ternyata adalah penelusuran preorder dengan nama konstruktor ikut dituliskan. Bentuk preorder adalah bentuk yang menyimpan seluruh struktur pohonnya, sebagaimana ditunjukkan pada bagian pohon ekspresi, dan karena itu bentuk tercetak tersebut dapat dikembalikan menjadi pohon semula.</p>
 </li>
 </ul>
 <div class="table-wrapper">

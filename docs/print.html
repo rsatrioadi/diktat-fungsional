@@ -38,7 +38,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-a0d4e031.js";
+            window.path_to_searchindex_js = "searchindex-d157845e.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-2ab1aa36.js"></script>
@@ -2330,7 +2330,7 @@ r (n) :
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="list"><a class="header" href="#list">List</a></h1>
 <h2 id="koleksi-objek"><a class="header" href="#koleksi-objek">Koleksi Objek</a></h2>
-<p>Sampai bab ini, sebuah program hanya mampu mengelola type dasar dan type bentukan yang disusun darinya. Pembatasan itu lebih dalam daripada yang terlihat.</p>
+<p>Sampai bab ini, sebuah program hanya mampu mengelola type dasar dan type bentukan yang disusun darinya. Untuk sebagian persoalan, pembatasan itu bukan sekadar menyulitkan, melainkan membuat programnya tidak dapat ditulis sama sekali.</p>
 <p>Sebuah <code>Date</code> menyimpan satu tanggal. Bila kita perlu mengelola tiga tanggal, kita dapat menuliskan tiga parameter. Bila kita perlu mengelola seluruh tanggal dalam setahun, cara itu berhenti bekerja. Bahkan bila banyaknya tanggal <strong>tidak diketahui pada saat program ditulis</strong>, cara itu tidak pernah dapat bekerja, karena kita harus menuliskan nama sebanyak nilai yang akan diproses, sedangkan jumlahnya baru diketahui kelak.</p>
 <p>Yang dibutuhkan adalah sebuah <strong>koleksi</strong>: satu nama yang mewakili sekumpulan nilai, beserta cara mencapai setiap anggotanya. Sebuah koleksi mungkin kosong, mungkin berisi satu anggota, mungkin berisi sejuta.</p>
 <p>Ada banyak cara mengorganisasi koleksi, dan masing-masing cara menentukan sebuah type kolektif tersendiri dengan operasi dasarnya sendiri. Bab ini membahas satu di antaranya, yaitu <strong>list</strong>, yang anggotanya berurutan dan dicapai dari satu ujung. List adalah struktur rekursif yang paling sederhana, sehingga seluruh Bab 6 dapat langsung dipakai kembali di sini.</p>
@@ -2373,7 +2373,7 @@ DEFINISI DAN SPESIFIKASI PREDIKAT
 </code></pre>
 <p><code>Element</code> bukan sebuah type dasar, melainkan “tempat kosong” yang diisi sekali untuk setiap list: seluruh elemen sebuah list bertype sama, dan type itu ditetapkan pada saat list dipakai. Diktat ini menuliskan <code>List of Integer</code>, <code>List of Character</code>, dan <code>List of Date</code> untuk menyebut list yang <code>Element</code>-nya masing-masing <code>Integer</code>, <code>Character</code>, dan <code>Date</code>. Cara menyatakan hal ini secara tepat, sehingga kompilator ikut memeriksanya, adalah bagian dari sistem type yang berada di luar cakupan diktat ini.</p>
 <blockquote>
-<p><strong>Catatan.</strong> Nama <code>Cons</code> adalah kependekan dari <em>construct</em>, dan berasal dari Lisp, bahasa fungsional tertua yang masih dipakai hingga kini. Di sana <code>cons</code> adalah operasi dasar yang membentuk sebuah list dari sebuah elemen dan sebuah list, dan setiap sel penyusunnya disebut <em>cons cell</em>. Istilah ini bertahan lintas generasi bahasa fungsional. Bahasa acuan diktat ini menuliskannya sebagai operator <code>:</code>, tetapi tetap menyebut selnya dengan nama yang sama, sehingga pembaca akan menemukan kata <em>cons</em> di hampir setiap dokumentasi bahasa fungsional yang dibukanya.</p>
+<p><strong>Catatan.</strong> Nama <code>Cons</code> adalah kependekan dari <em>construct</em>, dan berasal dari Lisp, bahasa fungsional tertua yang masih dipakai hingga kini. Di sana <code>cons</code> adalah operasi dasar yang membentuk sebuah list dari sebuah elemen dan sebuah list, dan setiap sel penyusunnya disebut <em>cons cell</em>. Bahasa acuan diktat ini menuliskannya sebagai operator <code>:</code>, tetapi tetap menyebut selnya dengan nama yang sama, sehingga kata <em>cons</em> masih akan ditemui pembaca pada dokumentasi bahasa fungsional masa kini.</p>
 </blockquote>
 <h3 id="penulisan-singkat"><a class="header" href="#penulisan-singkat">Penulisan singkat</a></h3>
 <p>Menuliskan setiap list dengan konstruktornya cepat menjadi melelahkan. Karena itu tersedia penulisan singkat:</p>
@@ -2382,7 +2382,7 @@ DEFINISI DAN SPESIFIKASI PREDIKAT
 [1, 2, 3]     { setara dengan makeCons (1, makeCons (2, makeCons (3, makeNil))) }
 </code></pre>
 <p>Penulisan singkat adalah <strong>penulisan yang sama</strong>, bukan type yang lain. Pada penelusuran, bentuk panjangnya dipakai kembali setiap kali sebuah konstruktor benar-benar dibongkar atau dibentuk, karena di situlah struktur rekursifnya terlihat.</p>
-<p>Perhatikan bahwa <code>[1, 2, 3]</code> tidak simetris. Elemen <code>1</code> berada di lapis paling luar dan dapat diambil dengan satu aplikasi <code>head</code>, sedangkan <code>3</code> terkubur di lapis paling dalam. Ketidaksimetrisan ini bukan kekurangan yang harus ditutupi, melainkan sifat list yang akan menjelaskan mengapa sebagian operasi murah dan sebagian lain mahal.</p>
+<p><code>[1, 2, 3]</code> tidak simetris. Elemen <code>1</code> berada di lapis paling luar dan dapat diambil dengan satu aplikasi <code>head</code>, sedangkan <code>3</code> terkubur di lapis paling dalam. Ketidaksimetrisan ini bukan kekurangan yang harus ditutupi, melainkan sifat list yang akan menjelaskan mengapa sebagian operasi murah dan sebagian lain mahal.</p>
 <blockquote>
 <p><strong>Peringatan bagi pembaca bahan lama.</strong> Diktat terdahulu di lingkungan ITB memakai nama <code>Head</code> untuk <strong>list tanpa elemen terakhir</strong>, dan <code>FirstElmt</code> untuk elemen pertama. Diktat ini memakai <code>head</code> untuk elemen pertama dan <code>tail</code> untuk sisanya, mengikuti terminologi yang kini sangat umum digunakan di bahasa pemrograman fungsional. Arti nama <code>head</code> karenanya <strong>berkebalikan</strong> dengan bahan lama. Bila Anda membaca materi arsip atau berdiskusi dengan seseorang yang mempelajarinya dari sana, sepakati lebih dahulu arti kedua nama itu.</p>
 </blockquote>
@@ -2400,8 +2400,8 @@ DEFINISI DAN SPESIFIKASI PREDIKAT
 </tbody>
 </table>
 </div>
-<p>Pemilihan di antara keduanya bukan soal selera, melainkan ditentukan oleh satu pertanyaan: <em>apakah fungsi ini mempunyai jawaban untuk list kosong?</em> Banyaknya elemen sebuah list kosong adalah nol, sehingga <code>length</code> berbasis-0. Nilai terbesar dalam list kosong tidak ada, sehingga <code>maxList</code> berbasis-1 dan list kosong dikeluarkan dari domainnya lewat pembatasan, persis sebagaimana <code>quadrant</code> mengeluarkan titik pada sumbu (Bab 4).</p>
-<p>Perhatikan pula apa yang kini datang cuma-cuma. Bab 6 menuntut dua kewajiban yang harus dijaga sendiri oleh penulisnya. Untuk list, keduanya diberikan oleh type-nya: alternatif <code>Nil</code> tidak menyebut dirinya sendiri sehingga ia adalah basisnya, alternatif <code>Cons</code> menyebut dirinya sendiri sehingga ia adalah rekurensnya, dan <code>tail (L)</code> selalu berisi satu elemen lebih sedikit daripada <code>L</code> sehingga konvergensinya terjamin. Yang pada Bab 6 harus dibuktikan, di sini tinggal disebutkan.</p>
+<p>Pemilihan di antara keduanya ditentukan oleh satu pertanyaan: <em>apakah fungsi ini mempunyai jawaban untuk list kosong?</em> Banyaknya elemen sebuah list kosong adalah nol, sehingga <code>length</code> berbasis-0. Nilai terbesar dalam list kosong tidak ada, sehingga <code>maxList</code> berbasis-1 dan list kosong dikeluarkan dari domainnya lewat pembatasan, persis sebagaimana <code>quadrant</code> mengeluarkan titik pada sumbu (Bab 4).</p>
+<p>Dua kewajiban yang pada Bab 6 harus dijaga sendiri oleh penulisnya kini datang cuma-cuma. Untuk list, keduanya diberikan oleh type-nya: alternatif <code>Nil</code> tidak menyebut dirinya sendiri sehingga ia adalah basisnya, alternatif <code>Cons</code> menyebut dirinya sendiri sehingga ia adalah rekurensnya, dan <code>tail (L)</code> selalu berisi satu elemen lebih sedikit daripada <code>L</code> sehingga konvergensinya terjamin. Yang pada Bab 6 harus dibuktikan, di sini tinggal disebutkan.</p>
 <p>Satu kebiasaan yang berlaku di seluruh bab ini: kondisi rekurens <strong>selalu ditulis utuh</strong> sebagai <code>not (isEmpty (L))</code>, tidak pernah sebagai <code>else</code>. Alasannya sama dengan alasan Bab 5 menuliskan <code>isRectangle (s)</code> secara terbuka. Menuliskannya membuat jaminan yang diberikan type terlihat alih-alih tersembunyi.</p>
 <h2 id="contoh-1-banyaknya-elemen"><a class="header" href="#contoh-1-banyaknya-elemen">Contoh 1: Banyaknya Elemen</a></h2>
 <pre><code>JUDUL   Banyaknya Elemen Sebuah List
@@ -2436,8 +2436,8 @@ DEFINISI DAN SPESIFIKASI PREDIKAT
   → 1 + 2                                               { reduksi + }
   → 3                                                   { reduksi + }
 </code></pre>
-<p>Bentuknya persis bentuk <code>factorial (4)</code> pada Bab 6: ekspresi membesar satu lapis pada setiap ekspansi sampai basis tercapai, lalu mengecil satu reduksi pada satu waktu. Yang berbeda hanyalah apa yang mengecil. Pada <code>factorial</code>, sebuah bilangan. Di sini, sebuah struktur.</p>
-<p>Perhatikan bahwa penelusuran ditulis dengan konstruktor, bukan dengan <code>[1, 2, 3]</code>. Justru pembongkaran konstruktor itulah yang sedang diperlihatkan.</p>
+<p>Bentuknya persis bentuk <code>factorial (4)</code> pada Bab 6: ekspresi membesar satu lapis pada setiap ekspansi sampai basis tercapai, lalu mengecil satu reduksi pada satu waktu. Yang berbeda hanyalah apa yang mengecil: pada <code>factorial</code> sebuah bilangan, di sini sebuah struktur.</p>
+<p>Penelusuran ditulis dengan konstruktor dan bukan dengan <code>[1, 2, 3]</code>, karena pembongkaran konstruktor itulah yang sedang diperlihatkan.</p>
 <h2 id="contoh-2-keanggotaan"><a class="header" href="#contoh-2-keanggotaan">Contoh 2: Keanggotaan</a></h2>
 <pre><code>JUDUL   Keanggotaan Sebuah Elemen
 </code></pre>
@@ -2462,9 +2462,9 @@ DEFINISI DAN SPESIFIKASI PREDIKAT
     ⇒ isMember (9, [1, 2, 3])
       false
 </code></pre>
-<p>Dua hal patut diperhatikan.</p>
+<p>Realisasi ini mempunyai dua sifat yang belum muncul sebelumnya.</p>
 <p><strong><code>or else</code> dipakai, dan memang diperlukan.</strong> Bab 4 menganjurkan memakai hubung-singkat hanya bila operan kedua tidak selalu terdefinisi. Di sini alasannya berbeda dan sama sahnya: operan kedua <strong>selalu terdefinisi, tetapi mahal</strong>. Dengan <code>or else</code>, <code>isMember (1, [1, 2, ..., 1000])</code> berhenti pada elemen pertama. Dengan <code>or</code> biasa, seluruh seribu elemen tetap ditelusuri untuk menghasilkan jawaban yang sama.</p>
-<p><strong>Hasilnya dapat dipastikan sebelum basis tercapai.</strong> Ini adalah fungsi pertama pada bab ini yang tidak selalu berjalan sampai ke ujung list. Sebagian besar fungsi list tidak mempunyai sifat ini, dan justru karena itu sifatnya layak dikenali ketika muncul.</p>
+<p><strong>Hasilnya dapat dipastikan sebelum basis tercapai.</strong> Ini adalah fungsi pertama pada bab ini yang tidak selalu berjalan sampai ke ujung list. Sebagian besar fungsi list tidak mempunyai sifat ini.</p>
 <h2 id="contoh-3-sepasang-fungsi-yang-hampir-kembar"><a class="header" href="#contoh-3-sepasang-fungsi-yang-hampir-kembar">Contoh 3: Sepasang Fungsi yang Hampir Kembar</a></h2>
 <pre><code>JUDUL   Jumlah dan Hasil Kali Seluruh Elemen
 </code></pre>
@@ -2501,7 +2501,7 @@ DEFINISI DAN SPESIFIKASI PREDIKAT
       6
 </code></pre>
 <p>Letakkan kedua realisasi berdampingan. Keduanya berbeda <strong>hanya pada dua tempat</strong>: nilai basisnya, dan operatornya.</p>
-<p>Mengapa basis <code>productList</code> bernilai <code>1</code> dan bukan <code>0</code>? Karena basis harus merupakan nilai yang tidak mengubah apa-apa ketika operator diterapkan padanya. Menjumlahkan nol tidak mengubah jumlah, dan mengalikan satu tidak mengubah hasil kali. Bila basis <code>productList</code> diisi <code>0</code>, setiap hasil kali menjadi nol. Aturan ini berlaku umum: <strong>nilai basis ditentukan oleh operator rekurensnya</strong>, dan memilihnya sembarangan adalah salah satu kesalahan yang paling sering terjadi pada bab ini.</p>
+<p>Mengapa basis <code>productList</code> bernilai <code>1</code> dan bukan <code>0</code>? Karena basis harus merupakan nilai yang tidak mengubah apa-apa ketika operator diterapkan padanya. Menjumlahkan nol tidak mengubah jumlah, dan mengalikan satu tidak mengubah hasil kali. Bila basis <code>productList</code> diisi <code>0</code>, setiap hasil kali menjadi nol. Aturan ini berlaku umum: <strong>nilai basis ditentukan oleh operator rekurensnya</strong>.</p>
 <p>Kekembaran kedua fungsi ini disengaja diperlihatkan, dan akan dibicarakan lagi pada akhir bab.</p>
 <h2 id="contoh-4-nilai-terbesar-dan-basis-1"><a class="header" href="#contoh-4-nilai-terbesar-dan-basis-1">Contoh 4: Nilai Terbesar, dan Basis-1</a></h2>
 <pre><code>JUDUL   Elemen Terbesar Sebuah List
@@ -2529,8 +2529,8 @@ DEFINISI DAN SPESIFIKASI PREDIKAT
       -1
 </code></pre>
 <p><strong>Mengapa basis-1.</strong> Nilai terbesar dalam list kosong tidak ada, dan tidak ada bilangan yang dapat dituliskan sebagai jawaban. Menuliskan basis-0 dengan hasil <code>0</code> akan membuat <code>maxList ([-5, -1, -8])</code> menghasilkan <code>0</code>, yaitu sebuah nilai yang bahkan bukan anggota list-nya. Kekeliruan semacam itu tampak wajar dan bertahan lama, persis seperti yang diperingatkan Bab 4 tentang <code>else</code>.</p>
-<p>Yang benar adalah mengeluarkan list kosong dari domain. Perhatikan bahwa pembatasan itu muncul di <strong>dua tempat</strong>, yaitu pada baris definisi dan pada prasyarat, sebagaimana dianjurkan sejak Bab 4.</p>
-<p><strong>Konvergensinya tetap terjamin, tetapi argumennya berubah.</strong> Rekurens mengaplikasikan <code>maxList</code> terhadap <code>tail (L)</code>, dan <code>tail (L)</code> harus tetap memenuhi prasyarat. Karena kondisi rekurens adalah <code>not (isOneElement (L))</code>, list-nya berisi sekurang-kurangnya dua elemen, sehingga <code>tail (L)</code> berisi sekurang-kurangnya satu. Prasyarat terpenuhi pada setiap langkah. Fungsi berbasis-1 selalu menuntut pemeriksaan ini, dan melewatkannya adalah kesalahan yang paling khas pada basis-1.</p>
+<p>Yang benar adalah mengeluarkan list kosong dari domain. Pembatasan itu muncul di <strong>dua tempat</strong>, yaitu pada baris definisi dan pada prasyarat, sebagaimana dianjurkan sejak Bab 4.</p>
+<p><strong>Konvergensinya tetap terjamin, tetapi argumennya berubah.</strong> Rekurens mengaplikasikan <code>maxList</code> terhadap <code>tail (L)</code>, dan <code>tail (L)</code> harus tetap memenuhi prasyarat. Karena kondisi rekurens adalah <code>not (isOneElement (L))</code>, list-nya berisi sekurang-kurangnya dua elemen, sehingga <code>tail (L)</code> berisi sekurang-kurangnya satu. Prasyarat terpenuhi pada setiap langkah. Fungsi berbasis-1 selalu menuntut pemeriksaan ini.</p>
 <p><code>max2</code> diambil kembali dari Bab 2 tanpa ditulis ulang.</p>
 <h2 id="contoh-5-menghasilkan-sebuah-list"><a class="header" href="#contoh-5-menghasilkan-sebuah-list">Contoh 5: Menghasilkan Sebuah List</a></h2>
 <p>Seluruh fungsi sejauh ini menghasilkan nilai tunggal. Sebuah fungsi list dapat pula menghasilkan list.</p>
@@ -2581,10 +2581,10 @@ DEFINISI DAN SPESIFIKASI PREDIKAT
     ⇒ keepPositive ([-1, -2])
       []
 </code></pre>
-<p>Tiga hal patut diperhatikan.</p>
-<p><strong><code>and then</code> wajib di sini.</strong> Ekspresi <code>head (L)</code> tidak terdefinisi bila <code>L</code> kosong. Menuliskan <code>not (isEmpty (L)) and (head (L) &gt; 0)</code> dengan <code>and</code> biasa adalah kesalahan yang persis sama dengan <code>isDivisor</code> pada Bab 4. Perhatikan bahwa keperluan ini muncul dengan sendirinya begitu kondisi memeriksa isi list (bukan hanya bentuknya), sehingga bentuk ini akan sering muncul mulai sekarang.</p>
-<p><strong>Rekurensnya mempunyai dua kasus, bukan satu.</strong> <code>squareAll</code> selalu membentuk <code>makeCons</code>; <code>keepPositive</code> kadang membentuknya dan kadang tidak. Di situlah letak perbedaan sesungguhnya antara “mengubah setiap elemen” dan “memilih sebagian elemen”, dan perbedaan itu terlihat pada bentuk teksnya.</p>
-<p><strong>Ketiga kondisinya lengkap dan disjoint.</strong> Diperiksa sebagaimana Bab 4, tanpa keringanan apa pun karena ini list.</p>
+<p>Realisasi ini menuntut tiga pemeriksaan.</p>
+<p><strong><code>and then</code> wajib di sini.</strong> Ekspresi <code>head (L)</code> tidak terdefinisi bila <code>L</code> kosong. Menuliskan <code>not (isEmpty (L)) and (head (L) &gt; 0)</code> dengan <code>and</code> biasa adalah kesalahan yang persis sama dengan <code>isDivisor</code> pada Bab 4. Keperluan ini muncul dengan sendirinya begitu kondisi memeriksa isi list (bukan hanya bentuknya), sehingga bentuk ini akan sering muncul mulai sekarang.</p>
+<p><strong>Rekurensnya mempunyai dua kasus, bukan satu.</strong> <code>squareAll</code> selalu membentuk <code>makeCons</code>; <code>keepPositive</code> kadang membentuknya dan kadang tidak. Perbedaan antara “mengubah setiap elemen” dan “memilih sebagian elemen” terlihat langsung pada bentuk teksnya.</p>
+<p><strong>Ketiga kondisinya lengkap dan disjoint.</strong> Diperiksa sebagaimana Bab 4.</p>
 <h2 id="menyusun-list-harga-sebuah-ujung"><a class="header" href="#menyusun-list-harga-sebuah-ujung">Menyusun List: Harga Sebuah Ujung</a></h2>
 <p><code>makeCons</code> menambahkan elemen di <strong>depan</strong> dan menghasilkan list baru dengan satu aplikasi konstruktor. Menambahkan di <strong>belakang</strong> tidak tersedia sebagai konstruktor, dan harus diturunkan.</p>
 <pre><code>JUDUL   Menambahkan Elemen di Akhir List
@@ -2609,7 +2609,7 @@ DEFINISI DAN SPESIFIKASI PREDIKAT
       [1, 2, 9]
 </code></pre>
 <p>Hitunglah pekerjaannya. <code>makeCons (0, L)</code> menyisipkan di depan dengan <strong>satu</strong> aplikasi konstruktor, berapa pun panjang <code>L</code>. <code>addLast (L, e)</code> untuk <code>L</code> sepanjang <em>n</em> menuntut <em>n</em> + 1 aplikasi <code>addLast</code> dan membangun ulang seluruh <em>n</em> lapis konstruktor.</p>
-<p>Inilah akibat dari ketidaksimetrisan yang disebut di awal bab. Sebuah list mempunyai satu ujung yang murah dan satu ujung yang mahal, dan itu bukan kebetulan, melainkan akibat langsung dari definisi type-nya, yang menyebut dirinya sendiri pada posisi <code>tail</code>.</p>
+<p>Ketidaksimetrisan yang disebut di awal bab bermuara di sini. Sebuah list mempunyai satu ujung yang murah dan satu ujung yang mahal, sebagai akibat langsung dari definisi type-nya, yang menyebut dirinya sendiri pada posisi <code>tail</code>.</p>
 <p>Diktat ini karenanya hanya mempunyai <strong>satu</strong> konstruktor. Bahan terdahulu menyediakan konstruktor kedua untuk menambahkan di kanan, sehingga kedua ujung tampak setara. Kesetaraan itu menyesatkan. Dengan menurunkan <code>addLast</code> sebagai fungsi biasa, harganya menjadi terlihat, dan pilihan rancangan yang bersandar padanya menjadi pilihan yang sadar.</p>
 <h3 id="pembalikan-dan-tempat-akumulator-bekerja"><a class="header" href="#pembalikan-dan-tempat-akumulator-bekerja">Pembalikan, dan tempat akumulator bekerja</a></h3>
 <pre><code>JUDUL   Membalik Urutan Elemen
@@ -2625,7 +2625,7 @@ DEFINISI DAN SPESIFIKASI PREDIKAT
             isEmpty (L)       : makeNil
             not (isEmpty (L)) : addLast (reverse (tail (L)), head (L))
 </code></pre>
-<p>Realisasi ini benar dan langsung mengikuti gagasannya. Perhatikan bahwa realisasi ini mahal, karena setiap lapis memanggil <code>addLast</code> yang sendirinya menelusuri seluruh list. Untuk <code>[1, 2, 3]</code>, <code>reverse</code> diaplikasikan empat kali dan <code>addLast</code> enam kali.</p>
+<p>Realisasi ini benar dan langsung mengikuti gagasannya, tetapi mahal: setiap lapis memanggil <code>addLast</code> yang sendirinya menelusuri seluruh list. Untuk <code>[1, 2, 3]</code>, <code>reverse</code> diaplikasikan empat kali dan <code>addLast</code> enam kali.</p>
 <p>Bab 6 memperkenalkan akumulator, yaitu parameter tambahan yang membawa hasil sementara maju. Persoalan ini adalah tempatnya bekerja:</p>
 <pre><code>REALISASI (VERSI KEDUA)
     reverseOnto : List, List → List
@@ -2649,7 +2649,7 @@ DEFINISI DAN SPESIFIKASI PREDIKAT
 </code></pre>
 <p>Untuk <code>[1, 2, 3]</code>, <code>reverseOnto</code> diaplikasikan empat kali dan <code>addLast</code> tidak dipakai sama sekali. Setiap langkah hanya memerlukan satu <code>makeCons</code>, yaitu operasi yang murah.</p>
 <p>Sebagaimana Bab 6, harganya terletak pada spesifikasinya. Spesifikasi <code>reverse</code> dapat dituliskan dalam satu kalimat. Spesifikasi <code>reverseOnto</code> menuntut kita menjelaskan apa arti <code>acc</code> pada setiap langkah, dan kalimat itu jauh lebih sulit ditulis dengan tepat daripada realisasinya.</p>
-<p><strong>Perhatikan pula bahwa keuntungan ini tidak berlaku umum.</strong> Dari seluruh fungsi pada bab ini, hanya <code>reverse</code> yang jelas diuntungkan oleh akumulator. Menuliskan <code>length</code>, <code>sumList</code>, atau <code>squareAll</code> dalam bentuk berakumulator menghasilkan teks yang lebih panjang tanpa penghematan apa pun, dan untuk <code>squareAll</code> hasilnya bahkan terbalik urutannya sehingga menuntut satu <code>reverse</code> tambahan di ujung. Bentuk berakumulator adalah salah satu alat, bukan bentuk yang lebih maju.</p>
+<p><strong>Keuntungan ini tidak berlaku umum.</strong> Dari seluruh fungsi pada bab ini, hanya <code>reverse</code> yang jelas diuntungkan oleh akumulator. Menuliskan <code>length</code>, <code>sumList</code>, atau <code>squareAll</code> dalam bentuk berakumulator menghasilkan teks yang lebih panjang tanpa penghematan apa pun, dan untuk <code>squareAll</code> hasilnya bahkan terbalik urutannya sehingga menuntut satu <code>reverse</code> tambahan di ujung. Bentuk berakumulator adalah salah satu alat, bukan bentuk yang lebih maju.</p>
 <h3 id="menyisipkan-pada-tempatnya"><a class="header" href="#menyisipkan-pada-tempatnya">Menyisipkan pada tempatnya</a></h3>
 <pre><code>JUDUL   Penyisipan Terurut
 </code></pre>
@@ -2699,7 +2699,7 @@ DEFINISI DAN SPESIFIKASI PREDIKAT
       1
 </code></pre>
 <p>Bentuknya adalah <code>keepPositive</code> dan <code>length</code> yang digabung: rekurensnya bercabang seperti penyaringan, hasilnya sebuah bilangan seperti pencacahan.</p>
-<p>Yang layak diperhatikan bukan fungsinya, melainkan <strong>apa yang tidak perlu ditulis</strong>. Tidak ada type teks tersendiri, tidak ada operasi teks tersendiri, dan <code>length</code>, <code>isMember</code>, serta <code>reverse</code> yang sudah ditulis di atas berlaku atas teks tanpa perubahan satu huruf pun.</p>
+<p>Yang penting pada contoh ini adalah <strong>apa yang tidak perlu ditulis</strong>: tidak ada type teks tersendiri, tidak ada operasi teks tersendiri, dan <code>length</code>, <code>isMember</code>, serta <code>reverse</code> yang sudah ditulis di atas berlaku atas teks tanpa perubahan satu huruf pun.</p>
 <h2 id="list-of-type-bentukan"><a class="header" href="#list-of-type-bentukan">List of Type Bentukan</a></h2>
 <p>Elemen sebuah list boleh bertype bentukan. Bab 5 menyediakan <code>Date</code> beserta <code>isBefore</code>, dan keduanya dipakai kembali di sini tanpa penyesuaian.</p>
 <pre><code>JUDUL   Tanggal Paling Awal
@@ -2723,7 +2723,7 @@ DEFINISI DAN SPESIFIKASI PREDIKAT
                 not (isOneElement (L)) and not (isBefore (head (L), rest)) : rest
 </code></pre>
 <p>Letakkan realisasi ini berdampingan dengan <code>maxList</code>. Keduanya berbasis-1, keduanya membandingkan elemen pertama terhadap hasil rekurens atas sisanya, dan keduanya hanya berbeda pada <strong>cara membandingkan</strong>. Yang satu memakai <code>max2</code> atas <code>Integer</code>, yang lain memakai <code>isBefore</code> atas <code>Date</code>.</p>
-<p>Ini adalah kekembaran ketiga pada bab ini, dan yang paling jauh jangkauannya. Dua fungsi dengan type yang sama sekali berbeda ternyata mempunyai bentuk yang sama.</p>
+<p>Ini adalah kekembaran ketiga pada bab ini, dan satu-satunya yang melintasi type: <code>Integer</code> dan <code>Date</code> tidak mempunyai kesamaan apa pun, tetapi bentuk kedua fungsinya sama.</p>
 <h2 id="himpunan"><a class="header" href="#himpunan">Himpunan</a></h2>
 <p>Sebuah <strong>himpunan</strong> adalah list yang seluruh elemennya berbeda, dengan kata lain, sebuah list dengan sebuah tambahan <strong>invarian</strong>.</p>
 <pre><code>TYPE SET
@@ -2766,9 +2766,9 @@ DEFINISI DAN SPESIFIKASI OPERATOR LAIN
     ⇒ union ([1, 2], [2, 3])
       [1, 2, 3]
 </code></pre>
-<p>Satu hal yang perlu benar-benar dipahami: <strong><code>makeCons</code> bukan konstruktor yang sah bagi <code>Set</code>.</strong> Ia dapat menghasilkan list yang mengandung dua elemen sama, sehingga melanggar invarian <code>Set</code>. Setiap pembentukan anggota baru harus melalui <code>insertSet</code>, dan <code>union</code> di atas taat kepada aturan itu dengan memanggil <code>insertSet</code> alih-alih <code>makeCons</code>.</p>
-<p>Inilah “bekerja lewat konstruktor” dari Bab 5, muncul kembali dan kali ini dengan taruhan yang lebih jelas. Satu pemanggilan <code>makeCons</code> yang lolos akan menghasilkan <code>Set</code> yang tidak sah, dan gejalanya akan muncul jauh dari sebabnya.</p>
-<p>Perhatikan bahwa harganya nyata: <code>insertSet</code> memanggil <code>isMember</code> yang menelusuri seluruh himpunan, sehingga menyisipkan ke dalam himpunan jauh lebih mahal daripada menyisipkan ke dalam list. Invarian tidak pernah gratis: ia dibayar oleh setiap operasi yang harus menjaganya, dan dibeli karena hal-hal lain menjadi lebih mudah dipercaya.</p>
+<p><strong><code>makeCons</code> bukan konstruktor yang sah bagi <code>Set</code>.</strong> Ia dapat menghasilkan list yang mengandung dua elemen sama, sehingga melanggar invarian <code>Set</code>. Setiap pembentukan anggota baru harus melalui <code>insertSet</code>, dan <code>union</code> di atas taat kepada aturan itu dengan memanggil <code>insertSet</code> alih-alih <code>makeCons</code>.</p>
+<p>Ini adalah “bekerja lewat konstruktor” dari Bab 5, kini dengan akibat yang lebih tajam: satu pemanggilan <code>makeCons</code> yang lolos akan menghasilkan <code>Set</code> yang tidak sah, dan gejalanya akan muncul jauh dari sebabnya.</p>
+<p>Harganya nyata: <code>insertSet</code> memanggil <code>isMember</code> yang menelusuri seluruh himpunan, sehingga menyisipkan ke dalam himpunan jauh lebih mahal daripada menyisipkan ke dalam list. Invarian dibayar oleh setiap operasi yang harus menjaganya, dan dibeli karena hal lain menjadi lebih mudah dipercaya.</p>
 <h2 id="resume-analisis-rekurens"><a class="header" href="#resume-analisis-rekurens">Resume Analisis Rekurens</a></h2>
 <p>Seluruh fungsi rekursif pada Bab 6 dan Bab 7 mengikuti sejumlah kecil pola. Tabel berikut merangkumnya.</p>
 <p><strong>Rekurens terhadap bilangan bulat <code>n</code>:</strong></p>
@@ -2842,7 +2842,7 @@ DEFINISI DAN SPESIFIKASI OPERATOR LAIN
 </tbody>
 </table>
 </div>
-<p>Baris kelima layak mendapat perhatian. Menuliskan <code>f (L)</code> alih-alih <code>f (tail (L))</code> adalah salah ketik yang mudah dilakukan dan menghasilkan kegagalan yang paling khas pada bab ini: fungsinya tidak menghasilkan jawaban keliru, melainkan tidak menghasilkan apa-apa. Ini adalah pelanggaran kewajiban kedua dari Bab 6, dalam bentuknya yang paling sederhana.</p>
+<p>Kesalahan pada baris kelima, yaitu menuliskan <code>f (L)</code> alih-alih <code>f (tail (L))</code>, adalah salah ketik yang mudah dilakukan, dan akibatnya bukan jawaban yang keliru melainkan tidak ada jawaban sama sekali. Ini adalah pelanggaran kewajiban kedua dari Bab 6, dalam bentuknya yang paling sederhana.</p>
 <h2 id="ringkasan-padanan-2"><a class="header" href="#ringkasan-padanan-2">Ringkasan Padanan</a></h2>
 <pre><code class="language-haskell">-- type List tidak perlu didefinisikan; Haskell sudah menyediakannya
 -- []           adalah makeNil
@@ -2889,7 +2889,7 @@ keepPositive (x : xs)
 </tbody>
 </table>
 </div>
-<p>Perhatikan baris terakhir. Sepanjang bab ini <code>Set</code> adalah gagasan yang seluruhnya ditegakkan oleh disiplin, dan terjemahannya ke Haskell tidak memperbaiki keadaan itu sedikit pun. Bahasa yang memeriksa banyak hal ternyata tetap tidak memeriksa yang satu ini.</p>
+<p>Baris terakhir adalah satu-satunya yang tidak mempunyai padanan. Sepanjang bab ini <code>Set</code> adalah gagasan yang seluruhnya ditegakkan oleh disiplin, dan terjemahannya ke Haskell tidak mengubah keadaan itu: sistem type Haskell memeriksa banyak hal, tetapi tidak memeriksa yang satu ini.</p>
 <h2 id="latihan-5"><a class="header" href="#latihan-5">Latihan</a></h2>
 <p><strong>Membaca.</strong> Untuk setiap realisasi berikut, tentukan definisinya, tuliskan spesifikasinya, sebutkan basisnya (basis-0 atau basis-1) dan rekurensnya, lalu usulkan nama yang sesuai konvensi.</p>
 <pre><code>p (L) :
@@ -3343,14 +3343,14 @@ length (filter (λ x : x &gt; 0, L))
 </table>
 </div>
 <p>Ketiganya adalah pertanyaan eksekusi. Notasi menolak menjawabnya bukan karena lalai, melainkan karena jawabannya berbeda-beda menurut bahasa yang dipakai, sedangkan rancangan yang baik seharusnya tetap sah ketika bahasanya diganti.</p>
-<p>Bab ini menjawab ketiganya <strong>sejauh jawabannya tidak bergantung pada bahasa</strong>, dan menunjukkan di mana jawaban bagi bahasa acuan berada. Pembagian itu bukan kehati-hatian yang berlebihan. Jawaban yang bergantung pada bahasa akan berubah ketika bahasanya diganti, dan sebagian di antaranya berubah sampai terbalik; yang dituliskan di bawah ini tidak. Bab ini adalah bab terakhir Diktat.</p>
+<p>Bab ini menjawab ketiganya <strong>sejauh jawabannya tidak bergantung pada bahasa</strong>, dan menunjukkan di mana jawaban bagi bahasa acuan berada. Jawaban yang bergantung pada bahasa akan berubah ketika bahasanya diganti, dan sebagian di antaranya berubah sampai terbalik; yang dituliskan di bawah ini tidak. Bab ini adalah bab terakhir Diktat.</p>
 <h2 id="kapan-strategi-evaluasi"><a class="header" href="#kapan-strategi-evaluasi">Kapan: Strategi Evaluasi</a></h2>
 <p>Bab 3 menelusuri <code>distance (1.0, 3.0, 5.0, 6.0)</code> dengan dua urutan yang berbeda dan memperoleh hasil yang sama. Kesimpulannya: urutan evaluasi tidak mengubah hasil, dan karena itu notasi tidak perlu menetapkannya.</p>
 <p>Kesimpulan itu benar, dan tidak lengkap. Yang tidak berubah adalah <strong>hasilnya</strong>. Yang berubah adalah <strong>pekerjaannya</strong>.</p>
-<p>Perhatikan fungsi berikut:</p>
+<p>Ambil fungsi berikut:</p>
 <pre><code>first (a, b) : a
 </code></pre>
-<p>lalu perhatikan aplikasi <code>first (5, factorial (20))</code>.</p>
+<p>dan aplikasi <code>first (5, factorial (20))</code>.</p>
 <p>Menurut spesifikasinya, hasilnya adalah <code>5</code>. Pertanyaannya: apakah <code>factorial (20)</code> dihitung?</p>
 <p>Ada dua jawaban, dan keduanya dipakai oleh bahasa nyata.</p>
 <p><strong>Evaluasi ketat (<em>strict</em>).</strong> Seluruh argumen dihitung lebih dahulu, baru fungsinya diaplikasikan.</p>
@@ -3363,12 +3363,12 @@ length (filter (λ x : x &gt; 0, L))
   → 5                                 { ekspansi first }
 </code></pre>
 <p>Hasilnya sama. Pekerjaannya berbeda dua puluh satu aplikasi.</p>
-<p>Kebanyakan bahasa bersifat ketat: C, Python, Java, OCaml. Sebagian kecil bersifat malas. Pilihan di antara keduanya adalah salah satu keputusan rancangan sebuah bahasa yang paling menentukan, dan akibatnya terasa pada hampir setiap program yang cukup besar.</p>
-<p>Perhatikan bahwa notasi kita tetap benar dalam kedua keadaan. Itulah sebabnya urutan tidak ditetapkan. Rancangan yang sama dapat dijalankan oleh bahasa ketat maupun malas, dan spesifikasinya tidak berubah sedikit pun.</p>
+<p>Kebanyakan bahasa bersifat ketat: C, Python, Java, OCaml. Sebagian kecil bersifat malas. Pilihan di antara keduanya menentukan dua hal sekaligus: berapa banyak pekerjaan yang dilakukan sebuah aplikasi, dan apakah sebuah argumen yang tidak terdefinisi menghentikan program atau tidak.</p>
+<p>Notasi kita tetap benar dalam kedua keadaan, dan itulah sebabnya urutan tidak ditetapkan. Rancangan yang sama dapat dijalankan oleh bahasa ketat maupun malas, dan spesifikasinya tidak berubah sedikit pun.</p>
 <p>Yang berubah adalah <strong>pekerjaannya</strong>, dan pekerjaan adalah urusan bahasa. Pilihan yang diambil bahasa acuan Anda, beserta akibat yang perlu diketahui, dibahas pada Suplemen S10.</p>
 <h2 id="berapa-kali-posisi-ekor"><a class="header" href="#berapa-kali-posisi-ekor">Berapa Kali: Posisi Ekor</a></h2>
 <p>Bab 6 meletakkan <code>fibFrom</code> berdampingan dengan sebuah loop dan menyatakan bahwa keduanya berbentuk sama. Pertanyaan yang ditunda saat itu adalah apakah keduanya juga <strong>dijalankan</strong> dengan cara yang sama.</p>
-<p>Perbedaannya terletak pada satu hal. Perhatikan kedua rekurens ini:</p>
+<p>Perbedaannya terletak pada apa yang masih menunggu setelah aplikasi rekursifnya menghasilkan nilai. Bandingkan kedua rekurens ini:</p>
 <pre><code>factorial (n) : ... n * factorial (n - 1)
 fibFrom (k, a, b) : ... fibFrom (k - 1, b, a + b)
 </code></pre>
@@ -3376,33 +3376,33 @@ fibFrom (k, a, b) : ... fibFrom (k - 1, b, a + b)
 <p>Aplikasi yang merupakan hal terakhir yang dikerjakan disebut berada pada <strong>posisi ekor</strong> (<em>tail position</em>), dan fungsi yang seluruh rekurensnya berada pada posisi ekor disebut <strong>rekursif ekor</strong> (<em>tail-recursive</em>).</p>
 <p>Perbedaan ini terlihat pada penelusuran Bab 6. <code>factorial (4)</code> membesar lebih dahulu sampai basis, baru mengecil, karena setiap lapis menyimpan perkalian yang tertunda. <code>fibFrom</code> tidak pernah membesar; setiap langkah menggantikan langkah sebelumnya seluruhnya.</p>
 <p>Pada bahasa yang menjaminnya (Scheme, OCaml, Lua, dan lainnya), aplikasi pada posisi ekor tidak memerlukan tempat baru sama sekali: fungsi rekursif ekor dijalankan dengan sumber daya tetap, persis seperti loop. Jaminan itu mempunyai nama, yaitu <em>tail call optimisation</em>, dan pada bahasa-bahasa tersebut jaminan itu adalah bagian dari definisi bahasanya, bukan kemurahan hati kompilatornya.</p>
-<p>Tidak semua bahasa memberikan jaminan tersebut. Yang lebih perlu diwaspadai: pada sebagian bahasa yang memberikannya, bentuk berakumulator <strong>tetap</strong> tidak lebih hemat, karena sumber daya yang kritis di sana bukan tempat penyimpanan perhitungan yang tertunda melainkan hal lain sama sekali. Karena itu kalimat yang sering diucapkan, yaitu <em>fungsi rekursif ekor diterjemahkan menjadi loop</em>, tidak berlaku umum dan tidak boleh dipercaya begitu saja. Apa yang sesungguhnya terjadi pada bahasa acuan Anda dibahas pada Suplemen S10, dan jawabannya mungkin mengejutkan.</p>
-<p>Satu hal yang pantas dibawa dari sini, dan sifatnya rancangan alih-alih eksekusi: <strong>posisi ekor dapat dilihat langsung dari teks realisasi</strong>, sebelum bahasa apa pun dipilih. Kemampuan melihatnya adalah milik perancang. Apa yang kemudian dilakukan mesin terhadapnya adalah milik bahasanya, dan kedua hal itu sebaiknya tidak dicampur.</p>
+<p>Tidak semua bahasa memberikan jaminan tersebut. Pada sebagian bahasa yang memberikannya pun, bentuk berakumulator <strong>tetap</strong> tidak lebih hemat, karena sumber daya yang bersifat kritis di sana bukanlah tempat penyimpanan perhitungan yang tertunda melainkan hal lain sama sekali. Karena itu kalimat yang sering diucapkan, yaitu <em>fungsi rekursif ekor diterjemahkan menjadi loop</em>, tidak berlaku umum dan tidak boleh dipercaya begitu saja. Apa yang sesungguhnya terjadi pada bahasa acuan Anda dibahas pada Suplemen S10.</p>
+<p><strong>Posisi ekor dapat dilihat langsung dari teks realisasi</strong>, sebelum bahasa apa pun dipilih. Hal itu perkara rancangan, bukan perkara eksekusi. Kemampuan melihatnya adalah milik perancang. Apa yang kemudian dilakukan mesin terhadapnya adalah milik bahasanya, dan kedua hal itu sebaiknya tidak dicampur.</p>
 <h2 id="mengapa-bentuk-non-akumulator-tetap-diajarkan"><a class="header" href="#mengapa-bentuk-non-akumulator-tetap-diajarkan">Mengapa Bentuk Non-Akumulator Tetap Diajarkan</a></h2>
 <p>Bab 6 menunda pertanyaan ini, dan sekarang jawabannya dapat diberikan utuh.</p>
-<p><strong>Karena spesifikasinya jauh lebih mudah ditulis dengan benar.</strong> Inilah alasan yang paling kuat dan paling sering diremehkan. Bab 6 sudah memperlihatkannya pada <code>fibFrom</code>, dan Bab 7 pada <code>reverseOnto</code>: realisasinya lebih pendek, spesifikasinya jauh lebih sulit. Kesalahan pada fungsi berakumulator hampir selalu terletak pada nilai awal akumulatornya, dan kesalahan itu hanya dapat ditemukan oleh orang yang sudah menuliskan artinya dengan tepat.</p>
+<p><strong>Karena spesifikasinya jauh lebih mudah ditulis dengan benar.</strong> Alasan ini yang paling kuat di antara keempatnya. Bab 6 sudah memperlihatkannya pada <code>fibFrom</code>, dan Bab 7 pada <code>reverseOnto</code>: realisasinya lebih pendek, spesifikasinya jauh lebih sulit. Kesalahan pada fungsi berakumulator hampir selalu terletak pada nilai awal akumulatornya, dan kesalahan itu hanya dapat ditemukan oleh orang yang sudah menuliskan artinya dengan tepat.</p>
 <p><strong>Karena sebagian besar fungsi tidak diuntungkan olehnya.</strong> Bab 7 menyatakan hal ini dan menyebutkan bahwa dari seluruh fungsi di sana, hanya <code>reverse</code> yang jelas diuntungkan. Untuk <code>squareAll</code>, bentuk berakumulator bahkan menuntut satu <code>reverse</code> tambahan di ujung.</p>
 <p><strong>Karena bentuknya sesuai dengan type-nya.</strong> Rekursi yang menggabungkan <code>head (L)</code> dengan hasil atas <code>tail (L)</code> mengikuti bentuk definisi list itu sendiri, dan justru karena itulah Bab 7 dapat menyatakan bahwa basis dan konvergensinya datang cuma-cuma dari type-nya. Bentuk berakumulator meninggalkan kesesuaian tersebut dan menggantinya dengan sesuatu yang harus dijaga sendiri.</p>
 <p><strong>Karena keputusan ini berumur lebih pendek daripada rancangannya.</strong> Bahasa berganti, kompilator membaik, dan apa yang hari ini mahal mungkin besok tidak. Spesifikasi yang jelas bertahan melewati semuanya.</p>
 <h2 id="dunia-luar-kemurnian"><a class="header" href="#dunia-luar-kemurnian">Dunia Luar: Kemurnian</a></h2>
-<p>Ada satu sifat yang dimiliki <strong>setiap</strong> fungsi yang ditulis sejak Bab 2, dan yang belum pernah diberi nama.</p>
+<p><strong>Setiap</strong> fungsi yang ditulis sejak Bab 2 mempunyai satu sifat yang sama, dan sifat itu belum pernah diberi nama. Bab ini memperkenalkan istilah <em>kemurnian</em>.</p>
 <p>Sebuah fungsi disebut <strong>murni</strong> (<em>pure</em>) bila:</p>
 <ul>
 <li>hasilnya ditentukan sepenuhnya oleh argumennya, sehingga argumen yang sama selalu menghasilkan nilai yang sama; dan</li>
 <li>mengaplikasikannya tidak mengubah apa pun di luar dirinya.</li>
 </ul>
-<p>Seluruh isi Bab 2 sampai Bab 8 murni, tanpa satu perkecualian. Hal itu bukan kebetulan, dan bukan pula pembatasan yang diberlakukan diam-diam. Notasi ini memang tidak menyediakan cara untuk menulis yang tidak murni.</p>
+<p>Seluruh isi Bab 2 sampai Bab 8 murni, tanpa satu perkecualian, karena notasi ini memang tidak menyediakan cara untuk menulis fungsi yang tidak murni.</p>
 <p>Bandingkan dengan fungsi berikut, yang ditulis dalam bahasa yang mungkin lebih dikenal pembaca:</p>
 <pre><code class="language-c">int counter = 0;
 
-int next(void) {
-    counter = counter + 1;
+int next(int step) {
+    counter = counter + step;
     return counter;
 }
 </code></pre>
-<p><code>next()</code> menghasilkan nilai yang berbeda setiap kali dipanggil dengan argumen yang sama, yaitu tanpa argumen sama sekali. Fungsi tersebut juga mengubah sesuatu di luar dirinya, sehingga kedua syarat kemurnian dilanggar sekaligus.</p>
-<p>Sekarang perhatikan apa yang hilang bersama kemurnian. Bab 2 menyatakan bahwa sebuah ekspresi dapat digantikan oleh nilainya tanpa mengubah arti program, dan menyebutnya transparansi referensial. Untuk <code>next()</code>, penggantian itu tidak sah: <code>next() + next()</code> tidak sama dengan <code>2 * next()</code>. Untuk <code>square (3)</code>, penggantian itu selalu sah.</p>
-<p><strong>Apa yang dibeli oleh kemurnian</strong>, dikumpulkan dari delapan bab:</p>
+<p><code>next(x)</code> menghasilkan nilai yang berbeda setiap kali dipanggil, sekalipun dengan argumen yang sama. Fungsi tersebut juga mengubah sesuatu di luar dirinya, sehingga kedua syarat kemurnian dilanggar sekaligus.</p>
+<p>Yang hilang bersama kemurnian adalah transparansi referensial. Bab 2 menyatakan bahwa sebuah ekspresi dapat digantikan oleh nilainya tanpa mengubah arti program; untuk <code>next(x)</code>, penggantian itu tidak sah: <code>next(1) + next(1)</code> tidak sama dengan <code>2 * next(1)</code>. Untuk <code>square (3)</code>, penggantian itu selalu sah.</p>
+<p><strong>Apa yang didapat dari kemurnian</strong>, dikumpulkan dari delapan bab:</p>
 <div class="table-wrapper">
 <table>
 <thead>
@@ -3419,27 +3419,27 @@ int next(void) {
 </tbody>
 </table>
 </div>
-<p>Baris terakhir pantas diperhatikan. Untuk menguji <code>next()</code>, kita harus tahu sudah berapa kali fungsi itu dipanggil sebelumnya. Untuk menguji <code>sumDigits</code>, tidak ada yang perlu disiapkan. Seluruh yang dibutuhkan adalah argumennya.</p>
+<p>Baris terakhir adalah satu-satunya yang baru pada bab ini. Untuk menguji <code>next()</code>, kita harus tahu sudah berapa kali fungsi itu dipanggil sebelumnya. Untuk menguji <code>sumDigits</code>, tidak ada yang perlu disiapkan. Seluruh yang dibutuhkan adalah argumennya.</p>
 <h2 id="masukan-dan-keluaran"><a class="header" href="#masukan-dan-keluaran">Masukan dan Keluaran</a></h2>
 <p>Kemurnian menimbulkan pertanyaan yang wajar. Membaca dari papan ketik menghasilkan nilai yang berbeda setiap kali. Menulis ke layar mengubah sesuatu di luar program. Bila seluruh fungsi harus murni, bagaimana program fungsional dapat berguna sama sekali?</p>
 <p>Bab 2 sudah memberikan jawabannya dalam satu kalimat: aksi membaca dan menulis diwakili oleh interaksi pemakai dengan lingkungan eksekusi, bukan oleh program. Sekarang kalimat itu dapat dijelaskan.</p>
 <p>Kuncinya adalah membedakan <strong>deskripsi sebuah aksi</strong> dari <strong>pelaksanaan aksi tersebut</strong>. “Bacalah sebuah baris dari papan ketik” adalah sebuah kalimat; menuliskan kalimat itu, menyalinnya, atau merangkainya dengan kalimat lain tidak membaca apa pun. Yang membaca adalah pihak yang akhirnya menjalankannya, dan pihak itu adalah lingkungan eksekusi, bukan program. Menyusun deskripsi tetap murni sepenuhnya. Sebuah program fungsional karenanya bukan rangkaian aksi, melainkan sebuah <strong>nilai</strong> yang menggambarkan aksi apa yang hendak dilakukan, yang lalu diserahkan kepada lingkungannya untuk dijalankan.</p>
-<p>Bahasa berbeda dalam satu hal, dan perbedaannya besar: <strong>apakah perbedaan antara perhitungan dan aksi ditulis ke dalam type, atau tidak.</strong></p>
+<p>Bahasa berbeda dalam satu hal: <strong>apakah perbedaan antara perhitungan dan aksi ditulis ke dalam type, atau tidak.</strong></p>
 <ul>
 <li>Bila <strong>ya</strong>, sebuah fungsi yang boleh membaca papan ketik mempunyai type yang berbeda dari fungsi yang tidak boleh, dan kompilator menolak yang melanggar. Batas antara inti yang murni dan tepi yang berefek berhenti menjadi janji dan menjadi sesuatu yang diperiksa mesin.</li>
 <li>Bila <strong>tidak</strong>, batas itu tetap ada dan tetap sama pentingnya, hanya saja penegakannya diserahkan kepada disiplin penulisnya. Keadaannya persis seperti invarian <code>Set</code> pada Bab 7: benar, penting, dan tidak diperiksa siapa pun.</li>
 </ul>
 <p>Yang dilakukan bahasa acuan Anda dibahas pada Suplemen S3 dan S6.</p>
-<p>Perhatikan bahwa kemungkinan pertama adalah <strong>pembalikan</strong> dari apa yang berulang sepanjang Diktat. Bab 4 dan Bab 5 memperlihatkan notasi menuliskan pembatasan yang tidak dapat diperiksa bahasanya. Sebuah bahasa yang menuliskan efek ke dalam type melakukan yang sebaliknya: menuliskan pembatasan yang notasi kita tidak mempunyai sarana untuk menyatakannya sama sekali.</p>
-<p>Satu bentuk berlaku dalam kedua keadaan dan pantas dijadikan kebiasaan sejak sekarang: <strong>inti yang murni, dikelilingi tepi yang menangani efek</strong>, dengan tepi itu dibuat setipis mungkin. Seluruh fungsi yang pembaca tulis sejak Bab 2 adalah calon isi inti tersebut dan tidak perlu diubah sedikit pun untuk dipakai di dalam sebuah program yang berinteraksi; yang ditambahkan hanyalah lapisan tipis di sekelilingnya. Gagasan ini berlaku jauh melampaui bahasa fungsional, dan pembaca yang tertarik dirujuk ke [7].</p>
+<p>Kemungkinan pertama adalah <strong>pembalikan</strong> dari apa yang berulang sepanjang Diktat. Bab 4 dan Bab 5 memperlihatkan notasi menuliskan pembatasan yang tidak dapat diperiksa bahasanya. Sebuah bahasa yang menuliskan efek ke dalam type melakukan yang sebaliknya: menuliskan pembatasan yang notasi kita tidak mempunyai sarana untuk menyatakannya sama sekali.</p>
+<p><strong>Inti yang murni, dikelilingi tepi yang menangani efek</strong>, dengan tepi itu dibuat setipis mungkin: bentuk ini berlaku dalam kedua keadaan, dan pantas dijadikan kebiasaan sejak sekarang. Seluruh fungsi yang pembaca tulis sejak Bab 2 adalah calon isi inti tersebut dan tidak perlu diubah sedikit pun untuk dipakai di dalam sebuah program yang berinteraksi; yang ditambahkan hanyalah lapisan tipis di sekelilingnya. Gagasan ini berlaku jauh melampaui bahasa fungsional, dan pembaca yang tertarik dirujuk ke [7].</p>
 <p>Mekanisme yang dipakai bahasa-bahasa fungsional untuk merangkai deskripsi aksi mempunyai nama, yaitu <strong>monad</strong>. Mekanisme tersebut adalah salah satu gagasan penting dalam pemrograman fungsional modern, dan berada di luar cakupan diktat ini sebagaimana dinyatakan pada Bab 1. Namanya disebutkan di sini agar pembaca dapat mencarinya sendiri.</p>
 <h2 id="menguji-rancangan-terhadap-spesifikasi"><a class="header" href="#menguji-rancangan-terhadap-spesifikasi">Menguji Rancangan terhadap Spesifikasi</a></h2>
 <p>Pembaca sudah menguji program sejak Bab 2 tanpa istilah itu dipakai.</p>
 <p>Bab 2 menganjurkan menuliskan hasil yang diharapkan <strong>sebelum</strong> menjalankan, dan menjelaskan alasannya: hal itu mengubah eksekusi dari “mari lihat apa yang keluar” menjadi “mari periksa apakah dugaan saya benar”. Bab 3 memilih empat aplikasi <code>isLeapYear</code> sehingga setiap cabang tersentuh. Bab 4 menuntut setiap nilai batas diuji. Bab 5 dan Bab 7 menuntut list kosong dan list satu elemen selalu ada di antara contoh aplikasinya.</p>
 <p>Semua itu adalah pengujian, dilakukan dengan tangan.</p>
-<p>Yang berubah pada saat program dijalankan hanyalah siapa yang mengerjakannya. Setiap baris <code>APLIKASI</code> yang sudah pembaca tuliskan adalah sepasang ekspresi dan hasil yang diharapkan, dan pasangan semacam itu dapat dituliskan sebagai program yang memeriksa dirinya sendiri: kumpulkan seluruhnya, bandingkan hasil sesungguhnya dengan hasil yang diharapkan, dan hasilkan <code>true</code> bila semuanya cocok. Bentuknya dalam bahasa acuan dibahas pada Suplemen S8. Cara ini sederhana sampai terasa remeh, dan sudah menangkap sebagian besar kesalahan yang dibuat pada saat menulis.</p>
+<p>Yang berubah pada saat program dijalankan hanyalah siapa yang mengerjakannya. Setiap baris <code>APLIKASI</code> yang sudah pembaca tuliskan adalah sepasang ekspresi dan hasil yang diharapkan, dan pasangan semacam itu dapat dituliskan sebagai program yang memeriksa dirinya sendiri: kumpulkan seluruhnya, bandingkan hasil sesungguhnya dengan hasil yang diharapkan, dan hasilkan <code>true</code> bila semuanya cocok. Bentuknya dalam bahasa acuan dibahas pada Suplemen S8. Cara ini sederhana, dan sudah cukup untuk menangkap kesalahan pada nilai batas dan pada kasus kosong, yaitu dua tempat yang Bab 4 dan Bab 7 tandai sebagai yang paling sering salah.</p>
 <p>Ada bentuk pengujian yang lebih kuat dan sangat cocok bagi program murni. Alih-alih memeriksa contoh satu per satu, kita menyatakan <strong>sifat</strong> yang harus berlaku bagi seluruh masukan, lalu mesin mencobanya dengan ratusan masukan yang dibangkitkan sendiri. Sifat semacam “membalik sebuah list dua kali menghasilkan list semula” atau “hasil <code>sortBy</code> selalu sepanjang masukannya” dapat dituliskan langsung sebagai program. Gagasan ini disebut <strong>pengujian berbasis sifat</strong> (<em>property-based testing</em>), dan perkakasnya tersedia bagi hampir setiap bahasa. Cara memilih sifat dibahas pada Suplemen S7, dan cara menjalankannya pada S8.</p>
-<p>Perhatikan bahwa kemurnian membuat semua ini murah. Tidak ada keadaan yang harus disiapkan sebelum menguji dan tidak ada yang harus dibersihkan sesudahnya, karena tidak ada fungsi yang meninggalkan jejak.</p>
+<p>Kemurnian membuat semua ini murah. Tidak ada keadaan yang harus disiapkan sebelum menguji dan tidak ada yang harus dibersihkan sesudahnya, karena tidak ada fungsi yang meninggalkan jejak.</p>
 <h2 id="arah-lanjutan"><a class="header" href="#arah-lanjutan">Arah Lanjutan</a></h2>
 <p>Bab 1 menyatakan bahwa setelah menyelesaikan diktat ini, pembaca <strong>belum</strong> menjadi pemrogram fungsional. Pernyataan itu sekarang dapat dirinci.</p>
 <p><strong>Yang sudah dapat dilakukan pembaca.</strong> Menyatakan sebuah persoalan sebagai definisi, spesifikasi, realisasi, dan aplikasi. Melakukan analisis kasus yang lengkap dan disjoint, dan mengenali di mana kesalahan batas bersembunyi. Merancang type bentukan beserta invariannya. Melakukan analisis rekurens atas bilangan dan atas struktur, dan membuktikan bahwa evaluasinya berhenti. Mengenali pola berulang dan mengangkatnya menjadi fungsi orde tinggi. Membaca dan menelusuri program yang ditulis orang lain. Menerjemahkan semuanya ke sebuah bahasa nyata dan memeriksanya terhadap spesifikasi yang ditulis sendiri.</p>
@@ -3473,7 +3473,7 @@ union (S1, S2)     : depend on S1
                          not (isEmpty (S1)) : insertSet (head (S1), union (tail (S1), S2))
 </code></pre>
 <p>Untuk <code>isMember</code>, jawabannya bergantung pada satu hal yang halus. Sebutkan apa.</p>
-<p><strong>Menelusuri.</strong> Perhatikan <code>first (a, b) : a</code> dan aplikasi <code>first (5, factorial (20))</code>.</p>
+<p><strong>Menelusuri.</strong> Tinjau kembali <code>first (a, b) : a</code> dan aplikasi <code>first (5, factorial (20))</code>.</p>
 <ol>
 <li>Tuliskan penelusurannya menurut evaluasi ketat, dan hitung banyaknya aplikasi.</li>
 <li>Tuliskan penelusurannya menurut evaluasi malas, dan hitung banyaknya aplikasi.</li>
@@ -3489,7 +3489,7 @@ union (S1, S2)     : depend on S1
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="pohon"><a class="header" href="#pohon">Pohon</a></h1>
 <p>Bab ini berdiri di luar alur utama Diktat. Bab 9 sudah menutup pembahasan, dan pembaca yang berhenti di sana sudah menyelesaikan modul ini secara utuh.</p>
-<p>Tujuan bab ini berbeda dari kesembilan bab sebelumnya. Sepanjang Bab 2 sampai Bab 9, perbandingan yang berulang adalah perbandingan antara notasi fungsional dan bahasa acuannya. Perbandingan tersebut sudah selesai. Yang dibandingkan di sini adalah dua <strong>paradigma</strong>: sebuah struktur yang sama dirancang dua kali, sekali secara fungsional dan sekali secara prosedural, lalu keduanya diletakkan berdampingan.</p>
+<p>Yang dibandingkan pada bab ini adalah dua <strong>paradigma</strong>: sebuah struktur yang sama dirancang dua kali, sekali secara fungsional dan sekali secara prosedural, lalu keduanya diletakkan berdampingan. Perbandingan tersebut berbeda dari perbandingan yang berulang sepanjang Bab 2 sampai Bab 9, yaitu perbandingan antara notasi fungsional dan bahasa acuannya, yang sudah selesai pada Bab 9.</p>
 <p>Pohon dipilih sebagai bahan perbandingan karena dua alasan. Pertama, pohon adalah type rekursif, sehingga seluruh Bab 5, 6, dan 7 langsung dapat dipakai kembali tanpa mesin baru. Kedua, pohon adalah struktur pertama yang perbedaan kedua rancangannya benar-benar terasa. Untuk bilangan dan untuk list, kedua paradigma menghasilkan teks yang tidak terlalu jauh berbeda. Untuk pohon, perbedaannya besar dan pantas diperiksa.</p>
 <p>Bab ini hampir tidak memperkenalkan mesin baru. Yang dituliskan di sini adalah type alternatif dari Bab 5, analisis rekurens dari Bab 6, dan list sebagai hasil dari Bab 7.</p>
 <h2 id="pohon-1"><a class="header" href="#pohon-1">Pohon</a></h2>
@@ -3510,14 +3510,14 @@ union (S1, S2)     : depend on S1
 </tbody>
 </table>
 </div>
-<p>Baris terakhir pada tabel di atas adalah kunci seluruh bab ini. Sebuah upapohon <strong>adalah sebuah pohon</strong>, dan pernyataan tersebut persis merupakan bentuk sebuah definisi rekursif.</p>
+<p>Baris terakhir pada tabel di atas berbentuk definisi rekursif: sebuah upapohon <strong>adalah sebuah pohon</strong>. Setiap type dan setiap fungsi pada bab ini mengikuti bentuk tersebut.</p>
 <p>Persoalan yang berbentuk pohon banyak ditemui: struktur bab sebuah buku, klasifikasi makhluk hidup, silsilah keluarga, susunan berkas dalam sebuah sistem operasi, menu sebuah aplikasi, dan ekspresi aritmatika. Yang terakhir dibahas tersendiri pada bab ini.</p>
 <h2 id="pohon-n-aire"><a class="header" href="#pohon-n-aire">Pohon N-aire</a></h2>
 <p>Bentuk yang paling umum tidak membatasi banyaknya anak sebuah simpul. Definisi rekursifnya:</p>
 <ul>
 <li>Sebuah pohon adalah sebuah simpul berisi nilai, beserta sebuah <strong>list</strong> pohon sebagai anak-anaknya.</li>
 </ul>
-<p>Perhatikan bahwa tidak ada basis yang terpisah. Basisnya tersembunyi di dalam list: sebuah daun adalah simpul yang list anaknya kosong.</p>
+<p>Definisi tersebut tidak mempunyai basis yang terpisah. Basisnya tersembunyi di dalam list: sebuah daun adalah simpul yang list anaknya kosong.</p>
 <pre><code>TYPE TREE
 </code></pre>
 <pre><code>DEFINISI TYPE
@@ -3543,8 +3543,8 @@ DEFINISI DAN SPESIFIKASI PREDIKAT
 <pre><code>REALISASI
     isLeaf (T) : isEmpty (children (T))
 </code></pre>
-<p>Perhatikan bahwa type ini hanya mempunyai satu alternatif, dan alternatif tersebut menuntut sebuah <code>info</code>. Karena itu <strong>tidak ada pohon kosong</strong>: setiap <code>Tree</code> sekurang-kurangnya mempunyai akar. Hal ini sesuai dengan pengertian pohon sebagai struktur yang berakar; “pohon tanpa akar” bukan pohon yang kebetulan kecil, melainkan sesuatu yang lain. Yang boleh kosong adalah <strong>list anaknya</strong>, dan di situlah basis rekurensnya berada. Perhatikan akibatnya pada range <code>sizeTree</code>, yaitu <code>Integer &gt; 0</code> dan bukan <code>Integer ≥ 0</code>.</p>
-<p>Sekarang perhatikan apa yang terjadi ketika kita menghitung banyaknya simpul.</p>
+<p>Type ini hanya mempunyai satu alternatif, dan alternatif tersebut menuntut sebuah <code>info</code>. Karena itu <strong>tidak ada pohon kosong</strong>: setiap <code>Tree</code> sekurang-kurangnya mempunyai akar. Hal ini sesuai dengan pengertian pohon sebagai struktur yang berakar; sesuatu yang tidak mempunyai akar tidak mempunyai <code>info</code>, sehingga bukan sebuah <code>Tree</code>. Yang boleh kosong adalah <strong>list anaknya</strong>, dan di situlah basis rekurensnya berada. Akibatnya tampak pada range <code>sizeTree</code>, yaitu <code>Integer &gt; 0</code> dan bukan <code>Integer ≥ 0</code>.</p>
+<p>Menghitung banyaknya simpul pada type tersebut menuntut sebuah bentuk yang sudah diperkenalkan Bab 6 tetapi belum pernah dipakai.</p>
 <pre><code>JUDUL   Banyaknya Simpul Sebuah Pohon N-aire
 </code></pre>
 <pre><code>DEFINISI DAN SPESIFIKASI
@@ -3572,8 +3572,8 @@ DEFINISI DAN SPESIFIKASI PREDIKAT
       3
 </code></pre>
 <p><code>sizeTree</code> mengaplikasikan <code>sizeForest</code>, dan <code>sizeForest</code> mengaplikasikan <code>sizeTree</code>. Inilah <strong>rekursi tidak langsung</strong> dari Bab 6, yang di sana diperkenalkan lewat <code>isEven</code> dan <code>isOdd</code> dengan catatan terbuka bahwa contohnya tidak berguna dan bentuknya baru akan diperlukan pada bab ini.</p>
-<p>Alasan kemunculannya sekarang jelas. Type-nya sendiri saling merujuk: sebuah <code>Tree</code> menyebut <code>List of Tree</code>, dan sebuah <code>List of Tree</code> menyebut <code>Tree</code>. Fungsi yang mengikuti bentuk type-nya karenanya juga harus saling merujuk. Kedua kewajiban Bab 6 tetap terpenuhi dan kini datang dari type-nya: <code>sizeForest</code> mempunyai basis pada list kosong, dan setiap aplikasi bekerja atas struktur yang lebih kecil daripada semula.</p>
-<p>Perhatikan pula bahwa <code>sizeForest</code> berbentuk lipatan. Dengan Bab 8, seluruh fungsi tersebut dapat diganti oleh satu baris:</p>
+<p>Bentuk tersebut muncul di sini karena type-nya sendiri saling merujuk: sebuah <code>Tree</code> menyebut <code>List of Tree</code>, dan sebuah <code>List of Tree</code> menyebut <code>Tree</code>. Fungsi yang mengikuti bentuk type-nya karenanya juga harus saling merujuk. Kedua kewajiban Bab 6 tetap terpenuhi dan kini datang dari type-nya: <code>sizeForest</code> mempunyai basis pada list kosong, dan setiap aplikasi bekerja atas struktur yang lebih kecil daripada semula.</p>
+<p><code>sizeForest</code> sendiri berbentuk lipatan. Dengan Bab 8, seluruh fungsi tersebut dapat diganti oleh satu baris:</p>
 <pre><code>sizeTree (T) : 1 + sumList (map (sizeTree, children (T)))
 </code></pre>
 <p>Rekursi tidak langsungnya hilang, dan yang tersisa hanyalah satu fungsi rekursif biasa. Hal ini tidak selalu mungkin, tetapi cukup sering mungkin sehingga pantas diperiksa setiap kali sepasang fungsi saling memanggil.</p>
@@ -3616,8 +3616,8 @@ DEFINISI DAN SPESIFIKASI PREDIKAT
 <pre><code>REALISASI
     isLeafNode (T) : isEmptyTree (left (T)) and isEmptyTree (right (T))
 </code></pre>
-<p>Berbeda dengan <code>Tree</code> pada bagian sebelumnya, type ini <strong>mempunyai</strong> alternatif kosong. Sekali lagi, perbedaannya bukan soal selera. Sebuah simpul biner mempunyai dua tempat yang keduanya harus terisi, sehingga “tidak mempunyai anak kiri” harus dapat dituliskan secara eksplisit. Tanpa <code>Empty</code>, type ini menuntut empat alternatif, yaitu daun, bercabang kiri saja, bercabang kanan saja, dan bercabang keduanya, dan setiap fungsi atasnya menuntut analisis empat kasus.</p>
-<p>Akibatnya, basis kedua type ini berada di tempat yang berbeda. Pada <code>Tree</code>, basis rekurensnya adalah list anak yang kosong. Pada <code>BinaryTree</code>, basisnya adalah pohonnya sendiri yang kosong. Keduanya sah, dan pilihan di antara keduanya ditentukan oleh bentuk strukturnya, bukan oleh kebiasaan.</p>
+<p>Berbeda dengan <code>Tree</code> pada bagian sebelumnya, type ini <strong>mempunyai</strong> alternatif kosong. Sebuah simpul biner mempunyai dua tempat yang keduanya harus terisi, sehingga “tidak mempunyai anak kiri” harus dapat dituliskan secara eksplisit. Tanpa <code>Empty</code>, type ini menuntut empat alternatif, yaitu daun, bercabang kiri saja, bercabang kanan saja, dan bercabang keduanya, dan setiap fungsi atasnya menuntut analisis empat kasus.</p>
+<p>Akibatnya, basis kedua type ini berada di tempat yang berbeda. Pada <code>Tree</code>, basis rekurensnya adalah list anak yang kosong. Pada <code>BinaryTree</code>, basisnya adalah pohonnya sendiri yang kosong. Keduanya sah, dan yang menentukan pilihan adalah bentuk strukturnya.</p>
 <p>Dua fungsi dasar:</p>
 <pre><code>JUDUL   Ukuran dan Tinggi Pohon Biner
 </code></pre>
@@ -3656,7 +3656,7 @@ DEFINISI DAN SPESIFIKASI PREDIKAT
       2
 </code></pre>
 <p>Kedua fungsi tersebut mengandung <strong>dua</strong> aplikasi rekursif dalam satu ekspresi, sebagaimana <code>fibonacci</code> pada Bab 6, sehingga penelusurannya berupa pohon dan bukan garis. Perbedaannya dengan <code>fibonacci</code>: di sini tidak ada pekerjaan yang terulang, karena upapohon kiri dan kanan memang berisi simpul yang berbeda.</p>
-<p>Perhatikan bahwa nilai basis <code>height</code> adalah keputusan yang harus dinyatakan, bukan sesuatu yang terberi. Sebagian penulis menetapkan tinggi pohon dengan satu simpul sebagai nol dan bukan satu. Kedua pilihan sah, dan yang tidak sah adalah membiarkannya tidak tertulis. Spesifikasi di atas menyatakannya secara terbuka pada dua nilai batas sekaligus.</p>
+<p>Nilai basis <code>height</code> adalah keputusan yang harus dinyatakan, bukan sesuatu yang terberi. Sebagian penulis menetapkan tinggi pohon dengan satu simpul sebagai nol dan bukan satu. Kedua pilihan sah, dan yang tidak sah adalah membiarkannya tidak tertulis. Spesifikasi di atas menyatakannya secara terbuka pada dua nilai batas sekaligus.</p>
 <h2 id="rancangan-yang-sama-dalam-paradigma-prosedural"><a class="header" href="#rancangan-yang-sama-dalam-paradigma-prosedural">Rancangan yang Sama dalam Paradigma Prosedural</a></h2>
 <p>Sekarang letakkan rancangan yang sama dalam notasi prosedural. Rincian notasinya berbeda-beda menurut bahan yang dipakai; yang penting di sini adalah bentuknya, bukan lambangnya.</p>
 <pre><code>KAMUS
@@ -3696,13 +3696,13 @@ ALGORITMA
 <p>Perbandingan di atas akan menyesatkan bila berhenti di situ, karena baris terakhir tabel bekerja ke dua arah.</p>
 <ul>
 <li>
-<p><strong>Yang diperoleh rancangan fungsional.</strong> Kasus kosong tidak dapat terlupakan tanpa terlihat. Basis dan konvergensi rekurensnya datang dari type-nya. Penelusuran di atas kertas dapat dipercaya, karena tidak ada simpul yang diam-diam berubah di tengah jalan. Sesudah sebuah penyisipan pun, pohon yang lama <strong>tetap ada dan tetap sah</strong>, sehingga dua versi sebuah struktur dapat hidup berdampingan tanpa disalin. Sifat terakhir tersebut disebut <em>persistence</em>, dan merupakan salah satu keunggulan struktur data fungsional yang paling nyata.</p>
+<p><strong>Yang diperoleh rancangan fungsional.</strong> Kasus kosong tidak dapat terlupakan tanpa terlihat. Basis dan konvergensi rekurensnya datang dari type-nya. Penelusuran di atas kertas dapat dipercaya, karena tidak ada simpul yang diam-diam berubah di tengah jalan. Sesudah sebuah penyisipan pun, pohon yang lama <strong>tetap ada dan tetap sah</strong>, sehingga dua versi sebuah struktur dapat hidup berdampingan tanpa disalin. Sifat terakhir tersebut disebut <em>persistence</em>, dan menjadi dasar sebagian besar struktur data yang dibahas dalam [8].</p>
 </li>
 <li>
 <p><strong>Yang hilang.</strong> Sebuah penyisipan fungsional membangun ulang seluruh simpul di sepanjang jalur dari akar sampai tempat penyisipan. Untuk pohon setinggi <em>h</em>, hal itu berarti <em>h</em> simpul baru dibentuk, sedangkan rancangan prosedural cukup mengubah satu pengait. Simpul lama memang masih dipakai bersama oleh kedua versi, sehingga yang dibangun ulang hanyalah jalurnya dan bukan seluruh pohon, tetapi pekerjaan tambahan itu nyata. Bila sebuah struktur diubah berjuta kali dan versi lamanya tidak pernah dibutuhkan, rancangan prosedural lebih hemat.</p>
 </li>
 <li>
-<p><strong>Kesimpulan yang jujur.</strong> Pertanyaan “paradigma mana yang lebih baik” tidak terjawab oleh perbandingan ini, dan memang bukan pertanyaan yang terumuskan dengan baik. Yang terjawab adalah pertanyaan lain: <em>apa yang dipermudah dan apa yang dipersulit oleh masing-masing.</em> Bab 1 sudah menyatakan bahwa satu paradigma tidak akan cocok untuk semua kelas persoalan, dan bahwa fanatisme terhadap satu paradigma mempersempit wawasan. Pohon adalah tempat pernyataan tersebut dapat diperiksa sendiri alih-alih diterima begitu saja.</p>
+<p><strong>Yang tidak terjawab.</strong> Pertanyaan “paradigma mana yang lebih baik” tidak terjawab oleh perbandingan ini, dan memang bukan pertanyaan yang terumuskan dengan baik. Yang terjawab adalah pertanyaan lain: <em>apa yang dipermudah dan apa yang dipersulit oleh masing-masing.</em> Bab 1 sudah menyatakan bahwa satu paradigma tidak akan cocok untuk semua kelas persoalan, dan bahwa fanatisme terhadap satu paradigma mempersempit wawasan. Pohon adalah tempat pernyataan tersebut dapat diperiksa sendiri alih-alih diterima begitu saja.</p>
 </li>
 </ul>
 <h2 id="penelusuran-pohon"><a class="header" href="#penelusuran-pohon">Penelusuran Pohon</a></h2>
@@ -3742,7 +3742,7 @@ ALGORITMA
                                                 makeCons (info (T), makeNil)))
 </code></pre>
 <p><code>append</code> berasal dari Latihan Menulis Bab 7. Ketiga realisasi tersebut memakai kembali seluruh mesin list tanpa menambah apa pun.</p>
-<p>Perhatikan bahwa ketiganya mempunyai struktur rekurens yang <strong>persis sama</strong>, dan berbeda hanya pada tempat <code>info (T)</code> disisipkan. Kekembaran ini adalah kekembaran keempat sepanjang diktat ini, sesudah tiga pasang pada Bab 7, dan pembaca yang sudah mengerjakan Bab 8 kini mempunyai perkakas untuk menanganinya.</p>
+<p>Ketiganya mempunyai struktur rekurens yang <strong>persis sama</strong>, dan berbeda hanya pada tempat <code>info (T)</code> disisipkan. Kekembaran ini adalah kekembaran keempat sepanjang diktat ini, sesudah tiga pasang pada Bab 7, dan pembaca yang sudah mengerjakan Bab 8 kini mempunyai perkakas untuk menanganinya.</p>
 <h2 id="pohon-ekspresi"><a class="header" href="#pohon-ekspresi">Pohon Ekspresi</a></h2>
 <p>Bab 3 menuliskan sebuah tabel yang membandingkan tiga bentuk penulisan ekspresi, lalu menyatakan bahwa bentuk prefix dan postfix akan muncul kembali sebagai representasi pohon ekspresi. Janji tersebut dibayar di sini.</p>
 <p>Sebuah ekspresi aritmatika berbentuk pohon: setiap operator biner mempunyai dua operan, dan setiap operan dapat berupa bilangan atau ekspresi lain.</p>
@@ -3789,7 +3789,7 @@ DEFINISI DAN SPESIFIKASI OPERATOR LAIN
                            '*', Operand ⟨5⟩⟩)
       35
 </code></pre>
-<p>Enam baris <code>evaluate</code> mengerjakan sesuatu yang tampak besar. Kuncinya: struktur pohonnya sudah menyatakan seluruh pengelompokan, sehingga presedensi dan kurung dari Bab 3 tidak berperan sama sekali. Presedensi adalah aturan untuk <strong>membaca teks</strong>, bukan bagian dari ekspresinya.</p>
+<p>Enam baris <code>evaluate</code> tidak menyebut presedensi maupun kurung sama sekali, karena struktur pohonnya sudah menyatakan seluruh pengelompokan yang pada Bab 3 dinyatakan oleh keduanya. Presedensi adalah aturan untuk <strong>membaca teks</strong>, bukan bagian dari ekspresinya.</p>
 <h3 id="tiga-penelusuran-tiga-notasi"><a class="header" href="#tiga-penelusuran-tiga-notasi">Tiga penelusuran, tiga notasi</a></h3>
 <p>Sekarang telusuri pohon ekspresi <code>(3 + 4) * 5</code> dengan ketiga cara di atas:</p>
 <div class="table-wrapper">
@@ -3805,8 +3805,8 @@ DEFINISI DAN SPESIFIKASI OPERATOR LAIN
 </table>
 </div>
 <p>Bandingkan baris pertama dan ketiga dengan tabel Bab 3. Keduanya sama persis, sampai ke urutan lambangnya.</p>
-<p>Baris kedua <strong>tidak</strong> sama, dan justru di situlah letak pelajarannya. Bab 3 menuliskan bentuk infix sebagai <code>(3 + 4) * 5</code>, lengkap dengan kurung. Penelusuran inorder menghasilkan <code>3 + 4 * 5</code>, tanpa kurung, dan ekspresi tersebut bernilai <code>23</code> alih-alih <code>35</code>.</p>
-<p>Kesimpulannya tegas. Dari hasil preorder maupun postorder, pohon semula dapat dibangun kembali dengan tepat. Dari hasil inorder, pohon semula <strong>tidak</strong> dapat dibangun kembali, kecuali kurung ikut dituliskan. Inilah alasan sesungguhnya di balik pernyataan Bab 3 bahwa bentuk prefix dan postfix tidak memerlukan kurung maupun presedensi, sehingga lebih mudah diproses mesin. Kedua bentuk tersebut menyimpan strukturnya; bentuk infix membuangnya dan menggantinya dengan aturan pembacaan.</p>
+<p>Baris kedua <strong>tidak</strong> sama. Bab 3 menuliskan bentuk infix sebagai <code>(3 + 4) * 5</code>, lengkap dengan kurung. Penelusuran inorder menghasilkan <code>3 + 4 * 5</code>, tanpa kurung, dan ekspresi tersebut bernilai <code>23</code> alih-alih <code>35</code>.</p>
+<p>Dari hasil preorder maupun postorder, pohon semula dapat dibangun kembali dengan tepat. Dari hasil inorder, pohon semula <strong>tidak</strong> dapat dibangun kembali, kecuali kurung ikut dituliskan. Inilah alasan di balik pernyataan Bab 3 bahwa bentuk prefix dan postfix tidak memerlukan kurung maupun presedensi, sehingga lebih mudah diproses mesin. Kedua bentuk tersebut menyimpan strukturnya; bentuk infix membuangnya dan menggantinya dengan aturan pembacaan.</p>
 <h2 id="pohon-terurut"><a class="header" href="#pohon-terurut">Pohon Terurut</a></h2>
 <p>Sebuah <strong>pohon terurut</strong> (<em>binary search tree</em>) adalah pohon biner dengan sebuah invarian: bagi setiap simpul, seluruh nilai pada upapohon kirinya lebih kecil daripada nilai simpul tersebut, dan seluruh nilai pada upapohon kanannya lebih besar.</p>
 <p>Invarian ini adalah invarian dalam arti yang persis sama dengan invarian <code>Fraction</code> pada Bab 5 dan invarian keterurutan pada <code>insertSorted</code> di Bab 7. Tidak ada yang menjaminnya selain disiplin, dan setiap operator yang menghasilkan pohon baru wajib mempertahankannya.</p>
@@ -3843,7 +3843,7 @@ DEFINISI DAN SPESIFIKASI OPERATOR LAIN
     ⇒ inorder (insertTree (3, insertTree (7, insertTree (5, makeEmptyTree))))
       [3, 5, 7]
 </code></pre>
-<p>Tiga hal patut diperhatikan.</p>
+<p>Realisasi tersebut mempunyai tiga sifat berikut.</p>
 <ul>
 <li>
 <p><strong>Bandingkan dengan <code>insertSorted</code> pada Bab 7.</strong> Keduanya menyisipkan sebuah nilai ke dalam struktur terurut, keduanya bersandar pada invarian yang dinyatakan sebagai prasyarat, dan keduanya membangun ulang bagian struktur yang dilewatinya sambil memakai kembali sisanya utuh. Yang berbeda hanyalah strukturnya. <code>insertSorted</code> melewati rata-rata separuh list; <code>insertTree</code> melewati sepanjang tingginya saja. Rancangan yang sama, ditempatkan pada struktur yang berbeda, memberikan hasil yang berbeda.</p>
@@ -3852,12 +3852,12 @@ DEFINISI DAN SPESIFIKASI OPERATOR LAIN
 <p><strong><code>isMemberTree</code> membuang separuh pohon pada setiap langkah.</strong> Bandingkan dengan <code>isMember</code> atas list pada Bab 7, yang harus memeriksa elemen satu per satu. Inilah imbalan dari invariannya, dan sebagaimana Bab 7 sudah menyatakan tentang himpunan, invarian tidak pernah gratis: harganya dibayar oleh setiap penyisipan yang harus menjaganya.</p>
 </li>
 <li>
-<p><strong>Penelusuran inorder sebuah pohon terurut menghasilkan list yang terurut menaik.</strong> Aplikasi terakhir di atas memperlihatkannya. Hal ini bukan kebetulan, melainkan akibat langsung dari invariannya, dan merupakan salah satu cara mengurutkan sebuah kumpulan nilai.</p>
+<p><strong>Penelusuran inorder sebuah pohon terurut menghasilkan list yang terurut menaik.</strong> Aplikasi terakhir di atas memperlihatkannya. Hal itu adalah akibat langsung dari invariannya, dan merupakan salah satu cara mengurutkan sebuah kumpulan nilai.</p>
 </li>
 </ul>
 <h3 id="ketika-pohon-terurut-kehilangan-keunggulannya"><a class="header" href="#ketika-pohon-terurut-kehilangan-keunggulannya">Ketika pohon terurut kehilangan keunggulannya</a></h3>
 <p>Sisipkan <code>1</code>, lalu <code>2</code>, lalu <code>3</code>, lalu <code>4</code>, lalu <code>5</code> ke dalam pohon kosong. Karena setiap nilai lebih besar daripada seluruh nilai sebelumnya, setiap penyisipan jatuh ke upapohon kanan, dan hasilnya adalah pohon setinggi lima tanpa satu pun cabang kiri. Pohon tersebut adalah sebuah list yang ditulis dengan cara yang lebih rumit, dan seluruh keunggulan <code>isMemberTree</code> lenyap.</p>
-<p>Ada cara merancang pohon yang menjaga tingginya tetap kecil apa pun urutan penyisipannya, dan cara tersebut merupakan pokok bahasan tersendiri yang termasuk dalam materi struktur data dan algoritma. Pembaca yang tertarik pada versi fungsionalnya dirujuk ke [8]. Yang perlu dibawa dari sini hanyalah kesadaran bahwa keunggulan sebuah struktur data selalu bersyarat, dan bahwa syaratnya pantas ditanyakan sebelum struktur itu dipilih.</p>
+<p>Ada cara merancang pohon yang menjaga tingginya tetap kecil apa pun urutan penyisipannya, dan cara tersebut merupakan pokok bahasan tersendiri yang termasuk dalam materi struktur data dan algoritma. Pembaca yang tertarik pada versi fungsionalnya dirujuk ke [8]. Keunggulan sebuah struktur data selalu bersyarat, dan syaratnya pantas ditanyakan sebelum struktur itu dipilih.</p>
 <h2 id="kesalahan-yang-sering-terjadi-4"><a class="header" href="#kesalahan-yang-sering-terjadi-4">Kesalahan yang Sering Terjadi</a></h2>
 <div class="table-wrapper">
 <table>
@@ -3895,13 +3895,13 @@ inorder :: BinaryTree a -&gt; [a]
 inorder Empty        = []
 inorder (Node l v r) = inorder l ++ [v] ++ inorder r
 </code></pre>
-<p>Dua hal yang layak dicatat, dan keduanya kecil karena bab ini memang hampir tidak memperkenalkan mesin baru.</p>
+<p>Dua hal berikut kecil, karena bab ini memang hampir tidak memperkenalkan mesin baru.</p>
 <ul>
 <li>
 <p><strong>Definisi type diterjemahkan hampir huruf demi huruf,</strong> dan pola <code>Node l v r</code> mengerjakan empat hal sekaligus: memastikan pohonnya tidak kosong, lalu mengambil ketiga komponennya. Pengamatan yang sama sudah dibuat pada Bab 5 untuk <code>Shape</code> dan pada Bab 7 untuk list. Pada pohon, penghematannya paling terasa, karena tanpa pola tersebut ketiga selektor harus disebut berulang kali di dalam satu ekspresi.</p>
 </li>
 <li>
-<p><strong><code>deriving Show</code> menghasilkan bentuk tercetak secara cuma-cuma,</strong> dan bentuk tercetak tersebut ternyata adalah penelusuran preorder dengan nama konstruktor ikut dituliskan. Hal ini bukan kebetulan: bentuk preorder memang menyimpan seluruh struktur pohonnya, sebagaimana ditunjukkan pada bagian pohon ekspresi.</p>
+<p><strong><code>deriving Show</code> menghasilkan bentuk tercetak secara cuma-cuma,</strong> dan bentuk tercetak tersebut ternyata adalah penelusuran preorder dengan nama konstruktor ikut dituliskan. Bentuk preorder adalah bentuk yang menyimpan seluruh struktur pohonnya, sebagaimana ditunjukkan pada bagian pohon ekspresi, dan karena itu bentuk tercetak tersebut dapat dikembalikan menjadi pohon semula.</p>
 </li>
 </ul>
 <div class="table-wrapper">

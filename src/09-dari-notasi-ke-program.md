@@ -14,7 +14,7 @@ Seluruh penundaan itu bermuara pada tiga pertanyaan:
 
 Ketiganya adalah pertanyaan eksekusi. Notasi menolak menjawabnya bukan karena lalai, melainkan karena jawabannya berbeda-beda menurut bahasa yang dipakai, sedangkan rancangan yang baik seharusnya tetap sah ketika bahasanya diganti.
 
-Bab ini menjawab ketiganya **sejauh jawabannya tidak bergantung pada bahasa**, dan menunjukkan di mana jawaban bagi bahasa acuan berada. Pembagian itu bukan kehati-hatian yang berlebihan. Jawaban yang bergantung pada bahasa akan berubah ketika bahasanya diganti, dan sebagian di antaranya berubah sampai terbalik; yang dituliskan di bawah ini tidak. Bab ini adalah bab terakhir Diktat.
+Bab ini menjawab ketiganya **sejauh jawabannya tidak bergantung pada bahasa**, dan menunjukkan di mana jawaban bagi bahasa acuan berada. Jawaban yang bergantung pada bahasa akan berubah ketika bahasanya diganti, dan sebagian di antaranya berubah sampai terbalik; yang dituliskan di bawah ini tidak. Bab ini adalah bab terakhir Diktat.
 
 ## Kapan: Strategi Evaluasi
 
@@ -22,13 +22,13 @@ Bab 3 menelusuri `distance (1.0, 3.0, 5.0, 6.0)` dengan dua urutan yang berbeda 
 
 Kesimpulan itu benar, dan tidak lengkap. Yang tidak berubah adalah **hasilnya**. Yang berubah adalah **pekerjaannya**.
 
-Perhatikan fungsi berikut:
+Ambil fungsi berikut:
 
 ```
 first (a, b) : a
 ```
 
-lalu perhatikan aplikasi `first (5, factorial (20))`.
+dan aplikasi `first (5, factorial (20))`.
 
 Menurut spesifikasinya, hasilnya adalah `5`. Pertanyaannya: apakah `factorial (20)` dihitung?
 
@@ -51,9 +51,9 @@ Ada dua jawaban, dan keduanya dipakai oleh bahasa nyata.
 
 Hasilnya sama. Pekerjaannya berbeda dua puluh satu aplikasi.
 
-Kebanyakan bahasa bersifat ketat: C, Python, Java, OCaml. Sebagian kecil bersifat malas. Pilihan di antara keduanya adalah salah satu keputusan rancangan sebuah bahasa yang paling menentukan, dan akibatnya terasa pada hampir setiap program yang cukup besar.
+Kebanyakan bahasa bersifat ketat: C, Python, Java, OCaml. Sebagian kecil bersifat malas. Pilihan di antara keduanya menentukan dua hal sekaligus: berapa banyak pekerjaan yang dilakukan sebuah aplikasi, dan apakah sebuah argumen yang tidak terdefinisi menghentikan program atau tidak.
 
-Perhatikan bahwa notasi kita tetap benar dalam kedua keadaan. Itulah sebabnya urutan tidak ditetapkan. Rancangan yang sama dapat dijalankan oleh bahasa ketat maupun malas, dan spesifikasinya tidak berubah sedikit pun.
+Notasi kita tetap benar dalam kedua keadaan, dan itulah sebabnya urutan tidak ditetapkan. Rancangan yang sama dapat dijalankan oleh bahasa ketat maupun malas, dan spesifikasinya tidak berubah sedikit pun.
 
 Yang berubah adalah **pekerjaannya**, dan pekerjaan adalah urusan bahasa. Pilihan yang diambil bahasa acuan Anda, beserta akibat yang perlu diketahui, dibahas pada Suplemen S10.
 
@@ -61,7 +61,7 @@ Yang berubah adalah **pekerjaannya**, dan pekerjaan adalah urusan bahasa. Piliha
 
 Bab 6 meletakkan `fibFrom` berdampingan dengan sebuah loop dan menyatakan bahwa keduanya berbentuk sama. Pertanyaan yang ditunda saat itu adalah apakah keduanya juga **dijalankan** dengan cara yang sama.
 
-Perbedaannya terletak pada satu hal. Perhatikan kedua rekurens ini:
+Perbedaannya terletak pada apa yang masih menunggu setelah aplikasi rekursifnya menghasilkan nilai. Bandingkan kedua rekurens ini:
 
 ```
 factorial (n) : ... n * factorial (n - 1)
@@ -76,15 +76,15 @@ Perbedaan ini terlihat pada penelusuran Bab 6. `factorial (4)` membesar lebih da
 
 Pada bahasa yang menjaminnya (Scheme, OCaml, Lua, dan lainnya), aplikasi pada posisi ekor tidak memerlukan tempat baru sama sekali: fungsi rekursif ekor dijalankan dengan sumber daya tetap, persis seperti loop. Jaminan itu mempunyai nama, yaitu *tail call optimisation*, dan pada bahasa-bahasa tersebut jaminan itu adalah bagian dari definisi bahasanya, bukan kemurahan hati kompilatornya.
 
-Tidak semua bahasa memberikan jaminan tersebut. Yang lebih perlu diwaspadai: pada sebagian bahasa yang memberikannya, bentuk berakumulator **tetap** tidak lebih hemat, karena sumber daya yang kritis di sana bukan tempat penyimpanan perhitungan yang tertunda melainkan hal lain sama sekali. Karena itu kalimat yang sering diucapkan, yaitu *fungsi rekursif ekor diterjemahkan menjadi loop*, tidak berlaku umum dan tidak boleh dipercaya begitu saja. Apa yang sesungguhnya terjadi pada bahasa acuan Anda dibahas pada Suplemen S10, dan jawabannya mungkin mengejutkan.
+Tidak semua bahasa memberikan jaminan tersebut. Pada sebagian bahasa yang memberikannya pun, bentuk berakumulator **tetap** tidak lebih hemat, karena sumber daya yang bersifat kritis di sana bukanlah tempat penyimpanan perhitungan yang tertunda melainkan hal lain sama sekali. Karena itu kalimat yang sering diucapkan, yaitu *fungsi rekursif ekor diterjemahkan menjadi loop*, tidak berlaku umum dan tidak boleh dipercaya begitu saja. Apa yang sesungguhnya terjadi pada bahasa acuan Anda dibahas pada Suplemen S10.
 
-Satu hal yang pantas dibawa dari sini, dan sifatnya rancangan alih-alih eksekusi: **posisi ekor dapat dilihat langsung dari teks realisasi**, sebelum bahasa apa pun dipilih. Kemampuan melihatnya adalah milik perancang. Apa yang kemudian dilakukan mesin terhadapnya adalah milik bahasanya, dan kedua hal itu sebaiknya tidak dicampur.
+**Posisi ekor dapat dilihat langsung dari teks realisasi**, sebelum bahasa apa pun dipilih. Hal itu perkara rancangan, bukan perkara eksekusi. Kemampuan melihatnya adalah milik perancang. Apa yang kemudian dilakukan mesin terhadapnya adalah milik bahasanya, dan kedua hal itu sebaiknya tidak dicampur.
 
 ## Mengapa Bentuk Non-Akumulator Tetap Diajarkan
 
 Bab 6 menunda pertanyaan ini, dan sekarang jawabannya dapat diberikan utuh.
 
-**Karena spesifikasinya jauh lebih mudah ditulis dengan benar.** Inilah alasan yang paling kuat dan paling sering diremehkan. Bab 6 sudah memperlihatkannya pada `fibFrom`, dan Bab 7 pada `reverseOnto`: realisasinya lebih pendek, spesifikasinya jauh lebih sulit. Kesalahan pada fungsi berakumulator hampir selalu terletak pada nilai awal akumulatornya, dan kesalahan itu hanya dapat ditemukan oleh orang yang sudah menuliskan artinya dengan tepat.
+**Karena spesifikasinya jauh lebih mudah ditulis dengan benar.** Alasan ini yang paling kuat di antara keempatnya. Bab 6 sudah memperlihatkannya pada `fibFrom`, dan Bab 7 pada `reverseOnto`: realisasinya lebih pendek, spesifikasinya jauh lebih sulit. Kesalahan pada fungsi berakumulator hampir selalu terletak pada nilai awal akumulatornya, dan kesalahan itu hanya dapat ditemukan oleh orang yang sudah menuliskan artinya dengan tepat.
 
 **Karena sebagian besar fungsi tidak diuntungkan olehnya.** Bab 7 menyatakan hal ini dan menyebutkan bahwa dari seluruh fungsi di sana, hanya `reverse` yang jelas diuntungkan. Untuk `squareAll`, bentuk berakumulator bahkan menuntut satu `reverse` tambahan di ujung.
 
@@ -94,31 +94,31 @@ Bab 6 menunda pertanyaan ini, dan sekarang jawabannya dapat diberikan utuh.
 
 ## Dunia Luar: Kemurnian
 
-Ada satu sifat yang dimiliki **setiap** fungsi yang ditulis sejak Bab 2, dan yang belum pernah diberi nama.
+**Setiap** fungsi yang ditulis sejak Bab 2 mempunyai satu sifat yang sama, dan sifat itu belum pernah diberi nama. Bab ini memperkenalkan istilah *kemurnian*.
 
 Sebuah fungsi disebut **murni** (*pure*) bila:
 
 - hasilnya ditentukan sepenuhnya oleh argumennya, sehingga argumen yang sama selalu menghasilkan nilai yang sama; dan
 - mengaplikasikannya tidak mengubah apa pun di luar dirinya.
 
-Seluruh isi Bab 2 sampai Bab 8 murni, tanpa satu perkecualian. Hal itu bukan kebetulan, dan bukan pula pembatasan yang diberlakukan diam-diam. Notasi ini memang tidak menyediakan cara untuk menulis yang tidak murni.
+Seluruh isi Bab 2 sampai Bab 8 murni, tanpa satu perkecualian, karena notasi ini memang tidak menyediakan cara untuk menulis fungsi yang tidak murni.
 
 Bandingkan dengan fungsi berikut, yang ditulis dalam bahasa yang mungkin lebih dikenal pembaca:
 
 ```c
 int counter = 0;
 
-int next(void) {
-    counter = counter + 1;
+int next(int step) {
+    counter = counter + step;
     return counter;
 }
 ```
 
-`next()` menghasilkan nilai yang berbeda setiap kali dipanggil dengan argumen yang sama, yaitu tanpa argumen sama sekali. Fungsi tersebut juga mengubah sesuatu di luar dirinya, sehingga kedua syarat kemurnian dilanggar sekaligus.
+`next(x)` menghasilkan nilai yang berbeda setiap kali dipanggil, sekalipun dengan argumen yang sama. Fungsi tersebut juga mengubah sesuatu di luar dirinya, sehingga kedua syarat kemurnian dilanggar sekaligus.
 
-Sekarang perhatikan apa yang hilang bersama kemurnian. Bab 2 menyatakan bahwa sebuah ekspresi dapat digantikan oleh nilainya tanpa mengubah arti program, dan menyebutnya transparansi referensial. Untuk `next()`, penggantian itu tidak sah: `next() + next()` tidak sama dengan `2 * next()`. Untuk `square (3)`, penggantian itu selalu sah.
+Yang hilang bersama kemurnian adalah transparansi referensial. Bab 2 menyatakan bahwa sebuah ekspresi dapat digantikan oleh nilainya tanpa mengubah arti program; untuk `next(x)`, penggantian itu tidak sah: `next(1) + next(1)` tidak sama dengan `2 * next(1)`. Untuk `square (3)`, penggantian itu selalu sah.
 
-**Apa yang dibeli oleh kemurnian**, dikumpulkan dari delapan bab:
+**Apa yang didapat dari kemurnian**, dikumpulkan dari delapan bab:
 
 | Yang diperoleh | Pertama muncul |
 |---|---|
@@ -130,7 +130,7 @@ Sekarang perhatikan apa yang hilang bersama kemurnian. Bab 2 menyatakan bahwa se
 | Fungsi dapat diserahkan ke mana saja tanpa khawatir | Bab 8 |
 | Pengujian tidak memerlukan penyiapan keadaan | bab ini |
 
-Baris terakhir pantas diperhatikan. Untuk menguji `next()`, kita harus tahu sudah berapa kali fungsi itu dipanggil sebelumnya. Untuk menguji `sumDigits`, tidak ada yang perlu disiapkan. Seluruh yang dibutuhkan adalah argumennya.
+Baris terakhir adalah satu-satunya yang baru pada bab ini. Untuk menguji `next()`, kita harus tahu sudah berapa kali fungsi itu dipanggil sebelumnya. Untuk menguji `sumDigits`, tidak ada yang perlu disiapkan. Seluruh yang dibutuhkan adalah argumennya.
 
 ## Masukan dan Keluaran
 
@@ -140,16 +140,16 @@ Bab 2 sudah memberikan jawabannya dalam satu kalimat: aksi membaca dan menulis d
 
 Kuncinya adalah membedakan **deskripsi sebuah aksi** dari **pelaksanaan aksi tersebut**. "Bacalah sebuah baris dari papan ketik" adalah sebuah kalimat; menuliskan kalimat itu, menyalinnya, atau merangkainya dengan kalimat lain tidak membaca apa pun. Yang membaca adalah pihak yang akhirnya menjalankannya, dan pihak itu adalah lingkungan eksekusi, bukan program. Menyusun deskripsi tetap murni sepenuhnya. Sebuah program fungsional karenanya bukan rangkaian aksi, melainkan sebuah **nilai** yang menggambarkan aksi apa yang hendak dilakukan, yang lalu diserahkan kepada lingkungannya untuk dijalankan.
 
-Bahasa berbeda dalam satu hal, dan perbedaannya besar: **apakah perbedaan antara perhitungan dan aksi ditulis ke dalam type, atau tidak.**
+Bahasa berbeda dalam satu hal: **apakah perbedaan antara perhitungan dan aksi ditulis ke dalam type, atau tidak.**
 
 - Bila **ya**, sebuah fungsi yang boleh membaca papan ketik mempunyai type yang berbeda dari fungsi yang tidak boleh, dan kompilator menolak yang melanggar. Batas antara inti yang murni dan tepi yang berefek berhenti menjadi janji dan menjadi sesuatu yang diperiksa mesin.
 - Bila **tidak**, batas itu tetap ada dan tetap sama pentingnya, hanya saja penegakannya diserahkan kepada disiplin penulisnya. Keadaannya persis seperti invarian `Set` pada Bab 7: benar, penting, dan tidak diperiksa siapa pun.
 
 Yang dilakukan bahasa acuan Anda dibahas pada Suplemen S3 dan S6.
 
-Perhatikan bahwa kemungkinan pertama adalah **pembalikan** dari apa yang berulang sepanjang Diktat. Bab 4 dan Bab 5 memperlihatkan notasi menuliskan pembatasan yang tidak dapat diperiksa bahasanya. Sebuah bahasa yang menuliskan efek ke dalam type melakukan yang sebaliknya: menuliskan pembatasan yang notasi kita tidak mempunyai sarana untuk menyatakannya sama sekali.
+Kemungkinan pertama adalah **pembalikan** dari apa yang berulang sepanjang Diktat. Bab 4 dan Bab 5 memperlihatkan notasi menuliskan pembatasan yang tidak dapat diperiksa bahasanya. Sebuah bahasa yang menuliskan efek ke dalam type melakukan yang sebaliknya: menuliskan pembatasan yang notasi kita tidak mempunyai sarana untuk menyatakannya sama sekali.
 
-Satu bentuk berlaku dalam kedua keadaan dan pantas dijadikan kebiasaan sejak sekarang: **inti yang murni, dikelilingi tepi yang menangani efek**, dengan tepi itu dibuat setipis mungkin. Seluruh fungsi yang pembaca tulis sejak Bab 2 adalah calon isi inti tersebut dan tidak perlu diubah sedikit pun untuk dipakai di dalam sebuah program yang berinteraksi; yang ditambahkan hanyalah lapisan tipis di sekelilingnya. Gagasan ini berlaku jauh melampaui bahasa fungsional, dan pembaca yang tertarik dirujuk ke [7].
+**Inti yang murni, dikelilingi tepi yang menangani efek**, dengan tepi itu dibuat setipis mungkin: bentuk ini berlaku dalam kedua keadaan, dan pantas dijadikan kebiasaan sejak sekarang. Seluruh fungsi yang pembaca tulis sejak Bab 2 adalah calon isi inti tersebut dan tidak perlu diubah sedikit pun untuk dipakai di dalam sebuah program yang berinteraksi; yang ditambahkan hanyalah lapisan tipis di sekelilingnya. Gagasan ini berlaku jauh melampaui bahasa fungsional, dan pembaca yang tertarik dirujuk ke [7].
 
 Mekanisme yang dipakai bahasa-bahasa fungsional untuk merangkai deskripsi aksi mempunyai nama, yaitu **monad**. Mekanisme tersebut adalah salah satu gagasan penting dalam pemrograman fungsional modern, dan berada di luar cakupan diktat ini sebagaimana dinyatakan pada Bab 1. Namanya disebutkan di sini agar pembaca dapat mencarinya sendiri.
 
@@ -161,11 +161,11 @@ Bab 2 menganjurkan menuliskan hasil yang diharapkan **sebelum** menjalankan, dan
 
 Semua itu adalah pengujian, dilakukan dengan tangan.
 
-Yang berubah pada saat program dijalankan hanyalah siapa yang mengerjakannya. Setiap baris `APLIKASI` yang sudah pembaca tuliskan adalah sepasang ekspresi dan hasil yang diharapkan, dan pasangan semacam itu dapat dituliskan sebagai program yang memeriksa dirinya sendiri: kumpulkan seluruhnya, bandingkan hasil sesungguhnya dengan hasil yang diharapkan, dan hasilkan `true` bila semuanya cocok. Bentuknya dalam bahasa acuan dibahas pada Suplemen S8. Cara ini sederhana sampai terasa remeh, dan sudah menangkap sebagian besar kesalahan yang dibuat pada saat menulis.
+Yang berubah pada saat program dijalankan hanyalah siapa yang mengerjakannya. Setiap baris `APLIKASI` yang sudah pembaca tuliskan adalah sepasang ekspresi dan hasil yang diharapkan, dan pasangan semacam itu dapat dituliskan sebagai program yang memeriksa dirinya sendiri: kumpulkan seluruhnya, bandingkan hasil sesungguhnya dengan hasil yang diharapkan, dan hasilkan `true` bila semuanya cocok. Bentuknya dalam bahasa acuan dibahas pada Suplemen S8. Cara ini sederhana, dan sudah cukup untuk menangkap kesalahan pada nilai batas dan pada kasus kosong, yaitu dua tempat yang Bab 4 dan Bab 7 tandai sebagai yang paling sering salah.
 
 Ada bentuk pengujian yang lebih kuat dan sangat cocok bagi program murni. Alih-alih memeriksa contoh satu per satu, kita menyatakan **sifat** yang harus berlaku bagi seluruh masukan, lalu mesin mencobanya dengan ratusan masukan yang dibangkitkan sendiri. Sifat semacam "membalik sebuah list dua kali menghasilkan list semula" atau "hasil `sortBy` selalu sepanjang masukannya" dapat dituliskan langsung sebagai program. Gagasan ini disebut **pengujian berbasis sifat** (*property-based testing*), dan perkakasnya tersedia bagi hampir setiap bahasa. Cara memilih sifat dibahas pada Suplemen S7, dan cara menjalankannya pada S8.
 
-Perhatikan bahwa kemurnian membuat semua ini murah. Tidak ada keadaan yang harus disiapkan sebelum menguji dan tidak ada yang harus dibersihkan sesudahnya, karena tidak ada fungsi yang meninggalkan jejak.
+Kemurnian membuat semua ini murah. Tidak ada keadaan yang harus disiapkan sebelum menguji dan tidak ada yang harus dibersihkan sesudahnya, karena tidak ada fungsi yang meninggalkan jejak.
 
 ## Arah Lanjutan
 
@@ -215,7 +215,7 @@ union (S1, S2)     : depend on S1
 
 Untuk `isMember`, jawabannya bergantung pada satu hal yang halus. Sebutkan apa.
 
-**Menelusuri.** Perhatikan `first (a, b) : a` dan aplikasi `first (5, factorial (20))`.
+**Menelusuri.** Tinjau kembali `first (a, b) : a` dan aplikasi `first (5, factorial (20))`.
 
 1. Tuliskan penelusurannya menurut evaluasi ketat, dan hitung banyaknya aplikasi.
 2. Tuliskan penelusurannya menurut evaluasi malas, dan hitung banyaknya aplikasi.
