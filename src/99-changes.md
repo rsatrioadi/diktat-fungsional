@@ -2,7 +2,8 @@
 
 ## Diktat Pemrograman Fungsional: Revisi 2014 vs. Versi 2026
 
-Lampiran ini mencatat seluruh perubahan struktural, terminologis, metodologis, dan konseptual antara **Draft Diktat Kuliah Pemrograman Fungsional (Revisi Februari 2014)** karya _Inggriani Liem_ dengan **Diktat Pemrograman Fungsional (Agustus 2026)** yang disusun ulang oleh _Satrio Adi Rukmono_.
+Lampiran ini mencatat seluruh perubahan struktural, terminologis, metodologis, dan konseptual antara **Draft Diktat Kuliah Dasar Pemrograman
+– Bagian: Pemrograman Fungsional (Revisi Februari 2014)** karya _Inggriani Liem_ dengan **Diktat Pemrograman Fungsional (Agustus 2026)** yang disusun ulang oleh _Satrio Adi Rukmono_.
 
 ### 1. Perubahan Peran dan Penataan Dokumen
 
