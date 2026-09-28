@@ -4,20 +4,20 @@
 
 Sampai bab ini, sebuah program hanya mampu mengelola type dasar dan type bentukan yang disusun darinya. Untuk sebagian persoalan, pembatasan itu bukan sekadar menyulitkan, melainkan membuat programnya tidak dapat ditulis sama sekali.
 
-Sebuah `Date` menyimpan satu tanggal. Bila kita perlu mengelola tiga tanggal, kita dapat menuliskan tiga parameter. Bila kita perlu mengelola seluruh tanggal dalam setahun, cara itu berhenti bekerja. Bahkan bila banyaknya tanggal **tidak diketahui pada saat program ditulis**, cara itu tidak pernah dapat bekerja, karena kita harus menuliskan nama sebanyak nilai yang akan diproses, sedangkan jumlahnya baru diketahui kelak.
+Sebuah `Date` menyimpan satu tanggal. Bila kita perlu mengelola tiga tanggal, kita dapat menuliskan tiga parameter. Bila kita perlu mengelola seluruh tanggal dalam setahun, cara itu tidak lagi dapat dipakai. Apalagi bila banyaknya tanggal **tidak diketahui pada saat program ditulis**, cara itu sama sekali tidak mungkin dipakai, karena kita harus menuliskan nama sebanyak nilai yang akan diproses, sedangkan jumlahnya baru diketahui kelak.
 
-Yang dibutuhkan adalah sebuah **koleksi**: satu nama yang mewakili sekumpulan nilai, beserta cara mencapai setiap anggotanya. Sebuah koleksi mungkin kosong, mungkin berisi satu anggota, mungkin berisi sejuta.
+Yang dibutuhkan adalah sebuah **koleksi** (*collection*): satu nama yang mewakili sekumpulan nilai, beserta cara mencapai setiap anggotanya. Sebuah koleksi mungkin kosong, mungkin berisi satu anggota, mungkin berisi sejuta.
 
 Ada banyak cara mengorganisasi koleksi, dan masing-masing cara menentukan sebuah type kolektif tersendiri dengan operasi dasarnya sendiri. Bab ini membahas satu di antaranya, yaitu **list**, yang anggotanya berurutan dan dicapai dari satu ujung. List adalah struktur rekursif yang paling sederhana, sehingga seluruh Bab 6 dapat langsung dipakai kembali di sini.
 
 ## List sebagai Type Rekursif
 
-Bab 6 menutup dengan menyatakan bahwa type rekursif yang paling penting dalam informatika adalah list. Definisinya:
+Bab 6 ditutup dengan pernyataan bahwa type rekursif yang paling penting dalam informatika adalah list. Definisinya:
 
 - **Basis:** *list kosong* adalah sebuah list.
 - **Rekurens:** *sebuah elemen yang diikuti oleh sebuah list* adalah sebuah list.
 
-Dua baris itu menghasilkan seluruh isi bab ini.
+Dari dua baris itulah seluruh isi bab ini diturunkan.
 
 ```
 TYPE LIST
@@ -53,13 +53,13 @@ DEFINISI DAN SPESIFIKASI PREDIKAT
     { isOneElement (L) bernilai true bila L hanya mempunyai satu elemen }
 ```
 
-`Element` bukan sebuah type dasar, melainkan "tempat kosong" yang diisi sekali untuk setiap list: seluruh elemen sebuah list bertype sama, dan type itu ditetapkan pada saat list dipakai. Diktat ini menuliskan `List of Integer`, `List of Character`, dan `List of Date` untuk menyebut list yang `Element`-nya masing-masing `Integer`, `Character`, dan `Date`. Cara menyatakan hal ini secara tepat, sehingga kompilator ikut memeriksanya, adalah bagian dari sistem type yang berada di luar cakupan diktat ini.
+`Element` bukan sebuah type dasar, melainkan "tempat kosong" yang diisi sekali untuk setiap list: seluruh elemen sebuah list bertype sama, dan type itu ditetapkan pada saat list dipakai. Diktat ini menuliskan `List of Integer`, `List of Character`, dan `List of Date` untuk menyebut list yang `Element`-nya masing-masing `Integer`, `Character`, dan `Date`. Cara menyatakan hal ini secara tepat, sehingga kompilator ikut memeriksanya, adalah bagian dari sistem type (polimorfisme parametrik, *parametric polymorphism*) yang berada di luar cakupan diktat ini.
 
 > **Catatan.** Nama `Cons` adalah kependekan dari *construct*, dan berasal dari Lisp, bahasa fungsional tertua yang masih dipakai hingga kini. Di sana `cons` adalah operasi dasar yang membentuk sebuah list dari sebuah elemen dan sebuah list, dan setiap sel penyusunnya disebut *cons cell*. Bahasa acuan diktat ini menuliskannya sebagai operator `:`, tetapi tetap menyebut selnya dengan nama yang sama, sehingga kata *cons* masih akan ditemui pembaca pada dokumentasi bahasa fungsional masa kini.
 
 ### Penulisan singkat
 
-Menuliskan setiap list dengan konstruktornya cepat menjadi melelahkan. Karena itu tersedia penulisan singkat:
+Menuliskan setiap list dengan konstruktornya cepat menjadi melelahkan. Sebab itu, tersedia penulisan singkat (*syntactic sugar*):
 
 ```
 []            { setara dengan makeNil }
@@ -71,13 +71,13 @@ Penulisan singkat adalah **penulisan yang sama**, bukan type yang lain. Pada pen
 
 `[1, 2, 3]` tidak simetris. Elemen `1` berada di lapis paling luar dan dapat diambil dengan satu aplikasi `head`, sedangkan `3` terkubur di lapis paling dalam. Ketidaksimetrisan ini bukan kekurangan yang harus ditutupi, melainkan sifat list yang akan menjelaskan mengapa sebagian operasi murah dan sebagian lain mahal.
 
-> **Peringatan bagi pembaca bahan lama.** Diktat terdahulu di lingkungan ITB memakai nama `Head` untuk **list tanpa elemen terakhir**, dan `FirstElmt` untuk elemen pertama. Diktat ini memakai `head` untuk elemen pertama dan `tail` untuk sisanya, mengikuti terminologi yang kini sangat umum digunakan di bahasa pemrograman fungsional. Arti nama `head` karenanya **berkebalikan** dengan bahan lama. Bila Anda membaca materi arsip atau berdiskusi dengan seseorang yang mempelajarinya dari sana, sepakati lebih dahulu arti kedua nama itu.
+> **Peringatan bagi pembaca bahan lama.** Diktat terdahulu di lingkungan ITB memakai nama `Head` untuk **list tanpa elemen terakhir**, dan `FirstElmt` untuk elemen pertama. Diktat ini memakai `head` untuk elemen pertama dan `tail` untuk sisanya, mengikuti terminologi yang kini sangat umum digunakan di kalangan bahasa pemrograman fungsional. Sebab itu, arti nama `head` **berkebalikan** dengan bahan lama. Bila Anda membaca materi arsip atau berdiskusi dengan seseorang yang mempelajarinya dari sana, sepakati lebih dahulu arti kedua nama itu.
 
 ### Basis-0 dan basis-1
 
 Pada fungsi rekursif yang hanya melibatkan type dasar (misalnya `Integer`), tidak ada yang membatasi di mana basis boleh diletakkan, dan Bab 6 memperlihatkan basis pada `n = 0`, `n = 1`, `n < 10`, `b = 0`, serta sepasang `n = 0` dan `n = 1`. Memberi nomor pada basis semacam itu tidak menerangkan apa-apa.
 
-Tidak demikian dengan type koleksi seperti `List`. Type-nya mempunyai tepat dua konstruktor, sehingga kasus terkecil yang mungkin hanya ada dua, dan keduanya pantas diberi nama:
+Tidak demikian halnya dengan type koleksi seperti `List`. Type-nya mempunyai tepat dua konstruktor, sehingga kasus terkecil yang mungkin hanya ada dua, dan keduanya pantas diberi nama:
 
 | Istilah | Basis pada | Predikat | Dipakai bila |
 |---|---|---|---|
@@ -86,9 +86,9 @@ Tidak demikian dengan type koleksi seperti `List`. Type-nya mempunyai tepat dua 
 
 Pemilihan di antara keduanya ditentukan oleh satu pertanyaan: *apakah fungsi ini mempunyai jawaban untuk list kosong?* Banyaknya elemen sebuah list kosong adalah nol, sehingga `length` berbasis-0. Nilai terbesar dalam list kosong tidak ada, sehingga `maxList` berbasis-1 dan list kosong dikeluarkan dari domainnya lewat pembatasan, persis sebagaimana `quadrant` mengeluarkan titik pada sumbu (Bab 4).
 
-Dua kewajiban yang pada Bab 6 harus dijaga sendiri oleh penulisnya kini datang cuma-cuma. Untuk list, keduanya diberikan oleh type-nya: alternatif `Nil` tidak menyebut dirinya sendiri sehingga ia adalah basisnya, alternatif `Cons` menyebut dirinya sendiri sehingga ia adalah rekurensnya, dan `tail (L)` selalu berisi satu elemen lebih sedikit daripada `L` sehingga konvergensinya terjamin. Yang pada Bab 6 harus dibuktikan, di sini tinggal disebutkan.
+Dua kewajiban yang pada Bab 6 harus dijaga sendiri oleh penulisnya kini diperoleh dengan cuma-cuma. Untuk list, keduanya diberikan oleh type-nya: alternatif `Nil` tidak menyebut dirinya sendiri sehingga menjadi basisnya, alternatif `Cons` menyebut dirinya sendiri sehingga menjadi rekurensnya, dan `tail (L)` selalu berisi satu elemen lebih sedikit daripada `L` sehingga konvergensinya terjamin. Yang pada Bab 6 harus dibuktikan, di sini tinggal disebutkan.
 
-Satu kebiasaan yang berlaku di seluruh bab ini: kondisi rekurens **selalu ditulis utuh** sebagai `not (isEmpty (L))`, tidak pernah sebagai `else`. Alasannya sama dengan alasan Bab 5 menuliskan `isRectangle (s)` secara terbuka. Menuliskannya membuat jaminan yang diberikan type terlihat alih-alih tersembunyi.
+Satu kebiasaan yang berlaku di seluruh bab ini: kondisi rekurens **selalu ditulis utuh** sebagai `not (isEmpty (L))`, tidak pernah sebagai `else`. Alasannya sama dengan alasan Bab 5 menuliskan `isRectangle (s)` secara terbuka. Menuliskannya membuat jaminan yang diberikan type terlihat, bukan tersembunyi.
 
 ## Contoh 1: Banyaknya Elemen
 
@@ -135,7 +135,7 @@ Penelusuran `length ([1, 2, 3])`:
   → 3                                                   { reduksi + }
 ```
 
-Bentuknya persis bentuk `factorial (4)` pada Bab 6: ekspresi membesar satu lapis pada setiap ekspansi sampai basis tercapai, lalu mengecil satu reduksi pada satu waktu. Yang berbeda hanyalah apa yang mengecil: pada `factorial` sebuah bilangan, di sini sebuah struktur.
+Bentuknya persis sama dengan `factorial (4)` pada Bab 6: ekspresi membesar satu lapis pada setiap ekspansi sampai basis tercapai, lalu mengecil satu reduksi demi satu reduksi. Yang berbeda hanyalah apa yang mengecil: pada `factorial` yang mengecil adalah sebuah bilangan, sedangkan di sini sebuah struktur.
 
 Penelusuran ditulis dengan konstruktor dan bukan dengan `[1, 2, 3]`, karena pembongkaran konstruktor itulah yang sedang diperlihatkan.
 
@@ -174,9 +174,9 @@ APLIKASI
 
 Realisasi ini mempunyai dua sifat yang belum muncul sebelumnya.
 
-**`or else` dipakai, dan memang diperlukan.** Bab 4 menganjurkan memakai hubung-singkat hanya bila operan kedua tidak selalu terdefinisi. Di sini alasannya berbeda dan sama sahnya: operan kedua **selalu terdefinisi, tetapi mahal**. Dengan `or else`, `isMember (1, [1, 2, ..., 1000])` berhenti pada elemen pertama. Dengan `or` biasa, seluruh seribu elemen tetap ditelusuri untuk menghasilkan jawaban yang sama.
+**`or else` dipakai, dan memang diperlukan.** Bab 4 menganjurkan memakai hubung-singkat hanya bila operan kedua tidak selalu terdefinisi. Di sini alasannya berbeda, tetapi sama sahnya: operan kedua **selalu terdefinisi, tetapi mahal**. Dengan `or else`, `isMember (1, [1, 2, ..., 1000])` berhenti pada elemen pertama. Dengan `or` biasa, seluruh seribu elemen tetap ditelusuri untuk menghasilkan jawaban yang sama.
 
-**Hasilnya dapat dipastikan sebelum basis tercapai.** Ini adalah fungsi pertama pada bab ini yang tidak selalu berjalan sampai ke ujung list. Sebagian besar fungsi list tidak mempunyai sifat ini.
+**Hasilnya dapat dipastikan sebelum basis tercapai.** Inilah fungsi pertama pada bab ini yang tidak selalu berjalan sampai ke ujung list. Sebagian besar fungsi list tidak mempunyai sifat ini.
 
 ## Contoh 3: Sepasang Fungsi yang Hampir Kembar
 
@@ -224,9 +224,9 @@ APLIKASI
 
 Letakkan kedua realisasi berdampingan. Keduanya berbeda **hanya pada dua tempat**: nilai basisnya, dan operatornya.
 
-Mengapa basis `productList` bernilai `1` dan bukan `0`? Karena basis harus merupakan nilai yang tidak mengubah apa-apa ketika operator diterapkan padanya. Menjumlahkan nol tidak mengubah jumlah, dan mengalikan satu tidak mengubah hasil kali. Bila basis `productList` diisi `0`, setiap hasil kali menjadi nol. Aturan ini berlaku umum: **nilai basis ditentukan oleh operator rekurensnya**.
+Mengapa basis `productList` bernilai `1` dan bukan `0`? Karena basis harus berupa nilai netral (*identity element*), yaitu nilai yang tidak mengubah apa-apa ketika operator diterapkan padanya. Menjumlahkan nol tidak mengubah jumlah, dan mengalikan satu tidak mengubah hasil kali. Bila basis `productList` diisi `0`, setiap hasil kali menjadi nol. Aturan ini berlaku umum: **nilai basis ditentukan oleh operator rekurensnya**.
 
-Kekembaran kedua fungsi ini disengaja diperlihatkan, dan akan dibicarakan lagi pada akhir bab.
+Kekembaran kedua fungsi ini sengaja diperlihatkan, dan akan dibicarakan lagi pada akhir bab.
 
 ## Contoh 4: Nilai Terbesar, dan Basis-1
 
@@ -266,7 +266,7 @@ APLIKASI
 
 Yang benar adalah mengeluarkan list kosong dari domain. Pembatasan itu muncul di **dua tempat**, yaitu pada baris definisi dan pada prasyarat, sebagaimana dianjurkan sejak Bab 4.
 
-**Konvergensinya tetap terjamin, tetapi argumennya berubah.** Rekurens mengaplikasikan `maxList` terhadap `tail (L)`, dan `tail (L)` harus tetap memenuhi prasyarat. Karena kondisi rekurens adalah `not (isOneElement (L))`, list-nya berisi sekurang-kurangnya dua elemen, sehingga `tail (L)` berisi sekurang-kurangnya satu. Prasyarat terpenuhi pada setiap langkah. Fungsi berbasis-1 selalu menuntut pemeriksaan ini.
+**Konvergensinya tetap terjamin, tetapi argumennya berubah.** Rekurens mengaplikasikan `maxList` terhadap `tail (L)`, dan `tail (L)` harus tetap memenuhi prasyarat. Karena kondisi rekurens adalah `not (isOneElement (L))`, list-nya berisi sekurang-kurangnya dua elemen, sehingga `tail (L)` berisi sekurang-kurangnya satu elemen. Prasyarat terpenuhi pada setiap langkah. Fungsi berbasis-1 selalu menuntut pemeriksaan ini.
 
 `max2` diambil kembali dari Bab 2 tanpa ditulis ulang.
 
@@ -340,11 +340,11 @@ APLIKASI
 
 Realisasi ini menuntut tiga pemeriksaan.
 
-**`and then` wajib di sini.** Ekspresi `head (L)` tidak terdefinisi bila `L` kosong. Menuliskan `not (isEmpty (L)) and (head (L) > 0)` dengan `and` biasa adalah kesalahan yang persis sama dengan `isDivisor` pada Bab 4. Keperluan ini muncul dengan sendirinya begitu kondisi memeriksa isi list (bukan hanya bentuknya), sehingga bentuk ini akan sering muncul mulai sekarang.
+**`and then` wajib di sini.** Ekspresi `head (L)` tidak terdefinisi bila `L` kosong. Menuliskan `not (isEmpty (L)) and (head (L) > 0)` dengan `and` biasa adalah kesalahan yang persis sama dengan `isDivisor` pada Bab 4. Kebutuhan ini muncul dengan sendirinya begitu kondisi memeriksa isi list (bukan hanya bentuknya), sehingga bentuk ini akan sering muncul mulai sekarang.
 
 **Rekurensnya mempunyai dua kasus, bukan satu.** `squareAll` selalu membentuk `makeCons`; `keepPositive` kadang membentuknya dan kadang tidak. Perbedaan antara "mengubah setiap elemen" dan "memilih sebagian elemen" terlihat langsung pada bentuk teksnya.
 
-**Ketiga kondisinya lengkap dan disjoint.** Diperiksa sebagaimana Bab 4.
+**Ketiga kondisinya lengkap dan disjoint.** Pemeriksaannya sama seperti pada Bab 4.
 
 ## Menyusun List: Harga Sebuah Ujung
 
@@ -383,7 +383,7 @@ Hitunglah pekerjaannya. `makeCons (0, L)` menyisipkan di depan dengan **satu** a
 
 Ketidaksimetrisan yang disebut di awal bab bermuara di sini. Sebuah list mempunyai satu ujung yang murah dan satu ujung yang mahal, sebagai akibat langsung dari definisi type-nya, yang menyebut dirinya sendiri pada posisi `tail`.
 
-Diktat ini karenanya hanya mempunyai **satu** konstruktor. Bahan terdahulu menyediakan konstruktor kedua untuk menambahkan di kanan, sehingga kedua ujung tampak setara. Kesetaraan itu menyesatkan. Dengan menurunkan `addLast` sebagai fungsi biasa, harganya menjadi terlihat, dan pilihan rancangan yang bersandar padanya menjadi pilihan yang sadar.
+Sebab itu, diktat ini hanya mempunyai **satu** konstruktor. Bahan terdahulu menyediakan konstruktor kedua untuk menambahkan di kanan, sehingga kedua ujung tampak setara. Kesetaraan itu menyesatkan. Dengan menurunkan `addLast` sebagai fungsi biasa, harganya menjadi terlihat, dan pilihan rancangan yang bergantung padanya dibuat dengan sadar.
 
 ### Pembalikan, dan tempat akumulator bekerja
 
@@ -406,9 +406,9 @@ REALISASI (VERSI PERTAMA)
             not (isEmpty (L)) : addLast (reverse (tail (L)), head (L))
 ```
 
-Realisasi ini benar dan langsung mengikuti gagasannya, tetapi mahal: setiap lapis memanggil `addLast` yang sendirinya menelusuri seluruh list. Untuk `[1, 2, 3]`, `reverse` diaplikasikan empat kali dan `addLast` enam kali.
+Realisasi ini benar dan langsung mengikuti gagasannya, tetapi mahal: setiap lapis memanggil `addLast` yang juga menelusuri seluruh list. Untuk `[1, 2, 3]`, `reverse` diaplikasikan empat kali dan `addLast` enam kali.
 
-Bab 6 memperkenalkan akumulator, yaitu parameter tambahan yang membawa hasil sementara maju. Persoalan ini adalah tempatnya bekerja:
+Bab 6 memperkenalkan akumulator, yaitu parameter tambahan yang membawa hasil sementara maju. Persoalan inilah tempat akumulator menunjukkan gunanya:
 
 ```
 REALISASI (VERSI KEDUA)
@@ -475,11 +475,11 @@ APLIKASI
       [1, 5, 7]
 ```
 
-Keterurutan di sini adalah sebuah **invarian**, dalam arti yang persis sama dengan invarian `Fraction` pada Bab 5. Invarian ini dituliskan sebagai prasyarat, tidak dijamin oleh apa pun, dan ditegakkan dengan disiplin: setiap operator yang menghasilkan list terurut harus memastikan hasilnya tetap terurut. Kasus kedua bersandar penuh pada invarian itu, karena `makeCons (x, L)` hanya benar bila seluruh isi `L` sudah dipastikan tidak lebih kecil daripada `x`, dan yang menjaminnya bukan pemeriksaan melainkan prasyarat.
+Keterurutan di sini adalah sebuah **invarian**, dalam arti yang persis sama dengan invarian `Fraction` pada Bab 5. Invarian ini dituliskan sebagai prasyarat, tidak dijamin oleh apa pun, dan ditegakkan dengan disiplin: setiap operator yang menghasilkan list terurut harus memastikan hasilnya tetap terurut. Kasus kedua bersandar penuh pada invarian itu, karena `makeCons (x, L)` hanya benar bila seluruh isi `L` sudah dipastikan tidak lebih kecil daripada `x`, dan yang menjaminnya bukan pemeriksaan, melainkan prasyarat.
 
 ## List of Character
 
-Teks adalah list yang elemennya karakter. Tidak ada mekanisme baru yang diperlukan.
+Teks adalah list yang elemennya berupa karakter. Tidak ada mekanisme baru yang diperlukan.
 
 ```
 JUDUL   Banyaknya Kemunculan Sebuah Karakter
@@ -508,7 +508,7 @@ APLIKASI
       1
 ```
 
-Bentuknya adalah `keepPositive` dan `length` yang digabung: rekurensnya bercabang seperti penyaringan, hasilnya sebuah bilangan seperti pencacahan.
+Bentuknya merupakan gabungan `keepPositive` dan `length`: rekurensnya bercabang seperti penyaringan, sedangkan hasilnya berupa bilangan seperti pencacahan.
 
 Yang penting pada contoh ini adalah **apa yang tidak perlu ditulis**: tidak ada type teks tersendiri, tidak ada operasi teks tersendiri, dan `length`, `isMember`, serta `reverse` yang sudah ditulis di atas berlaku atas teks tanpa perubahan satu huruf pun.
 
@@ -544,11 +544,11 @@ REALISASI
 
 Letakkan realisasi ini berdampingan dengan `maxList`. Keduanya berbasis-1, keduanya membandingkan elemen pertama terhadap hasil rekurens atas sisanya, dan keduanya hanya berbeda pada **cara membandingkan**. Yang satu memakai `max2` atas `Integer`, yang lain memakai `isBefore` atas `Date`.
 
-Ini adalah kekembaran ketiga pada bab ini, dan satu-satunya yang melintasi type: `Integer` dan `Date` tidak mempunyai kesamaan apa pun, tetapi bentuk kedua fungsinya sama.
+Inilah kekembaran ketiga pada bab ini, dan satu-satunya yang melintasi batas type: `Integer` dan `Date` tidak mempunyai kesamaan apa pun, tetapi bentuk kedua fungsinya sama.
 
 ## Himpunan
 
-Sebuah **himpunan** adalah list yang seluruh elemennya berbeda, dengan kata lain, sebuah list dengan sebuah tambahan **invarian**.
+Sebuah **himpunan** adalah list yang seluruh elemennya berbeda; dengan kata lain, sebuah list dengan tambahan sebuah **invarian**.
 
 ```
 TYPE SET
@@ -598,11 +598,11 @@ APLIKASI
       [1, 2, 3]
 ```
 
-**`makeCons` bukan konstruktor yang sah bagi `Set`.** Ia dapat menghasilkan list yang mengandung dua elemen sama, sehingga melanggar invarian `Set`. Setiap pembentukan anggota baru harus melalui `insertSet`, dan `union` di atas taat kepada aturan itu dengan memanggil `insertSet` alih-alih `makeCons`.
+**`makeCons` bukan konstruktor yang sah bagi `Set`.** `makeCons` dapat menghasilkan list yang mengandung dua elemen sama, sehingga melanggar invarian `Set`. Setiap pembentukan anggota baru harus melalui `insertSet`, dan `union` di atas taat kepada aturan itu dengan memanggil `insertSet`, bukan `makeCons`.
 
-Ini adalah "bekerja lewat konstruktor" dari Bab 5, kini dengan akibat yang lebih tajam: satu pemanggilan `makeCons` yang lolos akan menghasilkan `Set` yang tidak sah, dan gejalanya akan muncul jauh dari sebabnya.
+Inilah prinsip "bekerja lewat konstruktor" dari Bab 5, kini dengan akibat yang lebih tajam: satu pemanggilan `makeCons` yang lolos akan menghasilkan `Set` yang tidak sah, dan gejalanya akan muncul jauh dari sebabnya.
 
-Harganya nyata: `insertSet` memanggil `isMember` yang menelusuri seluruh himpunan, sehingga menyisipkan ke dalam himpunan jauh lebih mahal daripada menyisipkan ke dalam list. Invarian dibayar oleh setiap operasi yang harus menjaganya, dan dibeli karena hal lain menjadi lebih mudah dipercaya.
+Harganya nyata: `insertSet` memanggil `isMember` yang menelusuri seluruh himpunan, sehingga menyisipkan ke dalam himpunan jauh lebih mahal daripada menyisipkan ke dalam list. Harga invarian dibayar oleh setiap operasi yang harus menjaganya, dan harga itu layak dibayar karena hal lain menjadi lebih mudah dipercaya.
 
 ## Resume Analisis Rekurens
 
@@ -633,7 +633,7 @@ Seluruh fungsi rekursif pada Bab 6 dan Bab 7 mengikuti sejumlah kecil pola. Tabe
 | Yang wajib diperiksa | apakah `tail (L)` masih memenuhi prasyarat |
 | Dipakai bila | fungsi tidak terdefinisi atas list kosong |
 
-Tiga bentuk rekurens yang berulang pada bab ini, menurut apa yang dihasilkannya:
+Berikut tiga bentuk rekurens yang berulang pada bab ini, dikelompokkan menurut apa yang dihasilkannya:
 
 | Yang dihasilkan | Rekurensnya | Contoh pada bab ini |
 |---|---|---|
@@ -641,7 +641,7 @@ Tiga bentuk rekurens yang berulang pada bab ini, menurut apa yang dihasilkannya:
 | List dengan panjang sama | `makeCons (`*ubah* `head (L), f (tail (L)))` | `squareAll` |
 | List yang mungkin lebih pendek | sertakan atau lewati `head (L)` | `keepPositive` |
 
-Sekarang lihatlah kembali ketiga pasangan yang sengaja diletakkan berdampingan: `sumList` dan `productList`, `maxList` dan `earliest`, `squareAll` dan `keepPositive`. Beberapa di antaranya berbeda hanya pada dua tanda. Menuliskan hal yang hampir sama berulang kali adalah pekerjaan yang membosankan sekaligus rawan salah, dan ketika sebuah pola muncul sesering ini, wajar bertanya apakah polanya sendiri dapat dituliskan sekali saja. Pertanyaan itu adalah isi Bab 8.
+Sekarang lihatlah kembali ketiga pasangan yang sengaja diletakkan berdampingan: `sumList` dan `productList`, `maxList` dan `earliest`, `squareAll` dan `keepPositive`. Beberapa di antaranya berbeda hanya pada dua tanda. Menuliskan hal yang hampir sama berulang kali adalah pekerjaan yang membosankan sekaligus rawan salah, dan ketika sebuah pola muncul sesering ini, wajarlah kita bertanya apakah polanya sendiri dapat dituliskan sekali saja. Pertanyaan itulah yang menjadi isi Bab 8.
 
 ## Kesalahan yang Sering Terjadi
 
@@ -655,7 +655,7 @@ Sekarang lihatlah kembali ketiga pasangan yang sengaja diletakkan berdampingan: 
 | `makeCons` dipakai atas `Set` | himpunan mengandung elemen kembar | apakah setiap pembentukan melalui `insertSet`? |
 | Hasil terbalik urutannya | seluruh elemen benar, urutannya terbalik | biasanya akibat akumulator; perlukah `reverse` di ujungnya? |
 
-Kesalahan pada baris kelima, yaitu menuliskan `f (L)` alih-alih `f (tail (L))`, adalah salah ketik yang mudah dilakukan, dan akibatnya bukan jawaban yang keliru melainkan tidak ada jawaban sama sekali. Ini adalah pelanggaran kewajiban kedua dari Bab 6, dalam bentuknya yang paling sederhana.
+Kesalahan pada baris kelima, yaitu menuliskan `f (L)` dan bukan `f (tail (L))`, adalah salah ketik yang mudah terjadi, dan akibatnya bukan jawaban yang keliru, melainkan tidak adanya jawaban sama sekali. Inilah pelanggaran kewajiban kedua dari Bab 6, dalam bentuknya yang paling sederhana.
 
 ## Ringkasan Padanan
 
@@ -682,15 +682,15 @@ keepPositive (x : xs)
   | otherwise = keepPositive xs
 ```
 
-Empat hal yang berbeda.
+Ada empat perbedaan.
 
-**Pola `(x : xs)` mengerjakan tiga hal sekaligus.** Pola ini memeriksa bahwa list tidak kosong, mengambil elemen pertamanya, dan mengambil sisanya, dalam satu tulisan. Predikat `isEmpty` beserta selektor `head` dan `tail` tidak lagi perlu disebut. Ini adalah *pattern matching* yang sudah muncul pada Bab 5 untuk `Shape` dan pada Bab 6 untuk bilangan, kini dalam bentuk yang paling sering dipakainya.
+**Pola `(x : xs)` mengerjakan tiga hal sekaligus.** Pola ini memeriksa bahwa list tidak kosong, mengambil elemen pertamanya, dan mengambil sisanya, dalam satu tulisan. Predikat `isEmpty` beserta selektor `head` dan `tail` tidak lagi perlu disebut. Inilah pencocokan pola (*pattern matching*) yang sudah muncul pada Bab 5 untuk `Shape` dan pada Bab 6 untuk bilangan, kini dalam bentuk yang paling sering dipakainya.
 
-**Karena itu, keperluan akan `and then` menghilang.** Tidak ada `head (L)` yang dapat dievaluasi terlalu dini, karena tidak ada `head` sama sekali. Perbedaan yang pada notasi harus dijaga dengan hati-hati, di sini lenyap bersama sebabnya.
+**Sebab itu, kebutuhan akan `and then` hilang.** Tidak ada `head (L)` yang dapat dievaluasi terlalu dini, karena tidak ada `head` sama sekali. Perbedaan yang pada notasi harus dijaga dengan hati-hati, di sini lenyap bersama sebabnya.
 
 **Teks adalah list, secara harfiah.** Dalam Haskell, `String` adalah nama lain bagi `[Char]`. Seluruh fungsi di atas berlaku atas teks tanpa perubahan apa pun, dan `length' "satrio"` menghasilkan `6`. Yang pada notasi merupakan keputusan rancangan, di sini merupakan kenyataan bahasa.
 
-**Pustaka Haskell mengandung fungsi parsial.** `head []` tidak menghasilkan nilai dan menghentikan program pada saat dijalankan. Notasi menuliskan pembatasannya pada baris definisi (`List tidak kosong`), sedangkan Haskell menuliskan `[a] -> a` dan menyerahkan sisanya kepada kedisiplinan pemakainya. Ini adalah keadaan yang sama dengan `Integer [1..4]` pada Bab 4, kini dengan akibat yang dapat diamati.
+**Pustaka Haskell mengandung fungsi parsial (*partial function*).** `head []` tidak menghasilkan nilai dan menghentikan program pada saat dijalankan. Notasi menuliskan pembatasannya pada baris definisi (`List tidak kosong`), sedangkan Haskell menuliskan `[a] -> a` dan menyerahkan sisanya kepada kedisiplinan pemakainya. Keadaan ini sama dengan `Integer [1..4]` pada Bab 4, kini dengan akibat yang dapat diamati.
 
 | Notasi fungsional | Haskell |
 |---|---|
@@ -702,10 +702,10 @@ Empat hal yang berbeda.
 | `isOneElement (L)` | pola `[x]` |
 | `[1, 2, 3]` | `[1, 2, 3]` |
 | `List of Character` | `String`, yaitu `[Char]` |
-| `List of Integer tidak kosong` | `[Integer]`; pembatasannya hidup pada spesifikasi |
-| `type Set : List` dengan invarian | tidak ada padanan; invariannya hidup pada spesifikasi |
+| `List of Integer tidak kosong` | `[Integer]`; pembatasannya hanya tercatat pada spesifikasi |
+| `type Set : List` dengan invarian | tidak ada padanan; invariannya hanya tercatat pada spesifikasi |
 
-Baris terakhir adalah satu-satunya yang tidak mempunyai padanan. Sepanjang bab ini `Set` adalah gagasan yang seluruhnya ditegakkan oleh disiplin, dan terjemahannya ke Haskell tidak mengubah keadaan itu: sistem type Haskell memeriksa banyak hal, tetapi tidak memeriksa yang satu ini.
+Baris terakhir adalah satu-satunya yang tidak mempunyai padanan. Sepanjang bab ini, `Set` adalah gagasan yang seluruhnya ditegakkan oleh disiplin, dan terjemahannya ke Haskell tidak mengubah keadaan itu: sistem type Haskell memeriksa banyak hal, tetapi tidak memeriksa yang satu ini.
 
 ## Latihan
 
@@ -773,9 +773,9 @@ APLIKASI
 
 **Menulis.** Tuliskan keempat bagian secara lengkap. Sebutkan basisnya, nyatakan prasyarat bila ada, dan pilih contoh aplikasi yang mencakup list kosong, list satu elemen, dan list yang lebih panjang.
 
-1. `append (L1, L2)`, yang menghasilkan seluruh elemen `L1` diikuti seluruh elemen `L2`. Kemudian jawab: mengapa rekursinya dilakukan terhadap `L1` dan bukan terhadap `L2`?
+1. `append (L1, L2)`, yang menghasilkan seluruh elemen `L1` diikuti seluruh elemen `L2`. Kemudian jawablah: mengapa rekursinya dilakukan terhadap `L1` dan bukan terhadap `L2`?
 2. `nth (n, L)`, yang menghasilkan elemen ke-`n` dari `L` dengan elemen pertama bernomor 1. Nyatakan prasyaratnya dengan cermat. Berapa aplikasi yang diperlukan untuk mencapai elemen terakhir sebuah list sepanjang seribu?
-3. `countIf`-serupa: `countEven (L)`, yang mencacah elemen genap. Bandingkan bentuknya dengan `countChar` pada bab ini.
+3. Fungsi serupa `countIf`: `countEven (L)`, yang mencacah elemen genap. Bandingkan bentuknya dengan `countChar` pada bab ini.
 4. `sort (L)`, yang mengurutkan sebuah list menaik, dengan memakai kembali `insertSorted`. Rekursinya hanya membutuhkan tiga baris. Sebutkan invarian apa yang dijamin oleh `insertSorted` dan mengapa hal ini membuat `sort` menjadi sesingkat itu.
 5. `intersection (S1, S2)` atas `Set`. Pastikan hasilnya tetap memenuhi invarian himpunan, dan sebutkan di mana Anda menjaminnya.
 
@@ -788,6 +788,6 @@ APLIKASI
 
 **Merancang.** Tiga pertanyaan, ketiganya tanpa jawaban tunggal yang benar.
 
-1. Bahan terdahulu menyediakan dua konstruktor list, satu untuk menambahkan di kiri dan satu di kanan, sehingga kedua ujung tampak setara. Diktat ini hanya menyediakan satu dan menurunkan `addLast` sebagai fungsi biasa. Dengan memakai hitungan aplikasi pada bagian *Menyusun List*, argumenkan kedua pilihan itu. Apa yang menjadi lebih mudah dan apa yang menjadi tersembunyi pada masing-masing?
-2. Bab ini mengandaikan seluruh elemen sebuah list bertype sama. Rancanglah teks type bagi sebuah list yang elemennya boleh berupa `Integer` **atau** berupa list, dengan memakai type alternatif dari Bab 5. Kemudian tuliskan definisi dan spesifikasi (tanpa realisasi) sebuah fungsi yang menjumlahkan seluruh bilangan di dalamnya, betapa pun dalam sarangnya. Berapa banyak kasus yang harus ditangani rekurensnya, dan mengapa lebih banyak daripada fungsi mana pun pada bab ini?
-3. `sumList` dan `productList` berbeda hanya pada dua tanda, dan `maxList` serta `earliest` berbeda hanya pada cara membandingkan. Usulkan **mekanisme apa pun**, dalam notasi apa pun yang Anda rancang sendiri, yang memungkinkan pasangan semacam itu dituliskan sekali saja. Kemudian jawab pertanyaan yang menentukan: apa yang harus dapat diperlakukan sebagai **nilai** oleh mekanisme Anda, yang sampai sekarang belum pernah diperlakukan demikian dalam diktat ini?
+1. Bahan terdahulu menyediakan dua konstruktor list, satu untuk menambahkan di kiri dan satu di kanan, sehingga kedua ujung tampak setara. Diktat ini hanya menyediakan satu dan menurunkan `addLast` sebagai fungsi biasa. Dengan memakai hitungan aplikasi pada bagian *Menyusun List*, timbanglah argumen bagi kedua pilihan itu. Apa yang menjadi lebih mudah dan apa yang menjadi tersembunyi pada masing-masing?
+2. Bab ini mengandaikan seluruh elemen sebuah list bertype sama. Rancanglah teks type bagi sebuah list yang elemennya boleh berupa `Integer` **atau** berupa list, dengan memakai type alternatif dari Bab 5. Kemudian tuliskan definisi dan spesifikasi (tanpa realisasi) sebuah fungsi yang menjumlahkan seluruh bilangan di dalamnya, seberapa pun dalam sarangnya. Berapa banyak kasus yang harus ditangani rekurensnya, dan mengapa lebih banyak daripada fungsi mana pun pada bab ini?
+3. `sumList` dan `productList` berbeda hanya pada dua tanda, dan `maxList` serta `earliest` berbeda hanya pada cara membandingkan. Usulkan **mekanisme apa pun**, dalam notasi apa pun yang Anda rancang sendiri, yang memungkinkan pasangan semacam itu dituliskan sekali saja. Kemudian jawablah pertanyaan yang menentukan: apa yang harus dapat diperlakukan sebagai **nilai** oleh mekanisme Anda, yang sampai sekarang belum pernah diperlakukan demikian dalam diktat ini?

@@ -37,10 +37,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-812c2192.js";
+            window.path_to_searchindex_js = "searchindex-b1c70305.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-2ab1aa36.js"></script>
+        <script src="toc-05c84685.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -180,9 +180,9 @@
 <h2 id="ekspresi"><a class="header" href="#ekspresi">Ekspresi</a></h2>
 <p><strong>Ekspresi</strong> adalah teks yang tersusun dari nama, konstanta, operator, aplikasi fungsi, dan tanda kurung, yang bila dievaluasi menghasilkan sebuah nilai.</p>
 <p>Pada bab sebelumnya, realisasi setiap fungsi berupa sebuah ekspresi. Bab ini membahas bentuk ekspresi yang paling dasar: yang hanya memakai operator dan fungsi yang sudah tersedia, beserta cara menelusuri evaluasinya.</p>
-<p>Sebagai titik awal, dinyatakan bahwa notasi ini menyediakan tiga kelompok operator dan sejumlah kecil fungsi dasar. Segala sesuatu yang lain harus didefinisikan sendiri.</p>
+<p>Sebagai titik tolak, notasi ini menyediakan tiga kelompok operator dan sejumlah kecil fungsi dasar. Segala sesuatu yang lain harus didefinisikan sendiri.</p>
 <h2 id="operator-dasar"><a class="header" href="#operator-dasar">Operator Dasar</a></h2>
-<h3 id="operator-aritmatika"><a class="header" href="#operator-aritmatika">Operator aritmatika</a></h3>
+<h3 id="operator-aritmetika"><a class="header" href="#operator-aritmetika">Operator aritmetika</a></h3>
 <div class="table-wrapper">
 <table>
 <thead>
@@ -190,14 +190,14 @@
 </thead>
 <tbody>
 <tr><td><code>+</code> <code>-</code> <code>*</code></td><td><code>Integer</code> atau <code>Real</code></td><td>sama dengan operan</td><td>penjumlahan, pengurangan, perkalian</td></tr>
-<tr><td><code>-</code> (uner)</td><td><code>Integer</code> atau <code>Real</code></td><td>sama dengan operan</td><td>negasi, ditulis <code>-x</code></td></tr>
+<tr><td><code>-</code> (uner, <em>unary</em>)</td><td><code>Integer</code> atau <code>Real</code></td><td>sama dengan operan</td><td>negasi, ditulis <code>-x</code></td></tr>
 <tr><td><code>/</code></td><td><code>Real</code></td><td><code>Real</code></td><td>pembagian riil</td></tr>
 <tr><td><code>div</code></td><td><code>Integer</code></td><td><code>Integer</code></td><td>hasil bagi bulat</td></tr>
 <tr><td><code>mod</code></td><td><code>Integer</code></td><td><code>Integer</code></td><td>sisa bagi</td></tr>
 </tbody>
 </table>
 </div>
-<p>Kedua operan sebuah operator aritmatika harus bertype sama. Notasi ini tidak mengenal konversi otomatis antara <code>Integer</code> dan <code>Real</code>: bila keduanya perlu dicampur, konversi harus dinyatakan secara eksplisit.</p>
+<p>Kedua operan sebuah operator aritmetika harus bertype sama. Notasi ini tidak mengenal konversi otomatis (<em>implicit conversion</em>) antara <code>Integer</code> dan <code>Real</code>: bila keduanya perlu dicampur, konversi harus dinyatakan secara eksplisit.</p>
 <h3 id="operator-relasional"><a class="header" href="#operator-relasional">Operator relasional</a></h3>
 <div class="table-wrapper">
 <table>
@@ -210,7 +210,7 @@
 </tbody>
 </table>
 </div>
-<p>Perhatikan bahwa <code>=</code> di sini berarti <strong>perbandingan</strong>, bukan definisi. Notasi ini memakai <code>:</code> untuk definisi, sehingga <code>=</code> tidak pernah bermakna ganda. Beberapa bahasa pemrograman tidak seberuntung itu, dan harus memakai dua lambang yang berbeda.</p>
+<p>Perhatikan bahwa <code>=</code> di sini berarti <strong>perbandingan</strong>, bukan definisi. Notasi ini memakai <code>:</code> untuk definisi, sehingga <code>=</code> tidak pernah bermakna ganda. Beberapa bahasa pemrograman tidak seberuntung itu, sehingga harus memakai dua lambang yang berbeda.</p>
 <h3 id="operator-boolean"><a class="header" href="#operator-boolean">Operator Boolean</a></h3>
 <div class="table-wrapper">
 <table>
@@ -223,7 +223,7 @@
 </tbody>
 </table>
 </div>
-<p>Operan <code>not</code> <strong>selalu</strong> dituliskan di dalam kurung: <code>not (x &lt; y)</code>. Aturan ini dibuat agar tidak ada keraguan tentang sejauh mana negasi berlaku, dan agar teks tetap terbaca sama oleh pembaca yang terbiasa dengan bahasa pemrograman yang berbeda-beda.</p>
+<p>Operan <code>not</code> <strong>selalu</strong> dituliskan di dalam kurung: <code>not (x &lt; y)</code>. Aturan ini dibuat agar tidak ada keraguan tentang sejauh mana negasi berlaku, dan agar teks dibaca dengan cara yang sama oleh pembaca dari latar bahasa pemrograman yang berbeda-beda.</p>
 <h2 id="fungsi-dasar"><a class="header" href="#fungsi-dasar">Fungsi Dasar</a></h2>
 <p>Selain operator di atas, diasumsikan tersedia sejumlah kecil fungsi dasar:</p>
 <pre><code>abs    : Integer → Integer    { abs (x) adalah nilai mutlak x }
@@ -231,11 +231,11 @@ sqrt   : Real → Real          { sqrt (x) adalah akar kuadrat x. Prasyarat: x �
 asReal : Integer → Real       { asReal (x) adalah nilai x sebagai bilangan riil }
 pi     : → Real               { pi adalah konstanta matematika π }
 </code></pre>
-<p>Daftar ini sengaja dibuat pendek. Setiap fungsi lain yang dibutuhkan (bahkan yang sesederhana <code>max2</code>) harus didefinisikan sendiri, karena mendefinisikannya adalah latihan yang justru ingin diberikan.</p>
+<p>Daftar ini sengaja dibuat pendek. Setiap fungsi lain yang dibutuhkan (bahkan yang sesederhana <code>max2</code>) harus didefinisikan sendiri, karena mendefinisikannya sendiri justru merupakan latihan yang hendak diberikan.</p>
 <p>Dua di antaranya ada karena memang tidak dapat didefinisikan sendiri. <code>asReal</code> adalah satu-satunya jalan menyeberang dari <code>Integer</code> ke <code>Real</code>; fungsi ini diperlukan karena notasi ini tidak mengenal konversi otomatis. Tidak ada kebalikannya: menyeberang dari <code>Real</code> ke <code>Integer</code> menuntut keputusan pembulatan, dan keputusan itu harus dituliskan sebagai fungsi tersendiri beserta spesifikasinya. <code>pi</code> adalah sebuah nilai, bukan sebuah perhitungan, dan menuliskannya sebagai <code>3.14159</code> di banyak tempat hanya memperbanyak kesempatan salah ketik.</p>
 <p>Dalam Haskell, <code>asReal</code> bersesuaian dengan <code>fromIntegral</code> dan <code>pi</code> tersedia dengan nama yang sama.</p>
 <h2 id="presedensi"><a class="header" href="#presedensi">Presedensi</a></h2>
-<p>Bila sebuah ekspresi mengandung beberapa operator tanpa kurung, urutan evaluasinya ditentukan oleh presedensi:</p>
+<p>Bila sebuah ekspresi mengandung beberapa operator tanpa kurung, urutan evaluasinya ditentukan oleh presedensi (<em>precedence</em>):</p>
 <div class="table-wrapper">
 <table>
 <thead>
@@ -258,10 +258,10 @@ pi     : → Real               { pi adalah konstanta matematika π }
 <ul>
 <li><strong>Ekspresi numerik</strong> menghasilkan <code>Integer</code> atau <code>Real</code>. Contoh: <code>(a + b) div 2</code>.</li>
 <li><strong>Ekspresi Boolean</strong> menghasilkan <code>Boolean</code>. Contoh: <code>(x &gt; 0) and (y &gt; 0)</code>.</li>
-<li><strong>Ekspresi relasional</strong> adalah ekspresi Boolean yang operator terluarnya relasional dan operannya numerik. Contoh: <code>a * a ≤ 100</code>. Ini adalah kasus khusus ekspresi Boolean, bukan jenis yang terpisah.</li>
+<li><strong>Ekspresi relasional</strong> adalah ekspresi Boolean yang operator terluarnya relasional dan operannya numerik. Contoh: <code>a * a ≤ 100</code>. Ekspresi ini merupakan kasus khusus ekspresi Boolean, bukan jenis yang terpisah.</li>
 </ul>
 <p>Fungsi yang menghasilkan <code>Boolean</code> disebut <strong>predikat</strong>, dan namanya diawali <code>is</code> sesuai konvensi pada Bab 2.</p>
-<p>Operator biner pada notasi ini selalu ditulis <strong>infix</strong> (di antara kedua operannya) karena bentuk itulah yang paling dekat dengan kebiasaan menulis matematika. Bentuk penulisan lain dimungkinkan:</p>
+<p>Operator biner pada notasi ini selalu ditulis <strong>infix</strong> (di antara kedua operannya) karena bentuk itulah yang paling dekat dengan kebiasaan menulis matematika. Bentuk penulisan lain juga mungkin:</p>
 <div class="table-wrapper">
 <table>
 <thead>
@@ -311,7 +311,7 @@ pi     : → Real               { pi adalah konstanta matematika π }
 <pre><code>REALISASI
     averagePart (jumlah, n) : jumlah div n
 </code></pre>
-<p>Prasyarat bukan sekadar catatan, melainkan bagian dari kontrak: pemakai fungsi berjanji memenuhinya, dan sebagai imbalannya penulis fungsi tidak perlu memeriksanya. Menuliskan prasyarat sejak awal juga memaksa kita memikirkan kembali apakah <strong>domain</strong> sudah dipilih dengan tepat. Kadang ternyata domainnya yang seharusnya dipersempit, bukan prasyaratnya yang ditambahkan.</p>
+<p>Prasyarat bukan sekadar catatan, melainkan bagian dari kontrak: pemakai fungsi berjanji memenuhinya, dan sebagai imbalannya penulis fungsi tidak perlu memeriksanya. Menuliskan prasyarat sejak awal juga memaksa kita memikirkan kembali apakah <strong>domain</strong> sudah dipilih dengan tepat. Kadang-kadang ternyata domainlah yang seharusnya dipersempit, bukan prasyarat yang ditambahkan.</p>
 <h2 id="contoh-1-ekspresi-numerik-dengan-fungsi-antara"><a class="header" href="#contoh-1-ekspresi-numerik-dengan-fungsi-antara">Contoh 1: Ekspresi Numerik dengan Fungsi Antara</a></h2>
 <p><strong>Persoalan.</strong> Tuliskan sebuah fungsi yang menghitung jarak antara dua titik pada bidang, yang masing-masing dinyatakan oleh absis dan ordinatnya.</p>
 <p>Jarak antara titik \( (x_1, y_1) \) dan \( (x_2, y_2) \) adalah \( \sqrt{(x_1-x_2)^2 + (y_1-y_2)^2} \). Bentuk \( (a-b)^2 \) muncul dua kali, sehingga pantas dijadikan fungsi antara.</p>
@@ -338,7 +338,7 @@ pi     : → Real               { pi adalah konstanta matematika π }
       0.0
 </code></pre>
 <p>Perhatikan bahwa <code>distance</code> tidak memerlukan prasyarat meskipun memakai <code>sqrt</code>: jumlah dua bilangan kuadrat tidak mungkin negatif. Alasan semacam ini pantas dituliskan sebagai komentar bila tidak segera terlihat.</p>
-<p>Perhatikan pula bahwa <code>square</code> dari Bab 2 <strong>tidak</strong> dapat dipakai di sini. Domainnya <code>Integer</code>, sedangkan yang hendak dikuadratkan adalah <code>Real</code>, dan notasi ini tidak menyeberangkan keduanya diam-diam. Aturan yang tampak rewel di awal bab baru terasa gunanya di sini: ini memaksa perbedaan itu muncul pada saat menulis, bukan pada saat menjalankan.</p>
+<p>Perhatikan pula bahwa <code>square</code> dari Bab 2 <strong>tidak</strong> dapat dipakai di sini. Domainnya <code>Integer</code>, sedangkan yang hendak dikuadratkan adalah <code>Real</code>, dan notasi ini tidak menyeberangkan keduanya secara diam-diam. Aturan yang tampak rewel di awal bab baru terasa manfaatnya di sini: aturan itu memaksa perbedaan tersebut tampak pada saat program ditulis, bukan pada saat dijalankan.</p>
 <p>Dalam Haskell:</p>
 <pre><code class="language-haskell">sqrDif :: Double -&gt; Double -&gt; Double
 -- sqrDif a b adalah kuadrat dari selisih a dan b
@@ -349,7 +349,7 @@ distance :: Double -&gt; Double -&gt; Double -&gt; Double -&gt; Double
 distance x1 y1 x2 y2 = sqrt (sqrDif x1 x2 + sqrDif y1 y2)
 </code></pre>
 <h2 id="nama-antara"><a class="header" href="#nama-antara">Nama Antara</a></h2>
-<p>Sebuah ekspresi antara yang dipakai lebih dari satu kali, atau yang cukup panjang sehingga menyulitkan pembacaan, dapat diberi <strong>nama antara</strong>. Nama ini hanya berlaku di dalam realisasi tempat ia dituliskan, dan tidak dikenal di luarnya.</p>
+<p>Sebuah ekspresi antara yang dipakai lebih dari satu kali, atau yang cukup panjang sehingga menyulitkan pembacaan, dapat diberi <strong>nama antara</strong> (<em>local binding</em>). Nama ini hanya berlaku di dalam realisasi tempat nama itu dituliskan, dan tidak dikenal di luarnya.</p>
 <p>Bentuk penulisannya:</p>
 <pre><code>REALISASI
     namaFungsi (x) :
@@ -359,7 +359,7 @@ distance x1 y1 x2 y2 = sqrt (sqrDif x1 x2 + sqrDif y1 y2)
         in
             *ekspresi yang memakai n1 dan n2*
 </code></pre>
-<p>Type sebuah nama antara tidak perlu dituliskan: type dapat disimpulkan dari ekspresinya. Nama-nama diikat berurutan dari atas ke bawah, sehingga sebuah nama boleh memakai nama yang sudah diikat di atasnya. Perhatikan bahwa <code>:</code> di sini adalah tanda yang sama dengan yang dipakai pada realisasi fungsi, dan artinya pun sama: <em>ini didefinisikan sebagai itu</em>. Notasi ini tidak pernah memakai <code>=</code> untuk mendefinisikan.</p>
+<p>Type sebuah nama antara tidak perlu dituliskan: type dapat disimpulkan (<em>inferred</em>) dari ekspresinya. Nama-nama diikat (<em>bound</em>) secara berurutan dari atas ke bawah, sehingga sebuah nama boleh memakai nama yang sudah diikat di atasnya. Perhatikan bahwa <code>:</code> di sini adalah tanda yang sama dengan yang dipakai pada realisasi fungsi, dan artinya pun sama: <em>ini didefinisikan sebagai itu</em>. Notasi ini tidak pernah memakai <code>=</code> untuk mendefinisikan.</p>
 <p>Fungsi <code>distance</code> dapat direalisasikan ulang dengan nama antara, tanpa fungsi antara:</p>
 <pre><code>REALISASI
     distance (x1, y1, x2, y2) :
@@ -369,7 +369,7 @@ distance x1 y1 x2 y2 = sqrt (sqrDif x1 x2 + sqrDif y1 y2)
         in
             sqrt (dx * dx + dy * dy)
 </code></pre>
-<p>Definisi dan spesifikasinya tidak berubah sedikit pun. Ini adalah contoh kedua, setelah <code>cube</code> pada Bab 2, dari satu spesifikasi yang direalisasikan dengan dua cara berbeda.</p>
+<p>Definisi dan spesifikasinya tidak berubah sedikit pun. Inilah contoh kedua, setelah <code>cube</code> pada Bab 2, tentang satu spesifikasi yang direalisasikan dengan dua cara yang berbeda.</p>
 <h3 id="nama-antara-atau-fungsi-antara"><a class="header" href="#nama-antara-atau-fungsi-antara">Nama Antara atau Fungsi Antara?</a></h3>
 <p>Keduanya menghilangkan pengulangan, tetapi dengan akibat yang berbeda:</p>
 <div class="table-wrapper">
@@ -378,7 +378,7 @@ distance x1 y1 x2 y2 = sqrt (sqrDif x1 x2 + sqrDif y1 y2)
 <tr><th></th><th>Nama antara</th><th>Fungsi antara</th></tr>
 </thead>
 <tbody>
-<tr><td>Jangkauan</td><td>hanya di dalam satu realisasi</td><td>dapat dipakai di mana saja</td></tr>
+<tr><td>Jangkauan (<em>scope</em>)</td><td>hanya di dalam satu realisasi</td><td>dapat dipakai di mana saja</td></tr>
 <tr><td>Menambah perbendaharaan?</td><td>tidak</td><td>ya</td></tr>
 <tr><td>Perlu definisi dan spesifikasi?</td><td>tidak</td><td>ya</td></tr>
 <tr><td>Cocok bila</td><td>nilainya khas untuk fungsi ini</td><td>konsepnya berdiri sendiri</td></tr>
@@ -386,7 +386,7 @@ distance x1 y1 x2 y2 = sqrt (sqrDif x1 x2 + sqrDif y1 y2)
 </table>
 </div>
 <p>Pertanyaan yang membantu memutuskan: <em>apakah hal ini pantas diberi nama dan dijelaskan kepada orang lain?</em> <code>sqrDif</code> (kuadrat selisih) adalah konsep yang berdiri sendiri dan mungkin berguna di tempat lain, sehingga pantas menjadi fungsi. <code>dx</code> hanyalah selisih absis dalam perhitungan ini, dan tidak berarti apa-apa di luar konteksnya, sehingga cukup menjadi nama antara.</p>
-<p>Kecenderungan yang sehat bagi pemula adalah membuat terlalu banyak fungsi antara, bukan terlalu sedikit.</p>
+<p>Bagi pemula, lebih sehat keliru karena membuat terlalu banyak fungsi antara daripada terlalu sedikit.</p>
 <h2 id="contoh-2-ekspresi-boolean"><a class="header" href="#contoh-2-ekspresi-boolean">Contoh 2: Ekspresi Boolean</a></h2>
 <p><strong>Persoalan.</strong> Tuliskan sebuah predikat yang menentukan apakah suatu tahun adalah tahun kabisat. Sebuah tahun adalah kabisat bila habis dibagi 4, kecuali bila habis dibagi 100 tetapi tidak habis dibagi 400.</p>
 <pre><code>JUDUL   Tahun Kabisat
@@ -410,7 +410,7 @@ distance x1 y1 x2 y2 = sqrt (sqrDif x1 x2 + sqrDif y1 y2)
     ⇒ isLeapYear (2023)
       false
 </code></pre>
-<p>Keempat aplikasi di atas dipilih dengan sengaja, dan bukan sekadar diambil sembarangan: <code>2024</code> habis dibagi 4 saja, <code>1900</code> habis dibagi 100 tetapi tidak 400, <code>2000</code> habis dibagi 400, dan <code>2023</code> tidak habis dibagi 4. Bersama-sama keempatnya menyentuh setiap cabang ekspresi. Memilih contoh aplikasi dengan cara ini, satu untuk setiap kemungkinan, adalah bentuk pengujian yang paling sederhana, dan sudah dapat dilakukan sekarang, jauh sebelum ada perkakas pengujian.</p>
+<p>Keempat aplikasi di atas dipilih dengan sengaja, bukan diambil sembarangan: <code>2024</code> habis dibagi 4 saja, <code>1900</code> habis dibagi 100 tetapi tidak 400, <code>2000</code> habis dibagi 400, dan <code>2023</code> tidak habis dibagi 4. Bersama-sama, keempatnya menyentuh setiap cabang ekspresi. Memilih contoh aplikasi dengan cara ini, satu untuk setiap kemungkinan, adalah bentuk pengujian yang paling sederhana, dan sudah dapat dilakukan sekarang, jauh sebelum ada perkakas pengujian (<em>testing tools</em>).</p>
 <p>Dalam Haskell:</p>
 <pre><code class="language-haskell">isLeapYear :: Integer -&gt; Bool
 -- isLeapYear y bernilai True bila y adalah tahun kabisat
@@ -430,7 +430,7 @@ isLeapYear y = (y `mod` 4 == 0) &amp;&amp; ((y `mod` 100 /= 0) || (y `mod` 400 =
 </tbody>
 </table>
 </div>
-<p>Berikut penelusuran lengkap <code>distance (1.0, 3.0, 5.0, 6.0)</code>, memakai realisasi dengan fungsi antara:</p>
+<p>Berikut ini penelusuran (<em>trace</em>) lengkap <code>distance (1.0, 3.0, 5.0, 6.0)</code>, memakai realisasi dengan fungsi antara:</p>
 <pre><code>⇒ distance (1.0, 3.0, 5.0, 6.0)
   → sqrt (sqrDif (1.0, 5.0) + sqrDif (3.0, 6.0))            { ekspansi distance }
   → sqrt ((1.0 - 5.0) * (1.0 - 5.0) + sqrDif (3.0, 6.0))    { ekspansi sqrDif }
@@ -442,7 +442,7 @@ isLeapYear y = (y `mod` 4 == 0) &amp;&amp; ((y `mod` 100 /= 0) || (y `mod` 400 =
   → sqrt (25.0)                                             { reduksi + }
   → 5.0                                                     { reduksi sqrt }
 </code></pre>
-<p>Sembilan langkah, masing-masing hanya menyentuh satu bagian ekspresi. Menelusuri secara tertulis seperti ini adalah cara paling andal untuk memahami program yang ditulis orang lain <em>dan</em> menemukan kesalahan pada program yang kita tulis sendiri.</p>
+<p>Ada sembilan langkah, dan masing-masing hanya menyentuh satu bagian ekspresi. Menelusuri secara tertulis seperti ini adalah cara paling andal untuk memahami program yang ditulis orang lain <em>dan</em> menemukan kesalahan pada program yang kita tulis sendiri.</p>
 <h2 id="urutan-evaluasi"><a class="header" href="#urutan-evaluasi">Urutan Evaluasi</a></h2>
 <p>Pada penelusuran di atas, <code>sqrDif (1.0, 5.0)</code> dievaluasi lebih dahulu. Pilihan itu tidak wajib. Kita dapat mengevaluasi <code>sqrDif (3.0, 6.0)</code> lebih dahulu:</p>
 <pre><code>⇒ distance (1.0, 3.0, 5.0, 6.0)
@@ -453,14 +453,14 @@ isLeapYear y = (y `mod` 4 == 0) &amp;&amp; ((y `mod` 100 /= 0) || (y `mod` 400 =
   → ...
   → 5.0
 </code></pre>
-<p>Hasilnya sama. Ini bukan kebetulan, melainkan akibat langsung dari transparansi referensial yang dibicarakan pada Bab 2: sebuah ekspresi hanya bergantung pada nilai bagian-bagiannya, tidak pada kapan bagian-bagian itu dihitung. Karena itu:</p>
+<p>Hasilnya sama. Ini bukan kebetulan, melainkan akibat langsung dari transparansi referensial yang dibicarakan pada Bab 2: sebuah ekspresi hanya bergantung pada nilai bagian-bagiannya, tidak pada kapan bagian-bagian itu dihitung. Sebab itu:</p>
 <ul>
 <li>Urutan evaluasi tidak mengubah hasil.</li>
-<li>Bagian-bagian yang saling bebas secara teoritis dapat dievaluasi bersamaan.</li>
+<li>Bagian-bagian yang saling bebas secara teoretis dapat dievaluasi secara bersamaan.</li>
 <li>Sebuah ekspresi dapat dipahami dengan membaca ekspresi itu saja, tanpa perlu mengetahui apa yang terjadi sebelumnya di tempat lain dalam program.</li>
 </ul>
-<p>Ketiganya tidak berlaku pada program imperatif yang mengubah state, dan ketiganya adalah alasan utama mengapa paradigma ini layak dipelajari.</p>
-<p>Notasi ini karenanya <strong>tidak menetapkan</strong> urutan evaluasi, karena tidak perlu. Bahasa pemrograman nyata harus menetapkannya, dan pilihan yang diambil masing-masing bahasa mempunyai akibat yang perlu diketahui pada saat program benar-benar dijalankan. Bab 9 membahas pilihan-pilihan yang tersedia, dan Suplemen S10 membahas pilihan yang diambil bahasa acuan.</p>
+<p>Ketiganya tidak berlaku pada program imperatif yang mengubah keadaan (<em>state</em>), dan ketiganya adalah alasan utama mengapa paradigma ini layak dipelajari.</p>
+<p>Sebab itu, notasi ini <strong>tidak menetapkan</strong> urutan evaluasi; hal itu memang tidak perlu. Bahasa pemrograman nyata harus menetapkannya, dan pilihan yang diambil masing-masing bahasa mempunyai akibat yang perlu diketahui pada saat program benar-benar dijalankan. Bab 9 membahas pilihan-pilihan yang tersedia, dan Suplemen S10 membahas pilihan yang diambil bahasa acuan.</p>
 <h2 id="latihan"><a class="header" href="#latihan">Latihan</a></h2>
 <p><strong>Membaca.</strong> Tentukan definisi (nama, domain, range) setiap realisasi berikut, tuliskan spesifikasinya dalam bahasa Indonesia, dan sebutkan prasyaratnya bila ada. Kemudian usulkan nama yang sesuai konvensi penamaan.</p>
 <pre><code>p (a, b, c) : (a + b + c) div 3
@@ -475,7 +475,7 @@ r (a, b)    :
 
 t (n)       : abs (n) = n
 </code></pre>
-<p>Untuk <code>t</code>, jawablah juga: apakah spesifikasi Anda lebih pendek bila dituliskan sebagai “bernilai true bila …” ketimbang menyalin ulang ekspresinya? Spesifikasi yang baik menyatakan <strong>arti</strong>, bukan mengulang realisasi dengan kata-kata.</p>
+<p>Untuk <code>t</code>, jawablah juga: apakah spesifikasi Anda lebih pendek bila dituliskan sebagai “bernilai true bila …” daripada menyalin ulang ekspresinya? Spesifikasi yang baik menyatakan <strong>arti</strong>, bukan mengulang realisasi dengan kata-kata.</p>
 <p><strong>Menulis.</strong> Untuk setiap persoalan berikut, tuliskan keempat bagian secara lengkap. Nyatakan prasyarat bila ada. Pilih contoh aplikasi yang menyentuh setiap kemungkinan, tuliskan hasil yang Anda harapkan, lalu terjemahkan dan jalankan.</p>
 <ol>
 <li>Menentukan apakah tiga bilangan bulat positif dapat menjadi panjang sisi sebuah segitiga.</li>
@@ -484,8 +484,8 @@ t (n)       : abs (n) = n
 <li>Menentukan apakah sebuah bilangan bulat merupakan kuadrat sempurna. Gunakan <code>sqrt</code>, dan pikirkan baik-baik prasyaratnya.</li>
 <li>Menghitung keliling sebuah segitiga dari koordinat ketiga titik sudutnya. Gunakan kembali <code>distance</code>.</li>
 </ol>
-<p><strong>Menelusuri.</strong> Tuliskan penelusuran lengkap <code>isLeapYear (1900)</code>, dengan menyebutkan pada setiap langkah apakah yang terjadi ekspansi atau reduksi. Kemudian jawab: pada langkah keberapa hasil akhirnya sudah dapat dipastikan, meskipun ekspresinya belum tersisa satu nilai?</p>
-<p><strong>Merancang.</strong> Fungsi <code>distance</code> ditulis dengan dua realisasi berbeda pada bab ini. Untuk persoalan <em>Menulis</em> nomor 5 di atas, mana yang Anda pilih sebagai dasar, dan mengapa? Tidak ada jawaban yang salah, yang dinilai adalah alasannya.</p>
+<p><strong>Menelusuri.</strong> Tuliskan penelusuran lengkap <code>isLeapYear (1900)</code>, dengan menyebutkan pada setiap langkah apakah yang terjadi ekspansi atau reduksi. Kemudian jawablah: pada langkah keberapa hasil akhirnya sudah dapat dipastikan, meskipun ekspresinya belum menjadi satu nilai?</p>
+<p><strong>Merancang.</strong> Fungsi <code>distance</code> ditulis dengan dua realisasi berbeda pada bab ini. Untuk persoalan <em>Menulis</em> nomor 5 di atas, mana yang Anda pilih sebagai dasar, dan mengapa? Tidak ada jawaban yang salah; yang dinilai adalah alasannya.</p>
 
                     </main>
 

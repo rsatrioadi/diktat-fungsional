@@ -37,10 +37,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-812c2192.js";
+            window.path_to_searchindex_js = "searchindex-b1c70305.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-2ab1aa36.js"></script>
+        <script src="toc-05c84685.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -183,21 +183,21 @@
 <h3 id="1-perubahan-peran-dan-penataan-dokumen"><a class="header" href="#1-perubahan-peran-dan-penataan-dokumen">1. Perubahan Peran dan Penataan Dokumen</a></h3>
 <ul>
 <li>
-<p><strong>Peralihan Bentuk Publikasi:</strong> Diktat tidak lagi difungsikan sebagai “Diktat Kuliah” yang terikat pada kurikulum mata kuliah spesifik (misal: IF2030 / IF1210 ITB), melainkan direstrukturisasi menjadi <strong>Modul Bebas-Bahasa</strong> yang dapat dipetakan secara fleksibel ke CPMK mata kuliah manapun.</p>
+<p><strong>Peralihan Bentuk Publikasi:</strong> Diktat tidak lagi difungsikan sebagai “Diktat Kuliah” yang terikat pada kurikulum mata kuliah tertentu (misalnya IF2030 / IF1210 ITB), melainkan disusun ulang menjadi <strong>modul yang tidak terikat pada bahasa tertentu</strong> dan dapat dipetakan secara luwes ke CPMK mata kuliah mana pun.</p>
 </li>
 <li>
-<p><strong>Pemisahan Tubuh Diktat dan Suplemen Eksekusi:</strong></p>
+<p><strong>Pemisahan Badan Diktat dan Suplemen Eksekusi:</strong></p>
 <ul>
 <li>
-<p><strong>Versi 2014:</strong> Menggabungkan Notasi Fungsional (Buku I) dan aturan translasi LISP (Buku II) secara langsung.</p>
+<p><strong>Versi 2014:</strong> Menggabungkan Notasi Fungsional (Buku I) dan aturan penerjemahan ke LISP (Buku II) secara langsung.</p>
 </li>
 <li>
-<p><strong>Versi 2026:</strong> Memisahkan tubuh diktat (konseptual/bebas-bahasa) secara tegas dari <strong>Suplemen Eksekusi</strong>.</p>
+<p><strong>Versi 2026:</strong> Memisahkan badan diktat (konseptual, tidak terikat bahasa) secara tegas dari <strong>Suplemen Eksekusi</strong>.</p>
 </li>
 </ul>
 </li>
 <li>
-<p><strong>Bahasa Acuan Penerjemahan:</strong> Bahasa acuan eksekusi diperbarui dari <strong>LISP/CGLISP</strong> menjadi <strong>Haskell</strong>, guna menyesuaikan dengan bahasa acuan yang secara riil dipakai di beberapa tahun terakhir, bahasa yang lazim digunakan di industri pada era ini, dengan bonus fitur <em>static type checking</em> dan <em>pattern matching</em> eksplisit yang memiliki nilai pedagogis.</p>
+<p><strong>Bahasa Acuan Penerjemahan:</strong> Bahasa acuan eksekusi diperbarui dari <strong>LISP/CGLISP</strong> menjadi <strong>Haskell</strong>, agar sesuai dengan bahasa acuan yang secara nyata dipakai dalam beberapa tahun terakhir dan lazim digunakan di industri saat ini, dengan nilai tambah berupa fitur pemeriksaan type statis (<em>static type checking</em>) dan pencocokan pola (<em>pattern matching</em>) eksplisit yang bernilai pedagogis.</p>
 </li>
 </ul>
 <h3 id="2-penyesuaian-terminologi-dan-konvensi-notasi"><a class="header" href="#2-penyesuaian-terminologi-dan-konvensi-notasi">2. Penyesuaian Terminologi dan Konvensi Notasi</a></h3>
@@ -208,9 +208,9 @@
 <tr><th>Topik / Elemen</th><th>Versi 2014 (Lama)</th><th>Versi 2026 (Baru)</th><th>Alasan Perubahan</th></tr>
 </thead>
 <tbody>
-<tr><td><strong>List Tanpa Elemen Terakhir</strong></td><td><code>Head(L)</code></td><td>Tidak ada</td><td>Istilah <code>Head</code> pada versi lama berkebalikan dengan konvensi bahasa fungsional modern (di mana <code>head</code> berarti elemen pertama).</td></tr>
+<tr><td><strong>List Tanpa Elemen Terakhir</strong></td><td><code>Head(L)</code></td><td>Tidak ada</td><td>Istilah <code>Head</code> pada versi lama berkebalikan dengan konvensi bahasa fungsional modern (yang memakai <code>head</code> untuk elemen pertama).</td></tr>
 <tr><td><strong>Elemen Pertama List</strong></td><td><code>FirstElmt(L)</code></td><td><code>head(L)</code></td><td>Menyesuaikan konvensi standar (<code>head</code>/<code>tail</code>).</td></tr>
-<tr><td><strong>Penamaan Predikat</strong></td><td>Menggunakan akhiran <code>?</code> (misal: <code>IsOrigin?</code>, <code>IsPositiv?</code>)</td><td>Menggunakan awalan <code>is</code> dan <em>camelCase</em> (misal: <code>isOrigin</code>, <code>isPositiv</code>)</td><td>Menghilangkan ambiguitas nama serta menyelaraskan dengan konvensi modern.</td></tr>
+<tr><td><strong>Penamaan Predikat</strong></td><td>Menggunakan akhiran <code>?</code> (misalnya <code>IsOrigin?</code>, <code>IsPositiv?</code>)</td><td>Menggunakan awalan <code>is</code> dan <em>camelCase</em> (misalnya <code>isOrigin</code>, <code>isPositiv</code>)</td><td>Menghilangkan ambiguitas nama serta menyelaraskan dengan konvensi modern.</td></tr>
 <tr><td><strong>Simbol Deklarasi/Definisi</strong></td><td>Menggunakan <code>=</code> atau <code>:</code> secara bergantian</td><td>Menggunakan <code>:</code> untuk definisi, <code>=</code> khusus untuk perbandingan relasional</td><td>Mencegah ambiguitas antara penugasan/definisi dengan perbandingan logika.</td></tr>
 <tr><td><strong>Nama Antara</strong></td><td>Digabung dalam sintaks lokal <code>let ... in</code></td><td>Tetap <code>let ... in</code> dengan aturan pengikatan eksplisit dari atas ke bawah</td><td>Mempertegas urutan <em>scope</em> lokal tanpa memperkenalkan efek samping.</td></tr>
 </tbody>
@@ -219,20 +219,20 @@
 <h3 id="3-perubahan-struktural-dan-urutan-bab"><a class="header" href="#3-perubahan-struktural-dan-urutan-bab">3. Perubahan Struktural dan Urutan Bab</a></h3>
 <ul>
 <li>
-<p><strong>Bab Rekursi vs. Fungsi Orde Tinggi (High-Order Function):</strong></p>
+<p><strong>Bab Rekursi vs. Fungsi Orde Tinggi (<em>Higher-Order Function</em>):</strong></p>
 <ul>
 <li>
 <p><strong>Versi 2014:</strong> Membahas Ekspresi Lambda / Fungsi Orde Tinggi di bagian akhir bab (Bab 11) setelah Pohon.</p>
 </li>
 <li>
-<p><strong>Versi 2026:</strong> Memindahkan Fungsi Orde Tinggi ke <strong>Bab 8</strong>, tepat setelah Bab List (Bab 7) dan <strong>sebelum</strong> Pohon (Bab 10). Mahasiswa dilatih membuat fungsi rekursi manual terlebih dahulu, baru diajarkan mengabstraknya dengan <code>map</code>, <code>filter</code>, dan <code>fold</code>.</p>
+<p><strong>Versi 2026:</strong> Memindahkan Fungsi Orde Tinggi ke <strong>Bab 8</strong>, tepat setelah Bab List (Bab 7) dan <strong>sebelum</strong> Pohon (Bab 10). Mahasiswa dilatih membuat fungsi rekursi manual terlebih dahulu, baru kemudian diajarkan mengabstraksikannya dengan <code>map</code>, <code>filter</code>, dan <code>fold</code>.</p>
 </li>
 </ul>
 </li>
 <li>
 <p><strong>Penambahan Bab Khusus “Dari Notasi ke Program” (Bab 9):</strong></p>
 <ul>
-<li>Bab baru yang secara eksplisit menjembatani antara rancangan statis fungsional dengan realitas eksekusi mesin: membahas <em>kemurnian (purity)</em>, <em>transparansi referensial</em>, <em>efek samping (side-effects)</em>, serta strategi evaluasi (<em>lazy vs. strict</em>).</li>
+<li>Bab baru yang secara eksplisit menjembatani antara rancangan statis fungsional dengan kenyataan eksekusi pada mesin: membahas <em>kemurnian (purity)</em>, <em>transparansi referensial</em>, <em>efek samping (side-effects)</em>, serta strategi evaluasi (<em>lazy vs. strict</em>).</li>
 </ul>
 </li>
 <li>
@@ -242,12 +242,12 @@
 <p><strong>Versi 2014:</strong> List of List adalah subbab (9.5) di dalam Bab List, bukan bab tersendiri; Pohon (10) dan Lambda (11) menutup diktat secara berurutan.</p>
 </li>
 <li>
-<p><strong>Versi 2026:</strong> List of List diangkat menjadi Bab 11 tersendiri (opsional), sejajar dengan Pohon (Bab 10, juga eksplisit opsional). Fungsi Orde Tinggi/Lambda dipindah lebih awal ke Bab 8, tidak lagi jadi penutup.</p>
+<p><strong>Versi 2026:</strong> List of List diangkat menjadi Bab 11 tersendiri (opsional), sejajar dengan Pohon (Bab 10, juga eksplisit opsional). Fungsi Orde Tinggi/Lambda dipindah lebih awal ke Bab 8, tidak lagi menjadi penutup.</p>
 </li>
 </ul>
 </li>
 </ul>
-<h3 id="4-pembaharuan-metodologis-dan-pedagogis"><a class="header" href="#4-pembaharuan-metodologis-dan-pedagogis">4. Pembaharuan Metodologis dan Pedagogis</a></h3>
+<h3 id="4-pembaruan-metodologis-dan-pedagogis"><a class="header" href="#4-pembaruan-metodologis-dan-pedagogis">4. Pembaruan Metodologis dan Pedagogis</a></h3>
 <ol>
 <li>
 <p><strong>Syarat Analisis Kasus (<code>depend on</code>):</strong></p>
@@ -256,7 +256,7 @@
 <p><strong>Versi 2014:</strong> Mengizinkan evaluasi implisit atau bergantung pada urutan eksekusi <em>interpreter</em>.</p>
 </li>
 <li>
-<p><strong>Versi 2026:</strong> Menegaskan aturan <strong>Lengkap (Exhaustive)</strong> dan <strong>Disjoint (Mutually Exclusive)</strong> secara formal. Urutan penulisan kasus pada notasi <code>depend on</code> dinyatakan <strong>tidak mempengaruhi arti/hasil</strong>.</p>
+<p><strong>Versi 2026:</strong> Menegaskan aturan <strong>Lengkap (<em>Exhaustive</em>)</strong> dan <strong>Disjoint (<em>Mutually Exclusive</em>)</strong> secara formal. Urutan penulisan kasus pada notasi <code>depend on</code> dinyatakan <strong>tidak memengaruhi arti/hasil</strong>.</p>
 </li>
 </ul>
 </li>
@@ -281,7 +281,7 @@
 <p><strong>Pendekatan Type Bentukan (Product &amp; Alternative):</strong></p>
 <ul>
 <li>
-<p>Mempertegas perbedaan konseptual antara <strong>Type Produk</strong> (tuple/rekord) dengan <strong>Type Alternatif</strong> (varian/union).</p>
+<p>Mempertegas perbedaan konseptual antara <strong>Type Produk</strong> (tuple/rekord) dan <strong>Type Alternatif</strong> (varian/union).</p>
 </li>
 <li>
 <p>Menegaskan prinsip <em>abstraksi data</em>: seluruh fungsi luar wajib mengakses komponen type bentukan <strong>hanya melalui selektor</strong> dan membentuk nilai <strong>hanya melalui konstruktor</strong>.</p>

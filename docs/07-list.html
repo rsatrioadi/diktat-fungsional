@@ -37,10 +37,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-812c2192.js";
+            window.path_to_searchindex_js = "searchindex-b1c70305.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-2ab1aa36.js"></script>
+        <script src="toc-05c84685.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -179,16 +179,16 @@
                         <h1 id="list"><a class="header" href="#list">List</a></h1>
 <h2 id="koleksi-objek"><a class="header" href="#koleksi-objek">Koleksi Objek</a></h2>
 <p>Sampai bab ini, sebuah program hanya mampu mengelola type dasar dan type bentukan yang disusun darinya. Untuk sebagian persoalan, pembatasan itu bukan sekadar menyulitkan, melainkan membuat programnya tidak dapat ditulis sama sekali.</p>
-<p>Sebuah <code>Date</code> menyimpan satu tanggal. Bila kita perlu mengelola tiga tanggal, kita dapat menuliskan tiga parameter. Bila kita perlu mengelola seluruh tanggal dalam setahun, cara itu berhenti bekerja. Bahkan bila banyaknya tanggal <strong>tidak diketahui pada saat program ditulis</strong>, cara itu tidak pernah dapat bekerja, karena kita harus menuliskan nama sebanyak nilai yang akan diproses, sedangkan jumlahnya baru diketahui kelak.</p>
-<p>Yang dibutuhkan adalah sebuah <strong>koleksi</strong>: satu nama yang mewakili sekumpulan nilai, beserta cara mencapai setiap anggotanya. Sebuah koleksi mungkin kosong, mungkin berisi satu anggota, mungkin berisi sejuta.</p>
+<p>Sebuah <code>Date</code> menyimpan satu tanggal. Bila kita perlu mengelola tiga tanggal, kita dapat menuliskan tiga parameter. Bila kita perlu mengelola seluruh tanggal dalam setahun, cara itu tidak lagi dapat dipakai. Apalagi bila banyaknya tanggal <strong>tidak diketahui pada saat program ditulis</strong>, cara itu sama sekali tidak mungkin dipakai, karena kita harus menuliskan nama sebanyak nilai yang akan diproses, sedangkan jumlahnya baru diketahui kelak.</p>
+<p>Yang dibutuhkan adalah sebuah <strong>koleksi</strong> (<em>collection</em>): satu nama yang mewakili sekumpulan nilai, beserta cara mencapai setiap anggotanya. Sebuah koleksi mungkin kosong, mungkin berisi satu anggota, mungkin berisi sejuta.</p>
 <p>Ada banyak cara mengorganisasi koleksi, dan masing-masing cara menentukan sebuah type kolektif tersendiri dengan operasi dasarnya sendiri. Bab ini membahas satu di antaranya, yaitu <strong>list</strong>, yang anggotanya berurutan dan dicapai dari satu ujung. List adalah struktur rekursif yang paling sederhana, sehingga seluruh Bab 6 dapat langsung dipakai kembali di sini.</p>
 <h2 id="list-sebagai-type-rekursif"><a class="header" href="#list-sebagai-type-rekursif">List sebagai Type Rekursif</a></h2>
-<p>Bab 6 menutup dengan menyatakan bahwa type rekursif yang paling penting dalam informatika adalah list. Definisinya:</p>
+<p>Bab 6 ditutup dengan pernyataan bahwa type rekursif yang paling penting dalam informatika adalah list. Definisinya:</p>
 <ul>
 <li><strong>Basis:</strong> <em>list kosong</em> adalah sebuah list.</li>
 <li><strong>Rekurens:</strong> <em>sebuah elemen yang diikuti oleh sebuah list</em> adalah sebuah list.</li>
 </ul>
-<p>Dua baris itu menghasilkan seluruh isi bab ini.</p>
+<p>Dari dua baris itulah seluruh isi bab ini diturunkan.</p>
 <pre><code>TYPE LIST
 </code></pre>
 <pre><code>DEFINISI TYPE
@@ -219,12 +219,12 @@ DEFINISI DAN SPESIFIKASI PREDIKAT
     isOneElement : List → Boolean
     { isOneElement (L) bernilai true bila L hanya mempunyai satu elemen }
 </code></pre>
-<p><code>Element</code> bukan sebuah type dasar, melainkan “tempat kosong” yang diisi sekali untuk setiap list: seluruh elemen sebuah list bertype sama, dan type itu ditetapkan pada saat list dipakai. Diktat ini menuliskan <code>List of Integer</code>, <code>List of Character</code>, dan <code>List of Date</code> untuk menyebut list yang <code>Element</code>-nya masing-masing <code>Integer</code>, <code>Character</code>, dan <code>Date</code>. Cara menyatakan hal ini secara tepat, sehingga kompilator ikut memeriksanya, adalah bagian dari sistem type yang berada di luar cakupan diktat ini.</p>
+<p><code>Element</code> bukan sebuah type dasar, melainkan “tempat kosong” yang diisi sekali untuk setiap list: seluruh elemen sebuah list bertype sama, dan type itu ditetapkan pada saat list dipakai. Diktat ini menuliskan <code>List of Integer</code>, <code>List of Character</code>, dan <code>List of Date</code> untuk menyebut list yang <code>Element</code>-nya masing-masing <code>Integer</code>, <code>Character</code>, dan <code>Date</code>. Cara menyatakan hal ini secara tepat, sehingga kompilator ikut memeriksanya, adalah bagian dari sistem type (polimorfisme parametrik, <em>parametric polymorphism</em>) yang berada di luar cakupan diktat ini.</p>
 <blockquote>
 <p><strong>Catatan.</strong> Nama <code>Cons</code> adalah kependekan dari <em>construct</em>, dan berasal dari Lisp, bahasa fungsional tertua yang masih dipakai hingga kini. Di sana <code>cons</code> adalah operasi dasar yang membentuk sebuah list dari sebuah elemen dan sebuah list, dan setiap sel penyusunnya disebut <em>cons cell</em>. Bahasa acuan diktat ini menuliskannya sebagai operator <code>:</code>, tetapi tetap menyebut selnya dengan nama yang sama, sehingga kata <em>cons</em> masih akan ditemui pembaca pada dokumentasi bahasa fungsional masa kini.</p>
 </blockquote>
 <h3 id="penulisan-singkat"><a class="header" href="#penulisan-singkat">Penulisan singkat</a></h3>
-<p>Menuliskan setiap list dengan konstruktornya cepat menjadi melelahkan. Karena itu tersedia penulisan singkat:</p>
+<p>Menuliskan setiap list dengan konstruktornya cepat menjadi melelahkan. Sebab itu, tersedia penulisan singkat (<em>syntactic sugar</em>):</p>
 <pre><code>[]            { setara dengan makeNil }
 [7]           { setara dengan makeCons (7, makeNil) }
 [1, 2, 3]     { setara dengan makeCons (1, makeCons (2, makeCons (3, makeNil))) }
@@ -232,11 +232,11 @@ DEFINISI DAN SPESIFIKASI PREDIKAT
 <p>Penulisan singkat adalah <strong>penulisan yang sama</strong>, bukan type yang lain. Pada penelusuran, bentuk panjangnya dipakai kembali setiap kali sebuah konstruktor benar-benar dibongkar atau dibentuk, karena di situlah struktur rekursifnya terlihat.</p>
 <p><code>[1, 2, 3]</code> tidak simetris. Elemen <code>1</code> berada di lapis paling luar dan dapat diambil dengan satu aplikasi <code>head</code>, sedangkan <code>3</code> terkubur di lapis paling dalam. Ketidaksimetrisan ini bukan kekurangan yang harus ditutupi, melainkan sifat list yang akan menjelaskan mengapa sebagian operasi murah dan sebagian lain mahal.</p>
 <blockquote>
-<p><strong>Peringatan bagi pembaca bahan lama.</strong> Diktat terdahulu di lingkungan ITB memakai nama <code>Head</code> untuk <strong>list tanpa elemen terakhir</strong>, dan <code>FirstElmt</code> untuk elemen pertama. Diktat ini memakai <code>head</code> untuk elemen pertama dan <code>tail</code> untuk sisanya, mengikuti terminologi yang kini sangat umum digunakan di bahasa pemrograman fungsional. Arti nama <code>head</code> karenanya <strong>berkebalikan</strong> dengan bahan lama. Bila Anda membaca materi arsip atau berdiskusi dengan seseorang yang mempelajarinya dari sana, sepakati lebih dahulu arti kedua nama itu.</p>
+<p><strong>Peringatan bagi pembaca bahan lama.</strong> Diktat terdahulu di lingkungan ITB memakai nama <code>Head</code> untuk <strong>list tanpa elemen terakhir</strong>, dan <code>FirstElmt</code> untuk elemen pertama. Diktat ini memakai <code>head</code> untuk elemen pertama dan <code>tail</code> untuk sisanya, mengikuti terminologi yang kini sangat umum digunakan di kalangan bahasa pemrograman fungsional. Sebab itu, arti nama <code>head</code> <strong>berkebalikan</strong> dengan bahan lama. Bila Anda membaca materi arsip atau berdiskusi dengan seseorang yang mempelajarinya dari sana, sepakati lebih dahulu arti kedua nama itu.</p>
 </blockquote>
 <h3 id="basis-0-dan-basis-1"><a class="header" href="#basis-0-dan-basis-1">Basis-0 dan basis-1</a></h3>
 <p>Pada fungsi rekursif yang hanya melibatkan type dasar (misalnya <code>Integer</code>), tidak ada yang membatasi di mana basis boleh diletakkan, dan Bab 6 memperlihatkan basis pada <code>n = 0</code>, <code>n = 1</code>, <code>n &lt; 10</code>, <code>b = 0</code>, serta sepasang <code>n = 0</code> dan <code>n = 1</code>. Memberi nomor pada basis semacam itu tidak menerangkan apa-apa.</p>
-<p>Tidak demikian dengan type koleksi seperti <code>List</code>. Type-nya mempunyai tepat dua konstruktor, sehingga kasus terkecil yang mungkin hanya ada dua, dan keduanya pantas diberi nama:</p>
+<p>Tidak demikian halnya dengan type koleksi seperti <code>List</code>. Type-nya mempunyai tepat dua konstruktor, sehingga kasus terkecil yang mungkin hanya ada dua, dan keduanya pantas diberi nama:</p>
 <div class="table-wrapper">
 <table>
 <thead>
@@ -249,8 +249,8 @@ DEFINISI DAN SPESIFIKASI PREDIKAT
 </table>
 </div>
 <p>Pemilihan di antara keduanya ditentukan oleh satu pertanyaan: <em>apakah fungsi ini mempunyai jawaban untuk list kosong?</em> Banyaknya elemen sebuah list kosong adalah nol, sehingga <code>length</code> berbasis-0. Nilai terbesar dalam list kosong tidak ada, sehingga <code>maxList</code> berbasis-1 dan list kosong dikeluarkan dari domainnya lewat pembatasan, persis sebagaimana <code>quadrant</code> mengeluarkan titik pada sumbu (Bab 4).</p>
-<p>Dua kewajiban yang pada Bab 6 harus dijaga sendiri oleh penulisnya kini datang cuma-cuma. Untuk list, keduanya diberikan oleh type-nya: alternatif <code>Nil</code> tidak menyebut dirinya sendiri sehingga ia adalah basisnya, alternatif <code>Cons</code> menyebut dirinya sendiri sehingga ia adalah rekurensnya, dan <code>tail (L)</code> selalu berisi satu elemen lebih sedikit daripada <code>L</code> sehingga konvergensinya terjamin. Yang pada Bab 6 harus dibuktikan, di sini tinggal disebutkan.</p>
-<p>Satu kebiasaan yang berlaku di seluruh bab ini: kondisi rekurens <strong>selalu ditulis utuh</strong> sebagai <code>not (isEmpty (L))</code>, tidak pernah sebagai <code>else</code>. Alasannya sama dengan alasan Bab 5 menuliskan <code>isRectangle (s)</code> secara terbuka. Menuliskannya membuat jaminan yang diberikan type terlihat alih-alih tersembunyi.</p>
+<p>Dua kewajiban yang pada Bab 6 harus dijaga sendiri oleh penulisnya kini diperoleh dengan cuma-cuma. Untuk list, keduanya diberikan oleh type-nya: alternatif <code>Nil</code> tidak menyebut dirinya sendiri sehingga menjadi basisnya, alternatif <code>Cons</code> menyebut dirinya sendiri sehingga menjadi rekurensnya, dan <code>tail (L)</code> selalu berisi satu elemen lebih sedikit daripada <code>L</code> sehingga konvergensinya terjamin. Yang pada Bab 6 harus dibuktikan, di sini tinggal disebutkan.</p>
+<p>Satu kebiasaan yang berlaku di seluruh bab ini: kondisi rekurens <strong>selalu ditulis utuh</strong> sebagai <code>not (isEmpty (L))</code>, tidak pernah sebagai <code>else</code>. Alasannya sama dengan alasan Bab 5 menuliskan <code>isRectangle (s)</code> secara terbuka. Menuliskannya membuat jaminan yang diberikan type terlihat, bukan tersembunyi.</p>
 <h2 id="contoh-1-banyaknya-elemen"><a class="header" href="#contoh-1-banyaknya-elemen">Contoh 1: Banyaknya Elemen</a></h2>
 <pre><code>JUDUL   Banyaknya Elemen Sebuah List
 </code></pre>
@@ -284,7 +284,7 @@ DEFINISI DAN SPESIFIKASI PREDIKAT
   → 1 + 2                                               { reduksi + }
   → 3                                                   { reduksi + }
 </code></pre>
-<p>Bentuknya persis bentuk <code>factorial (4)</code> pada Bab 6: ekspresi membesar satu lapis pada setiap ekspansi sampai basis tercapai, lalu mengecil satu reduksi pada satu waktu. Yang berbeda hanyalah apa yang mengecil: pada <code>factorial</code> sebuah bilangan, di sini sebuah struktur.</p>
+<p>Bentuknya persis sama dengan <code>factorial (4)</code> pada Bab 6: ekspresi membesar satu lapis pada setiap ekspansi sampai basis tercapai, lalu mengecil satu reduksi demi satu reduksi. Yang berbeda hanyalah apa yang mengecil: pada <code>factorial</code> yang mengecil adalah sebuah bilangan, sedangkan di sini sebuah struktur.</p>
 <p>Penelusuran ditulis dengan konstruktor dan bukan dengan <code>[1, 2, 3]</code>, karena pembongkaran konstruktor itulah yang sedang diperlihatkan.</p>
 <h2 id="contoh-2-keanggotaan"><a class="header" href="#contoh-2-keanggotaan">Contoh 2: Keanggotaan</a></h2>
 <pre><code>JUDUL   Keanggotaan Sebuah Elemen
@@ -311,8 +311,8 @@ DEFINISI DAN SPESIFIKASI PREDIKAT
       false
 </code></pre>
 <p>Realisasi ini mempunyai dua sifat yang belum muncul sebelumnya.</p>
-<p><strong><code>or else</code> dipakai, dan memang diperlukan.</strong> Bab 4 menganjurkan memakai hubung-singkat hanya bila operan kedua tidak selalu terdefinisi. Di sini alasannya berbeda dan sama sahnya: operan kedua <strong>selalu terdefinisi, tetapi mahal</strong>. Dengan <code>or else</code>, <code>isMember (1, [1, 2, ..., 1000])</code> berhenti pada elemen pertama. Dengan <code>or</code> biasa, seluruh seribu elemen tetap ditelusuri untuk menghasilkan jawaban yang sama.</p>
-<p><strong>Hasilnya dapat dipastikan sebelum basis tercapai.</strong> Ini adalah fungsi pertama pada bab ini yang tidak selalu berjalan sampai ke ujung list. Sebagian besar fungsi list tidak mempunyai sifat ini.</p>
+<p><strong><code>or else</code> dipakai, dan memang diperlukan.</strong> Bab 4 menganjurkan memakai hubung-singkat hanya bila operan kedua tidak selalu terdefinisi. Di sini alasannya berbeda, tetapi sama sahnya: operan kedua <strong>selalu terdefinisi, tetapi mahal</strong>. Dengan <code>or else</code>, <code>isMember (1, [1, 2, ..., 1000])</code> berhenti pada elemen pertama. Dengan <code>or</code> biasa, seluruh seribu elemen tetap ditelusuri untuk menghasilkan jawaban yang sama.</p>
+<p><strong>Hasilnya dapat dipastikan sebelum basis tercapai.</strong> Inilah fungsi pertama pada bab ini yang tidak selalu berjalan sampai ke ujung list. Sebagian besar fungsi list tidak mempunyai sifat ini.</p>
 <h2 id="contoh-3-sepasang-fungsi-yang-hampir-kembar"><a class="header" href="#contoh-3-sepasang-fungsi-yang-hampir-kembar">Contoh 3: Sepasang Fungsi yang Hampir Kembar</a></h2>
 <pre><code>JUDUL   Jumlah dan Hasil Kali Seluruh Elemen
 </code></pre>
@@ -349,8 +349,8 @@ DEFINISI DAN SPESIFIKASI PREDIKAT
       6
 </code></pre>
 <p>Letakkan kedua realisasi berdampingan. Keduanya berbeda <strong>hanya pada dua tempat</strong>: nilai basisnya, dan operatornya.</p>
-<p>Mengapa basis <code>productList</code> bernilai <code>1</code> dan bukan <code>0</code>? Karena basis harus merupakan nilai yang tidak mengubah apa-apa ketika operator diterapkan padanya. Menjumlahkan nol tidak mengubah jumlah, dan mengalikan satu tidak mengubah hasil kali. Bila basis <code>productList</code> diisi <code>0</code>, setiap hasil kali menjadi nol. Aturan ini berlaku umum: <strong>nilai basis ditentukan oleh operator rekurensnya</strong>.</p>
-<p>Kekembaran kedua fungsi ini disengaja diperlihatkan, dan akan dibicarakan lagi pada akhir bab.</p>
+<p>Mengapa basis <code>productList</code> bernilai <code>1</code> dan bukan <code>0</code>? Karena basis harus berupa nilai netral (<em>identity element</em>), yaitu nilai yang tidak mengubah apa-apa ketika operator diterapkan padanya. Menjumlahkan nol tidak mengubah jumlah, dan mengalikan satu tidak mengubah hasil kali. Bila basis <code>productList</code> diisi <code>0</code>, setiap hasil kali menjadi nol. Aturan ini berlaku umum: <strong>nilai basis ditentukan oleh operator rekurensnya</strong>.</p>
+<p>Kekembaran kedua fungsi ini sengaja diperlihatkan, dan akan dibicarakan lagi pada akhir bab.</p>
 <h2 id="contoh-4-nilai-terbesar-dan-basis-1"><a class="header" href="#contoh-4-nilai-terbesar-dan-basis-1">Contoh 4: Nilai Terbesar, dan Basis-1</a></h2>
 <pre><code>JUDUL   Elemen Terbesar Sebuah List
 </code></pre>
@@ -378,7 +378,7 @@ DEFINISI DAN SPESIFIKASI PREDIKAT
 </code></pre>
 <p><strong>Mengapa basis-1.</strong> Nilai terbesar dalam list kosong tidak ada, dan tidak ada bilangan yang dapat dituliskan sebagai jawaban. Menuliskan basis-0 dengan hasil <code>0</code> akan membuat <code>maxList ([-5, -1, -8])</code> menghasilkan <code>0</code>, yaitu sebuah nilai yang bahkan bukan anggota list-nya. Kekeliruan semacam itu tampak wajar dan bertahan lama, persis seperti yang diperingatkan Bab 4 tentang <code>else</code>.</p>
 <p>Yang benar adalah mengeluarkan list kosong dari domain. Pembatasan itu muncul di <strong>dua tempat</strong>, yaitu pada baris definisi dan pada prasyarat, sebagaimana dianjurkan sejak Bab 4.</p>
-<p><strong>Konvergensinya tetap terjamin, tetapi argumennya berubah.</strong> Rekurens mengaplikasikan <code>maxList</code> terhadap <code>tail (L)</code>, dan <code>tail (L)</code> harus tetap memenuhi prasyarat. Karena kondisi rekurens adalah <code>not (isOneElement (L))</code>, list-nya berisi sekurang-kurangnya dua elemen, sehingga <code>tail (L)</code> berisi sekurang-kurangnya satu. Prasyarat terpenuhi pada setiap langkah. Fungsi berbasis-1 selalu menuntut pemeriksaan ini.</p>
+<p><strong>Konvergensinya tetap terjamin, tetapi argumennya berubah.</strong> Rekurens mengaplikasikan <code>maxList</code> terhadap <code>tail (L)</code>, dan <code>tail (L)</code> harus tetap memenuhi prasyarat. Karena kondisi rekurens adalah <code>not (isOneElement (L))</code>, list-nya berisi sekurang-kurangnya dua elemen, sehingga <code>tail (L)</code> berisi sekurang-kurangnya satu elemen. Prasyarat terpenuhi pada setiap langkah. Fungsi berbasis-1 selalu menuntut pemeriksaan ini.</p>
 <p><code>max2</code> diambil kembali dari Bab 2 tanpa ditulis ulang.</p>
 <h2 id="contoh-5-menghasilkan-sebuah-list"><a class="header" href="#contoh-5-menghasilkan-sebuah-list">Contoh 5: Menghasilkan Sebuah List</a></h2>
 <p>Seluruh fungsi sejauh ini menghasilkan nilai tunggal. Sebuah fungsi list dapat pula menghasilkan list.</p>
@@ -430,9 +430,9 @@ DEFINISI DAN SPESIFIKASI PREDIKAT
       []
 </code></pre>
 <p>Realisasi ini menuntut tiga pemeriksaan.</p>
-<p><strong><code>and then</code> wajib di sini.</strong> Ekspresi <code>head (L)</code> tidak terdefinisi bila <code>L</code> kosong. Menuliskan <code>not (isEmpty (L)) and (head (L) &gt; 0)</code> dengan <code>and</code> biasa adalah kesalahan yang persis sama dengan <code>isDivisor</code> pada Bab 4. Keperluan ini muncul dengan sendirinya begitu kondisi memeriksa isi list (bukan hanya bentuknya), sehingga bentuk ini akan sering muncul mulai sekarang.</p>
+<p><strong><code>and then</code> wajib di sini.</strong> Ekspresi <code>head (L)</code> tidak terdefinisi bila <code>L</code> kosong. Menuliskan <code>not (isEmpty (L)) and (head (L) &gt; 0)</code> dengan <code>and</code> biasa adalah kesalahan yang persis sama dengan <code>isDivisor</code> pada Bab 4. Kebutuhan ini muncul dengan sendirinya begitu kondisi memeriksa isi list (bukan hanya bentuknya), sehingga bentuk ini akan sering muncul mulai sekarang.</p>
 <p><strong>Rekurensnya mempunyai dua kasus, bukan satu.</strong> <code>squareAll</code> selalu membentuk <code>makeCons</code>; <code>keepPositive</code> kadang membentuknya dan kadang tidak. Perbedaan antara “mengubah setiap elemen” dan “memilih sebagian elemen” terlihat langsung pada bentuk teksnya.</p>
-<p><strong>Ketiga kondisinya lengkap dan disjoint.</strong> Diperiksa sebagaimana Bab 4.</p>
+<p><strong>Ketiga kondisinya lengkap dan disjoint.</strong> Pemeriksaannya sama seperti pada Bab 4.</p>
 <h2 id="menyusun-list-harga-sebuah-ujung"><a class="header" href="#menyusun-list-harga-sebuah-ujung">Menyusun List: Harga Sebuah Ujung</a></h2>
 <p><code>makeCons</code> menambahkan elemen di <strong>depan</strong> dan menghasilkan list baru dengan satu aplikasi konstruktor. Menambahkan di <strong>belakang</strong> tidak tersedia sebagai konstruktor, dan harus diturunkan.</p>
 <pre><code>JUDUL   Menambahkan Elemen di Akhir List
@@ -458,7 +458,7 @@ DEFINISI DAN SPESIFIKASI PREDIKAT
 </code></pre>
 <p>Hitunglah pekerjaannya. <code>makeCons (0, L)</code> menyisipkan di depan dengan <strong>satu</strong> aplikasi konstruktor, berapa pun panjang <code>L</code>. <code>addLast (L, e)</code> untuk <code>L</code> sepanjang <em>n</em> menuntut <em>n</em> + 1 aplikasi <code>addLast</code> dan membangun ulang seluruh <em>n</em> lapis konstruktor.</p>
 <p>Ketidaksimetrisan yang disebut di awal bab bermuara di sini. Sebuah list mempunyai satu ujung yang murah dan satu ujung yang mahal, sebagai akibat langsung dari definisi type-nya, yang menyebut dirinya sendiri pada posisi <code>tail</code>.</p>
-<p>Diktat ini karenanya hanya mempunyai <strong>satu</strong> konstruktor. Bahan terdahulu menyediakan konstruktor kedua untuk menambahkan di kanan, sehingga kedua ujung tampak setara. Kesetaraan itu menyesatkan. Dengan menurunkan <code>addLast</code> sebagai fungsi biasa, harganya menjadi terlihat, dan pilihan rancangan yang bersandar padanya menjadi pilihan yang sadar.</p>
+<p>Sebab itu, diktat ini hanya mempunyai <strong>satu</strong> konstruktor. Bahan terdahulu menyediakan konstruktor kedua untuk menambahkan di kanan, sehingga kedua ujung tampak setara. Kesetaraan itu menyesatkan. Dengan menurunkan <code>addLast</code> sebagai fungsi biasa, harganya menjadi terlihat, dan pilihan rancangan yang bergantung padanya dibuat dengan sadar.</p>
 <h3 id="pembalikan-dan-tempat-akumulator-bekerja"><a class="header" href="#pembalikan-dan-tempat-akumulator-bekerja">Pembalikan, dan tempat akumulator bekerja</a></h3>
 <pre><code>JUDUL   Membalik Urutan Elemen
 </code></pre>
@@ -473,8 +473,8 @@ DEFINISI DAN SPESIFIKASI PREDIKAT
             isEmpty (L)       : makeNil
             not (isEmpty (L)) : addLast (reverse (tail (L)), head (L))
 </code></pre>
-<p>Realisasi ini benar dan langsung mengikuti gagasannya, tetapi mahal: setiap lapis memanggil <code>addLast</code> yang sendirinya menelusuri seluruh list. Untuk <code>[1, 2, 3]</code>, <code>reverse</code> diaplikasikan empat kali dan <code>addLast</code> enam kali.</p>
-<p>Bab 6 memperkenalkan akumulator, yaitu parameter tambahan yang membawa hasil sementara maju. Persoalan ini adalah tempatnya bekerja:</p>
+<p>Realisasi ini benar dan langsung mengikuti gagasannya, tetapi mahal: setiap lapis memanggil <code>addLast</code> yang juga menelusuri seluruh list. Untuk <code>[1, 2, 3]</code>, <code>reverse</code> diaplikasikan empat kali dan <code>addLast</code> enam kali.</p>
+<p>Bab 6 memperkenalkan akumulator, yaitu parameter tambahan yang membawa hasil sementara maju. Persoalan inilah tempat akumulator menunjukkan gunanya:</p>
 <pre><code>REALISASI (VERSI KEDUA)
     reverseOnto : List, List → List
     { reverseOnto (L, acc) adalah elemen-elemen L dengan urutan terbalik,
@@ -524,9 +524,9 @@ DEFINISI DAN SPESIFIKASI PREDIKAT
     ⇒ insertSorted (5, [1, 7])
       [1, 5, 7]
 </code></pre>
-<p>Keterurutan di sini adalah sebuah <strong>invarian</strong>, dalam arti yang persis sama dengan invarian <code>Fraction</code> pada Bab 5. Invarian ini dituliskan sebagai prasyarat, tidak dijamin oleh apa pun, dan ditegakkan dengan disiplin: setiap operator yang menghasilkan list terurut harus memastikan hasilnya tetap terurut. Kasus kedua bersandar penuh pada invarian itu, karena <code>makeCons (x, L)</code> hanya benar bila seluruh isi <code>L</code> sudah dipastikan tidak lebih kecil daripada <code>x</code>, dan yang menjaminnya bukan pemeriksaan melainkan prasyarat.</p>
+<p>Keterurutan di sini adalah sebuah <strong>invarian</strong>, dalam arti yang persis sama dengan invarian <code>Fraction</code> pada Bab 5. Invarian ini dituliskan sebagai prasyarat, tidak dijamin oleh apa pun, dan ditegakkan dengan disiplin: setiap operator yang menghasilkan list terurut harus memastikan hasilnya tetap terurut. Kasus kedua bersandar penuh pada invarian itu, karena <code>makeCons (x, L)</code> hanya benar bila seluruh isi <code>L</code> sudah dipastikan tidak lebih kecil daripada <code>x</code>, dan yang menjaminnya bukan pemeriksaan, melainkan prasyarat.</p>
 <h2 id="list-of-character"><a class="header" href="#list-of-character">List of Character</a></h2>
-<p>Teks adalah list yang elemennya karakter. Tidak ada mekanisme baru yang diperlukan.</p>
+<p>Teks adalah list yang elemennya berupa karakter. Tidak ada mekanisme baru yang diperlukan.</p>
 <pre><code>JUDUL   Banyaknya Kemunculan Sebuah Karakter
 </code></pre>
 <pre><code>DEFINISI DAN SPESIFIKASI
@@ -546,7 +546,7 @@ DEFINISI DAN SPESIFIKASI PREDIKAT
     ⇒ countChar ('a', ['s', 'a', 't', 'r', 'i', 'o'])
       1
 </code></pre>
-<p>Bentuknya adalah <code>keepPositive</code> dan <code>length</code> yang digabung: rekurensnya bercabang seperti penyaringan, hasilnya sebuah bilangan seperti pencacahan.</p>
+<p>Bentuknya merupakan gabungan <code>keepPositive</code> dan <code>length</code>: rekurensnya bercabang seperti penyaringan, sedangkan hasilnya berupa bilangan seperti pencacahan.</p>
 <p>Yang penting pada contoh ini adalah <strong>apa yang tidak perlu ditulis</strong>: tidak ada type teks tersendiri, tidak ada operasi teks tersendiri, dan <code>length</code>, <code>isMember</code>, serta <code>reverse</code> yang sudah ditulis di atas berlaku atas teks tanpa perubahan satu huruf pun.</p>
 <h2 id="list-of-type-bentukan"><a class="header" href="#list-of-type-bentukan">List of Type Bentukan</a></h2>
 <p>Elemen sebuah list boleh bertype bentukan. Bab 5 menyediakan <code>Date</code> beserta <code>isBefore</code>, dan keduanya dipakai kembali di sini tanpa penyesuaian.</p>
@@ -571,9 +571,9 @@ DEFINISI DAN SPESIFIKASI PREDIKAT
                 not (isOneElement (L)) and not (isBefore (head (L), rest)) : rest
 </code></pre>
 <p>Letakkan realisasi ini berdampingan dengan <code>maxList</code>. Keduanya berbasis-1, keduanya membandingkan elemen pertama terhadap hasil rekurens atas sisanya, dan keduanya hanya berbeda pada <strong>cara membandingkan</strong>. Yang satu memakai <code>max2</code> atas <code>Integer</code>, yang lain memakai <code>isBefore</code> atas <code>Date</code>.</p>
-<p>Ini adalah kekembaran ketiga pada bab ini, dan satu-satunya yang melintasi type: <code>Integer</code> dan <code>Date</code> tidak mempunyai kesamaan apa pun, tetapi bentuk kedua fungsinya sama.</p>
+<p>Inilah kekembaran ketiga pada bab ini, dan satu-satunya yang melintasi batas type: <code>Integer</code> dan <code>Date</code> tidak mempunyai kesamaan apa pun, tetapi bentuk kedua fungsinya sama.</p>
 <h2 id="himpunan"><a class="header" href="#himpunan">Himpunan</a></h2>
-<p>Sebuah <strong>himpunan</strong> adalah list yang seluruh elemennya berbeda, dengan kata lain, sebuah list dengan sebuah tambahan <strong>invarian</strong>.</p>
+<p>Sebuah <strong>himpunan</strong> adalah list yang seluruh elemennya berbeda; dengan kata lain, sebuah list dengan tambahan sebuah <strong>invarian</strong>.</p>
 <pre><code>TYPE SET
 </code></pre>
 <pre><code>DEFINISI TYPE
@@ -614,9 +614,9 @@ DEFINISI DAN SPESIFIKASI OPERATOR LAIN
     ⇒ union ([1, 2], [2, 3])
       [1, 2, 3]
 </code></pre>
-<p><strong><code>makeCons</code> bukan konstruktor yang sah bagi <code>Set</code>.</strong> Ia dapat menghasilkan list yang mengandung dua elemen sama, sehingga melanggar invarian <code>Set</code>. Setiap pembentukan anggota baru harus melalui <code>insertSet</code>, dan <code>union</code> di atas taat kepada aturan itu dengan memanggil <code>insertSet</code> alih-alih <code>makeCons</code>.</p>
-<p>Ini adalah “bekerja lewat konstruktor” dari Bab 5, kini dengan akibat yang lebih tajam: satu pemanggilan <code>makeCons</code> yang lolos akan menghasilkan <code>Set</code> yang tidak sah, dan gejalanya akan muncul jauh dari sebabnya.</p>
-<p>Harganya nyata: <code>insertSet</code> memanggil <code>isMember</code> yang menelusuri seluruh himpunan, sehingga menyisipkan ke dalam himpunan jauh lebih mahal daripada menyisipkan ke dalam list. Invarian dibayar oleh setiap operasi yang harus menjaganya, dan dibeli karena hal lain menjadi lebih mudah dipercaya.</p>
+<p><strong><code>makeCons</code> bukan konstruktor yang sah bagi <code>Set</code>.</strong> <code>makeCons</code> dapat menghasilkan list yang mengandung dua elemen sama, sehingga melanggar invarian <code>Set</code>. Setiap pembentukan anggota baru harus melalui <code>insertSet</code>, dan <code>union</code> di atas taat kepada aturan itu dengan memanggil <code>insertSet</code>, bukan <code>makeCons</code>.</p>
+<p>Inilah prinsip “bekerja lewat konstruktor” dari Bab 5, kini dengan akibat yang lebih tajam: satu pemanggilan <code>makeCons</code> yang lolos akan menghasilkan <code>Set</code> yang tidak sah, dan gejalanya akan muncul jauh dari sebabnya.</p>
+<p>Harganya nyata: <code>insertSet</code> memanggil <code>isMember</code> yang menelusuri seluruh himpunan, sehingga menyisipkan ke dalam himpunan jauh lebih mahal daripada menyisipkan ke dalam list. Harga invarian dibayar oleh setiap operasi yang harus menjaganya, dan harga itu layak dibayar karena hal lain menjadi lebih mudah dipercaya.</p>
 <h2 id="resume-analisis-rekurens"><a class="header" href="#resume-analisis-rekurens">Resume Analisis Rekurens</a></h2>
 <p>Seluruh fungsi rekursif pada Bab 6 dan Bab 7 mengikuti sejumlah kecil pola. Tabel berikut merangkumnya.</p>
 <p><strong>Rekurens terhadap bilangan bulat <code>n</code>:</strong></p>
@@ -659,7 +659,7 @@ DEFINISI DAN SPESIFIKASI OPERATOR LAIN
 </tbody>
 </table>
 </div>
-<p>Tiga bentuk rekurens yang berulang pada bab ini, menurut apa yang dihasilkannya:</p>
+<p>Berikut tiga bentuk rekurens yang berulang pada bab ini, dikelompokkan menurut apa yang dihasilkannya:</p>
 <div class="table-wrapper">
 <table>
 <thead>
@@ -672,7 +672,7 @@ DEFINISI DAN SPESIFIKASI OPERATOR LAIN
 </tbody>
 </table>
 </div>
-<p>Sekarang lihatlah kembali ketiga pasangan yang sengaja diletakkan berdampingan: <code>sumList</code> dan <code>productList</code>, <code>maxList</code> dan <code>earliest</code>, <code>squareAll</code> dan <code>keepPositive</code>. Beberapa di antaranya berbeda hanya pada dua tanda. Menuliskan hal yang hampir sama berulang kali adalah pekerjaan yang membosankan sekaligus rawan salah, dan ketika sebuah pola muncul sesering ini, wajar bertanya apakah polanya sendiri dapat dituliskan sekali saja. Pertanyaan itu adalah isi Bab 8.</p>
+<p>Sekarang lihatlah kembali ketiga pasangan yang sengaja diletakkan berdampingan: <code>sumList</code> dan <code>productList</code>, <code>maxList</code> dan <code>earliest</code>, <code>squareAll</code> dan <code>keepPositive</code>. Beberapa di antaranya berbeda hanya pada dua tanda. Menuliskan hal yang hampir sama berulang kali adalah pekerjaan yang membosankan sekaligus rawan salah, dan ketika sebuah pola muncul sesering ini, wajarlah kita bertanya apakah polanya sendiri dapat dituliskan sekali saja. Pertanyaan itulah yang menjadi isi Bab 8.</p>
 <h2 id="kesalahan-yang-sering-terjadi"><a class="header" href="#kesalahan-yang-sering-terjadi">Kesalahan yang Sering Terjadi</a></h2>
 <div class="table-wrapper">
 <table>
@@ -690,7 +690,7 @@ DEFINISI DAN SPESIFIKASI OPERATOR LAIN
 </tbody>
 </table>
 </div>
-<p>Kesalahan pada baris kelima, yaitu menuliskan <code>f (L)</code> alih-alih <code>f (tail (L))</code>, adalah salah ketik yang mudah dilakukan, dan akibatnya bukan jawaban yang keliru melainkan tidak ada jawaban sama sekali. Ini adalah pelanggaran kewajiban kedua dari Bab 6, dalam bentuknya yang paling sederhana.</p>
+<p>Kesalahan pada baris kelima, yaitu menuliskan <code>f (L)</code> dan bukan <code>f (tail (L))</code>, adalah salah ketik yang mudah terjadi, dan akibatnya bukan jawaban yang keliru, melainkan tidak adanya jawaban sama sekali. Inilah pelanggaran kewajiban kedua dari Bab 6, dalam bentuknya yang paling sederhana.</p>
 <h2 id="ringkasan-padanan"><a class="header" href="#ringkasan-padanan">Ringkasan Padanan</a></h2>
 <pre><code class="language-haskell">-- type List tidak perlu didefinisikan; Haskell sudah menyediakannya
 -- []           adalah makeNil
@@ -713,11 +713,11 @@ keepPositive (x : xs)
   | x &gt; 0     = x : keepPositive xs
   | otherwise = keepPositive xs
 </code></pre>
-<p>Empat hal yang berbeda.</p>
-<p><strong>Pola <code>(x : xs)</code> mengerjakan tiga hal sekaligus.</strong> Pola ini memeriksa bahwa list tidak kosong, mengambil elemen pertamanya, dan mengambil sisanya, dalam satu tulisan. Predikat <code>isEmpty</code> beserta selektor <code>head</code> dan <code>tail</code> tidak lagi perlu disebut. Ini adalah <em>pattern matching</em> yang sudah muncul pada Bab 5 untuk <code>Shape</code> dan pada Bab 6 untuk bilangan, kini dalam bentuk yang paling sering dipakainya.</p>
-<p><strong>Karena itu, keperluan akan <code>and then</code> menghilang.</strong> Tidak ada <code>head (L)</code> yang dapat dievaluasi terlalu dini, karena tidak ada <code>head</code> sama sekali. Perbedaan yang pada notasi harus dijaga dengan hati-hati, di sini lenyap bersama sebabnya.</p>
+<p>Ada empat perbedaan.</p>
+<p><strong>Pola <code>(x : xs)</code> mengerjakan tiga hal sekaligus.</strong> Pola ini memeriksa bahwa list tidak kosong, mengambil elemen pertamanya, dan mengambil sisanya, dalam satu tulisan. Predikat <code>isEmpty</code> beserta selektor <code>head</code> dan <code>tail</code> tidak lagi perlu disebut. Inilah pencocokan pola (<em>pattern matching</em>) yang sudah muncul pada Bab 5 untuk <code>Shape</code> dan pada Bab 6 untuk bilangan, kini dalam bentuk yang paling sering dipakainya.</p>
+<p><strong>Sebab itu, kebutuhan akan <code>and then</code> hilang.</strong> Tidak ada <code>head (L)</code> yang dapat dievaluasi terlalu dini, karena tidak ada <code>head</code> sama sekali. Perbedaan yang pada notasi harus dijaga dengan hati-hati, di sini lenyap bersama sebabnya.</p>
 <p><strong>Teks adalah list, secara harfiah.</strong> Dalam Haskell, <code>String</code> adalah nama lain bagi <code>[Char]</code>. Seluruh fungsi di atas berlaku atas teks tanpa perubahan apa pun, dan <code>length' "satrio"</code> menghasilkan <code>6</code>. Yang pada notasi merupakan keputusan rancangan, di sini merupakan kenyataan bahasa.</p>
-<p><strong>Pustaka Haskell mengandung fungsi parsial.</strong> <code>head []</code> tidak menghasilkan nilai dan menghentikan program pada saat dijalankan. Notasi menuliskan pembatasannya pada baris definisi (<code>List tidak kosong</code>), sedangkan Haskell menuliskan <code>[a] -&gt; a</code> dan menyerahkan sisanya kepada kedisiplinan pemakainya. Ini adalah keadaan yang sama dengan <code>Integer [1..4]</code> pada Bab 4, kini dengan akibat yang dapat diamati.</p>
+<p><strong>Pustaka Haskell mengandung fungsi parsial (<em>partial function</em>).</strong> <code>head []</code> tidak menghasilkan nilai dan menghentikan program pada saat dijalankan. Notasi menuliskan pembatasannya pada baris definisi (<code>List tidak kosong</code>), sedangkan Haskell menuliskan <code>[a] -&gt; a</code> dan menyerahkan sisanya kepada kedisiplinan pemakainya. Keadaan ini sama dengan <code>Integer [1..4]</code> pada Bab 4, kini dengan akibat yang dapat diamati.</p>
 <div class="table-wrapper">
 <table>
 <thead>
@@ -732,12 +732,12 @@ keepPositive (x : xs)
 <tr><td><code>isOneElement (L)</code></td><td>pola <code>[x]</code></td></tr>
 <tr><td><code>[1, 2, 3]</code></td><td><code>[1, 2, 3]</code></td></tr>
 <tr><td><code>List of Character</code></td><td><code>String</code>, yaitu <code>[Char]</code></td></tr>
-<tr><td><code>List of Integer tidak kosong</code></td><td><code>[Integer]</code>; pembatasannya hidup pada spesifikasi</td></tr>
-<tr><td><code>type Set : List</code> dengan invarian</td><td>tidak ada padanan; invariannya hidup pada spesifikasi</td></tr>
+<tr><td><code>List of Integer tidak kosong</code></td><td><code>[Integer]</code>; pembatasannya hanya tercatat pada spesifikasi</td></tr>
+<tr><td><code>type Set : List</code> dengan invarian</td><td>tidak ada padanan; invariannya hanya tercatat pada spesifikasi</td></tr>
 </tbody>
 </table>
 </div>
-<p>Baris terakhir adalah satu-satunya yang tidak mempunyai padanan. Sepanjang bab ini <code>Set</code> adalah gagasan yang seluruhnya ditegakkan oleh disiplin, dan terjemahannya ke Haskell tidak mengubah keadaan itu: sistem type Haskell memeriksa banyak hal, tetapi tidak memeriksa yang satu ini.</p>
+<p>Baris terakhir adalah satu-satunya yang tidak mempunyai padanan. Sepanjang bab ini, <code>Set</code> adalah gagasan yang seluruhnya ditegakkan oleh disiplin, dan terjemahannya ke Haskell tidak mengubah keadaan itu: sistem type Haskell memeriksa banyak hal, tetapi tidak memeriksa yang satu ini.</p>
 <h2 id="latihan"><a class="header" href="#latihan">Latihan</a></h2>
 <p><strong>Membaca.</strong> Untuk setiap realisasi berikut, tentukan definisinya, tuliskan spesifikasinya, sebutkan basisnya (basis-0 atau basis-1) dan rekurensnya, lalu usulkan nama yang sesuai konvensi.</p>
 <pre><code>p (L) :
@@ -791,9 +791,9 @@ r (x, L) :
 </ol>
 <p><strong>Menulis.</strong> Tuliskan keempat bagian secara lengkap. Sebutkan basisnya, nyatakan prasyarat bila ada, dan pilih contoh aplikasi yang mencakup list kosong, list satu elemen, dan list yang lebih panjang.</p>
 <ol>
-<li><code>append (L1, L2)</code>, yang menghasilkan seluruh elemen <code>L1</code> diikuti seluruh elemen <code>L2</code>. Kemudian jawab: mengapa rekursinya dilakukan terhadap <code>L1</code> dan bukan terhadap <code>L2</code>?</li>
+<li><code>append (L1, L2)</code>, yang menghasilkan seluruh elemen <code>L1</code> diikuti seluruh elemen <code>L2</code>. Kemudian jawablah: mengapa rekursinya dilakukan terhadap <code>L1</code> dan bukan terhadap <code>L2</code>?</li>
 <li><code>nth (n, L)</code>, yang menghasilkan elemen ke-<code>n</code> dari <code>L</code> dengan elemen pertama bernomor 1. Nyatakan prasyaratnya dengan cermat. Berapa aplikasi yang diperlukan untuk mencapai elemen terakhir sebuah list sepanjang seribu?</li>
-<li><code>countIf</code>-serupa: <code>countEven (L)</code>, yang mencacah elemen genap. Bandingkan bentuknya dengan <code>countChar</code> pada bab ini.</li>
+<li>Fungsi serupa <code>countIf</code>: <code>countEven (L)</code>, yang mencacah elemen genap. Bandingkan bentuknya dengan <code>countChar</code> pada bab ini.</li>
 <li><code>sort (L)</code>, yang mengurutkan sebuah list menaik, dengan memakai kembali <code>insertSorted</code>. Rekursinya hanya membutuhkan tiga baris. Sebutkan invarian apa yang dijamin oleh <code>insertSorted</code> dan mengapa hal ini membuat <code>sort</code> menjadi sesingkat itu.</li>
 <li><code>intersection (S1, S2)</code> atas <code>Set</code>. Pastikan hasilnya tetap memenuhi invarian himpunan, dan sebutkan di mana Anda menjaminnya.</li>
 </ol>
@@ -806,9 +806,9 @@ r (x, L) :
 </ol>
 <p><strong>Merancang.</strong> Tiga pertanyaan, ketiganya tanpa jawaban tunggal yang benar.</p>
 <ol>
-<li>Bahan terdahulu menyediakan dua konstruktor list, satu untuk menambahkan di kiri dan satu di kanan, sehingga kedua ujung tampak setara. Diktat ini hanya menyediakan satu dan menurunkan <code>addLast</code> sebagai fungsi biasa. Dengan memakai hitungan aplikasi pada bagian <em>Menyusun List</em>, argumenkan kedua pilihan itu. Apa yang menjadi lebih mudah dan apa yang menjadi tersembunyi pada masing-masing?</li>
-<li>Bab ini mengandaikan seluruh elemen sebuah list bertype sama. Rancanglah teks type bagi sebuah list yang elemennya boleh berupa <code>Integer</code> <strong>atau</strong> berupa list, dengan memakai type alternatif dari Bab 5. Kemudian tuliskan definisi dan spesifikasi (tanpa realisasi) sebuah fungsi yang menjumlahkan seluruh bilangan di dalamnya, betapa pun dalam sarangnya. Berapa banyak kasus yang harus ditangani rekurensnya, dan mengapa lebih banyak daripada fungsi mana pun pada bab ini?</li>
-<li><code>sumList</code> dan <code>productList</code> berbeda hanya pada dua tanda, dan <code>maxList</code> serta <code>earliest</code> berbeda hanya pada cara membandingkan. Usulkan <strong>mekanisme apa pun</strong>, dalam notasi apa pun yang Anda rancang sendiri, yang memungkinkan pasangan semacam itu dituliskan sekali saja. Kemudian jawab pertanyaan yang menentukan: apa yang harus dapat diperlakukan sebagai <strong>nilai</strong> oleh mekanisme Anda, yang sampai sekarang belum pernah diperlakukan demikian dalam diktat ini?</li>
+<li>Bahan terdahulu menyediakan dua konstruktor list, satu untuk menambahkan di kiri dan satu di kanan, sehingga kedua ujung tampak setara. Diktat ini hanya menyediakan satu dan menurunkan <code>addLast</code> sebagai fungsi biasa. Dengan memakai hitungan aplikasi pada bagian <em>Menyusun List</em>, timbanglah argumen bagi kedua pilihan itu. Apa yang menjadi lebih mudah dan apa yang menjadi tersembunyi pada masing-masing?</li>
+<li>Bab ini mengandaikan seluruh elemen sebuah list bertype sama. Rancanglah teks type bagi sebuah list yang elemennya boleh berupa <code>Integer</code> <strong>atau</strong> berupa list, dengan memakai type alternatif dari Bab 5. Kemudian tuliskan definisi dan spesifikasi (tanpa realisasi) sebuah fungsi yang menjumlahkan seluruh bilangan di dalamnya, seberapa pun dalam sarangnya. Berapa banyak kasus yang harus ditangani rekurensnya, dan mengapa lebih banyak daripada fungsi mana pun pada bab ini?</li>
+<li><code>sumList</code> dan <code>productList</code> berbeda hanya pada dua tanda, dan <code>maxList</code> serta <code>earliest</code> berbeda hanya pada cara membandingkan. Usulkan <strong>mekanisme apa pun</strong>, dalam notasi apa pun yang Anda rancang sendiri, yang memungkinkan pasangan semacam itu dituliskan sekali saja. Kemudian jawablah pertanyaan yang menentukan: apa yang harus dapat diperlakukan sebagai <strong>nilai</strong> oleh mekanisme Anda, yang sampai sekarang belum pernah diperlakukan demikian dalam diktat ini?</li>
 </ol>
 
                     </main>

@@ -37,10 +37,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-812c2192.js";
+            window.path_to_searchindex_js = "searchindex-b1c70305.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-2ab1aa36.js"></script>
+        <script src="toc-05c84685.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -179,7 +179,7 @@
                         <h1 id="notasi-fungsional"><a class="header" href="#notasi-fungsional">Notasi Fungsional</a></h1>
 <h2 id="program-sebagai-model"><a class="header" href="#program-sebagai-model">Program sebagai Model</a></h2>
 <p>Sebuah program adalah <strong>model</strong>: representasi dari solusi suatu persoalan, yang ditulis agar dapat diproses oleh mesin dan dibaca oleh manusia.</p>
-<p>Dalam paradigma fungsional, solusi persoalan dinyatakan sebagai <strong>identifikasi sekumpulan fungsi</strong>, yang bila diaplikasikan terhadap nilai masukan akan menghasilkan nilai yang diharapkan. Program terdiri dari:</p>
+<p>Dalam paradigma fungsional, solusi persoalan dinyatakan sebagai <strong>identifikasi sekumpulan fungsi</strong>, yang bila diaplikasikan terhadap nilai masukan akan menghasilkan nilai yang diharapkan. Program terdiri atas:</p>
 <ul>
 <li><strong>Type</strong>, yaitu himpunan nilai beserta operasi yang terdefinisi terhadapnya;</li>
 <li><strong>Fungsi</strong>, yaitu pemetaan dari satu type (<em>domain</em>) ke type lain (<em>range</em>).</li>
@@ -192,14 +192,14 @@
 <tr><th>Bentuk</th><th>Dibahas pada</th></tr>
 </thead>
 <tbody>
-<tr><td>Ekspresi dasar (aritmatika, relasional, boolean)</td><td>Bab 3</td></tr>
+<tr><td>Ekspresi dasar (aritmetika, relasional, boolean)</td><td>Bab 3</td></tr>
 <tr><td>Ekspresi kondisional</td><td>Bab 4</td></tr>
 <tr><td>Ekspresi rekursif</td><td>Bab 6</td></tr>
 </tbody>
 </table>
 </div>
 <h2 id="perbandingan-dengan-program-imperatif"><a class="header" href="#perbandingan-dengan-program-imperatif">Perbandingan dengan Program Imperatif</a></h2>
-<p>Bagian ini ditujukan bagi pembaca yang sudah pernah memrogram secara prosedural. Pembaca yang belum, dapat melewatinya tanpa kehilangan alur.</p>
+<p>Bagian ini ditujukan bagi pembaca yang sudah pernah memrogram secara prosedural. Pembaca yang belum pernah dapat melewatinya tanpa kehilangan alur.</p>
 <p>Perhatikan sebuah program imperatif yang membaca dua bilangan dan menuliskan jumlahnya:</p>
 <pre><code>PROGRAM PLUSAB
 { Membaca dua nilai a dan b, menghitung dan menuliskan jumlahnya }
@@ -211,17 +211,17 @@
     input(a, b)
     output(a + b)
 </code></pre>
-<p>Program ini terdiri dari <strong>aksi</strong> yang dilakukan berurutan: menunggu masukan, menghitung, mencetak. Ada <em>state</em>: nilai <code>a</code> dan <code>b</code> tersimpan di suatu tempat, dan ada <em>waktu</em>: sesuatu terjadi sebelum sesuatu yang lain.</p>
+<p>Program ini terdiri atas <strong>aksi</strong> yang dilakukan secara berurutan: menunggu masukan, menghitung, mencetak. Ada keadaan (<em>state</em>): nilai <code>a</code> dan <code>b</code> tersimpan di suatu tempat, dan ada <em>waktu</em>: sesuatu terjadi sebelum sesuatu yang lain.</p>
 <p>Padanan fungsionalnya tidak mempunyai keduanya. Yang ada hanya ekspresi dan nilainya:</p>
 <pre><code>APLIKASI
 ⇒ 3 + 4
   7
 </code></pre>
 <p>Aksi membaca dan menulis diwakili oleh interaksi pemakai dengan lingkungan eksekusi, bukan oleh program. Program itu sendiri hanyalah <code>+</code>.</p>
-<p>Perbedaan ini bukan sekadar soal penulisan. Dalam program imperatif, untuk mengetahui nilai sebuah nama, kita harus tahu <em>kapan</em> nama itu diperiksa; nilainya dapat berubah. Dalam program fungsional, sebuah nama yang telah terikat pada suatu nilai akan bernilai sama di mana pun dan kapan pun ia muncul. Sifat ini disebut <strong>transparansi referensial</strong>, dan darinyalah datang sebagian besar keuntungan paradigma ini: ekspresi dapat digantikan oleh nilainya tanpa mengubah arti program, sehingga penalaran terhadap program menjadi jauh lebih sederhana.</p>
+<p>Perbedaan ini bukan sekadar soal penulisan. Dalam program imperatif, untuk mengetahui nilai sebuah nama, kita harus tahu <em>kapan</em> nama itu diperiksa; nilainya dapat berubah. Dalam program fungsional, sebuah nama yang telah terikat pada suatu nilai akan bernilai sama di mana pun dan kapan pun ia muncul. Sifat ini disebut <strong>transparansi referensial</strong> (<em>referential transparency</em>), dan dari sifat inilah sebagian besar keuntungan paradigma ini berasal: ekspresi dapat digantikan oleh nilainya tanpa mengubah arti program, sehingga penalaran terhadap program menjadi jauh lebih sederhana.</p>
 <h2 id="konstruksi-program-fungsional"><a class="header" href="#konstruksi-program-fungsional">Konstruksi Program Fungsional</a></h2>
-<p>Pemrograman fungsional bertumpu pada analisis <em>top-down</em>: dari persoalan, ke spesifikasi, lalu ke dekomposisi menjadi persoalan-persoalan antara. Setiap kali kita mendefinisikan sebuah fungsi antara, kita menambah satu tingkat abstraksi sekaligus memperkaya perbendaharaan fungsi yang tersedia untuk dipakai kembali.</p>
-<p>Sebuah fungsi dikonstruksi dalam empat tahap yang <strong>selalu</strong> dituliskan dengan urutan yang sama:</p>
+<p>Pemrograman fungsional bertumpu pada analisis dari atas ke bawah (<em>top-down</em>): dari persoalan, ke spesifikasi, lalu ke dekomposisi menjadi persoalan-persoalan antara. Setiap kali kita mendefinisikan sebuah fungsi antara, kita menambah satu tingkat abstraksi sekaligus memperkaya perbendaharaan fungsi yang tersedia untuk dipakai kembali.</p>
+<p>Sebuah fungsi disusun dalam empat tahap yang <strong>selalu</strong> dituliskan dengan urutan yang sama:</p>
 <div class="table-wrapper">
 <table>
 <thead>
@@ -239,7 +239,7 @@
 <p><strong>Definisi dan spesifikasi tidak mengandaikan realisasi tertentu</strong>. Satu definisi dan spesifikasi yang sama dapat direalisasikan oleh beberapa ekspresi yang berbeda. Inilah yang membuat keduanya berguna: pemakai sebuah fungsi cukup membaca definisi dan spesifikasinya, tanpa perlu membaca realisasinya.</p>
 <p>Nama-nama yang muncul pada sisi kiri realisasi disebut <strong>parameter</strong>. Nilai yang diberikan pada saat aplikasi disebut <strong>argumen</strong>.</p>
 <h2 id="bentuk-umum-teks-fungsi"><a class="header" href="#bentuk-umum-teks-fungsi">Bentuk Umum Teks Fungsi</a></h2>
-<p>Sebuah teks fungsi terdiri dari judul dan empat bagian:</p>
+<p>Sebuah teks fungsi terdiri atas judul dan empat bagian:</p>
 <pre><code>JUDUL   Judul Fungsi
 </code></pre>
 <pre><code>DEFINISI DAN SPESIFIKASI
@@ -254,9 +254,9 @@
     ⇒ namaFungsi (*argumen*)
       *hasil*
 </code></pre>
-<p>Judul adalah deskripsi sangat ringkas yang memudahkan pencarian, bukan bagian dari program.</p>
+<p>Judul adalah uraian yang sangat ringkas untuk memudahkan pencarian, dan bukan bagian dari program.</p>
 <p>Komentar dituliskan di antara kurung kurawal <code>{ }</code>.</p>
-<p>Pada realisasi tidak ada kata kunci semacam <code>function</code> atau <code>def</code>. Yang dituliskan hanyalah persamaan: nama beserta parameternya di sebelah kiri, ekspresi di sebelah kanan. Sebuah <strong>konstanta</strong> ditulis dengan bentuk yang sama, hanya tanpa parameter, dan memang, konstanta dapat dipandang sebagai fungsi tanpa argumen.</p>
+<p>Pada realisasi tidak ada kata kunci semacam <code>function</code> atau <code>def</code>. Yang dituliskan hanyalah persamaan: nama beserta parameternya di sebelah kiri, ekspresi di sebelah kanan. Sebuah <strong>konstanta</strong> ditulis dengan bentuk yang sama, hanya saja tanpa parameter. Memang, konstanta dapat dipandang sebagai fungsi tanpa argumen.</p>
 <h2 id="contoh-1-ekspresi-numerik-sederhana"><a class="header" href="#contoh-1-ekspresi-numerik-sederhana">Contoh 1: Ekspresi Numerik Sederhana</a></h2>
 <p><strong>Persoalan.</strong> Tuliskan sebuah fungsi yang menerima sebuah bilangan bulat dan menghasilkan pangkat duanya.</p>
 <pre><code>JUDUL   Pangkat Dua
@@ -281,12 +281,12 @@
 -- square x adalah nilai x dipangkatkan dua
 square x = x * x
 </code></pre>
-<p>Sementara aplikasi fungsi adalah sebagai berikut:</p>
+<p>Sementara itu, aplikasi fungsinya ditulis sebagai berikut:</p>
 <pre><code class="language-haskell">square 5
 </code></pre>
 <h2 id="contoh-2-dekomposisi-dengan-fungsi-antara"><a class="header" href="#contoh-2-dekomposisi-dengan-fungsi-antara">Contoh 2: Dekomposisi dengan Fungsi Antara</a></h2>
 <p><strong>Persoalan.</strong> Tuliskan sebuah fungsi yang menghasilkan pangkat tiga dari sebuah bilangan bulat.</p>
-<p>Realisasi paling langsung adalah <code>x * x * x</code>. Namun kita sudah mempunyai <code>square</code>, dan menggunakannya kembali menghasilkan teks yang lebih menyatakan maksud:</p>
+<p>Realisasi paling langsung adalah <code>x * x * x</code>. Namun, kita sudah mempunyai <code>square</code>, dan memakainya kembali menghasilkan teks yang lebih jelas menyatakan maksudnya:</p>
 <pre><code>JUDUL   Pangkat Tiga
 </code></pre>
 <pre><code>DEFINISI DAN SPESIFIKASI
@@ -308,7 +308,7 @@ square x = x * x
 -- cube x adalah nilai x dipangkatkan tiga
 cube x = x * square x
 </code></pre>
-<p>Dua realisasi yang berbeda (<code>x * x * x</code> dan <code>x * square (x)</code>) memenuhi definisi dan spesifikasi yang sama. Keduanya benar. Pemilihan di antara keduanya adalah keputusan rancangan, bukan keputusan kebenaran.</p>
+<p>Dua realisasi yang berbeda (<code>x * x * x</code> dan <code>x * square (x)</code>) memenuhi definisi dan spesifikasi yang sama. Keduanya benar. Memilih salah satunya adalah soal rancangan, bukan soal benar atau salah.</p>
 <h2 id="contoh-3-fungsi-dengan-dua-parameter"><a class="header" href="#contoh-3-fungsi-dengan-dua-parameter">Contoh 3: Fungsi dengan Dua Parameter</a></h2>
 <p><strong>Persoalan.</strong> Tuliskan sebuah fungsi yang menghasilkan nilai terbesar dari dua bilangan bulat.</p>
 <pre><code>JUDUL   Maksimum dari 2 Bilangan
@@ -336,15 +336,15 @@ cube x = x * square x
 -- Jika a = b, menghasilkan nilai tersebut
 max2 a b = if a &gt;= b then a else b
 </code></pre>
-<p>Sementara aplikasi fungsi adalah sebagai berikut:</p>
+<p>Sementara itu, aplikasi fungsinya ditulis sebagai berikut:</p>
 <pre><code class="language-haskell">max2 3 7
 </code></pre>
 <ul>
-<li>Perhatikan domain yang ditulis sebagai <code>Integer -&gt; Integer -&gt; Integer</code>, bukan <code>(Integer, Integer) -&gt; Integer</code>. Bacalah untuk sementara sebagai “menerima dua Integer dan menghasilkan sebuah Integer”. Alasan mengapa panah ditulis dua kali, dan apa yang jadi mungkin dilakukan karenanya, dibahas pada Bab 8.</li>
+<li>Perhatikan domain yang ditulis sebagai <code>Integer -&gt; Integer -&gt; Integer</code>, bukan <code>(Integer, Integer) -&gt; Integer</code>. Untuk sementara, bacalah tulisan itu sebagai “menerima dua Integer dan menghasilkan sebuah Integer”. Mengapa panah ditulis dua kali, dan apa yang dapat dilakukan berkat hal itu, dibahas pada Bab 8.</li>
 <li>Aplikasi ditulis dengan menderetkan argumen setelah nama fungsi, tanpa kurung dan tanpa koma. Kurung hanya dipakai untuk mengelompokkan ekspresi, misalnya <code>max2 (3 + 1) 7</code> atau <code>cube (-1)</code>.</li>
 </ul>
 <h2 id="acuan-notasi-sejauh-bab-2"><a class="header" href="#acuan-notasi-sejauh-bab-2">Acuan Notasi (sejauh Bab 2)</a></h2>
-<p>Notasi ini belum lengkap pada bab ini. Bab-bab berikutnya menambahkan <code>let</code> (Bab 3), <code>depend on</code>, <code>else</code>, <code>and then</code>, <code>or else</code> (Bab 4), serta <code>type</code>, tuple <code>⟨…⟩</code>, dan pembatasan domain seperti <code>Integer [1..12]</code> (Bab 4 dan 5). Setiap tambahan diperkenalkan di tempatnya dan dirangkum kembali pada akhir bab yang bersangkutan.</p>
+<p>Pada bab ini, notasi tersebut belum lengkap. Bab-bab berikutnya menambahkan <code>let</code> (Bab 3), <code>depend on</code>, <code>else</code>, <code>and then</code>, <code>or else</code> (Bab 4), serta <code>type</code>, tuple <code>⟨…⟩</code>, dan pembatasan domain seperti <code>Integer [1..12]</code> (Bab 4 dan 5). Setiap tambahan diperkenalkan di tempatnya dan dirangkum kembali pada akhir bab yang bersangkutan.</p>
 <h3 id="type-dasar"><a class="header" href="#type-dasar">Type dasar</a></h3>
 <div class="table-wrapper">
 <table>
@@ -406,7 +406,7 @@ max2 a b = if a &gt;= b then a else b
 <tr><th>Jenis</th><th>Aturan</th><th>Contoh</th></tr>
 </thead>
 <tbody>
-<tr><td>Fungsi</td><td>huruf kecil di awal, <code>punukUnta</code> bila lebih dari satu kata</td><td><code>square</code>, <code>divMod</code></td></tr>
+<tr><td>Fungsi</td><td>huruf kecil di awal, <code>punukUnta</code> (<em>camelCase</em>) bila lebih dari satu kata</td><td><code>square</code>, <code>divMod</code></td></tr>
 <tr><td>Type</td><td>huruf besar di awal</td><td><code>Integer</code>, <code>Point</code>, <code>Fraction</code>, <code>List</code></td></tr>
 <tr><td>Predikat</td><td>awalan <code>is</code>, menghasilkan <code>Boolean</code></td><td><code>isEmpty</code>, <code>isMember</code>, <code>isOrigin</code></td></tr>
 <tr><td>Konstruktor</td><td>awalan <code>make</code></td><td><code>makePoint</code>, <code>makeFraction</code></td></tr>
@@ -418,29 +418,29 @@ max2 a b = if a &gt;= b then a else b
 </div>
 <p>Tambahan yang perlu diperhatikan:</p>
 <ul>
-<li><strong>Tidak ada spasi dan tidak ada tanda hubung dalam nama.</strong> Diktat terdahulu menuliskan <em>placeholder</em> <code>Nama-Fungsi</code> dan nama seperti <code>Pangkat Tiga</code>; nama semacam itu ambigu dan tidak dipakai lagi.</li>
-<li><strong>Tanda tanya tidak dipakai pada nama predikat.</strong> Diktat terdahulu menuliskan <code>IsOrigin?</code> dan <code>IsPos?</code> secara tidak konsisten dengan <code>IsEmpty</code> dan <code>IsMember</code>. Awalan <code>is</code> sudah cukup menandakan bahwa hasilnya boolean.</li>
+<li><strong>Tidak ada spasi dan tidak ada tanda hubung dalam nama.</strong> Diktat terdahulu menuliskan penanda tempat (<em>placeholder</em>) <code>Nama-Fungsi</code> dan nama seperti <code>Pangkat Tiga</code>; nama semacam itu ambigu dan tidak dipakai lagi.</li>
+<li><strong>Tanda tanya tidak dipakai pada nama predikat.</strong> Diktat terdahulu menuliskan <code>IsOrigin?</code> dan <code>IsPos?</code> yang tidak konsisten dengan <code>IsEmpty</code> dan <code>IsMember</code>. Awalan <code>is</code> sudah cukup menandakan bahwa hasilnya boolean.</li>
 <li><strong>Nama ditulis dalam bahasa Inggris, penjelasan dalam bahasa Indonesia.</strong> Alasannya praktis: pembaca akan membaca dan menulis kode nyata, dan pustaka standar bahasa apa pun memakai bahasa Inggris. Nama yang sudah mapan dalam persoalan tertentu boleh dipertahankan.</li>
 </ul>
 <h2 id="yang-dapat-dan-tidak-dapat-dinyatakan-oleh-notasi-ini"><a class="header" href="#yang-dapat-dan-tidak-dapat-dinyatakan-oleh-notasi-ini">Yang Dapat dan Tidak Dapat Dinyatakan oleh Notasi Ini</a></h2>
-<p>Notasi ini dirancang untuk menuliskan <strong>rancangan</strong> program agar mudah dibaca manusia. Notasi ini tidak mempunyai pemroses bahasa, dan karena itu tidak dapat dieksekusi. Justru itulah gunanya: notasi memaksa penulisnya menyatakan definisi dan spesifikasi lebih dahulu, sebelum realisasi. Ini mudah dilewati bila kita langsung mengetik di depan mesin.</p>
-<p>Namun perlu dinyatakan bahwa notasi ini <strong>tidak</strong> mencakup seluruh konsep pada pemrograman fungsional. Beberapa hal berikut berada di luar jangkauannya, dan bila diperlukan akan dibicarakan langsung dalam bahasa acuan:</p>
+<p>Notasi ini dirancang untuk menuliskan <strong>rancangan</strong> program agar mudah dibaca manusia. Notasi ini tidak mempunyai pemroses bahasa, dan karena itu tidak dapat dieksekusi. Justru itulah gunanya: notasi memaksa penulisnya menyatakan definisi dan spesifikasi lebih dahulu, sebelum realisasi. Langkah ini mudah terlewati bila kita langsung mengetik di depan mesin.</p>
+<p>Namun, perlu ditegaskan bahwa notasi ini <strong>tidak</strong> mencakup seluruh konsep pada pemrograman fungsional. Beberapa hal berikut berada di luar jangkauannya, dan bila diperlukan akan dibicarakan langsung dalam bahasa acuan:</p>
 <ul>
-<li>Strategi evaluasi: notasi tidak menyatakan urutan atau kemalasan evaluasi.</li>
+<li>Strategi evaluasi: notasi tidak menyatakan urutan evaluasi maupun evaluasi malas (<em>lazy evaluation</em>).</li>
 <li>Efek, masukan, dan keluaran: dibicarakan pada Bab 9.</li>
-<li>Modularitas: pustaka, ruang nama, dan kompilasi terpisah.</li>
+<li>Modularitas: pustaka (<em>library</em>), ruang nama (<em>namespace</em>), dan kompilasi terpisah (<em>separate compilation</em>).</li>
 </ul>
 <p>Notasi ini adalah alat berpikir, bukan bahasa pemrograman.</p>
 <h2 id="alur-kerja-yang-disarankan"><a class="header" href="#alur-kerja-yang-disarankan">Alur Kerja yang Disarankan</a></h2>
 <p>Untuk setiap persoalan:</p>
 <ol>
-<li>Tuliskan <strong>definisi</strong>: nama, domain, range. Tanyakan pada diri sendiri apakah domain sudah tepat? Apakah semua nilai dalam domain itu benar-benar boleh diterima?</li>
+<li>Tuliskan <strong>definisi</strong>: nama, domain, range. Tanyakan pada diri sendiri: apakah domain sudah tepat? Apakah semua nilai dalam domain itu benar-benar boleh diterima?</li>
 <li>Tuliskan <strong>spesifikasi</strong> dalam bahasa Indonesia yang jelas, termasuk prasyarat dan kasus batas.</li>
 <li>Baru kemudian tuliskan <strong>realisasi</strong>.</li>
 <li>Tuliskan <strong>aplikasi</strong> beserta hasil yang Anda harapkan sebelum menjalankannya di mesin.</li>
 <li>Jalankan dalam bahasa acuan, dan bandingkan hasil sesungguhnya dengan yang Anda harapkan pada langkah 4.</li>
 </ol>
-<p>Langkah 4 dan 5 adalah bentuk pengujian yang paling sederhana. Menuliskan hasil yang diharapkan lebih dahulu mengubah eksekusi dari “mari lihat apa yang keluar” menjadi “mari periksa apakah dugaan saya benar”, dan hanya yang kedua yang mengajarkan sesuatu ketika hasilnya berbeda.</p>
+<p>Langkah 4 dan 5 adalah bentuk pengujian yang paling sederhana. Dengan menuliskan hasil yang diharapkan lebih dahulu, eksekusi berubah dari “mari lihat apa yang keluar” menjadi “mari periksa apakah dugaan saya benar”, dan hanya yang kedua yang mengajarkan sesuatu ketika hasilnya berbeda.</p>
 <h2 id="latihan"><a class="header" href="#latihan">Latihan</a></h2>
 <p><strong>Membaca.</strong> Untuk setiap realisasi berikut, tentukan definisi (nama, domain, range) dan tuliskan spesifikasinya dalam bahasa Indonesia. Jangan mengubah realisasinya.</p>
 <pre><code>f (a, b) : (a + b) div 2
@@ -451,7 +451,7 @@ h (a, b) : a mod b = 0
 <ol>
 <li>
 <p>Menghitung luas sebuah lingkaran dari jari-jarinya.</p>
-<p>Untuk latihan ini, perhatikan contoh bagaimana konstanta dapat dituliskan dalam notasi fungsional, yang mengilustrasikan pernyataan sebelumnya bahwa konstanta serupa dengan fungsi tanpa parameter. (Mulai Bab 3, <code>pi</code> tersedia sebagai konstanta dasar dan tidak perlu dituliskan lagi.)</p>
+<p>Untuk latihan ini, perhatikan cara menuliskan konstanta dalam notasi fungsional berikut. Contoh ini sekaligus menggambarkan pernyataan sebelumnya bahwa konstanta serupa dengan fungsi tanpa parameter. (Mulai Bab 3, <code>pi</code> tersedia sebagai konstanta dasar dan tidak perlu dituliskan lagi.)</p>
 <pre><code>DEFINISI DAN SPESIFIKASI
     pi : → Real
     { pi adalah konstanta matematika π. }
@@ -461,13 +461,13 @@ h (a, b) : a mod b = 0
 </code></pre>
 </li>
 <li>
-<p>Menentukan apakah sebuah bilangan bulat genap. Namai predikat Anda sesuai konvensi.</p>
+<p>Menentukan apakah sebuah bilangan bulat genap. Berilah nama predikat Anda sesuai dengan konvensi.</p>
 </li>
 <li>
 <p>Menghitung nilai terbesar dari <strong>tiga</strong> bilangan bulat, dengan menggunakan kembali <code>max2</code>.</p>
 </li>
 <li>
-<p>Mengubah suhu dari derajat Celcius ke derajat Fahrenheit.</p>
+<p>Mengubah suhu dari derajat Celsius ke derajat Fahrenheit.</p>
 </li>
 </ol>
 <p><strong>Menelusuri.</strong> Untuk <code>cube</code> pada Contoh 2, tuliskan langkah demi langkah evaluasi <code>cube (4)</code> hingga menghasilkan sebuah nilai. Sebutkan pada setiap langkah apakah yang terjadi adalah <em>ekspansi</em> (mengganti nama fungsi dengan realisasinya) atau <em>reduksi</em> (menghitung hasil sebuah operator).</p>

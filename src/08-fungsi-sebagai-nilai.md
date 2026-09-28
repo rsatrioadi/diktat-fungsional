@@ -1,4 +1,4 @@
-# Fungsi Sebagai Nilai
+# Fungsi sebagai Nilai
 
 Bab 7 ditutup dengan sebuah pertanyaan: apa yang harus dapat diperlakukan sebagai **nilai**, agar sepasang fungsi yang hampir kembar dapat dituliskan sekali saja?
 
@@ -8,7 +8,7 @@ Sampai Bab 7, sebuah nilai selalu berupa bilangan, karakter, boolean, sebuah typ
 
 Pembatasan itu tidak pernah dinyatakan sebagai aturan, dan memang tidak pernah ada aturannya. Bab 2 menyatakan bahwa fungsi adalah pemetaan dari satu type ke type lain, dan tidak menyatakan apa pun tentang type apa saja yang boleh menjadi domain atau range. Bila fungsi adalah nilai, maka sebuah fungsi boleh menerima fungsi, dan boleh menghasilkan fungsi.
 
-Fungsi yang menerima atau menghasilkan fungsi disebut **fungsi orde tinggi**.
+Fungsi yang menerima atau menghasilkan fungsi disebut **fungsi orde tinggi** (*higher-order function*).
 
 Bab ini tidak memperkenalkan satu pun persoalan baru. Setiap fungsi yang ditulis di sini sudah pernah ditulis pada Bab 6 atau Bab 7. Yang berubah hanyalah cara menuliskannya, dan seberapa banyak yang harus ditulis.
 
@@ -56,16 +56,16 @@ Argumen pada contoh aplikasi adalah `square` dan `abs`, dituliskan **tanpa kurun
 
 ## Ekspresi Lambda
 
-Menuliskan `applyToAll (square, L)` menuntut adanya fungsi bernama `square`. Untuk fungsi yang hanya dipakai sekali di satu tempat, mengarangkan nama justru menambah pekerjaan tanpa menambah kejelasan. Bab 3 menghadapi persoalan yang serupa untuk nilai, dan menjawabnya dengan nama antara. Di sini jawabannya adalah **membuang namanya sama sekali**.
+Menuliskan `applyToAll (square, L)` menuntut adanya fungsi bernama `square`. Untuk fungsi yang hanya dipakai sekali di satu tempat, mengarang nama justru menambah pekerjaan tanpa menambah kejelasan. Bab 3 menghadapi persoalan yang serupa untuk nilai, dan menjawabnya dengan nama antara. Di sini jawabannya adalah **membuang namanya sama sekali**.
 
-Sebuah **ekspresi lambda** adalah fungsi yang dituliskan tanpa nama:
+Sebuah **ekspresi lambda** (*lambda expression*) adalah fungsi yang dituliskan tanpa nama, atau fungsi anonim (*anonymous function*):
 
 ```
 λ x : *ekspresi*
 λ (x, y) : *ekspresi*
 ```
 
-Dibaca: "fungsi yang, diberi `x`, menghasilkan *ekspresi*". Tanda `:` adalah tanda yang sama dengan yang dipakai pada realisasi fungsi dan pada `let`, dan artinya pun sama.
+Bacalah sebagai: "fungsi yang, bila diberi `x`, menghasilkan *ekspresi*". Tanda `:` adalah tanda yang sama dengan yang dipakai pada realisasi fungsi dan pada `let`, dan artinya pun sama.
 
 ```
 APLIKASI
@@ -77,15 +77,15 @@ APLIKASI
       10
 ```
 
-Baris ketiga memperlihatkan bahwa sebuah lambda dapat langsung diaplikasikan. Bentuk itu jarang berguna, tetapi ia menegaskan bahwa lambda adalah fungsi biasa yang kebetulan tidak diberi nama.
+Baris ketiga memperlihatkan bahwa sebuah lambda dapat langsung diaplikasikan. Bentuk itu jarang berguna, tetapi bentuk itu menegaskan bahwa lambda adalah fungsi biasa yang kebetulan tidak diberi nama.
 
-**Sebuah lambda tidak dapat rekursif.** Realisasi rekursif menuntut nama, karena rekurens bekerja dengan menyebut fungsi yang sedang didefinisikan. Fungsi tanpa nama tidak mempunyai apa pun untuk disebut. Setiap fungsi rekursif pada Bab 6 dan Bab 7 karenanya harus tetap diberi nama, dan lambda hanya berguna bagi bagian yang **tidak** rekursif.
+**Sebuah lambda tidak dapat rekursif.** Realisasi rekursif menuntut nama, karena rekurens bekerja dengan menyebut fungsi yang sedang didefinisikan. Fungsi tanpa nama tidak mempunyai apa pun untuk disebut. Sebab itu, setiap fungsi rekursif pada Bab 6 dan Bab 7 harus tetap diberi nama, dan lambda hanya berguna bagi bagian yang **tidak** rekursif.
 
 **Kapan memberi nama, kapan tidak.** Pertanyaannya sama dengan pertanyaan Bab 3 tentang nama antara dan fungsi antara: *apakah hal ini pantas diberi nama dan dijelaskan kepada orang lain?* `λ x : x * x` sudah terbaca sepenuhnya dari bentuknya, sehingga menamainya tidak menambah apa-apa. Sebaliknya, sebuah lambda sepanjang tiga baris yang menghitung sesuatu yang mempunyai nama dalam persoalannya hampir selalu lebih baik dijadikan fungsi antara bernama, lengkap dengan definisi dan spesifikasinya. Lambda menghemat nama, dan nama tidak selalu pantas dihemat.
 
 ## Pola Pertama: `map`
 
-`applyToAll` sudah merupakan pola umum, dan namanya yang lazim dipakai adalah `map`. Mulai sekarang diktat ini memakai nama itu.
+`applyToAll` sudah merupakan pola umum, dan namanya yang lazim dipakai adalah `map`. Mulai sekarang, diktat ini memakai nama itu.
 
 ```
 DEFINISI DAN SPESIFIKASI
@@ -102,7 +102,7 @@ REALISASI
             not (isEmpty (L)) : makeCons (f (head (L)), map (f, tail (L)))
 ```
 
-Sekarang seluruh fungsi Bab 7 yang berbentuk "ubah setiap elemen" menjadi satu baris:
+Sekarang, seluruh fungsi Bab 7 yang berbentuk "ubah setiap elemen" menjadi satu baris:
 
 ```
 squareAll (L)  : map (λ x : x * x, L)
@@ -110,7 +110,7 @@ negateAll (L)  : map (λ x : -x, L)
 absAll (L)     : map (abs, L)
 ```
 
-Dua hal yang dijamin oleh `map` dan pantas disadari: hasilnya **selalu** sepanjang masukannya, dan urutannya **selalu** terjaga. Pembaca yang melihat `map` sudah mengetahui kedua hal itu tanpa membaca lambdanya. Inilah keuntungan sesungguhnya dari memberi nama pada sebuah pola. Yang dihemat bukan huruf, melainkan hal-hal yang harus diperiksa ulang oleh pembaca.
+Ada dua hal yang dijamin oleh `map` dan pantas disadari: hasilnya **selalu** sepanjang masukannya, dan urutannya **selalu** terjaga. Pembaca yang melihat `map` sudah mengetahui kedua hal itu tanpa membaca lambdanya. Inilah keuntungan sesungguhnya dari memberi nama pada sebuah pola. Yang dihemat bukan huruf, melainkan hal-hal yang harus diperiksa ulang oleh pembaca.
 
 ## Pola Kedua: `filter`
 
@@ -140,7 +140,7 @@ APLIKASI
 
 Parameter `p` bertype `(Element → Boolean)`, yaitu sebuah **predikat**, sesuai istilah Bab 3.
 
-Perhatikan bahwa rekurens dengan dua kasus dari `keepPositive` tidak hilang. Ia berpindah ke dalam `filter`, dan ditulis **sekali** di sana. Inilah yang sesungguhnya terjadi setiap kali sebuah pola diangkat: pekerjaannya tidak berkurang, tetapi ia berhenti diulang-ulang.
+Perhatikan bahwa rekurens dengan dua kasus dari `keepPositive` tidak hilang. Rekurens itu berpindah ke dalam `filter`, dan ditulis **sekali** saja di sana. Inilah yang sesungguhnya terjadi setiap kali sebuah pola diangkat: pekerjaannya tidak berkurang, tetapi pekerjaan itu tidak lagi diulang-ulang.
 
 Perhatikan pula bahwa `and then` tetap diperlukan, dengan alasan yang persis sama seperti pada Bab 7.
 
@@ -177,7 +177,7 @@ APLIKASI
       3
 ```
 
-Sekarang seluruh fungsi Bab 7 yang menghasilkan nilai tunggal menjadi satu baris:
+Sekarang, seluruh fungsi Bab 7 yang menghasilkan nilai tunggal menjadi satu baris:
 
 ```
 sumList (L)     : fold (λ (a, b) : a + b, 0, L)
@@ -185,9 +185,9 @@ productList (L) : fold (λ (a, b) : a * b, 1, L)
 length (L)      : fold (λ (a, b) : 1 + b, 0, L)
 ```
 
-Perhatikan `length`. Lambdanya mengabaikan `a` sama sekali dan hanya menambahkan satu, yang memang persis yang dikerjakan `length` pada Bab 7. Bahwa pencacahan ternyata adalah penjumlahan yang mengabaikan isinya adalah pengamatan yang tidak terlihat sampai kedua fungsi dituliskan dalam bentuk yang sama.
+Perhatikan `length`. Lambdanya mengabaikan `a` sama sekali dan hanya menambahkan satu, yang memang persis yang dikerjakan `length` pada Bab 7. Kenyataan bahwa pencacahan ternyata adalah penjumlahan yang mengabaikan isinya baru terlihat setelah kedua fungsi dituliskan dalam bentuk yang sama.
 
-**Sekarang aturan nilai basis dari Bab 7 dapat dijelaskan.** Bab 7 menyatakan bahwa nilai basis harus netral terhadap operator rekurensnya: nol untuk penjumlahan, satu untuk perkalian. Dalam `fold`, nilai itu adalah `z`, dan ia bukan lagi bagian dari realisasi melainkan sebuah argumen yang harus dipilih pemakainya. Aturan yang pada Bab 7 berupa nasihat, di sini menjadi kewajiban yang terlihat: `z` adalah jawaban bagi list kosong, dan memilihnya keliru adalah kesalahan yang hanya menampakkan diri pada list kosong.
+**Sekarang aturan nilai basis dari Bab 7 dapat dijelaskan.** Bab 7 menyatakan bahwa nilai basis harus netral terhadap operator rekurensnya: nol untuk penjumlahan, satu untuk perkalian. Dalam `fold`, nilai itu adalah `z`, dan nilai itu bukan lagi bagian dari realisasi, melainkan sebuah argumen yang harus dipilih pemakainya. Aturan yang pada Bab 7 berupa nasihat, di sini menjadi kewajiban yang terlihat: `z` adalah jawaban bagi list kosong, dan salah memilihnya adalah kesalahan yang hanya menampakkan diri pada list kosong.
 
 `fold` adalah yang paling umum di antara ketiga pola ini. `map` maupun `filter` dapat dituliskan dengan `fold`, dan salah satunya ditanyakan pada Latihan.
 
@@ -195,9 +195,9 @@ Perhatikan `length`. Lambdanya mengabaikan `a` sama sekali dan hanya menambahkan
 
 `fold` di atas menggabungkan dari elemen **terakhir** menuju elemen pertama. Itulah bentuk yang dimiliki setiap fungsi pada Bab 7, karena setiap rekurensnya menggabungkan `head (L)` dengan hasil atas `tail (L)`, sehingga penggabungan sesungguhnya baru terjadi setelah rekurens mencapai dasar.
 
-Ada satu fungsi pada Bab 7 yang tidak berbentuk demikian, yaitu `reverseOnto`. Ia membawa hasil sementara **maju** sebagai akumulator, sehingga penggabungan terjadi dari elemen pertama menuju elemen terakhir. Bentuk itu adalah lipatan ke arah yang berlawanan.
+Ada satu fungsi pada Bab 7 yang tidak berbentuk demikian, yaitu `reverseOnto`. Fungsi itu membawa hasil sementara **maju** sebagai akumulator, sehingga penggabungan terjadi dari elemen pertama menuju elemen terakhir. Bentuk itu adalah lipatan ke arah yang berlawanan.
 
-Kedua arah menghasilkan jawaban yang sama bila operatornya asosiatif dan nilai netralnya benar, misalnya pada penjumlahan. Untuk operator lain, keduanya berbeda. Bahasa acuan menyediakan keduanya dengan nama `foldr` dan `foldl`, dan pemilihan di antaranya mempunyai akibat terhadap eksekusi yang cukup halus untuk pantas dibicarakan tersendiri. Bab 9 dan Suplemen S10 membahasnya. Diktat ini memakai satu arah saja, yaitu arah yang sudah dikenal pembaca dari seluruh Bab 7.
+Kedua arah menghasilkan jawaban yang sama bila operatornya asosiatif dan nilai netralnya benar, misalnya pada penjumlahan. Untuk operator lain, keduanya berbeda. Bahasa acuan menyediakan keduanya dengan nama `foldr` dan `foldl`, dan pilihan di antara keduanya berakibat pada eksekusi dengan cara yang cukup halus sehingga pantas dibicarakan tersendiri. Bab 9 dan Suplemen S10 membahasnya. Diktat ini memakai satu arah saja, yaitu arah yang sudah dikenal pembaca dari seluruh Bab 7.
 
 ## Fungsi sebagai Hasil
 
@@ -231,13 +231,13 @@ Bacalah baris definisinya dengan cermat. Range `makeAdder` adalah `(Integer → 
 
 Perhatikan aplikasi pertama. `makeAdder (3)` menghasilkan sebuah fungsi, dan fungsi itu kemudian diaplikasikan terhadap `10`. Dua pasang kurung berurutan berarti dua aplikasi berurutan: yang pertama menghasilkan fungsi, yang kedua menghasilkan bilangan.
 
-Perhatikan pula bahwa `makeAdder (3)` tidak dapat disederhanakan menjadi sebuah bilangan. Ia **adalah** sebuah nilai, dan nilai itu kebetulan berupa fungsi. Ia dapat diberi nama lewat `let`, disimpan di dalam list, dan diserahkan kepada `map`, persis seperti nilai lainnya.
+Perhatikan pula bahwa `makeAdder (3)` tidak dapat disederhanakan menjadi sebuah bilangan. Ekspresi itu **adalah** sebuah nilai, dan nilai itu kebetulan berupa fungsi. Nilai itu dapat diberi nama lewat `let`, disimpan di dalam list, dan diserahkan kepada `map`, persis seperti nilai lainnya.
 
-Sesuatu yang penting terjadi di sini, dan pantas dinyatakan terpisah. Ekspresi `λ x : x + n` menyebut `n`, padahal `n` bukan parameternya melainkan parameter `makeAdder`. Fungsi yang dihasilkan karenanya **membawa serta** nilai `n` yang berlaku pada saat ia dibentuk. `makeAdder (3)` dan `makeAdder (5)` adalah dua fungsi berbeda yang lahir dari satu realisasi yang sama. Notasi ini tidak menyediakan istilah bagi hal tersebut, dan bahasa acuan menyebutnya *closure*. Yang perlu disadari sekarang hanyalah bahwa hal itu memang terjadi, dan bahwa transparansi referensial dari Bab 2 tetap utuh: `n` tidak pernah berubah, ia hanya terikat pada nilai yang berbeda pada dua pembentukan yang berbeda.
+Sesuatu yang penting terjadi di sini, dan pantas dinyatakan secara terpisah. Ekspresi `λ x : x + n` menyebut `n`, padahal `n` bukan parameternya melainkan parameter `makeAdder`. Sebab itu, fungsi yang dihasilkan **membawa serta** nilai `n` yang berlaku pada saat fungsi itu dibentuk. `makeAdder (3)` dan `makeAdder (5)` adalah dua fungsi berbeda yang lahir dari satu realisasi yang sama. Notasi ini tidak menyediakan istilah bagi hal tersebut, dan bahasa acuan menyebutnya *closure*. Yang perlu disadari sekarang hanyalah bahwa hal itu memang terjadi, dan bahwa transparansi referensial dari Bab 2 tetap utuh: `n` tidak pernah berubah; nama itu hanya terikat pada nilai yang berbeda pada dua pembentukan yang berbeda.
 
 ## Komposisi
 
-Merangkai dua fungsi, yaitu menerapkan yang satu terhadap hasil yang lain, sering dilakukan sehingga pantas mempunyai operatornya sendiri.
+Merangkai dua fungsi (*function composition*), yaitu menerapkan yang satu terhadap hasil yang lain, begitu sering dilakukan sehingga pantas mempunyai operatornya sendiri.
 
 ```
 DEFINISI DAN SPESIFIKASI
@@ -258,9 +258,9 @@ APLIKASI
       [1, 4, 9]
 ```
 
-`g` bekerja lebih dahulu, `f` kemudian. Urutan penulisannya karenanya **berlawanan** dengan urutan pengerjaannya, dan itu adalah sumber kekeliruan yang wajar bagi siapa pun yang baru memakainya. Bentuk ini diwarisi dari matematika, tempat `f ∘ g` dibaca "f setelah g".
+`g` bekerja lebih dahulu, `f` kemudian. Sebab itu, urutan penulisannya **berlawanan** dengan urutan pengerjaannya, dan hal itu menjadi sumber kekeliruan yang wajar bagi siapa pun yang baru memakainya. Bentuk ini diwarisi dari matematika, tempat `f ∘ g` dibaca "f setelah g".
 
-Nilai komposisi terlihat ketika rangkaiannya panjang. Bandingkan:
+Manfaat komposisi terlihat ketika rangkaiannya panjang. Bandingkan:
 
 ```
 map (λ x : square (abs (x)), L)
@@ -317,15 +317,15 @@ APLIKASI
       [⟨31, 12, 2023⟩, ⟨1, 3, 2024⟩]
 ```
 
-Perhatikan aplikasi ketiga. `isBefore` berasal dari Bab 5, ditulis untuk membandingkan dua `Date` dan sama sekali tidak ditulis dengan pengurutan dalam pikiran. Ia diserahkan kepada `sortBy` tanpa penyesuaian satu huruf pun, dan hasilnya adalah pengurutan tanggal.
+Perhatikan aplikasi ketiga. `isBefore` berasal dari Bab 5, ditulis untuk membandingkan dua `Date` dan sama sekali tidak ditulis dengan maksud untuk pengurutan. Fungsi itu diserahkan kepada `sortBy` tanpa penyesuaian satu huruf pun, dan hasilnya adalah pengurutan tanggal.
 
-Inilah yang dimaksud ketika dikatakan bahwa fungsi orde tinggi menaikkan tingkat abstraksi. Satu `sortBy` adalah **setiap** pengurutan yang mungkin atas type apa pun, asalkan pemakainya dapat menyatakan apa artinya "mendahului" bagi type itu.
+Inilah yang dimaksud ketika dikatakan bahwa fungsi orde tinggi menaikkan tingkat abstraksi. Satu `sortBy` mewakili **setiap** pengurutan yang mungkin atas type apa pun, asalkan pemakainya dapat menyatakan apa artinya "mendahului" bagi type itu.
 
 Perhatikan pula bahwa prasyarat `insertBy` kini menyebut `before`, yaitu sebuah parameter. Sebuah prasyarat dapat berbicara tentang fungsi yang diserahkan kepadanya, dan di sini prasyarat itu memikul beban yang nyata: bila `before` yang diserahkan tidak konsisten, misalnya menyatakan bahwa `a` mendahului `b` sekaligus `b` mendahului `a`, hasilnya tidak dapat dipertanggungjawabkan. Tanggung jawab itu jatuh kepada pemakai, sebagaimana seluruh prasyarat sejak Bab 3.
 
-> **Pola yang sama di luar paradigma fungsional.** Menyerahkan "cara membandingkan" kepada fungsi pengurutan bukan gagasan yang khas fungsional. Pustaka standar C menyediakan `qsort`, yang menerima sebuah *pointer to function* sebagai pembandingnya. Python menuliskan `sorted(xs, key=...)`. Java menyerahkan sebuah `Comparator`.
+> **Pola yang sama di luar paradigma fungsional.** Menyerahkan "cara membandingkan" kepada fungsi pengurutan bukan gagasan yang khas fungsional. Pustaka standar C menyediakan `qsort`, yang menerima sebuah penunjuk fungsi (*function pointer*) sebagai pembandingnya. Python menuliskan `sorted(xs, key=...)`. Java menyerahkan sebuah `Comparator`.
 >
-> Ketiganya adalah `sortBy`. Yang berbeda hanyalah seberapa nyaman bahasanya menuliskan fungsi tanpa nama, dan seberapa jauh bahasanya memperlakukan fungsi sebagai nilai secara umum ketimbang sebagai perkecualian yang disediakan untuk keperluan tertentu. Gagasan yang dipelajari di sini karenanya tidak berhenti di bahasa fungsional, sebagaimana sudah dinyatakan pada Bab 1.
+> Ketiganya adalah `sortBy`. Yang berbeda hanyalah seberapa nyaman bahasanya menuliskan fungsi tanpa nama, dan seberapa jauh bahasanya memperlakukan fungsi sebagai nilai secara umum daripada sebagai pengecualian yang disediakan untuk keperluan tertentu. Sebab itu, gagasan yang dipelajari di sini tidak berhenti di bahasa fungsional, sebagaimana sudah dinyatakan pada Bab 1.
 
 ## Batas Notasi: Mengapa Haskell Menuliskan Dua Panah
 
@@ -333,7 +333,7 @@ Bab 2 menyisakan sebuah janji. Ketika `max2` diterjemahkan, type-nya dituliskan 
 
 Inilah alasannya.
 
-**Dalam bahasa acuan, setiap fungsi menerima tepat satu argumen.** Tidak ada perkecualian. Fungsi yang tampak menerima dua argumen sesungguhnya menerima satu argumen dan menghasilkan **sebuah fungsi** yang menunggu argumen berikutnya. Panah `->` berasosiasi ke kanan, sehingga
+**Dalam bahasa acuan, setiap fungsi menerima tepat satu argumen.** Tidak ada pengecualian. Fungsi yang tampak menerima dua argumen sesungguhnya menerima satu argumen dan menghasilkan **sebuah fungsi** yang menunggu argumen berikutnya (*currying*). Panah `->` berasosiasi ke kanan (*right-associative*), sehingga
 
 ```haskell
 max2 :: Integer -> Integer -> Integer
@@ -347,7 +347,7 @@ max2 :: Integer -> (Integer -> Integer)
 
 Bandingkan baris kedua itu dengan definisi `makeAdder` pada bab ini. Bentuknya sama persis. `max2` adalah fungsi yang, diberi sebuah bilangan, menghasilkan sebuah fungsi.
 
-Akibatnya langsung dapat dipakai:
+Akibatnya dapat langsung dimanfaatkan:
 
 ```haskell
 max2 3           -- sebuah fungsi: "yang lebih besar antara 3 dan argumennya"
@@ -356,9 +356,9 @@ max2 3 7         -- 7
 map (max2 0) [-3, 5, -1]     -- [0, 5, 0]
 ```
 
-`max2 0` diserahkan kepada `map` sebagaimana `makeAdder (1)` diserahkan kepada `map` pada bab ini. Menyediakan sebagian argumen dan menyisakan sisanya disebut **aplikasi parsial**, dan dalam bahasa acuan ia tersedia bagi **setiap** fungsi tanpa persiapan apa pun.
+`max2 0` diserahkan kepada `map` sebagaimana `makeAdder (1)` diserahkan kepada `map` pada bab ini. Menyediakan sebagian argumen dan menyisakan sisanya disebut **aplikasi parsial** (*partial application*), dan dalam bahasa acuan fasilitas ini tersedia bagi **setiap** fungsi tanpa persiapan apa pun.
 
-**Notasi kita tidak dapat melakukannya.** Bab 2 menyatakan, tentang koma pada `max2 : Integer, Integer → Integer`, bahwa koma menandakan fungsinya mempunyai dua parameter dan bukan sebuah type tersendiri. Kalimat itu tampak sepele ketika ditulis. Akibatnya baru terlihat sekarang: koma mengikat kedua parameter menjadi satu aplikasi yang tidak dapat dibelah. `max2 (3)` tidak berarti apa-apa dalam notasi ini. Ia bukan sebuah fungsi, bukan sebuah nilai, melainkan sebuah aplikasi yang kekurangan argumen.
+**Notasi kita tidak dapat melakukannya.** Bab 2 menyatakan, tentang koma pada `max2 : Integer, Integer → Integer`, bahwa koma menandakan fungsinya mempunyai dua parameter dan bukan sebuah type tersendiri. Kalimat itu tampak sepele ketika ditulis. Akibatnya baru terlihat sekarang: koma mengikat kedua parameter menjadi satu aplikasi yang tidak dapat dibelah. `max2 (3)` tidak berarti apa-apa dalam notasi ini. Ekspresi itu bukan sebuah fungsi, bukan pula sebuah nilai, melainkan sebuah aplikasi yang kekurangan argumen.
 
 Yang dapat dituliskan notasi ini hanyalah menyediakan lambda secara manual:
 
@@ -366,11 +366,11 @@ Yang dapat dituliskan notasi ini hanyalah menyediakan lambda secara manual:
 map (λ x : max2 (0, x), L)
 ```
 
-dan itu memang selalu mungkin. Tetapi ia adalah pekerjaan yang dalam bahasa acuan tidak perlu dilakukan sama sekali.
+dan cara itu memang selalu mungkin. Namun, itu adalah pekerjaan yang dalam bahasa acuan sama sekali tidak perlu dilakukan.
 
 **Inilah pertama kalinya notasi kalah tanpa imbalan.** Setiap perbedaan sejak Bab 2 selalu berupa pertukaran. Notasi lebih ketat pada syarat disjoint, bahasa memeriksa kelengkapan pola. Notasi dapat menuliskan `Integer [1..4]`, bahasa tidak. Notasi membedakan `and` dari `and then`, bahasa tidak. Kali ini tidak ada yang diterima sebagai gantinya. Koma membuat baris definisi lebih mudah dibaca oleh manusia yang belum terbiasa, dan harganya adalah sebuah kemampuan yang hilang seluruhnya.
 
-Notasi ini adalah alat berpikir, dan Bab 2 sudah menyatakan bahwa ia tidak mencakup seluruh konsep pemrograman fungsional. Di sinilah pernyataan itu menjadi konkret. Sebuah alat berpikir yang tidak mengakui batasnya sendiri berhenti menjadi alat berpikir yang jujur, dan mulai dari sini yang terbaik adalah membaca dan menulis langsung dalam bahasanya. Bab 9 dan Suplemen mengambil alih, dan Suplemen S5 mengumpulkan seluruh batas semacam ini dalam satu daftar.
+Notasi ini adalah alat berpikir, dan Bab 2 sudah menyatakan bahwa notasi ini tidak mencakup seluruh konsep pemrograman fungsional. Di sinilah pernyataan itu menjadi konkret. Sebuah alat berpikir yang tidak mengakui batasnya sendiri tidak lagi menjadi alat berpikir yang jujur, dan mulai dari sini yang terbaik adalah membaca dan menulis langsung dalam bahasanya. Bab 9 dan Suplemen melanjutkan dari sini, dan Suplemen S5 mengumpulkan seluruh batas semacam ini dalam satu daftar.
 
 Latihan Merancang pada akhir bab ini menanyakan apa yang harus dikorbankan seandainya notasi ini hendak diperbaiki agar aplikasi parsial menjadi mungkin.
 
@@ -382,7 +382,7 @@ Tiga pola pada bab ini kuat, dan justru karena itu ada godaan untuk memaksakan s
 
 Hal yang sama berlaku bagi `gcd` pada Bab 6, yang sama sekali tidak bekerja atas list, dan bagi `insertBy` pada bab ini, yang justru **ditulis rekursif** meskipun bab ini seluruhnya tentang menghindari penulisan rekursi berulang.
 
-**Nama yang jelas mengalahkan pola yang benar.** Sebuah `fold` yang lambdanya sepanjang empat baris hampir selalu lebih sulit dibaca daripada fungsi rekursif bernama yang mempunyai definisi dan spesifikasinya sendiri. Pola dipakai ketika ia membuat maksudnya lebih terlihat, bukan ketika ia sekadar dapat dipakai.
+**Nama yang jelas mengalahkan pola yang benar.** Sebuah `fold` yang lambdanya sepanjang empat baris hampir selalu lebih sulit dibaca daripada fungsi rekursif bernama yang mempunyai definisi dan spesifikasinya sendiri. Pola dipakai ketika pola itu membuat maksud lebih terlihat, bukan sekadar karena pola itu dapat dipakai.
 
 Aturan praktisnya: bila Anda dapat menyebutkan dalam satu kalimat pendek apa yang dikerjakan terhadap setiap elemen, pakailah pola. Bila kalimat itu menjadi panjang, atau bila kalimat itu mengandung kata "kecuali", tulislah fungsi rekursif bernama.
 
@@ -419,15 +419,15 @@ fold' _ z []       = z
 fold' g z (x : xs) = g x (fold' g z xs)
 ```
 
-Empat hal yang berbeda.
+Ada empat perbedaan.
 
 **Ketiganya sudah tersedia.** Bahasa acuan menyediakan `map`, `filter`, dan `foldr` dalam pustaka standarnya, dan itulah sebabnya versi di atas diberi tanda kutip. Sikapnya sama dengan sikap terhadap `gcd` pada Bab 6 dan `length` pada Bab 7: keduanya tetap ditulis sendiri, karena menuliskannya adalah latihannya.
 
-**Type-nya lebih longgar daripada notasi kita.** Perhatikan `map' :: (a -> b) -> [a] -> [b]`. Type masukan dan keluaran boleh **berbeda**, sehingga `map` dapat mengubah list bilangan menjadi list boolean. Notasi kita menuliskan `(Element → Element)` dan karenanya mengharuskan keduanya sama. Ini adalah pembatasan notasi kita, bukan pembatasan gagasannya, dan ia berasal dari keputusan Bab 7 untuk memakai satu nama `Element` saja.
+**Type-nya lebih longgar daripada notasi kita.** Perhatikan `map' :: (a -> b) -> [a] -> [b]`. Type masukan dan keluaran boleh **berbeda**, sehingga `map` dapat mengubah list bilangan menjadi list boolean. Notasi kita menuliskan `(Element → Element)` sehingga mengharuskan keduanya sama. Pembatasan ini berasal dari notasi kita, bukan dari gagasannya, yaitu dari keputusan Bab 7 untuk memakai satu nama `Element` saja.
 
 **Lambda hampir sama.** `\x -> x * x` berbanding `λ x : x * x`. Inilah salah satu di antara sedikit tempat sepanjang diktat ini yang notasi dan bahasanya nyaris berimpit.
 
-**Tersedia jalan pintas yang tidak dimiliki notasi.** Karena setiap fungsi menerima satu argumen, ekspresi seperti `(+1)`, `(*2)`, dan `(> 0)` adalah fungsi yang sah tanpa lambda sama sekali, sehingga `map (+1) [1,2,3]` menghasilkan `[2,3,4]`. Bentuk ini adalah aplikasi parsial yang dibicarakan di atas, dalam bentuknya yang paling ringkas.
+**Tersedia jalan pintas yang tidak dimiliki notasi.** Karena setiap fungsi menerima satu argumen, ekspresi seperti `(+1)`, `(*2)`, dan `(> 0)` adalah fungsi yang sah tanpa lambda sama sekali, sehingga `map (+1) [1,2,3]` menghasilkan `[2,3,4]`. Bentuk ini (*operator section*) adalah aplikasi parsial yang dibicarakan di atas, dalam bentuknya yang paling ringkas.
 
 | Notasi fungsional | Haskell |
 |---|---|

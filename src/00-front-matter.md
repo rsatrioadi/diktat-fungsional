@@ -2,7 +2,7 @@
 
 disusun oleh **Satrio Adi Rukmono**
 
-berdasarkan karya orisinil
+berdasarkan karya orisinal
 
 *Draft Diktat Kuliah Dasar Pemrograman  
 Bagian: Pemrograman Fungsional  

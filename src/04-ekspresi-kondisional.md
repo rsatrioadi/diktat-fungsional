@@ -2,11 +2,11 @@
 
 ## Analisis Kasus
 
-Tidak semua persoalan dapat dinyatakan dengan satu ekspresi tunggal. Seringkali nilai yang dihasilkan bergantung pada *kasus* mana yang berlaku bagi nilai masukan: wujud air bergantung pada suhunya, kuadran sebuah titik bergantung pada tanda absis dan ordinatnya, tarif bergantung pada jarak tempuh.
+Tidak semua persoalan dapat dinyatakan dengan satu ekspresi tunggal. Sering kali nilai yang dihasilkan bergantung pada *kasus* mana yang berlaku bagi nilai masukan: wujud air bergantung pada suhunya, kuadran sebuah titik bergantung pada tanda absis dan ordinatnya, tarif bergantung pada jarak tempuh.
 
-**Analisis kasus** adalah kegiatan memilah domain sebuah fungsi menjadi beberapa bagian, dan menentukan ekspresi yang berlaku bagi masing-masing bagian. Hasilnya dituliskan sebagai **ekspresi kondisional**.
+**Analisis kasus** (*case analysis*) adalah kegiatan memilah domain sebuah fungsi menjadi beberapa bagian, dan menentukan ekspresi yang berlaku bagi masing-masing bagian. Hasilnya dituliskan sebagai **ekspresi kondisional**.
 
-Analisis kasus adalah keterampilan tersendiri, dan menguasai notasinya tidak dengan sendirinya menguasainya. Sebagian besar isi bab ini membahas cara melakukannya dengan benar, dan cara memeriksa bahwa hasilnya benar.
+Analisis kasus adalah keterampilan tersendiri, dan menguasai notasinya tidak dengan sendirinya berarti menguasai keterampilan itu. Sebagian besar isi bab ini membahas cara melakukannya dengan benar, dan cara memeriksa bahwa hasilnya benar.
 
 ## Notasi Ekspresi Kondisional
 
@@ -20,7 +20,7 @@ namaFungsi (x) :
         *kondisi-3* : *ekspresi-3*
 ```
 
-Setiap baris terdiri dari sebuah **kondisi** (ekspresi Boolean atas parameter fungsi) dan sebuah **ekspresi** yang berlaku bila kondisi itu benar. 
+Setiap baris terdiri atas sebuah **kondisi** (ekspresi Boolean atas parameter fungsi) dan sebuah **ekspresi** yang berlaku bila kondisi itu benar. 
 
 Nilai ekspresi kondisional adalah nilai ekspresi yang kondisinya benar.
 
@@ -28,25 +28,25 @@ Nilai ekspresi kondisional adalah nilai ekspresi yang kondisinya benar.
 
 Rumusan di atas menyembunyikan sebuah janji: *ada tepat satu* kondisi yang benar. Janji itu tidak dijamin oleh notasi; penulisnyalah yang harus memenuhinya. Ada dua syarat, dan keduanya wajib.
 
-**Lengkap (exhaustive).** Setiap nilai dalam domain harus memenuhi sekurang-kurangnya satu kondisi.
+**Lengkap (*exhaustive*).** Setiap nilai dalam domain harus memenuhi sekurang-kurangnya satu kondisi.
 
 \\[ \text{kondisi-1} \ \textbf{or}\ \text{kondisi-2} \ \textbf{or}\ \text{kondisi-3} \\]
 
 harus bernilai `true` untuk setiap nilai domain. Bila tidak, ada nilai masukan yang tidak menghasilkan apa-apa, dan sebuah fungsi yang tidak menghasilkan apa-apa untuk sebagian domainnya bukanlah fungsi atas domain itu.
 
-**Disjoint (mutually exclusive).** Tidak boleh ada nilai yang memenuhi lebih dari satu kondisi. Untuk setiap pasangan kondisi:
+**Disjoint (*mutually exclusive*).** Tidak boleh ada nilai yang memenuhi lebih dari satu kondisi. Untuk setiap pasangan kondisi:
 
 \\[ \textbf{not}\ (\text{kondisi-}i \ \textbf{and}\ \text{kondisi-}j) \qquad \text{untuk setiap } i \neq j \\]
 
-Bila dua kondisi dapat benar bersamaan, ekspresi menjadi ambigu: ada dua nilai yang sama-sama berhak menjadi hasil.
+Bila dua kondisi dapat benar secara bersamaan, ekspresi menjadi ambigu: ada dua nilai yang sama-sama berhak menjadi hasil.
 
 > **Urutan kasus tidak berarti.** Dalam notasi ini, urutan penulisan kasus **tidak berarti apa-apa**. Kasus boleh dituliskan dengan urutan mana pun tanpa mengubah arti. Inilah sebabnya syarat disjoint bersifat wajib dan bukan sekadar anjuran: tidak ada aturan "yang pertama cocok, itulah yang dipakai" yang dapat menyelamatkan kita.
 >
-> Banyak bahasa pemrograman justru memakai aturan tersebut, dan kelak, ketika menerjemahkan ke bahasa nyata, kemudahan itu akan tersedia. Teks yang bergantung pada urutan hanya dapat dipahami dengan membacanya dari atas ke bawah secara utuh; notasi ini tidak memakainya.
+> Banyak bahasa pemrograman justru memakai aturan tersebut, dan kelak, ketika kita menerjemahkan ke bahasa nyata, kemudahan itu akan tersedia. Teks yang bergantung pada urutan hanya dapat dipahami dengan membacanya dari atas ke bawah secara utuh; notasi ini tidak memakainya.
 
 ## Kondisi `else`
 
-Menuliskan negasi dari seluruh kondisi sebelumnya seringkali panjang. Untuk itu tersedia kondisi khusus `else`, yang berarti tepat itu:
+Menuliskan negasi dari seluruh kondisi sebelumnya sering kali panjang. Untuk itu tersedia kondisi khusus `else`, yang maknanya tepat seperti itu:
 
 ```
 namaFungsi (x) :
@@ -58,9 +58,9 @@ namaFungsi (x) :
 
 setara dengan menuliskan `not (*kondisi-1*) and not (*kondisi-2*)` pada baris terakhir.
 
-Dengan `else`, syarat lengkap otomatis terpenuhi, dan syarat disjoint tinggal berlaku bagi kondisi-kondisi sebelumnya.
+Dengan `else`, syarat lengkap dengan sendirinya terpenuhi, dan syarat disjoint tinggal berlaku bagi kondisi-kondisi sebelumnya.
 
-Kemudahan ini ada harganya: **`else` menyembunyikan kasus yang diwakilinya.** Pembaca tidak lagi melihat kasus apa yang sesungguhnya ditangani baris terakhir, dan penulisnya sendiri kadang tidak menyadari bahwa ada kasus yang tidak pernah ia pikirkan namun terlanjur tertampung di situ. Pakailah `else` bila sisa kasusnya memang satu kelompok yang wajar, dan hindari bila sisanya sebenarnya beberapa kasus berbeda yang kebetulan berbagi hasil.
+Kemudahan ini ada harganya: **`else` menyembunyikan kasus yang diwakilinya.** Pembaca tidak lagi melihat kasus apa yang sesungguhnya ditangani baris terakhir, dan penulisnya sendiri kadang-kadang tidak menyadari adanya kasus yang tidak pernah terpikirkan olehnya, tetapi telanjur tertampung di situ. Pakailah `else` bila sisa kasusnya memang merupakan satu kelompok yang wajar, dan hindarilah bila sisanya sebenarnya terdiri atas beberapa kasus berbeda yang kebetulan memberikan hasil yang sama.
 
 ## Bentuk `if-then-else`
 
@@ -85,13 +85,13 @@ Bentuk ini sudah dipakai pada `max2` di Bab 2.
 
 `else` **tidak boleh dihilangkan**. Bentuk `if c then e` tanpa `else` tidak mempunyai arti dalam notasi ini: bila `c` bernilai `false`, tidak ada nilai yang dihasilkan. Dalam paradigma imperatif, `if` tanpa `else` masuk akal karena yang dilewatkan adalah *aksi*, dan "tidak melakukan apa-apa" adalah pilihan yang sah. Dalam paradigma fungsional, yang dihasilkan adalah *nilai*, dan "tidak menghasilkan nilai" bukanlah pilihan.
 
-Gunakan `if-then-else` hanya untuk dua kasus. Untuk tiga kasus atau lebih, `depend on` jauh lebih terbaca daripada `if-then-else` bersarang, dan membuat syarat lengkap serta disjoint dapat diperiksa dengan sekali pandang.
+Gunakan `if-then-else` hanya untuk dua kasus. Untuk tiga kasus atau lebih, `depend on` jauh lebih mudah dibaca daripada `if-then-else` bersarang (*nested*), dan membuat syarat lengkap serta disjoint dapat diperiksa dengan sekali pandang.
 
 ## Contoh 1: Pemilahan Berdasarkan Nilai Ambang
 
-**Persoalan.** Pada tekanan 1 atm, tentukan wujud air berdasarkan suhunya dalam derajat Celcius. Air membeku pada 0 dan mendidih pada 100; di antara keduanya air berwujud cair.
+**Persoalan.** Pada tekanan 1 atm, tentukan wujud air berdasarkan suhunya dalam derajat Celsius. Air membeku pada 0 dan mendidih pada 100; di antara keduanya air berwujud cair.
 
-Persoalan ini mengandung dua batas, `0.0` dan `100.0`, dan tidak menyatakan dengan tegas ke mana batas itu sendiri termasuk. Keputusan harus diambil, dan setelah diambil harus dituliskan pada spesifikasi.
+Persoalan ini mengandung dua batas, `0.0` dan `100.0`, dan tidak menyatakan dengan tegas batas itu sendiri termasuk ke kasus mana. Keputusan harus diambil, dan setelah diambil harus dituliskan pada spesifikasi.
 
 ```
 JUDUL   Wujud Air pada Tekanan 1 atm
@@ -100,7 +100,7 @@ JUDUL   Wujud Air pada Tekanan 1 atm
 ```
 DEFINISI DAN SPESIFIKASI
     stateOfWater : Real → Character
-    { stateOfWater (t) adalah wujud air pada suhu t derajat Celcius dan
+    { stateOfWater (t) adalah wujud air pada suhu t derajat Celsius dan
       tekanan 1 atm: 'S' bila padat (solid), 'L' bila cair (liquid), 'G' 
       bila uap (gas). Nilai di perbatasan dimiliki oleh wujud pada suhu 
       yang lebih rendah:
@@ -130,7 +130,7 @@ APLIKASI
       'G'
 ```
 
-Periksalah kedua syarat. **Lengkap:** setiap bilangan riil memenuhi salah satu dari `t ≤ 0.0`, `0.0 < t ≤ 100.0`, atau `t > 100.0`. **Disjoint:** ketiganya tidak dapat benar bersamaan, karena masing-masing batas hanya dimiliki oleh satu kasus.
+Periksalah kedua syarat. **Lengkap:** setiap bilangan riil memenuhi salah satu dari `t ≤ 0.0`, `0.0 < t ≤ 100.0`, atau `t > 100.0`. **Disjoint:** ketiganya tidak dapat benar secara bersamaan, karena masing-masing batas hanya dimiliki oleh satu kasus.
 
 Kelima contoh aplikasi dipilih dengan sengaja: satu di dalam setiap kasus, dan satu tepat pada masing-masing batas, karena kekeliruan batas hanya tampak bila batasnya diuji.
 
@@ -140,7 +140,7 @@ Dalam Haskell:
 
 ```haskell
 stateOfWater :: Double -> Char
--- stateOfWater t adalah wujud air pada suhu t derajat Celcius, tekanan 1 atm
+-- stateOfWater t adalah wujud air pada suhu t derajat Celsius, tekanan 1 atm
 stateOfWater t
   | t <= 0.0   = 'S'
   | t <= 100.0 = 'L'
@@ -150,10 +150,10 @@ stateOfWater t
 Terjemahan ini **tidak** satu lawan satu:
 
 - Haskell menuliskan kondisi sebagai *guard* dengan tanda `|`, dan `otherwise` adalah padanan `else`.
-- Guard pada Haskell **diperiksa berurutan**: yang pertama bernilai `True` itulah yang dipakai. Karena itu kondisi kedua cukup ditulis `t <= 100.0`, tanpa `t > 0.0`, sebab baris pertama sudah menyaring kasus itu.
+- Guard pada Haskell **diperiksa berurutan**: yang pertama bernilai `True` itulah yang dipakai. Sebab itu, kondisi kedua cukup ditulis `t <= 100.0`, tanpa `t > 0.0`, sebab baris pertama sudah menyaring kasus itu.
 - Akibatnya, Haskell **tidak memaksa** syarat disjoint. Teks yang kondisinya tumpang tindih tetap dapat dikompilasi dan dijalankan, dan hasilnya ditentukan oleh urutan penulisan.
 
-Notasi lebih ketat daripada bahasanya di sini, dan kekakuan itu disengaja: menuliskan kondisi kedua secara lengkap memaksa kita memikirkan batas bawahnya.
+Di sini, notasi lebih ketat daripada bahasanya, dan kekakuan itu disengaja: menuliskan kondisi kedua secara lengkap memaksa kita memikirkan batas bawahnya.
 
 ## Contoh 2: Pemilahan dengan Prasyarat
 
@@ -197,9 +197,9 @@ APLIKASI
 
 Keempat kondisi ini **tidak lengkap** atas seluruh `Real, Real`: nilai `(0.0, 5.0)` tidak memenuhi satu pun. Yang membuatnya sah adalah prasyarat: kelengkapan hanya dituntut atas domain yang tersisa **setelah** prasyarat diberlakukan.
 
-Hubungan antara prasyarat dan analisis kasus berlaku dua arah: setiap kasus yang tidak dapat kita jawab harus dikeluarkan lewat prasyarat, dan setiap prasyarat yang kita tuliskan mempersempit apa yang harus dicakup oleh kasus-kasus kita. Menyusun keduanya bersamaan lebih mudah daripada menyusunnya berurutan.
+Hubungan antara prasyarat dan analisis kasus berlaku dua arah: setiap kasus yang tidak dapat kita jawab harus dikeluarkan lewat prasyarat, dan setiap prasyarat yang kita tuliskan mempersempit apa yang harus dicakup oleh kasus-kasus kita. Menyusun keduanya secara bersamaan lebih mudah daripada menyusunnya satu per satu.
 
-Kasus terakhir dapat dipersingkat menjadi `else`: empat kasus menjadi tiga kasus dan satu `else`, dan teksnya lebih pendek. Harganya, titik `(0.0, 5.0)` akan menghasilkan `4` alih-alih melanggar prasyarat secara terbuka. `else` mengubah pelanggaran prasyarat menjadi jawaban yang keliru namun tampak wajar.
+Kasus terakhir dapat dipersingkat menjadi `else`: empat kasus menjadi tiga kasus dan satu `else`, dan teksnya lebih pendek. Akibatnya, titik `(0.0, 5.0)` akan menghasilkan `4`, bukannya melanggar prasyarat secara terang-terangan. `else` mengubah pelanggaran prasyarat menjadi jawaban yang keliru, tetapi tampak wajar.
 
 Dalam Haskell:
 
@@ -214,7 +214,7 @@ quadrant x y
   | (x > 0.0) && (y < 0.0) = 4
 ```
 
-Notasi menuliskan range sebagai `Integer [1..4]`; Haskell tidak mempunyai padanannya dan hanya menuliskan `Integer`. Pembatasan itu hilang dalam terjemahan, dan tinggal hidup pada spesifikasi.
+Notasi menuliskan range sebagai `Integer [1..4]`; Haskell tidak mempunyai padanannya dan hanya menuliskan `Integer`. Pembatasan itu hilang dalam terjemahan, dan hanya bertahan pada spesifikasi.
 
 Sebaliknya, Haskell memberi sesuatu yang tidak dapat diberikan notasi. Guard di atas tidak mencakup seluruh kemungkinan, dan bila diminta, kompilator akan memperingatkan bahwa masih ada kasus yang tak tertangani:
 
@@ -222,7 +222,7 @@ Sebaliknya, Haskell memberi sesuatu yang tidak dapat diberikan notasi. Guard di 
 $ ghc -Wincomplete-patterns Kuadran.hs
 ```
 
-Peringatan itu tidak berarti programnya salah; di sini memang disengaja, karena prasyaratlah yang menutupi sisanya. Yang berharga adalah peringatannya: setiap kali muncul, jawablah dengan sadar — apakah sisa kasusnya memang tidak mungkin terjadi, atau saya yang lupa memikirkannya?
+Peringatan itu tidak berarti programnya salah; di sini hal itu memang disengaja, karena prasyaratlah yang menutupi sisanya. Yang berharga adalah peringatannya: setiap kali muncul, jawablah dengan sadar — apakah sisa kasusnya memang tidak mungkin terjadi, atau saya yang lupa memikirkannya?
 
 ### Pembatasan pada Domain dan Range
 
@@ -233,7 +233,7 @@ Peringatan itu tidak berarti programnya salah; di sini memang disengaja, karena 
 | Selang terbatas | `Integer [1..12]` | nilai bulat dari 1 sampai dengan 12 |
 | Selang tak terbatas | `Integer > 0`, `Real ≤ 13.0` | nilai yang dibatasi di satu sisi (batas atas saja atau bawah saja) |
 
-Pembatasan ini adalah bagian dari **spesifikasi**, bukan sesuatu yang dapat diperiksa mesin. Spesifikasi menyatakan janji, dan janji itu tetap harus ditegakkan oleh penulisnya. Menuliskannya tetap berharga: ini memindahkan sebagian prasyarat dari kalimat ke dalam definisi, tempat pembaca pasti melihatnya.
+Pembatasan ini adalah bagian dari **spesifikasi**, bukan sesuatu yang dapat diperiksa mesin. Spesifikasi menyatakan janji, dan janji itu tetap harus ditegakkan oleh penulisnya. Menuliskannya tetap berharga: cara ini memindahkan sebagian prasyarat dari kalimat ke dalam definisi, tempat pembaca pasti melihatnya.
 
 ## Evaluasi Ekspresi Kondisional
 
@@ -274,7 +274,7 @@ isDivisor (a, b) : (b ≠ 0) and (a mod b = 0)
 
 Teks ini **tidak benar**. Operator `and` menuntut kedua operannya bernilai, dan bila `b` bernilai nol, operan kedua tidak mempunyai nilai. Ekspresi tidak terdefinisi, meskipun operan pertama sudah bernilai `false`.
 
-Untuk itu tersedia dua operator tambahan:
+Untuk itu tersedia dua operator tambahan, yang dikenal sebagai operator hubung-singkat (*short-circuit operator*):
 
 | Ekspresi | Setara dengan | Arti |
 |---|---|---|
@@ -309,7 +309,7 @@ APLIKASI
       false
 ```
 
-`and then` **tidak komutatif**: `(a mod b = 0) and then (b ≠ 0)` tetap tidak terdefinisi bila `b` nol. Urutan operan menjadi berarti. Ini adalah satu-satunya tempat dalam notasi ini yang urutan operannya berarti. Karena itu, pakailah `and then` hanya bila memang diperlukan, yaitu bila operan kedua tidak selalu terdefinisi, dan pakailah `and` biasa di tempat lain.
+`and then` **tidak komutatif**: `(a mod b = 0) and then (b ≠ 0)` tetap tidak terdefinisi bila `b` nol. Urutan operan menjadi penting, dan inilah satu-satunya tempat dalam notasi ini yang urutan operannya bermakna. Sebab itu, pakailah `and then` hanya bila memang diperlukan, yaitu bila operan kedua tidak selalu terdefinisi, dan pakailah `and` biasa di tempat lain.
 
 Dalam Haskell:
 
@@ -321,7 +321,7 @@ isDivisor a b = (b /= 0) && (a `mod` b == 0)
 
 Haskell hanya mempunyai `&&` dan `||`, dan keduanya **sudah** berperilaku seperti `and then` dan `or else`. Perbedaan yang dibuat notasi kita menghilang dalam terjemahan.
 
-Pembedaan itu tetap berarti bagi pembaca, meskipun tidak bagi mesin: `and then` menyatakan bahwa penulisnya sadar operan kedua tidak selalu terdefinisi, dan sengaja bersandar pada urutan. Dalam Haskell, maksud itu hanya dapat disampaikan lewat komentar. Ini adalah kebalikan dari keadaan pada Contoh 2, tempat bahasa justru lebih kuat daripada notasi.
+Pembedaan itu tetap berarti bagi pembaca, meskipun tidak bagi mesin: `and then` menyatakan bahwa penulisnya sadar operan kedua tidak selalu terdefinisi, dan sengaja bersandar pada urutan. Dalam Haskell, maksud itu hanya dapat disampaikan lewat komentar. Keadaan ini berkebalikan dengan Contoh 2, tempat bahasa justru lebih kuat daripada notasi.
 
 ## Kesalahan yang Sering Terjadi
 
@@ -329,7 +329,7 @@ Pembedaan itu tetap berarti bagi pembaca, meskipun tidak bagi mesin: `and then` 
 |---|---|---|
 | Kasus tidak lengkap | ada masukan yang tidak menghasilkan apa-apa | ambil nilai ekstrem dan nilai batas; apakah tercakup? |
 | Kasus tumpang tindih | dua kasus benar bersamaan | untuk setiap pasangan kasus, adakah nilai yang memenuhi keduanya? |
-| Batas salah dimiliki | hanya keliru tepat pada nilai batas | uji **setiap** nilai batas, bukan hanya nilai di antaranya |
+| Batas masuk ke kasus yang salah | hanya keliru tepat pada nilai batas | uji **setiap** nilai batas, bukan hanya nilai di antaranya |
 | `else` menutupi lubang | kasus yang terlupa menghasilkan jawaban yang tampak wajar | tuliskan sementara kondisi terakhir secara lengkap; masih lengkapkah? |
 | `if` tanpa `else` | tidak ada nilai bagi sebagian masukan | tidak berlaku dalam notasi ini |
 | `and` untuk operan yang tidak selalu terdefinisi | tidak terdefinisi padahal seharusnya bernilai | apakah operan kedua terdefinisi untuk seluruh domain? |
@@ -359,7 +359,7 @@ r (a, b) :
         a < b : b - a
 ```
 
-**Memperbaiki.** Fungsi berikut menghitung ongkos kirim menurut tarif yang berlaku. Ketiga contoh aplikasinya menghasilkan jawaban yang benar, dan kasus-kasusnya memenuhi syarat lengkap maupun syarat disjoint. Meskipun demikian, fungsi ini keliru.
+**Memperbaiki.** Fungsi berikut menghitung ongkos kirim menurut tarif yang berlaku. Ketiga contoh aplikasinya menghasilkan jawaban yang benar, dan kasus-kasusnya memenuhi baik syarat lengkap maupun syarat disjoint. Meskipun demikian, fungsi ini keliru.
 
 ```
 JUDUL   Ongkos Kirim Paket
@@ -411,4 +411,4 @@ APLIKASI
 
 **Menelusuri.** Tuliskan penelusuran lengkap `isDivisor (12, 0)`. Kemudian tuliskan penelusuran `(12 mod 0 = 0) and then (0 ≠ 0)` dan jelaskan apa yang terjadi.
 
-**Merancang.** Pada Bab 3, penelusuran `isLeapYear (1900)` menunjukkan bahwa hasil akhirnya sudah dapat dipastikan sebelum ekspresinya tersisa satu nilai, tetapi hanya setelah kedua operan `and` yang terluar dihitung, dan urutan pemeriksaannya sama sekali tidak terbaca dari teksnya. Tuliskan ulang `isLeapYear` sebagai ekspresi kondisional dengan `depend on`. Apakah versi itu lebih mudah dibaca? Apakah kondisi-kondisinya disjoint? Mana yang akan Anda pilih untuk diktat ini, dan mengapa?
+**Merancang.** Pada Bab 3, penelusuran `isLeapYear (1900)` menunjukkan bahwa hasil akhirnya sudah dapat dipastikan sebelum ekspresinya menjadi satu nilai, tetapi hanya setelah kedua operan `and` yang terluar dihitung, dan urutan pemeriksaannya sama sekali tidak tampak dari teksnya. Tuliskan ulang `isLeapYear` sebagai ekspresi kondisional dengan `depend on`. Apakah versi itu lebih mudah dibaca? Apakah kondisi-kondisinya disjoint? Mana yang akan Anda pilih untuk diktat ini, dan mengapa?

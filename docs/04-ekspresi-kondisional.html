@@ -37,10 +37,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-812c2192.js";
+            window.path_to_searchindex_js = "searchindex-b1c70305.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-2ab1aa36.js"></script>
+        <script src="toc-05c84685.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -178,9 +178,9 @@
                     <main>
                         <h1 id="ekspresi-kondisional"><a class="header" href="#ekspresi-kondisional">Ekspresi Kondisional</a></h1>
 <h2 id="analisis-kasus"><a class="header" href="#analisis-kasus">Analisis Kasus</a></h2>
-<p>Tidak semua persoalan dapat dinyatakan dengan satu ekspresi tunggal. Seringkali nilai yang dihasilkan bergantung pada <em>kasus</em> mana yang berlaku bagi nilai masukan: wujud air bergantung pada suhunya, kuadran sebuah titik bergantung pada tanda absis dan ordinatnya, tarif bergantung pada jarak tempuh.</p>
-<p><strong>Analisis kasus</strong> adalah kegiatan memilah domain sebuah fungsi menjadi beberapa bagian, dan menentukan ekspresi yang berlaku bagi masing-masing bagian. Hasilnya dituliskan sebagai <strong>ekspresi kondisional</strong>.</p>
-<p>Analisis kasus adalah keterampilan tersendiri, dan menguasai notasinya tidak dengan sendirinya menguasainya. Sebagian besar isi bab ini membahas cara melakukannya dengan benar, dan cara memeriksa bahwa hasilnya benar.</p>
+<p>Tidak semua persoalan dapat dinyatakan dengan satu ekspresi tunggal. Sering kali nilai yang dihasilkan bergantung pada <em>kasus</em> mana yang berlaku bagi nilai masukan: wujud air bergantung pada suhunya, kuadran sebuah titik bergantung pada tanda absis dan ordinatnya, tarif bergantung pada jarak tempuh.</p>
+<p><strong>Analisis kasus</strong> (<em>case analysis</em>) adalah kegiatan memilah domain sebuah fungsi menjadi beberapa bagian, dan menentukan ekspresi yang berlaku bagi masing-masing bagian. Hasilnya dituliskan sebagai <strong>ekspresi kondisional</strong>.</p>
+<p>Analisis kasus adalah keterampilan tersendiri, dan menguasai notasinya tidak dengan sendirinya berarti menguasai keterampilan itu. Sebagian besar isi bab ini membahas cara melakukannya dengan benar, dan cara memeriksa bahwa hasilnya benar.</p>
 <h2 id="notasi-ekspresi-kondisional"><a class="header" href="#notasi-ekspresi-kondisional">Notasi Ekspresi Kondisional</a></h2>
 <p>Bentuk umumnya:</p>
 <pre><code>namaFungsi (x) :
@@ -189,22 +189,22 @@
         *kondisi-2* : *ekspresi-2*
         *kondisi-3* : *ekspresi-3*
 </code></pre>
-<p>Setiap baris terdiri dari sebuah <strong>kondisi</strong> (ekspresi Boolean atas parameter fungsi) dan sebuah <strong>ekspresi</strong> yang berlaku bila kondisi itu benar.</p>
+<p>Setiap baris terdiri atas sebuah <strong>kondisi</strong> (ekspresi Boolean atas parameter fungsi) dan sebuah <strong>ekspresi</strong> yang berlaku bila kondisi itu benar.</p>
 <p>Nilai ekspresi kondisional adalah nilai ekspresi yang kondisinya benar.</p>
 <h2 id="dua-syarat-lengkap-dan-disjoint"><a class="header" href="#dua-syarat-lengkap-dan-disjoint">Dua Syarat: Lengkap dan Disjoint</a></h2>
 <p>Rumusan di atas menyembunyikan sebuah janji: <em>ada tepat satu</em> kondisi yang benar. Janji itu tidak dijamin oleh notasi; penulisnyalah yang harus memenuhinya. Ada dua syarat, dan keduanya wajib.</p>
-<p><strong>Lengkap (exhaustive).</strong> Setiap nilai dalam domain harus memenuhi sekurang-kurangnya satu kondisi.</p>
+<p><strong>Lengkap (<em>exhaustive</em>).</strong> Setiap nilai dalam domain harus memenuhi sekurang-kurangnya satu kondisi.</p>
 <p>\[ \text{kondisi-1} \ \textbf{or}\ \text{kondisi-2} \ \textbf{or}\ \text{kondisi-3} \]</p>
 <p>harus bernilai <code>true</code> untuk setiap nilai domain. Bila tidak, ada nilai masukan yang tidak menghasilkan apa-apa, dan sebuah fungsi yang tidak menghasilkan apa-apa untuk sebagian domainnya bukanlah fungsi atas domain itu.</p>
-<p><strong>Disjoint (mutually exclusive).</strong> Tidak boleh ada nilai yang memenuhi lebih dari satu kondisi. Untuk setiap pasangan kondisi:</p>
+<p><strong>Disjoint (<em>mutually exclusive</em>).</strong> Tidak boleh ada nilai yang memenuhi lebih dari satu kondisi. Untuk setiap pasangan kondisi:</p>
 <p>\[ \textbf{not}\ (\text{kondisi-}i \ \textbf{and}\ \text{kondisi-}j) \qquad \text{untuk setiap } i \neq j \]</p>
-<p>Bila dua kondisi dapat benar bersamaan, ekspresi menjadi ambigu: ada dua nilai yang sama-sama berhak menjadi hasil.</p>
+<p>Bila dua kondisi dapat benar secara bersamaan, ekspresi menjadi ambigu: ada dua nilai yang sama-sama berhak menjadi hasil.</p>
 <blockquote>
 <p><strong>Urutan kasus tidak berarti.</strong> Dalam notasi ini, urutan penulisan kasus <strong>tidak berarti apa-apa</strong>. Kasus boleh dituliskan dengan urutan mana pun tanpa mengubah arti. Inilah sebabnya syarat disjoint bersifat wajib dan bukan sekadar anjuran: tidak ada aturan “yang pertama cocok, itulah yang dipakai” yang dapat menyelamatkan kita.</p>
-<p>Banyak bahasa pemrograman justru memakai aturan tersebut, dan kelak, ketika menerjemahkan ke bahasa nyata, kemudahan itu akan tersedia. Teks yang bergantung pada urutan hanya dapat dipahami dengan membacanya dari atas ke bawah secara utuh; notasi ini tidak memakainya.</p>
+<p>Banyak bahasa pemrograman justru memakai aturan tersebut, dan kelak, ketika kita menerjemahkan ke bahasa nyata, kemudahan itu akan tersedia. Teks yang bergantung pada urutan hanya dapat dipahami dengan membacanya dari atas ke bawah secara utuh; notasi ini tidak memakainya.</p>
 </blockquote>
 <h2 id="kondisi-else"><a class="header" href="#kondisi-else">Kondisi <code>else</code></a></h2>
-<p>Menuliskan negasi dari seluruh kondisi sebelumnya seringkali panjang. Untuk itu tersedia kondisi khusus <code>else</code>, yang berarti tepat itu:</p>
+<p>Menuliskan negasi dari seluruh kondisi sebelumnya sering kali panjang. Untuk itu tersedia kondisi khusus <code>else</code>, yang maknanya tepat seperti itu:</p>
 <pre><code>namaFungsi (x) :
     depend on x
         *kondisi-1* : *ekspresi-1*
@@ -212,8 +212,8 @@
         else        : *ekspresi-3*
 </code></pre>
 <p>setara dengan menuliskan <code>not (*kondisi-1*) and not (*kondisi-2*)</code> pada baris terakhir.</p>
-<p>Dengan <code>else</code>, syarat lengkap otomatis terpenuhi, dan syarat disjoint tinggal berlaku bagi kondisi-kondisi sebelumnya.</p>
-<p>Kemudahan ini ada harganya: <strong><code>else</code> menyembunyikan kasus yang diwakilinya.</strong> Pembaca tidak lagi melihat kasus apa yang sesungguhnya ditangani baris terakhir, dan penulisnya sendiri kadang tidak menyadari bahwa ada kasus yang tidak pernah ia pikirkan namun terlanjur tertampung di situ. Pakailah <code>else</code> bila sisa kasusnya memang satu kelompok yang wajar, dan hindari bila sisanya sebenarnya beberapa kasus berbeda yang kebetulan berbagi hasil.</p>
+<p>Dengan <code>else</code>, syarat lengkap dengan sendirinya terpenuhi, dan syarat disjoint tinggal berlaku bagi kondisi-kondisi sebelumnya.</p>
+<p>Kemudahan ini ada harganya: <strong><code>else</code> menyembunyikan kasus yang diwakilinya.</strong> Pembaca tidak lagi melihat kasus apa yang sesungguhnya ditangani baris terakhir, dan penulisnya sendiri kadang-kadang tidak menyadari adanya kasus yang tidak pernah terpikirkan olehnya, tetapi telanjur tertampung di situ. Pakailah <code>else</code> bila sisa kasusnya memang merupakan satu kelompok yang wajar, dan hindarilah bila sisanya sebenarnya terdiri atas beberapa kasus berbeda yang kebetulan memberikan hasil yang sama.</p>
 <h2 id="bentuk-if-then-else"><a class="header" href="#bentuk-if-then-else">Bentuk <code>if-then-else</code></a></h2>
 <p>Khusus untuk dua kasus yang saling melengkapi, tersedia bentuk yang lebih ringkas:</p>
 <pre><code>if *kondisi* then
@@ -228,15 +228,15 @@ else
 </code></pre>
 <p>Bentuk ini sudah dipakai pada <code>max2</code> di Bab 2.</p>
 <p><code>else</code> <strong>tidak boleh dihilangkan</strong>. Bentuk <code>if c then e</code> tanpa <code>else</code> tidak mempunyai arti dalam notasi ini: bila <code>c</code> bernilai <code>false</code>, tidak ada nilai yang dihasilkan. Dalam paradigma imperatif, <code>if</code> tanpa <code>else</code> masuk akal karena yang dilewatkan adalah <em>aksi</em>, dan “tidak melakukan apa-apa” adalah pilihan yang sah. Dalam paradigma fungsional, yang dihasilkan adalah <em>nilai</em>, dan “tidak menghasilkan nilai” bukanlah pilihan.</p>
-<p>Gunakan <code>if-then-else</code> hanya untuk dua kasus. Untuk tiga kasus atau lebih, <code>depend on</code> jauh lebih terbaca daripada <code>if-then-else</code> bersarang, dan membuat syarat lengkap serta disjoint dapat diperiksa dengan sekali pandang.</p>
+<p>Gunakan <code>if-then-else</code> hanya untuk dua kasus. Untuk tiga kasus atau lebih, <code>depend on</code> jauh lebih mudah dibaca daripada <code>if-then-else</code> bersarang (<em>nested</em>), dan membuat syarat lengkap serta disjoint dapat diperiksa dengan sekali pandang.</p>
 <h2 id="contoh-1-pemilahan-berdasarkan-nilai-ambang"><a class="header" href="#contoh-1-pemilahan-berdasarkan-nilai-ambang">Contoh 1: Pemilahan Berdasarkan Nilai Ambang</a></h2>
-<p><strong>Persoalan.</strong> Pada tekanan 1 atm, tentukan wujud air berdasarkan suhunya dalam derajat Celcius. Air membeku pada 0 dan mendidih pada 100; di antara keduanya air berwujud cair.</p>
-<p>Persoalan ini mengandung dua batas, <code>0.0</code> dan <code>100.0</code>, dan tidak menyatakan dengan tegas ke mana batas itu sendiri termasuk. Keputusan harus diambil, dan setelah diambil harus dituliskan pada spesifikasi.</p>
+<p><strong>Persoalan.</strong> Pada tekanan 1 atm, tentukan wujud air berdasarkan suhunya dalam derajat Celsius. Air membeku pada 0 dan mendidih pada 100; di antara keduanya air berwujud cair.</p>
+<p>Persoalan ini mengandung dua batas, <code>0.0</code> dan <code>100.0</code>, dan tidak menyatakan dengan tegas batas itu sendiri termasuk ke kasus mana. Keputusan harus diambil, dan setelah diambil harus dituliskan pada spesifikasi.</p>
 <pre><code>JUDUL   Wujud Air pada Tekanan 1 atm
 </code></pre>
 <pre><code>DEFINISI DAN SPESIFIKASI
     stateOfWater : Real → Character
-    { stateOfWater (t) adalah wujud air pada suhu t derajat Celcius dan
+    { stateOfWater (t) adalah wujud air pada suhu t derajat Celsius dan
       tekanan 1 atm: 'S' bila padat (solid), 'L' bila cair (liquid), 'G' 
       bila uap (gas). Nilai di perbatasan dimiliki oleh wujud pada suhu 
       yang lebih rendah:
@@ -261,14 +261,14 @@ else
     ⇒ stateOfWater (150.0)
       'G'
 </code></pre>
-<p>Periksalah kedua syarat. <strong>Lengkap:</strong> setiap bilangan riil memenuhi salah satu dari <code>t ≤ 0.0</code>, <code>0.0 &lt; t ≤ 100.0</code>, atau <code>t &gt; 100.0</code>. <strong>Disjoint:</strong> ketiganya tidak dapat benar bersamaan, karena masing-masing batas hanya dimiliki oleh satu kasus.</p>
+<p>Periksalah kedua syarat. <strong>Lengkap:</strong> setiap bilangan riil memenuhi salah satu dari <code>t ≤ 0.0</code>, <code>0.0 &lt; t ≤ 100.0</code>, atau <code>t &gt; 100.0</code>. <strong>Disjoint:</strong> ketiganya tidak dapat benar secara bersamaan, karena masing-masing batas hanya dimiliki oleh satu kasus.</p>
 <p>Kelima contoh aplikasi dipilih dengan sengaja: satu di dalam setiap kasus, dan satu tepat pada masing-masing batas, karena kekeliruan batas hanya tampak bila batasnya diuji.</p>
 <blockquote>
 <p><strong>Catatan.</strong> Menyatakan kategori sebagai karakter <code>'S'</code>, <code>'L'</code>, <code>'G'</code> adalah cara sementara: notasi kita belum mempunyai sarana untuk menyatakan “salah satu dari tiga kemungkinan bernama”. Bab 5 akan menyediakannya.</p>
 </blockquote>
 <p>Dalam Haskell:</p>
 <pre><code class="language-haskell">stateOfWater :: Double -&gt; Char
--- stateOfWater t adalah wujud air pada suhu t derajat Celcius, tekanan 1 atm
+-- stateOfWater t adalah wujud air pada suhu t derajat Celsius, tekanan 1 atm
 stateOfWater t
   | t &lt;= 0.0   = 'S'
   | t &lt;= 100.0 = 'L'
@@ -277,10 +277,10 @@ stateOfWater t
 <p>Terjemahan ini <strong>tidak</strong> satu lawan satu:</p>
 <ul>
 <li>Haskell menuliskan kondisi sebagai <em>guard</em> dengan tanda <code>|</code>, dan <code>otherwise</code> adalah padanan <code>else</code>.</li>
-<li>Guard pada Haskell <strong>diperiksa berurutan</strong>: yang pertama bernilai <code>True</code> itulah yang dipakai. Karena itu kondisi kedua cukup ditulis <code>t &lt;= 100.0</code>, tanpa <code>t &gt; 0.0</code>, sebab baris pertama sudah menyaring kasus itu.</li>
+<li>Guard pada Haskell <strong>diperiksa berurutan</strong>: yang pertama bernilai <code>True</code> itulah yang dipakai. Sebab itu, kondisi kedua cukup ditulis <code>t &lt;= 100.0</code>, tanpa <code>t &gt; 0.0</code>, sebab baris pertama sudah menyaring kasus itu.</li>
 <li>Akibatnya, Haskell <strong>tidak memaksa</strong> syarat disjoint. Teks yang kondisinya tumpang tindih tetap dapat dikompilasi dan dijalankan, dan hasilnya ditentukan oleh urutan penulisan.</li>
 </ul>
-<p>Notasi lebih ketat daripada bahasanya di sini, dan kekakuan itu disengaja: menuliskan kondisi kedua secara lengkap memaksa kita memikirkan batas bawahnya.</p>
+<p>Di sini, notasi lebih ketat daripada bahasanya, dan kekakuan itu disengaja: menuliskan kondisi kedua secara lengkap memaksa kita memikirkan batas bawahnya.</p>
 <h2 id="contoh-2-pemilahan-dengan-prasyarat"><a class="header" href="#contoh-2-pemilahan-dengan-prasyarat">Contoh 2: Pemilahan dengan Prasyarat</a></h2>
 <p><strong>Persoalan.</strong> Tentukan kuadran tempat sebuah titik berada, dari absis dan ordinatnya.</p>
 <p>Titik yang terletak pada salah satu sumbu tidak berada dalam kuadran mana pun, demikian pula titik pusat. Kasus-kasus itu tidak dapat dijawab, dan karena itu harus dikeluarkan dari domain melalui prasyarat.</p>
@@ -311,8 +311,8 @@ stateOfWater t
       4
 </code></pre>
 <p>Keempat kondisi ini <strong>tidak lengkap</strong> atas seluruh <code>Real, Real</code>: nilai <code>(0.0, 5.0)</code> tidak memenuhi satu pun. Yang membuatnya sah adalah prasyarat: kelengkapan hanya dituntut atas domain yang tersisa <strong>setelah</strong> prasyarat diberlakukan.</p>
-<p>Hubungan antara prasyarat dan analisis kasus berlaku dua arah: setiap kasus yang tidak dapat kita jawab harus dikeluarkan lewat prasyarat, dan setiap prasyarat yang kita tuliskan mempersempit apa yang harus dicakup oleh kasus-kasus kita. Menyusun keduanya bersamaan lebih mudah daripada menyusunnya berurutan.</p>
-<p>Kasus terakhir dapat dipersingkat menjadi <code>else</code>: empat kasus menjadi tiga kasus dan satu <code>else</code>, dan teksnya lebih pendek. Harganya, titik <code>(0.0, 5.0)</code> akan menghasilkan <code>4</code> alih-alih melanggar prasyarat secara terbuka. <code>else</code> mengubah pelanggaran prasyarat menjadi jawaban yang keliru namun tampak wajar.</p>
+<p>Hubungan antara prasyarat dan analisis kasus berlaku dua arah: setiap kasus yang tidak dapat kita jawab harus dikeluarkan lewat prasyarat, dan setiap prasyarat yang kita tuliskan mempersempit apa yang harus dicakup oleh kasus-kasus kita. Menyusun keduanya secara bersamaan lebih mudah daripada menyusunnya satu per satu.</p>
+<p>Kasus terakhir dapat dipersingkat menjadi <code>else</code>: empat kasus menjadi tiga kasus dan satu <code>else</code>, dan teksnya lebih pendek. Akibatnya, titik <code>(0.0, 5.0)</code> akan menghasilkan <code>4</code>, bukannya melanggar prasyarat secara terang-terangan. <code>else</code> mengubah pelanggaran prasyarat menjadi jawaban yang keliru, tetapi tampak wajar.</p>
 <p>Dalam Haskell:</p>
 <pre><code class="language-haskell">quadrant :: Double -&gt; Double -&gt; Integer
 -- quadrant x y adalah nomor kuadran titik (x,y)
@@ -323,11 +323,11 @@ quadrant x y
   | (x &lt; 0.0) &amp;&amp; (y &lt; 0.0) = 3
   | (x &gt; 0.0) &amp;&amp; (y &lt; 0.0) = 4
 </code></pre>
-<p>Notasi menuliskan range sebagai <code>Integer [1..4]</code>; Haskell tidak mempunyai padanannya dan hanya menuliskan <code>Integer</code>. Pembatasan itu hilang dalam terjemahan, dan tinggal hidup pada spesifikasi.</p>
+<p>Notasi menuliskan range sebagai <code>Integer [1..4]</code>; Haskell tidak mempunyai padanannya dan hanya menuliskan <code>Integer</code>. Pembatasan itu hilang dalam terjemahan, dan hanya bertahan pada spesifikasi.</p>
 <p>Sebaliknya, Haskell memberi sesuatu yang tidak dapat diberikan notasi. Guard di atas tidak mencakup seluruh kemungkinan, dan bila diminta, kompilator akan memperingatkan bahwa masih ada kasus yang tak tertangani:</p>
 <pre><code class="language-bash">$ ghc -Wincomplete-patterns Kuadran.hs
 </code></pre>
-<p>Peringatan itu tidak berarti programnya salah; di sini memang disengaja, karena prasyaratlah yang menutupi sisanya. Yang berharga adalah peringatannya: setiap kali muncul, jawablah dengan sadar — apakah sisa kasusnya memang tidak mungkin terjadi, atau saya yang lupa memikirkannya?</p>
+<p>Peringatan itu tidak berarti programnya salah; di sini hal itu memang disengaja, karena prasyaratlah yang menutupi sisanya. Yang berharga adalah peringatannya: setiap kali muncul, jawablah dengan sadar — apakah sisa kasusnya memang tidak mungkin terjadi, atau saya yang lupa memikirkannya?</p>
 <h3 id="pembatasan-pada-domain-dan-range"><a class="header" href="#pembatasan-pada-domain-dan-range">Pembatasan pada Domain dan Range</a></h3>
 <p><code>Integer [1..4]</code> pada definisi <code>quadrant</code> adalah pemakaian pertama sebuah kelengkapan kecil yang akan sering dipakai mulai Bab 5: sebuah type dasar boleh diikuti pembatasan yang mempersempit himpunan nilainya.</p>
 <div class="table-wrapper">
@@ -341,7 +341,7 @@ quadrant x y
 </tbody>
 </table>
 </div>
-<p>Pembatasan ini adalah bagian dari <strong>spesifikasi</strong>, bukan sesuatu yang dapat diperiksa mesin. Spesifikasi menyatakan janji, dan janji itu tetap harus ditegakkan oleh penulisnya. Menuliskannya tetap berharga: ini memindahkan sebagian prasyarat dari kalimat ke dalam definisi, tempat pembaca pasti melihatnya.</p>
+<p>Pembatasan ini adalah bagian dari <strong>spesifikasi</strong>, bukan sesuatu yang dapat diperiksa mesin. Spesifikasi menyatakan janji, dan janji itu tetap harus ditegakkan oleh penulisnya. Menuliskannya tetap berharga: cara ini memindahkan sebagian prasyarat dari kalimat ke dalam definisi, tempat pembaca pasti melihatnya.</p>
 <h2 id="evaluasi-ekspresi-kondisional"><a class="header" href="#evaluasi-ekspresi-kondisional">Evaluasi Ekspresi Kondisional</a></h2>
 <p>Evaluasi sebuah ekspresi kondisional berlangsung dalam dua tahap: kondisi-kondisi dievaluasi hingga ditemukan yang bernilai <code>true</code>, lalu ekspresi yang bersesuaian dievaluasi. Ekspresi pada kasus lain <strong>tidak</strong> dievaluasi.</p>
 <p>Penelusuran <code>stateOfWater (25.0)</code>:</p>
@@ -368,7 +368,7 @@ quadrant x y
 <pre><code>isDivisor (a, b) : (b ≠ 0) and (a mod b = 0)
 </code></pre>
 <p>Teks ini <strong>tidak benar</strong>. Operator <code>and</code> menuntut kedua operannya bernilai, dan bila <code>b</code> bernilai nol, operan kedua tidak mempunyai nilai. Ekspresi tidak terdefinisi, meskipun operan pertama sudah bernilai <code>false</code>.</p>
-<p>Untuk itu tersedia dua operator tambahan:</p>
+<p>Untuk itu tersedia dua operator tambahan, yang dikenal sebagai operator hubung-singkat (<em>short-circuit operator</em>):</p>
 <div class="table-wrapper">
 <table>
 <thead>
@@ -399,14 +399,14 @@ quadrant x y
     ⇒ isDivisor (12, 0)
       false
 </code></pre>
-<p><code>and then</code> <strong>tidak komutatif</strong>: <code>(a mod b = 0) and then (b ≠ 0)</code> tetap tidak terdefinisi bila <code>b</code> nol. Urutan operan menjadi berarti. Ini adalah satu-satunya tempat dalam notasi ini yang urutan operannya berarti. Karena itu, pakailah <code>and then</code> hanya bila memang diperlukan, yaitu bila operan kedua tidak selalu terdefinisi, dan pakailah <code>and</code> biasa di tempat lain.</p>
+<p><code>and then</code> <strong>tidak komutatif</strong>: <code>(a mod b = 0) and then (b ≠ 0)</code> tetap tidak terdefinisi bila <code>b</code> nol. Urutan operan menjadi penting, dan inilah satu-satunya tempat dalam notasi ini yang urutan operannya bermakna. Sebab itu, pakailah <code>and then</code> hanya bila memang diperlukan, yaitu bila operan kedua tidak selalu terdefinisi, dan pakailah <code>and</code> biasa di tempat lain.</p>
 <p>Dalam Haskell:</p>
 <pre><code class="language-haskell">isDivisor :: Integer -&gt; Integer -&gt; Bool
 -- isDivisor a b bernilai True bila b membagi habis a; False bila b = 0
 isDivisor a b = (b /= 0) &amp;&amp; (a `mod` b == 0)
 </code></pre>
 <p>Haskell hanya mempunyai <code>&amp;&amp;</code> dan <code>||</code>, dan keduanya <strong>sudah</strong> berperilaku seperti <code>and then</code> dan <code>or else</code>. Perbedaan yang dibuat notasi kita menghilang dalam terjemahan.</p>
-<p>Pembedaan itu tetap berarti bagi pembaca, meskipun tidak bagi mesin: <code>and then</code> menyatakan bahwa penulisnya sadar operan kedua tidak selalu terdefinisi, dan sengaja bersandar pada urutan. Dalam Haskell, maksud itu hanya dapat disampaikan lewat komentar. Ini adalah kebalikan dari keadaan pada Contoh 2, tempat bahasa justru lebih kuat daripada notasi.</p>
+<p>Pembedaan itu tetap berarti bagi pembaca, meskipun tidak bagi mesin: <code>and then</code> menyatakan bahwa penulisnya sadar operan kedua tidak selalu terdefinisi, dan sengaja bersandar pada urutan. Dalam Haskell, maksud itu hanya dapat disampaikan lewat komentar. Keadaan ini berkebalikan dengan Contoh 2, tempat bahasa justru lebih kuat daripada notasi.</p>
 <h2 id="kesalahan-yang-sering-terjadi"><a class="header" href="#kesalahan-yang-sering-terjadi">Kesalahan yang Sering Terjadi</a></h2>
 <div class="table-wrapper">
 <table>
@@ -416,7 +416,7 @@ isDivisor a b = (b /= 0) &amp;&amp; (a `mod` b == 0)
 <tbody>
 <tr><td>Kasus tidak lengkap</td><td>ada masukan yang tidak menghasilkan apa-apa</td><td>ambil nilai ekstrem dan nilai batas; apakah tercakup?</td></tr>
 <tr><td>Kasus tumpang tindih</td><td>dua kasus benar bersamaan</td><td>untuk setiap pasangan kasus, adakah nilai yang memenuhi keduanya?</td></tr>
-<tr><td>Batas salah dimiliki</td><td>hanya keliru tepat pada nilai batas</td><td>uji <strong>setiap</strong> nilai batas, bukan hanya nilai di antaranya</td></tr>
+<tr><td>Batas masuk ke kasus yang salah</td><td>hanya keliru tepat pada nilai batas</td><td>uji <strong>setiap</strong> nilai batas, bukan hanya nilai di antaranya</td></tr>
 <tr><td><code>else</code> menutupi lubang</td><td>kasus yang terlupa menghasilkan jawaban yang tampak wajar</td><td>tuliskan sementara kondisi terakhir secara lengkap; masih lengkapkah?</td></tr>
 <tr><td><code>if</code> tanpa <code>else</code></td><td>tidak ada nilai bagi sebagian masukan</td><td>tidak berlaku dalam notasi ini</td></tr>
 <tr><td><code>and</code> untuk operan yang tidak selalu terdefinisi</td><td>tidak terdefinisi padahal seharusnya bernilai</td><td>apakah operan kedua terdefinisi untuk seluruh domain?</td></tr>
@@ -443,7 +443,7 @@ r (a, b) :
         a &gt; b : a - b
         a &lt; b : b - a
 </code></pre>
-<p><strong>Memperbaiki.</strong> Fungsi berikut menghitung ongkos kirim menurut tarif yang berlaku. Ketiga contoh aplikasinya menghasilkan jawaban yang benar, dan kasus-kasusnya memenuhi syarat lengkap maupun syarat disjoint. Meskipun demikian, fungsi ini keliru.</p>
+<p><strong>Memperbaiki.</strong> Fungsi berikut menghitung ongkos kirim menurut tarif yang berlaku. Ketiga contoh aplikasinya menghasilkan jawaban yang benar, dan kasus-kasusnya memenuhi baik syarat lengkap maupun syarat disjoint. Meskipun demikian, fungsi ini keliru.</p>
 <pre><code>JUDUL   Ongkos Kirim Paket
 </code></pre>
 <pre><code>DEFINISI DAN SPESIFIKASI
@@ -486,7 +486,7 @@ r (a, b) :
 <li>Menentukan nilai terbesar dari tiga bilangan bulat, dengan <code>depend on</code> dan tanpa memakai <code>max2</code>. Bandingkan hasilnya dengan penyelesaian memakai <code>max2</code> pada Bab 2, dan sebutkan mana yang lebih mudah diperiksa kebenarannya.</li>
 </ol>
 <p><strong>Menelusuri.</strong> Tuliskan penelusuran lengkap <code>isDivisor (12, 0)</code>. Kemudian tuliskan penelusuran <code>(12 mod 0 = 0) and then (0 ≠ 0)</code> dan jelaskan apa yang terjadi.</p>
-<p><strong>Merancang.</strong> Pada Bab 3, penelusuran <code>isLeapYear (1900)</code> menunjukkan bahwa hasil akhirnya sudah dapat dipastikan sebelum ekspresinya tersisa satu nilai, tetapi hanya setelah kedua operan <code>and</code> yang terluar dihitung, dan urutan pemeriksaannya sama sekali tidak terbaca dari teksnya. Tuliskan ulang <code>isLeapYear</code> sebagai ekspresi kondisional dengan <code>depend on</code>. Apakah versi itu lebih mudah dibaca? Apakah kondisi-kondisinya disjoint? Mana yang akan Anda pilih untuk diktat ini, dan mengapa?</p>
+<p><strong>Merancang.</strong> Pada Bab 3, penelusuran <code>isLeapYear (1900)</code> menunjukkan bahwa hasil akhirnya sudah dapat dipastikan sebelum ekspresinya menjadi satu nilai, tetapi hanya setelah kedua operan <code>and</code> yang terluar dihitung, dan urutan pemeriksaannya sama sekali tidak tampak dari teksnya. Tuliskan ulang <code>isLeapYear</code> sebagai ekspresi kondisional dengan <code>depend on</code>. Apakah versi itu lebih mudah dibaca? Apakah kondisi-kondisinya disjoint? Mana yang akan Anda pilih untuk diktat ini, dan mengapa?</p>
 
                     </main>
 

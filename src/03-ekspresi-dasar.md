@@ -6,21 +6,21 @@
 
 Pada bab sebelumnya, realisasi setiap fungsi berupa sebuah ekspresi. Bab ini membahas bentuk ekspresi yang paling dasar: yang hanya memakai operator dan fungsi yang sudah tersedia, beserta cara menelusuri evaluasinya.
 
-Sebagai titik awal, dinyatakan bahwa notasi ini menyediakan tiga kelompok operator dan sejumlah kecil fungsi dasar. Segala sesuatu yang lain harus didefinisikan sendiri.
+Sebagai titik tolak, notasi ini menyediakan tiga kelompok operator dan sejumlah kecil fungsi dasar. Segala sesuatu yang lain harus didefinisikan sendiri.
 
 ## Operator Dasar
 
-### Operator aritmatika
+### Operator aritmetika
 
 | Operator | Domain | Range | Keterangan |
 |---|---|---|---|
 | `+` `-` `*` | `Integer` atau `Real` | sama dengan operan | penjumlahan, pengurangan, perkalian |
-| `-` (uner) | `Integer` atau `Real` | sama dengan operan | negasi, ditulis `-x` |
+| `-` (uner, *unary*) | `Integer` atau `Real` | sama dengan operan | negasi, ditulis `-x` |
 | `/` | `Real` | `Real` | pembagian riil |
 | `div` | `Integer` | `Integer` | hasil bagi bulat |
 | `mod` | `Integer` | `Integer` | sisa bagi |
 
-Kedua operan sebuah operator aritmatika harus bertype sama. Notasi ini tidak mengenal konversi otomatis antara `Integer` dan `Real`: bila keduanya perlu dicampur, konversi harus dinyatakan secara eksplisit.
+Kedua operan sebuah operator aritmetika harus bertype sama. Notasi ini tidak mengenal konversi otomatis (*implicit conversion*) antara `Integer` dan `Real`: bila keduanya perlu dicampur, konversi harus dinyatakan secara eksplisit.
 
 ### Operator relasional
 
@@ -29,7 +29,7 @@ Kedua operan sebuah operator aritmatika harus bertype sama. Notasi ini tidak men
 | `=` `≠` | dua nilai bertype sama | `Boolean` |
 | `<` `>` `≤` `≥` | `Integer`, `Real`, atau `Character` | `Boolean` |
 
-Perhatikan bahwa `=` di sini berarti **perbandingan**, bukan definisi. Notasi ini memakai `:` untuk definisi, sehingga `=` tidak pernah bermakna ganda. Beberapa bahasa pemrograman tidak seberuntung itu, dan harus memakai dua lambang yang berbeda.
+Perhatikan bahwa `=` di sini berarti **perbandingan**, bukan definisi. Notasi ini memakai `:` untuk definisi, sehingga `=` tidak pernah bermakna ganda. Beberapa bahasa pemrograman tidak seberuntung itu, sehingga harus memakai dua lambang yang berbeda.
 
 ### Operator Boolean
 
@@ -38,7 +38,7 @@ Perhatikan bahwa `=` di sini berarti **perbandingan**, bukan definisi. Notasi in
 | `and` `or` | dua `Boolean` | `Boolean` |
 | `not` | satu `Boolean` | `Boolean` |
 
-Operan `not` **selalu** dituliskan di dalam kurung: `not (x < y)`. Aturan ini dibuat agar tidak ada keraguan tentang sejauh mana negasi berlaku, dan agar teks tetap terbaca sama oleh pembaca yang terbiasa dengan bahasa pemrograman yang berbeda-beda.
+Operan `not` **selalu** dituliskan di dalam kurung: `not (x < y)`. Aturan ini dibuat agar tidak ada keraguan tentang sejauh mana negasi berlaku, dan agar teks dibaca dengan cara yang sama oleh pembaca dari latar bahasa pemrograman yang berbeda-beda.
 
 ## Fungsi Dasar
 
@@ -51,7 +51,7 @@ asReal : Integer → Real       { asReal (x) adalah nilai x sebagai bilangan rii
 pi     : → Real               { pi adalah konstanta matematika π }
 ```
 
-Daftar ini sengaja dibuat pendek. Setiap fungsi lain yang dibutuhkan (bahkan yang sesederhana `max2`) harus didefinisikan sendiri, karena mendefinisikannya adalah latihan yang justru ingin diberikan.
+Daftar ini sengaja dibuat pendek. Setiap fungsi lain yang dibutuhkan (bahkan yang sesederhana `max2`) harus didefinisikan sendiri, karena mendefinisikannya sendiri justru merupakan latihan yang hendak diberikan.
 
 Dua di antaranya ada karena memang tidak dapat didefinisikan sendiri. `asReal` adalah satu-satunya jalan menyeberang dari `Integer` ke `Real`; fungsi ini diperlukan karena notasi ini tidak mengenal konversi otomatis. Tidak ada kebalikannya: menyeberang dari `Real` ke `Integer` menuntut keputusan pembulatan, dan keputusan itu harus dituliskan sebagai fungsi tersendiri beserta spesifikasinya. `pi` adalah sebuah nilai, bukan sebuah perhitungan, dan menuliskannya sebagai `3.14159` di banyak tempat hanya memperbanyak kesempatan salah ketik.
 
@@ -59,7 +59,7 @@ Dalam Haskell, `asReal` bersesuaian dengan `fromIntegral` dan `pi` tersedia deng
 
 ## Presedensi
 
-Bila sebuah ekspresi mengandung beberapa operator tanpa kurung, urutan evaluasinya ditentukan oleh presedensi:
+Bila sebuah ekspresi mengandung beberapa operator tanpa kurung, urutan evaluasinya ditentukan oleh presedensi (*precedence*):
 
 | Presedensi | Operator |
 |---|---|
@@ -80,11 +80,11 @@ Ekspresi digolongkan menurut type nilai yang dihasilkannya:
 
 - **Ekspresi numerik** menghasilkan `Integer` atau `Real`. Contoh: `(a + b) div 2`.
 - **Ekspresi Boolean** menghasilkan `Boolean`. Contoh: `(x > 0) and (y > 0)`.
-- **Ekspresi relasional** adalah ekspresi Boolean yang operator terluarnya relasional dan operannya numerik. Contoh: `a * a ≤ 100`. Ini adalah kasus khusus ekspresi Boolean, bukan jenis yang terpisah.
+- **Ekspresi relasional** adalah ekspresi Boolean yang operator terluarnya relasional dan operannya numerik. Contoh: `a * a ≤ 100`. Ekspresi ini merupakan kasus khusus ekspresi Boolean, bukan jenis yang terpisah.
 
 Fungsi yang menghasilkan `Boolean` disebut **predikat**, dan namanya diawali `is` sesuai konvensi pada Bab 2.
 
-Operator biner pada notasi ini selalu ditulis **infix** (di antara kedua operannya) karena bentuk itulah yang paling dekat dengan kebiasaan menulis matematika. Bentuk penulisan lain dimungkinkan:
+Operator biner pada notasi ini selalu ditulis **infix** (di antara kedua operannya) karena bentuk itulah yang paling dekat dengan kebiasaan menulis matematika. Bentuk penulisan lain juga mungkin:
 
 | Bentuk | Ekspresi numerik | Ekspresi relasional |
 |---|---|---|
@@ -140,7 +140,7 @@ REALISASI
     averagePart (jumlah, n) : jumlah div n
 ```
 
-Prasyarat bukan sekadar catatan, melainkan bagian dari kontrak: pemakai fungsi berjanji memenuhinya, dan sebagai imbalannya penulis fungsi tidak perlu memeriksanya. Menuliskan prasyarat sejak awal juga memaksa kita memikirkan kembali apakah **domain** sudah dipilih dengan tepat. Kadang ternyata domainnya yang seharusnya dipersempit, bukan prasyaratnya yang ditambahkan.
+Prasyarat bukan sekadar catatan, melainkan bagian dari kontrak: pemakai fungsi berjanji memenuhinya, dan sebagai imbalannya penulis fungsi tidak perlu memeriksanya. Menuliskan prasyarat sejak awal juga memaksa kita memikirkan kembali apakah **domain** sudah dipilih dengan tepat. Kadang-kadang ternyata domainlah yang seharusnya dipersempit, bukan prasyarat yang ditambahkan.
 
 ## Contoh 1: Ekspresi Numerik dengan Fungsi Antara
 
@@ -180,7 +180,7 @@ APLIKASI
 
 Perhatikan bahwa `distance` tidak memerlukan prasyarat meskipun memakai `sqrt`: jumlah dua bilangan kuadrat tidak mungkin negatif. Alasan semacam ini pantas dituliskan sebagai komentar bila tidak segera terlihat.
 
-Perhatikan pula bahwa `square` dari Bab 2 **tidak** dapat dipakai di sini. Domainnya `Integer`, sedangkan yang hendak dikuadratkan adalah `Real`, dan notasi ini tidak menyeberangkan keduanya diam-diam. Aturan yang tampak rewel di awal bab baru terasa gunanya di sini: ini memaksa perbedaan itu muncul pada saat menulis, bukan pada saat menjalankan.
+Perhatikan pula bahwa `square` dari Bab 2 **tidak** dapat dipakai di sini. Domainnya `Integer`, sedangkan yang hendak dikuadratkan adalah `Real`, dan notasi ini tidak menyeberangkan keduanya secara diam-diam. Aturan yang tampak rewel di awal bab baru terasa manfaatnya di sini: aturan itu memaksa perbedaan tersebut tampak pada saat program ditulis, bukan pada saat dijalankan.
 
 Dalam Haskell:
 
@@ -196,7 +196,7 @@ distance x1 y1 x2 y2 = sqrt (sqrDif x1 x2 + sqrDif y1 y2)
 
 ## Nama Antara
 
-Sebuah ekspresi antara yang dipakai lebih dari satu kali, atau yang cukup panjang sehingga menyulitkan pembacaan, dapat diberi **nama antara**. Nama ini hanya berlaku di dalam realisasi tempat ia dituliskan, dan tidak dikenal di luarnya.
+Sebuah ekspresi antara yang dipakai lebih dari satu kali, atau yang cukup panjang sehingga menyulitkan pembacaan, dapat diberi **nama antara** (*local binding*). Nama ini hanya berlaku di dalam realisasi tempat nama itu dituliskan, dan tidak dikenal di luarnya.
 
 Bentuk penulisannya:
 
@@ -210,7 +210,7 @@ REALISASI
             *ekspresi yang memakai n1 dan n2*
 ```
 
-Type sebuah nama antara tidak perlu dituliskan: type dapat disimpulkan dari ekspresinya. Nama-nama diikat berurutan dari atas ke bawah, sehingga sebuah nama boleh memakai nama yang sudah diikat di atasnya. Perhatikan bahwa `:` di sini adalah tanda yang sama dengan yang dipakai pada realisasi fungsi, dan artinya pun sama: *ini didefinisikan sebagai itu*. Notasi ini tidak pernah memakai `=` untuk mendefinisikan.
+Type sebuah nama antara tidak perlu dituliskan: type dapat disimpulkan (*inferred*) dari ekspresinya. Nama-nama diikat (*bound*) secara berurutan dari atas ke bawah, sehingga sebuah nama boleh memakai nama yang sudah diikat di atasnya. Perhatikan bahwa `:` di sini adalah tanda yang sama dengan yang dipakai pada realisasi fungsi, dan artinya pun sama: *ini didefinisikan sebagai itu*. Notasi ini tidak pernah memakai `=` untuk mendefinisikan.
 
 Fungsi `distance` dapat direalisasikan ulang dengan nama antara, tanpa fungsi antara:
 
@@ -224,7 +224,7 @@ REALISASI
             sqrt (dx * dx + dy * dy)
 ```
 
-Definisi dan spesifikasinya tidak berubah sedikit pun. Ini adalah contoh kedua, setelah `cube` pada Bab 2, dari satu spesifikasi yang direalisasikan dengan dua cara berbeda.
+Definisi dan spesifikasinya tidak berubah sedikit pun. Inilah contoh kedua, setelah `cube` pada Bab 2, tentang satu spesifikasi yang direalisasikan dengan dua cara yang berbeda.
 
 ### Nama Antara atau Fungsi Antara?
 
@@ -232,14 +232,14 @@ Keduanya menghilangkan pengulangan, tetapi dengan akibat yang berbeda:
 
 | | Nama antara | Fungsi antara |
 |---|---|---|
-| Jangkauan | hanya di dalam satu realisasi | dapat dipakai di mana saja |
+| Jangkauan (*scope*) | hanya di dalam satu realisasi | dapat dipakai di mana saja |
 | Menambah perbendaharaan? | tidak | ya |
 | Perlu definisi dan spesifikasi? | tidak | ya |
 | Cocok bila | nilainya khas untuk fungsi ini | konsepnya berdiri sendiri |
 
 Pertanyaan yang membantu memutuskan: *apakah hal ini pantas diberi nama dan dijelaskan kepada orang lain?* `sqrDif` (kuadrat selisih) adalah konsep yang berdiri sendiri dan mungkin berguna di tempat lain, sehingga pantas menjadi fungsi. `dx` hanyalah selisih absis dalam perhitungan ini, dan tidak berarti apa-apa di luar konteksnya, sehingga cukup menjadi nama antara.
 
-Kecenderungan yang sehat bagi pemula adalah membuat terlalu banyak fungsi antara, bukan terlalu sedikit.
+Bagi pemula, lebih sehat keliru karena membuat terlalu banyak fungsi antara daripada terlalu sedikit.
 
 ## Contoh 2: Ekspresi Boolean
 
@@ -274,7 +274,7 @@ APLIKASI
       false
 ```
 
-Keempat aplikasi di atas dipilih dengan sengaja, dan bukan sekadar diambil sembarangan: `2024` habis dibagi 4 saja, `1900` habis dibagi 100 tetapi tidak 400, `2000` habis dibagi 400, dan `2023` tidak habis dibagi 4. Bersama-sama keempatnya menyentuh setiap cabang ekspresi. Memilih contoh aplikasi dengan cara ini, satu untuk setiap kemungkinan, adalah bentuk pengujian yang paling sederhana, dan sudah dapat dilakukan sekarang, jauh sebelum ada perkakas pengujian.
+Keempat aplikasi di atas dipilih dengan sengaja, bukan diambil sembarangan: `2024` habis dibagi 4 saja, `1900` habis dibagi 100 tetapi tidak 400, `2000` habis dibagi 400, dan `2023` tidak habis dibagi 4. Bersama-sama, keempatnya menyentuh setiap cabang ekspresi. Memilih contoh aplikasi dengan cara ini, satu untuk setiap kemungkinan, adalah bentuk pengujian yang paling sederhana, dan sudah dapat dilakukan sekarang, jauh sebelum ada perkakas pengujian (*testing tools*).
 
 Dalam Haskell:
 
@@ -294,7 +294,7 @@ Mengevaluasi sebuah ekspresi berarti menggantinya berulang kali dengan ekspresi 
 | **Ekspansi** | Aplikasi sebuah fungsi diganti oleh realisasinya, dengan setiap parameter diganti oleh argumennya |
 | **Reduksi** | Sebuah operator atau fungsi dasar dihitung, menghasilkan nilai |
 
-Berikut penelusuran lengkap `distance (1.0, 3.0, 5.0, 6.0)`, memakai realisasi dengan fungsi antara:
+Berikut ini penelusuran (*trace*) lengkap `distance (1.0, 3.0, 5.0, 6.0)`, memakai realisasi dengan fungsi antara:
 
 ```
 ⇒ distance (1.0, 3.0, 5.0, 6.0)
@@ -309,7 +309,7 @@ Berikut penelusuran lengkap `distance (1.0, 3.0, 5.0, 6.0)`, memakai realisasi d
   → 5.0                                                     { reduksi sqrt }
 ```
 
-Sembilan langkah, masing-masing hanya menyentuh satu bagian ekspresi. Menelusuri secara tertulis seperti ini adalah cara paling andal untuk memahami program yang ditulis orang lain *dan* menemukan kesalahan pada program yang kita tulis sendiri.
+Ada sembilan langkah, dan masing-masing hanya menyentuh satu bagian ekspresi. Menelusuri secara tertulis seperti ini adalah cara paling andal untuk memahami program yang ditulis orang lain *dan* menemukan kesalahan pada program yang kita tulis sendiri.
 
 ## Urutan Evaluasi
 
@@ -325,15 +325,15 @@ Pada penelusuran di atas, `sqrDif (1.0, 5.0)` dievaluasi lebih dahulu. Pilihan i
   → 5.0
 ```
 
-Hasilnya sama. Ini bukan kebetulan, melainkan akibat langsung dari transparansi referensial yang dibicarakan pada Bab 2: sebuah ekspresi hanya bergantung pada nilai bagian-bagiannya, tidak pada kapan bagian-bagian itu dihitung. Karena itu:
+Hasilnya sama. Ini bukan kebetulan, melainkan akibat langsung dari transparansi referensial yang dibicarakan pada Bab 2: sebuah ekspresi hanya bergantung pada nilai bagian-bagiannya, tidak pada kapan bagian-bagian itu dihitung. Sebab itu:
 
 - Urutan evaluasi tidak mengubah hasil.
-- Bagian-bagian yang saling bebas secara teoritis dapat dievaluasi bersamaan.
+- Bagian-bagian yang saling bebas secara teoretis dapat dievaluasi secara bersamaan.
 - Sebuah ekspresi dapat dipahami dengan membaca ekspresi itu saja, tanpa perlu mengetahui apa yang terjadi sebelumnya di tempat lain dalam program.
 
-Ketiganya tidak berlaku pada program imperatif yang mengubah state, dan ketiganya adalah alasan utama mengapa paradigma ini layak dipelajari.
+Ketiganya tidak berlaku pada program imperatif yang mengubah keadaan (*state*), dan ketiganya adalah alasan utama mengapa paradigma ini layak dipelajari.
 
-Notasi ini karenanya **tidak menetapkan** urutan evaluasi, karena tidak perlu. Bahasa pemrograman nyata harus menetapkannya, dan pilihan yang diambil masing-masing bahasa mempunyai akibat yang perlu diketahui pada saat program benar-benar dijalankan. Bab 9 membahas pilihan-pilihan yang tersedia, dan Suplemen S10 membahas pilihan yang diambil bahasa acuan.
+Sebab itu, notasi ini **tidak menetapkan** urutan evaluasi; hal itu memang tidak perlu. Bahasa pemrograman nyata harus menetapkannya, dan pilihan yang diambil masing-masing bahasa mempunyai akibat yang perlu diketahui pada saat program benar-benar dijalankan. Bab 9 membahas pilihan-pilihan yang tersedia, dan Suplemen S10 membahas pilihan yang diambil bahasa acuan.
 
 ## Latihan
 
@@ -353,7 +353,7 @@ r (a, b)    :
 t (n)       : abs (n) = n
 ```
 
-Untuk `t`, jawablah juga: apakah spesifikasi Anda lebih pendek bila dituliskan sebagai "bernilai true bila …" ketimbang menyalin ulang ekspresinya? Spesifikasi yang baik menyatakan **arti**, bukan mengulang realisasi dengan kata-kata.
+Untuk `t`, jawablah juga: apakah spesifikasi Anda lebih pendek bila dituliskan sebagai "bernilai true bila …" daripada menyalin ulang ekspresinya? Spesifikasi yang baik menyatakan **arti**, bukan mengulang realisasi dengan kata-kata.
 
 **Menulis.** Untuk setiap persoalan berikut, tuliskan keempat bagian secara lengkap. Nyatakan prasyarat bila ada. Pilih contoh aplikasi yang menyentuh setiap kemungkinan, tuliskan hasil yang Anda harapkan, lalu terjemahkan dan jalankan.
 
@@ -363,6 +363,6 @@ Untuk `t`, jawablah juga: apakah spesifikasi Anda lebih pendek bila dituliskan s
 4. Menentukan apakah sebuah bilangan bulat merupakan kuadrat sempurna. Gunakan `sqrt`, dan pikirkan baik-baik prasyaratnya.
 5. Menghitung keliling sebuah segitiga dari koordinat ketiga titik sudutnya. Gunakan kembali `distance`.
 
-**Menelusuri.** Tuliskan penelusuran lengkap `isLeapYear (1900)`, dengan menyebutkan pada setiap langkah apakah yang terjadi ekspansi atau reduksi. Kemudian jawab: pada langkah keberapa hasil akhirnya sudah dapat dipastikan, meskipun ekspresinya belum tersisa satu nilai?
+**Menelusuri.** Tuliskan penelusuran lengkap `isLeapYear (1900)`, dengan menyebutkan pada setiap langkah apakah yang terjadi ekspansi atau reduksi. Kemudian jawablah: pada langkah keberapa hasil akhirnya sudah dapat dipastikan, meskipun ekspresinya belum menjadi satu nilai?
 
-**Merancang.** Fungsi `distance` ditulis dengan dua realisasi berbeda pada bab ini. Untuk persoalan *Menulis* nomor 5 di atas, mana yang Anda pilih sebagai dasar, dan mengapa? Tidak ada jawaban yang salah, yang dinilai adalah alasannya.
+**Merancang.** Fungsi `distance` ditulis dengan dua realisasi berbeda pada bab ini. Untuk persoalan *Menulis* nomor 5 di atas, mana yang Anda pilih sebagai dasar, dan mengapa? Tidak ada jawaban yang salah; yang dinilai adalah alasannya.

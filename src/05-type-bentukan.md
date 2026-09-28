@@ -4,9 +4,9 @@
 
 Sampai bab ini, setiap fungsi yang ditulis hanya menerima dan menghasilkan nilai bertype dasar: `Integer`, `Real`, `Boolean`, `Character`. Pembatasan itu sudah mulai terasa.
 
-Pada Bab 4 ditulis `quadrant : Real, Real → Integer [1..4]`. Dua parameter `Real` itu sesungguhnya bukan dua bilangan yang berdiri sendiri; keduanya adalah satu titik. Tidak ada dalam teksnya yang menyatakan hal itu. Yang menyatakannya hanyalah nama parameternya, `x` dan `y`, dan itu pun hanya kepada pembaca manusia. Hal yang sama sudah terjadi pada Bab 3. Fungsi `distance` di sana berdefinisi `distance : Real, Real, Real, Real → Real`: empat bilangan berderet, dan tidak ada apa pun dalam teksnya yang mencegah seseorang mengaplikasikannya dengan urutan yang keliru. Bahwa keempatnya sesungguhnya dua titik hanya hidup di kepala penulisnya.
+Pada Bab 4 ditulis `quadrant : Real, Real → Integer [1..4]`. Dua parameter `Real` itu sesungguhnya bukan dua bilangan yang berdiri sendiri; keduanya adalah satu titik. Tidak ada dalam teksnya yang menyatakan hal itu. Yang menyatakannya hanyalah nama parameternya, `x` dan `y`, dan itu pun hanya kepada pembaca manusia. Hal yang sama sudah terjadi pada Bab 3. Fungsi `distance` di sana berdefinisi `distance : Real, Real, Real, Real → Real`: empat bilangan berderet, dan tidak ada apa pun dalam teksnya yang mencegah seseorang mengaplikasikannya dengan urutan yang keliru. Bahwa keempatnya sesungguhnya adalah dua titik, hanya ada di kepala penulisnya.
 
-**Type bentukan** adalah type baru yang dibentuk dari type yang sudah ada, dengan memberinya nama. Type baru itu membuat gagasan "titik" menjadi sesuatu yang tertulis dalam program, bukan sekadar dimaksudkan oleh penulisnya.
+**Type bentukan** (*composite type*) adalah type baru yang dibentuk dari type yang sudah ada, dengan memberinya nama. Type baru itu membuat gagasan "titik" menjadi sesuatu yang tertulis dalam program, bukan sekadar dimaksudkan oleh penulisnya.
 
 Dalam berbagai paradigma dan bahasa, gagasan yang sama dikenal dengan nama *type komposisi*, *type terstruktur*, *rekord*, atau *struct*. Diktat ini memakai istilah **type bentukan**.
 
@@ -14,9 +14,9 @@ Dalam berbagai paradigma dan bahasa, gagasan yang sama dikenal dengan nama *type
 
 Sebuah type adalah **himpunan nilai** beserta **sekumpulan operasi** yang terdefinisi atasnya.
 
-Type bentukan yang paling umum dipakai adalah **produk**: nilainya terdiri dari beberapa komponen sekaligus. Sebuah titik (dengan type bentukan yang akan kita beri nama `Point`) adalah sebuah absis **dan** sebuah ordinat. Sebuah pecahan (`Fraction`) adalah sebuah pembilang (*numerator*) **dan** sebuah penyebut (*denominator*).
+Type bentukan yang paling umum dipakai adalah **produk** (*product type*): nilainya terdiri atas beberapa komponen sekaligus. Sebuah titik (dengan type bentukan yang akan kita beri nama `Point`) adalah sebuah absis **dan** sebuah ordinat. Sebuah pecahan (`Fraction`) adalah sebuah pembilang (*numerator*) **dan** sebuah penyebut (*denominator*).
 
-Himpunan nilainya adalah hasil kali kartesian himpunan nilai komponennya: dari sinilah nama "produk" berasal. Bila `Point` terdiri dari dua `Real`, maka setiap pasangan bilangan riil adalah sebuah `Point`, dan tidak ada nilai `Point` yang lain.
+Himpunan nilainya adalah hasil kali kartesius (*Cartesian product*) himpunan nilai komponennya: dari sinilah nama "produk" berasal. Bila `Point` terdiri atas dua `Real`, maka setiap pasangan bilangan riil adalah sebuah `Point`, dan tidak ada nilai `Point` yang lain.
 
 Nilai sebuah type bentukan dituliskan sebagai **tuple**, dengan komponen berurutan di antara kurung sudut:
 
@@ -36,11 +36,11 @@ Beberapa type bentukan yang sering muncul dalam informatika:
 | `Time` | `⟨hour : Integer, minute : Integer, second : Integer⟩` | jam, menit, detik |
 | `Date` | `⟨day : Integer, month : Integer, year : Integer⟩` | tanggal, bulan, tahun |
 
-Komponen sebuah type bentukan tidak harus bertype dasar. Dari `Point` dapat dibentuk `Line` sebagai `⟨start : Point, end : Point⟩`, dan dari `Time` serta `Date` dapat dibentuk `DateTime` sebagai `⟨date : Date, time : Time⟩`. Kemampuan menyusun type di atas type membuat gagasan ini berguna melampaui contoh-contoh kecil di bab ini.
+Komponen sebuah type bentukan tidak harus bertype dasar. Dari `Point` dapat dibentuk `Line` sebagai `⟨start : Point, end : Point⟩`, dan dari `Time` serta `Date` dapat dibentuk `DateTime` sebagai `⟨date : Date, time : Time⟩`. Kemampuan menyusun type di atas type lain membuat gagasan ini berguna jauh melampaui contoh-contoh kecil di bab ini.
 
 ## Mendefinisikan Sebuah Type Bentukan
 
-Mendefinisikan type bentukan dalam notasi fungsional berarti menuliskan lima hal. Empat di antaranya adalah fungsi, sesuai dengan konteks fungsional: yang dapat dituliskan hanyalah fungsi.
+Mendefinisikan type bentukan dalam notasi fungsional berarti menuliskan lima hal. Empat di antaranya adalah fungsi, karena dalam konteks fungsional yang dapat dituliskan hanyalah fungsi.
 
 | Bagian | Isi | Direalisasi? |
 |---|---|---|
@@ -50,9 +50,9 @@ Mendefinisikan type bentukan dalam notasi fungsional berarti menuliskan lima hal
 | **Predikat** | menentukan karakteristik sebuah nilai | ya |
 | **Operator lain** | fungsi yang berlaku atas type tersebut | ya |
 
-**Konstruktor dan selektor tidak direalisasi.** Alasannya bukan karena keduanya sulit, melainkan karena keduanya adalah persoalan bahasa, bukan persoalan rancangan. Bagaimana sebuah pasangan nilai disimpan dan diambil kembali ditentukan sepenuhnya oleh bahasa yang dipakai; notasi hanya menyatakan bahwa keduanya *ada* dan menyatakan domain serta range-nya. Sebagaimana akan terlihat pada setiap contoh di bab ini, bahasa acuan menyediakan keduanya secara cuma-cuma begitu type-nya didefinisikan.
+**Konstruktor dan selektor tidak direalisasi.** Alasannya bukan karena keduanya sulit direalisasikan, melainkan karena keduanya adalah persoalan bahasa, bukan persoalan rancangan. Bagaimana sebuah pasangan nilai disimpan dan diambil kembali ditentukan sepenuhnya oleh bahasa yang dipakai; notasi hanya menyatakan bahwa keduanya *ada* dan menyatakan domain serta range-nya. Sebagaimana akan terlihat pada setiap contoh di bab ini, bahasa acuan menyediakan keduanya secara cuma-cuma begitu type-nya didefinisikan.
 
-Kelimanya dituliskan dalam satu **teks type**, yang diawali judul `TYPE namaType`. Judul ini sejajar dengan `JUDUL` pada teks fungsi Bab 2: ia memudahkan pencarian dan bukan bagian dari program.
+Kelimanya dituliskan dalam satu **teks type**, yang diawali judul `TYPE namaType`. Judul ini setara dengan `JUDUL` pada teks fungsi Bab 2: gunanya memudahkan pencarian, dan judul itu bukan bagian dari program.
 
 Konvensi penamaan pada bab ini:
 
@@ -63,13 +63,13 @@ Konvensi penamaan pada bab ini:
 
 ## Prinsip yang Mendasari: Bekerja Lewat Selektor
 
-Satu aturan berlaku di seluruh bab ini, dan sebaiknya diterima sekarang sebelum contohnya membuatnya tampak berlebihan:
+Satu aturan berlaku di seluruh bab ini, dan sebaiknya diterima sekarang, sebelum contoh-contohnya membuat aturan ini tampak berlebihan:
 
 > Setiap fungsi atas sebuah type bentukan mengakses komponennya **hanya melalui selektor**, dan membentuk nilainya **hanya melalui konstruktor**.
 
 Artinya: `x (p)`, bukan "komponen pertama dari `p`". Harganya adalah teks yang sedikit lebih panjang. Imbalannya: seluruh pengetahuan tentang *bagaimana* sebuah `Point` tersusun terkumpul di satu tempat, yaitu definisi type-nya, sehingga bila kelak susunannya diubah (misalnya `Point` disimpan dalam koordinat polar), tidak ada satu pun fungsi lain yang perlu ikut berubah.
 
-Gagasan ini akan kembali kelak, jauh lebih besar, dengan nama *abstraksi data*. Di sini, ini baru berupa disiplin menulis.
+Gagasan ini kelak akan muncul kembali dalam wujud yang jauh lebih besar, dengan nama *abstraksi data* (*data abstraction*). Di sini, gagasan itu baru berupa disiplin menulis.
 
 ## Contoh 1: Type Point
 
@@ -154,9 +154,9 @@ Tiga hal patut diperhatikan.
 
 Perhatikan bahwa `distance` memakai kembali `sqrDif` dari Bab 3, dan bahwa `distanceFromOrigin` justru **tidak** dapat memakai `square` dari Bab 2: domain `square` adalah `Integer`, sedangkan yang dikuadratkan di sini adalah `Real`.
 
-**Prasyaratnya kini dapat dinyatakan dengan nama.** Bab 4 menuliskan prasyarat `x ≠ 0.0 and y ≠ 0.0`. Di sini prasyaratnya adalah `not (isOnAxis (p))`: kalimat yang menyebutkan gagasannya, bukan perhitungannya. Setiap kali sebuah kondisi cukup penting untuk muncul lebih dari sekali, ia layak diberi nama sebagai predikat.
+**Prasyaratnya kini dapat dinyatakan dengan nama.** Bab 4 menuliskan prasyarat `x ≠ 0.0 and y ≠ 0.0`. Di sini prasyaratnya adalah `not (isOnAxis (p))`: kalimat yang menyebutkan gagasannya, bukan perhitungannya. Setiap kali sebuah kondisi cukup penting untuk muncul lebih dari sekali, kondisi itu layak diberi nama sebagai predikat.
 
-**`distanceFromOrigin` bukan kasus khusus yang berdiri sendiri.** Fungsi ini dapat ditulis ulang sebagai `distance (p, makePoint (0.0, 0.0))`, dan dengan begitu hilanglah satu realisasi yang harus dipelihara. Yang tersisa hanyalah pertimbangan keterbacaan. Latihan Merancang di akhir bab menanyakan mana yang Anda pilih.
+**`distanceFromOrigin` bukan kasus khusus yang berdiri sendiri.** Fungsi ini dapat ditulis ulang sebagai `distance (p, makePoint (0.0, 0.0))`, dan dengan demikian berkuranglah satu realisasi yang harus dipelihara. Yang tersisa hanyalah pertimbangan keterbacaan. Latihan Merancang di akhir bab menanyakan mana yang Anda pilih.
 
 ### Dalam Haskell
 
@@ -176,16 +176,16 @@ distance p1 p2 = sqrt (sqrDif (x p1) (x p2) +
                        sqrDif (y p1) (y p2))
 ```
 
-Satu baris `data` menghasilkan tiga hal sekaligus: type-nya, konstruktornya (`Point`), dan kedua selektornya (`x`, `y`). Inilah yang dimaksud ketika dikatakan bahwa konstruktor dan selektor tidak perlu direalisasi dalam notasi. Implementasi bahasa yang mengerjakannya.
+Satu baris `data` menghasilkan tiga hal sekaligus: type-nya, konstruktornya (`Point`), dan kedua selektornya (`x`, `y`). Inilah yang dimaksud ketika dikatakan bahwa konstruktor dan selektor tidak perlu direalisasi dalam notasi. Semua itu dikerjakan oleh implementasi bahasanya.
 
 Dua catatan tentang terjemahan ini:
 
 - Konstruktor dalam Haskell bernama `Point`, sama dengan nama type-nya, dan bukan `makePoint`. Keduanya boleh sama karena Haskell membedakan nama type dari nama nilai. Notasi tidak membuat pembedaan itu, sehingga `makePoint` tetap diperlukan di sana.
-- `x p == 0.0` adalah perbandingan kesamaan atas bilangan riil, dan perbandingan semacam itu jarang merupakan gagasan yang baik: hasil perhitungan riil hampir tidak pernah persis sama dengan nilai yang diharapkan. Untuk titik yang dibentuk langsung dari literal, seperti pada contoh di atas, hal ini tidak menjadi masalah. Untuk titik yang merupakan hasil perhitungan, `isOrigin` sebaiknya diganti dengan pemeriksaan `distanceFromOrigin (p) < ε` untuk suatu `ε` kecil yang dinyatakan pada spesifikasi.
+- `x p == 0.0` adalah perbandingan kesamaan atas bilangan riil, dan perbandingan semacam itu jarang merupakan pilihan yang baik: hasil perhitungan riil hampir tidak pernah persis sama dengan nilai yang diharapkan. Untuk titik yang dibentuk langsung dari literal, seperti pada contoh di atas, hal ini tidak menjadi masalah. Untuk titik yang merupakan hasil perhitungan, `isOrigin` sebaiknya diganti dengan pemeriksaan `distanceFromOrigin (p) < ε` untuk suatu `ε` kecil yang dinyatakan pada spesifikasi.
 
 ## Contoh 2: Type Fraction
 
-**Persoalan.** Definisikan type `Fraction` beserta operator aritmatika dan relasional atasnya.
+**Persoalan.** Definisikan type `Fraction` beserta operator aritmetika dan relasional atasnya.
 
 Type ini memperkenalkan dua persoalan yang tidak muncul pada `Point`.
 
@@ -271,12 +271,12 @@ APLIKASI
 
 Definisi type menyatakan `denominator : Integer > 0`. Pernyataan itu **tidak dijamin oleh apa pun**. Notasi menuliskannya, tetapi tidak ada mekanisme yang mencegah terbentuknya pecahan dengan penyebut nol (atau negatif).
 
-Syarat semacam ini disebut **invarian** sebuah type: sifat yang harus berlaku bagi setiap nilai type tersebut, sepanjang hidupnya. Dalam notasi fungsional, invarian ditegakkan dengan disiplin, di dua tempat:
+Syarat semacam ini disebut **invarian** (*invariant*) sebuah type: sifat yang harus berlaku bagi setiap nilai type tersebut, sepanjang hidupnya. Dalam notasi fungsional, invarian ditegakkan dengan disiplin, di dua tempat:
 
 - Konstruktor mencantumkan prasyaratnya (`d > 0`), sehingga tanggung jawab memeriksanya jatuh kepada pemanggil. Perhatikan bahwa prasyaratnya adalah `d > 0` dan bukan `d ≠ 0`: prasyarat sebuah konstruktor harus menjamin **seluruh** invarian type-nya.
-- Setiap operator yang menghasilkan nilai baru harus memastikan hasilnya tetap memenuhi invarian. Perhatikan bahwa `addFraction` dan `mulFraction` menghasilkan penyebut berupa hasil kali kedua penyebut masukannya, yang positif bila keduanya positif, jadi keduanya aman.
+- Setiap operator yang menghasilkan nilai baru harus memastikan hasilnya tetap memenuhi invarian. Perhatikan bahwa `addFraction` dan `mulFraction` menghasilkan penyebut berupa hasil kali kedua penyebut masukannya, yang tentu positif bila keduanya positif; jadi, kedua operator itu aman.
 
-Bila satu saja operator lalai, seluruh sisa program berjalan di atas nilai yang tidak sah, dan gejalanya akan muncul di tempat yang jauh dari sebabnya. Memeriksa invarian pada setiap operator yang menghasilkan nilai bertype tersebut adalah kebiasaan yang murah dan berumur panjang.
+Bila satu saja operator lalai, seluruh sisa program berjalan di atas nilai yang tidak sah, dan gejalanya akan muncul di tempat yang jauh dari sebabnya. Memeriksa invarian pada setiap operator yang menghasilkan nilai bertype tersebut adalah kebiasaan yang murah, tetapi manfaatnya panjang.
 
 ### Persoalan kedua: nilai versus representasi
 
@@ -284,7 +284,7 @@ Bila satu saja operator lalai, seluruh sisa program berjalan di atas nilai yang 
 
 Perbedaan ini tidak muncul pada `Point`: dua `Point` sama bila dan hanya bila absis dan ordinatnya sama. `Fraction` adalah contoh pertama dalam diktat ini tempat **beberapa representasi mewakili satu nilai yang sama**, dan setiap kali hal itu terjadi, kesamaan menjadi sesuatu yang harus dirancang, bukan diwarisi.
 
-Ada jalan lain: mengharuskan setiap `Fraction` selalu berada dalam bentuk paling sederhana, sehingga satu nilai hanya punya satu representasi dan perbandingan komponen kembali sah. Jalan itu memerlukan fungsi faktor persekutuan terbesar (FPB) yang definisinya rekursif, sehingga pembahasannya menunggu Bab 6. Latihan Merancang di akhir bab menanyakan mana di antara keduanya yang Anda pilih dan apa harganya.
+Ada jalan lain: mengharuskan setiap `Fraction` selalu berada dalam bentuk paling sederhana, sehingga satu nilai hanya mempunyai satu representasi dan perbandingan komponen kembali sah. Jalan itu memerlukan fungsi faktor persekutuan terbesar (FPB) yang definisinya rekursif, sehingga pembahasannya menunggu Bab 6. Latihan Merancang di akhir bab menanyakan mana di antara keduanya yang Anda pilih dan apa harganya.
 
 ### Dalam Haskell
 
@@ -303,7 +303,7 @@ addFraction f1 f2 = Fraction (numerator f1 * denominator f2 + numerator f2 * den
 
 Haskell menyediakan cara pintas untuk membangkitkan operasi kesamaan secara otomatis, dengan menambahkan `deriving Eq` pada definisi `data`. **Untuk `Fraction`, cara pintas itu memberikan jawaban yang salah**, karena yang dibangkitkannya adalah perbandingan komponen demi komponen: `Fraction 1 2` dan `Fraction 2 4` akan dinyatakan berbeda.
 
-Ini adalah pelajaran yang lebih besar daripada satu kata kunci. Fasilitas otomatis sebuah bahasa bekerja pada tingkat representasi, sedangkan yang sering kita maksudkan adalah kesamaan pada tingkat nilai. Keduanya bertepatan cukup sering sehingga kita lupa bahwa keduanya berbeda (dan tidak bertepatan cukup sering sehingga kelupaan itu mahal).
+Pelajaran di sini lebih besar daripada sekadar satu kata kunci. Fasilitas otomatis sebuah bahasa bekerja pada tingkat representasi, sedangkan yang sering kita maksudkan adalah kesamaan pada tingkat nilai. Keduanya cukup sering bertepatan sehingga kita lupa bahwa keduanya berbeda, tetapi juga cukup sering tidak bertepatan sehingga kelupaan itu harus dibayar mahal.
 
 ## Contoh 3: Type Date
 
@@ -382,21 +382,21 @@ APLIKASI
 
 Contoh ini mengumpulkan hampir seluruh isi empat bab sebelumnya dalam satu tempat, dan itulah sebabnya contoh ini diletakkan terakhir.
 
-**`isLeapYear` dipakai kembali tanpa ditulis ulang.** Fungsi ini sudah didefinisikan pada Bab 3 dan sudah diperiksa di sana. Yang dikerjakan di sini hanyalah mengaplikasikannya. Kebiasaan menyusun fungsi dari fungsi yang sudah ada, alih-alih menuliskan kembali perhitungannya, adalah satu-satunya cara sebuah program tetap dapat diperiksa kebenarannya ketika ia bertumbuh.
+**`isLeapYear` dipakai kembali tanpa ditulis ulang.** Fungsi ini sudah didefinisikan pada Bab 3 dan sudah diperiksa di sana. Yang dikerjakan di sini hanyalah mengaplikasikannya. Kebiasaan menyusun fungsi dari fungsi yang sudah ada, alih-alih menuliskan kembali perhitungannya, adalah satu-satunya cara sebuah program tetap dapat diperiksa kebenarannya ketika program itu terus bertambah besar.
 
 **`and then` dipakai sekali, dan memang diperlukan sekali.** Pada `isValidDate`, ekspresi `d ≤ nDaysInMonth (m, y)` hanya bermakna bila `m` sudah dipastikan berada dalam `[1..12]`; tanpa hubung-singkat, `nDaysInMonth (13, 2024)` akan dievaluasi dan tidak menghasilkan apa-apa. Empat pemeriksaan sebelumnya selalu terdefinisi, sehingga keempatnya dirangkai dengan `and` biasa, sesuai anjuran Bab 4: `and then` hanya dipakai di tempat yang memang menuntutnya, agar pembaca tahu di mana urutan benar-benar berarti.
 
-**`isBefore` adalah analisis kasus berjenjang, dan justru karena itu kondisinya harus ditulis utuh.** Godaan yang wajar adalah menuliskan kondisi kedua sebagai `month (d1) ≠ month (d2)` saja, seperti pada `stateOfWater`, dan membiarkan kondisi pertama "menyaring" kasusnya lebih dahulu. Kondisi seperti itu **tidak disjoint**: `⟨15, 5, 2023⟩` dan `⟨20, 3, 2024⟩` memenuhi kondisi pertama maupun kondisi kedua, dan keduanya menjawab berbeda: yang pertama `true`, yang kedua `false`. Karena urutan penulisan tidak berarti apa-apa dalam notasi ini (Bab 4), fungsi semacam itu tidak mempunyai nilai bagi masukan tersebut.
+**`isBefore` adalah analisis kasus berjenjang, dan justru karena itu kondisinya harus ditulis utuh.** Godaan yang wajar adalah menuliskan kondisi kedua sebagai `month (d1) ≠ month (d2)` saja, seperti pada `stateOfWater`, dan membiarkan kondisi pertama "menyaring" kasusnya lebih dahulu. Kondisi seperti itu **tidak disjoint**: `⟨15, 5, 2023⟩` dan `⟨20, 3, 2024⟩` memenuhi kondisi pertama maupun kondisi kedua, dan jawaban keduanya berbeda: yang pertama `true`, yang kedua `false`. Karena urutan penulisan tidak berarti apa-apa dalam notasi ini (Bab 4), fungsi semacam itu tidak mempunyai nilai bagi masukan tersebut.
 
-Yang menyelamatkannya adalah menyebutkan `sameYear` pada kondisi kedua dan ketiga. Apa yang dalam banyak bahasa diserahkan diam-diam kepada urutan penulisan, di sini harus dinyatakan. Nama antara membuat harga itu murah sekaligus membuat maksudnya terbaca. Perbandingan berjenjang seperti ini (banding komponen paling berpengaruh dahulu, dan hanya bila seri lanjutkan ke komponen berikutnya) adalah pola yang akan muncul lagi setiap kali dua nilai bentukan harus diurutkan.
+Yang menyelamatkannya adalah menyebutkan `sameYear` pada kondisi kedua dan ketiga. Apa yang dalam banyak bahasa diserahkan secara diam-diam kepada urutan penulisan, di sini harus dinyatakan. Nama antara membuat harga itu murah dan sekaligus membuat maksudnya mudah dibaca. Perbandingan berjenjang (*lexicographic comparison*) seperti ini (bandingkan komponen yang paling berpengaruh lebih dahulu, dan lanjutkan ke komponen berikutnya hanya bila hasilnya seri) adalah pola yang akan muncul lagi setiap kali dua nilai bentukan harus diurutkan.
 
-**Perhatikan apa yang tidak ditulis di sini.** Menghitung selisih dua tanggal dalam hari, atau menentukan tanggal ke-*n* setelah sebuah tanggal, memerlukan penjumlahan atas sejumlah bulan atau tahun yang tidak diketahui sebelumnya. Persoalan semacam itu memerlukan rekursi, dan menunggu Bab 6.
+**Perhatikan apa yang tidak ditulis di sini.** Menghitung selisih dua tanggal dalam hari, atau menentukan tanggal ke-*n* setelah sebuah tanggal, memerlukan penjumlahan atas sejumlah bulan atau tahun yang tidak diketahui sebelumnya. Persoalan semacam itu memerlukan rekursi, sehingga harus menunggu Bab 6.
 
 ## Type Bentukan sebagai Hasil
 
-Sejauh ini type bentukan selalu muncul sebagai **domain**. Type bentukan dapat pula muncul sebagai **range**: sebuah fungsi boleh menghasilkan lebih dari satu nilai, asalkan keduanya dibungkus menjadi satu.
+Sejauh ini type bentukan selalu muncul sebagai **domain**. Type bentukan dapat pula muncul sebagai **range**: sebuah fungsi boleh menghasilkan lebih dari satu nilai, asalkan nilai-nilai itu dibungkus menjadi satu.
 
-Kemampuan ini menyelesaikan persoalan yang sudah terasa sejak Bab 3. Pembagian bulat menghasilkan dua hal (hasil bagi dan sisa) dan keduanya dihitung oleh perhitungan yang sama. Menuliskan `div` dan `mod` sebagai dua fungsi terpisah berarti mengerjakan pekerjaan yang sama dua kali.
+Kemampuan ini menyelesaikan persoalan yang sudah terasa sejak Bab 3. Pembagian bulat menghasilkan dua hal (hasil bagi dan sisa) dan keduanya diperoleh dari perhitungan yang sama. Menuliskan `div` dan `mod` sebagai dua fungsi terpisah berarti mengerjakan pekerjaan yang sama dua kali.
 
 ```
 JUDUL   Pembagian Bulat dengan Sisa
@@ -417,9 +417,9 @@ APLIKASI
       ⟨24, 0⟩
 ```
 
-Range `divMod` adalah sebuah type bentukan **tanpa nama**: sebuah tuple yang menyatakan komposisi nilainya tanpa `type` yang mendahuluinya. Notasi mengizinkan hal ini demi keringkasan, dan berguna ketika nilai bentukan itu hanya lewat.
+Range `divMod` adalah sebuah type bentukan **tanpa nama**: sebuah tuple yang menyatakan komposisi nilainya tanpa `type` yang mendahuluinya. Notasi mengizinkan hal ini demi keringkasan, dan bentuk ini berguna ketika nilai bentukan itu hanya lewat sebentar.
 
-Nilai bentukan tanpa nama diambil komponennya dengan `let` dari Bab 3, dengan sebuah tuple nama di sisi kiri pengikatan:
+Komponen nilai bentukan tanpa nama diambil dengan `let` dari Bab 3, dengan menuliskan sebuah tuple nama di sisi kiri pengikatan (*pattern binding*):
 
 ```
 JUDUL   Konversi Detik menjadi Hari, Jam, Menit, Detik
@@ -455,15 +455,15 @@ toDHMS (x) :
       ((x mod 86400) mod 3600) mod 60 ⟩
 ```
 
-Keduanya benar dan menghasilkan hal yang sama. Yang kedua menghitung `x mod 86400` tiga kali dan `(x mod 86400) mod 3600` dua kali, dan memaksa pembacanya melakukan hal yang sama untuk meyakini bahwa keempat baris itu memang membicarakan satu pemecahan yang sama. Nama antara, sebagaimana pada Bab 3, dipakai bukan untuk menghemat perhitungan melainkan untuk menghemat usaha membaca.
+Keduanya benar dan menghasilkan hal yang sama. Yang kedua menghitung `x mod 86400` tiga kali dan `(x mod 86400) mod 3600` dua kali, dan memaksa pembacanya melakukan hal yang sama untuk meyakini bahwa keempat baris itu memang membicarakan satu pemecahan yang sama. Nama antara, sebagaimana pada Bab 3, dipakai bukan untuk menghemat perhitungan, melainkan untuk menghemat usaha membaca.
 
-**Kapan sebuah type bentukan perlu diberi nama?** Aturan praktisnya: bila nilai itu mempunyai arti tersendiri dan ada operasi yang berlaku atasnya, berilah ia nama. `⟨q, r⟩` hasil `divMod` hanya lewat dan langsung dibongkar (kedua komponennya dipakai secara terpisah), sehingga tuple tanpa nama memadai. Sebaliknya, bila `⟨d, h, m, s⟩` akan dibandingkan, dijumlahkan, atau dicetak di banyak tempat, ia sudah pantas menjadi `type Duration`.
+**Kapan sebuah type bentukan perlu diberi nama?** Aturan praktisnya: bila nilai itu mempunyai arti tersendiri dan ada operasi yang berlaku atasnya, berilah nilai itu nama. `⟨q, r⟩` hasil `divMod` hanya lewat dan langsung dibongkar (kedua komponennya dipakai secara terpisah), sehingga tuple tanpa nama memadai. Sebaliknya, bila `⟨d, h, m, s⟩` akan dibandingkan, dijumlahkan, atau dicetak di banyak tempat, nilai itu sudah pantas menjadi `type Duration`.
 
 ## Sekilas: Type Alternatif
 
-Seluruh bab ini membahas produk, yaitu nilai yang terdiri dari beberapa komponen **sekaligus**. Ada bentuk kedua yang diperkenalkan di sini secukupnya dan baru dibahas tuntas pada Bab 6 dan 7: **alternatif**, yaitu nilai yang merupakan **salah satu** dari beberapa kemungkinan.
+Seluruh bab ini membahas produk, yaitu nilai yang terdiri atas beberapa komponen **sekaligus**. Ada bentuk kedua yang diperkenalkan di sini secukupnya dan baru dibahas tuntas pada Bab 6 dan 7: **alternatif** (*sum type*), yaitu nilai yang merupakan **salah satu** dari beberapa kemungkinan.
 
-Sebuah `Shape` adalah sebuah lingkaran **atau** sebuah persegi panjang (atau bangun-bangun lainnya, namun di contoh ini kita batasi dua bangun untuk menyederhanakan persoalan). Tidak pernah keduanya secara bersamaan, dan komponennya berbeda menurut alternatif mana yang berlaku.
+Sebuah `Shape` adalah sebuah lingkaran **atau** sebuah persegi panjang (atau bangun lainnya, tetapi pada contoh ini kita batasi dua bangun saja agar persoalannya sederhana). Sebuah `Shape` tidak pernah menjadi keduanya sekaligus, dan komponennya berbeda menurut alternatif mana yang berlaku.
 
 ```
 TYPE SHAPE
@@ -523,11 +523,11 @@ APLIKASI
       12.0
 ```
 
-Tiga hal yang membuat alternatif berbeda dari produk, dan ketiganya menguntungkan kita:
+Ada tiga hal yang membedakan alternatif dari produk, dan ketiganya menguntungkan kita:
 
-- Analisis kasus atas type alternatif **selalu lengkap dan disjoint dengan sendirinya**, karena setiap nilai persis merupakan satu alternatif. Syarat yang pada Bab 4 harus dijaga sendiri oleh penulis, di sini dijamin oleh type-nya. Karena itu pula `else` tidak dipakai pada `area`: menuliskan `isRectangle (s)` secara terbuka tidak lebih panjang, dan membuat jaminan tersebut terlihat alih-alih tersembunyi.
+- Analisis kasus atas type alternatif **selalu lengkap dan disjoint dengan sendirinya**, karena setiap nilai persis merupakan satu alternatif. Syarat yang pada Bab 4 harus dijaga sendiri oleh penulis, di sini dijamin oleh type-nya. Sebab itu pula, `else` tidak dipakai pada `area`: menuliskan `isRectangle (s)` secara terbuka tidak lebih panjang, dan membuat jaminan tersebut terlihat, bukan tersembunyi.
 - Selektor sebuah alternatif hanya berlaku bagi alternatif itu: `r (s)` tidak bermakna bila `s` adalah sebuah persegi panjang.
-- Setiap alternatif mempunyai konstruktornya sendiri, dan karena itu prasyaratnya sendiri. Pada produk hanya ada satu pintu masuk ke sebuah type; pada alternatif ada sebanyak alternatifnya.
+- Setiap alternatif mempunyai konstruktornya sendiri, dan karena itu juga mempunyai prasyaratnya sendiri. Pada produk hanya ada satu pintu masuk ke sebuah type; pada alternatif ada sebanyak alternatifnya.
 
 Dalam Haskell:
 
@@ -543,7 +543,7 @@ area (Circle r)      = pi * r * r
 area (Rectangle w h) = w * h
 ```
 
-Haskell menggabungkan pemilihan kasus dengan pengambilan komponen dalam satu langkah, yang disebut *pattern matching*: baris pertama sekaligus menyatakan "bila b adalah sebuah lingkaran" dan memberi nama `r` kepada jari-jarinya. Predikat dan selektor terpisah tidak lagi diperlukan. Kompilator juga memeriksa bahwa seluruh alternatif tertangani. Syarat lengkap yang pada notasi hanya berupa janji, di sini diperiksa oleh mesin.
+Haskell menggabungkan pemilihan kasus dengan pengambilan komponen dalam satu langkah, yang disebut pencocokan pola (*pattern matching*): baris pertama sekaligus menyatakan "bila bentuknya adalah sebuah lingkaran" dan memberi nama `r` kepada jari-jarinya. Predikat dan selektor terpisah tidak lagi diperlukan. Kompilator juga memeriksa bahwa seluruh alternatif tertangani. Syarat lengkap yang pada notasi hanya berupa janji, di sini diperiksa oleh mesin.
 
 Alternatif akan muncul lagi pada Bab 7, karena **list adalah type alternatif**: sebuah list adalah list kosong, atau sebuah elemen diikuti sebuah list.
 
@@ -557,8 +557,8 @@ Alternatif akan muncul lagi pada Bab 7, karena **list adalah type alternatif**: 
 | `⟨a, b⟩` sebagai range | `(a, b)` |
 | `let ⟨q, r⟩ : divMod (n, d) in …` | `let (q, r) = divMod n d in ...` |
 | `type T : A ⟨...⟩ \| B ⟨...⟩` | `data T = A ... \| B ...` |
-| `Integer [1..12]` | *tidak ada padanan; hidup pada spesifikasi* |
-| `d : Integer > 0` (invarian) | *tidak ada padanan; hidup pada spesifikasi* |
+| `Integer [1..12]` | *tidak ada padanan; hanya tercatat pada spesifikasi* |
+| `d : Integer > 0` (invarian) | *tidak ada padanan; hanya tercatat pada spesifikasi* |
 
 Dua baris terakhir patut diperhatikan. Notasi dapat menyatakan pembatasan yang tidak dapat dinyatakan oleh bahasanya, dan pembatasan itu hilang dalam terjemahan. Sebaliknya, bahasa memberi pemeriksaan yang tidak dapat diberikan notasi. Keduanya bukan versi berbeda dari hal yang sama; keduanya mengerjakan pekerjaan yang berbeda.
 
@@ -588,12 +588,12 @@ subFraction (f1, f2) :
                   denominator (f1) - denominator (f2))
 ```
 
-Temukan kesalahannya, dan sebutkan aplikasi yang membuktikannya. Kemudian jawab: invarian type `Fraction` mana yang dilanggar, dan pada nilai masukan seperti apa pelanggaran itu terjadi?
+Temukan kesalahannya, dan sebutkan aplikasi yang membuktikannya. Kemudian jawablah: invarian type `Fraction` mana yang dilanggar, dan pada nilai masukan seperti apa pelanggaran itu terjadi?
 
 **Menulis.** Tuliskan kelima bagian secara lengkap: definisi type, selektor, konstruktor, predikat, dan operator lain. Nyatakan prasyarat bila ada, dan pilih contoh aplikasi yang mencakup setiap kasus beserta nilai batasnya.
 
 1. Type `Line` yang dibentuk dari dua `Point`, beserta predikat untuk menentukan apakah dua garis sejajar, dan operator untuk menghitung panjang sebuah garis. Gunakan kembali `distance`.
-2. Type `Square` yang dibentuk dari titik kiri-atas dan titik kanan-bawah, dengan sisi sejajar sumbu. Sertakan predikat `isSquare`, yang menentukan apakah kedua titik itu benar-benar membentuk bujur sangkar dan bukan persegi panjang sembarang, serta `isInside`, yang menentukan apakah sebuah `Point` terletak di dalamnya. Nyatakan dengan jelas apakah titik pada tepinya termasuk "di dalam" dan sadari bahwa keputusan itu milik Anda, bukan milik persoalannya.
+2. Type `Square` yang dibentuk dari titik kiri-atas dan titik kanan-bawah, dengan sisi sejajar sumbu. Sertakan predikat `isSquare`, yang menentukan apakah kedua titik itu benar-benar membentuk bujur sangkar dan bukan persegi panjang sembarang, serta `isInside`, yang menentukan apakah sebuah `Point` terletak di dalamnya. Nyatakan dengan jelas apakah titik pada tepinya termasuk "di dalam" dan sadarilah bahwa keputusan itu ada di tangan Anda, bukan ditentukan oleh persoalannya.
 3. Type `Complex` beserta penjumlahan, perkalian, dan modulus. Bandingkan strukturnya dengan `Fraction`: mana di antara keduanya yang mengalami persoalan "banyak representasi, satu nilai", dan mengapa?
 4. Type `Time` sebagai `⟨hour, minute, second⟩`, beserta `isValidTime`, `toSeconds` yang mengubahnya menjadi jumlah detik sejak tengah malam, dan `isBefore`. Bandingkan realisasi `isBefore` Anda dengan versi `Date` pada bab ini.
 5. Type `DateTime` yang dibentuk dari `Date` dan `Time`, beserta `isBefore` atasnya. Berapa banyak kode baru yang sesungguhnya harus Anda tulis, bila `isBefore` untuk `Date` dan untuk `Time` sudah ada?
@@ -602,6 +602,6 @@ Temukan kesalahannya, dan sebutkan aplikasi yang membuktikannya. Kemudian jawab:
 
 **Merancang.** Tiga pertanyaan, ketiganya tanpa jawaban tunggal yang benar:
 
-1. `distanceFromOrigin (p)` dapat dihapus dan diganti dengan `distance (p, makePoint (0.0, 0.0))`. Mana yang Anda pilih untuk diktat ini? Apa yang hilang bila `distanceFromOrigin` dihapus, dan apa yang hilang bila ia dipertahankan?
+1. `distanceFromOrigin (p)` dapat dihapus dan diganti dengan `distance (p, makePoint (0.0, 0.0))`. Mana yang Anda pilih untuk diktat ini? Apa yang hilang bila `distanceFromOrigin` dihapus, dan apa yang hilang bila fungsi itu dipertahankan?
 2. `Fraction` dapat dirancang dengan mengharuskan setiap nilainya berada dalam bentuk paling sederhana. Apa yang menjadi lebih mudah, apa yang menjadi lebih sulit, dan bagian mana dari definisi type yang harus berubah? (Fungsi penyederhananya sendiri baru dapat ditulis pada Bab 6.)
-3. `type Point : ⟨x : Real, y : Real⟩` menyimpan titik dalam koordinat kartesian. Bila ia diganti menjadi koordinat polar `⟨r : Real, θ : Real⟩`, fungsi mana saja pada Contoh 1 yang harus ditulis ulang, dan fungsi mana yang tidak? Bandingkan jawaban Anda dengan aturan "bekerja lewat selektor" di awal bab. Apakah aturan itu memberikan sebanyak yang dijanjikannya?
+3. `type Point : ⟨x : Real, y : Real⟩` menyimpan titik dalam koordinat kartesian. Bila representasinya diganti menjadi koordinat polar `⟨r : Real, θ : Real⟩`, fungsi mana saja pada Contoh 1 yang harus ditulis ulang, dan fungsi mana yang tidak? Bandingkan jawaban Anda dengan aturan "bekerja lewat selektor" di awal bab. Apakah aturan itu benar-benar memenuhi janjinya?

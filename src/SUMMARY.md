@@ -9,7 +9,7 @@
 - [Type Bentukan](./05-type-bentukan.md)
 - [Ekspresi Rekursif](./06-ekspresi-rekursif.md)
 - [List](./07-list.md)
-- [Fungsi Sebagai Nilai](./08-fungsi-sebagai-nilai.md)
+- [Fungsi sebagai Nilai](./08-fungsi-sebagai-nilai.md)
 - [Dari Notasi ke Program](./09-dari-notasi-ke-program.md)
 - [Pohon](./10-pohon.md)
 - [List of List](./11-list-of-list.md)
