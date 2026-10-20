@@ -37,7 +37,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-b1c70305.js";
+            window.path_to_searchindex_js = "searchindex-3fac1ea3.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-05c84685.js"></script>
@@ -177,8 +177,8 @@
                 <div id="mdbook-content" class="content">
                     <main>
                         <h1 id="list-of-list"><a class="header" href="#list-of-list">List of List</a></h1>
-<p>Bab ini berdiri di luar alur utama Diktat, sebagaimana Bab 10, tetapi dengan cara yang berbeda: Bab 10 memperkenalkan sebuah struktur baru, sedangkan bab ini tidak memperkenalkan satu pun type, operasi, atau notasi yang belum ada. Seluruh isinya diturunkan dari Bab 5, 6, 7, dan 10, dan tugas bab ini adalah memperlihatkan penurunan itu.</p>
-<p>Bab ini juga dirancang untuk dikerjakan sendiri, bukan untuk diajarkan: sedikit yang dituliskan lengkap, banyak yang ditanyakan. Bahan terdahulu di lingkungan ITB, mengikuti literatur Lisp, memperlakukan topik ini sebagai pokok bahasan tersendiri dengan delapan operasi dasarnya sendiri. Pembaca bab ini akan mengerjakan seluruh topik tersebut tanpa satu pun operasi baru.</p>
+<p>Bab ini berdiri di luar alur utama Diktat, sebagaimana Bab 10, tetapi dengan cara yang berbeda: Bab 10 memperkenalkan sebuah struktur baru, sedangkan bab ini tidak memperkenalkan satu pun mekanisme type, operasi list, atau notasi yang belum ada. Seluruh isinya diturunkan dari Bab 5, 6, 7, dan 10, dan tugas bab ini adalah memperlihatkan penurunan itu.</p>
+<p>Bab ini juga dirancang untuk dikerjakan sendiri, bukan untuk diajarkan: sedikit yang dituliskan lengkap, banyak yang ditanyakan. Bahan terdahulu di lingkungan ITB, mengikuti literatur Lisp, memperlakukan topik ini sebagai pokok bahasan tersendiri dengan delapan operasi dasarnya sendiri. Pembaca bab ini akan mengerjakan seluruh topik tersebut tanpa satu pun operasi list baru.</p>
 <p>Bab ini mengasumsikan Bab 10 sudah dibaca.</p>
 <h2 id="dua-hal-yang-bernama-sama"><a class="header" href="#dua-hal-yang-bernama-sama">Dua Hal yang Bernama Sama</a></h2>
 <p>Istilah <em>list of list</em> dipakai untuk dua struktur yang berbeda, dan keduanya menuntut penanganan yang berlainan.</p>
@@ -346,7 +346,7 @@ DEFINISI DAN SPESIFIKASI PREDIKAT
 <tr><td>Banyaknya fungsi</td><td>dua</td><td>satu</td></tr>
 <tr><td>Analisis kasus per fungsi</td><td>atas satu type saja</td><td>atas dua type sekaligus</td></tr>
 <tr><td>Sifat lengkap dan disjoint</td><td>dijamin type-nya</td><td>harus dijaga sendiri</td></tr>
-<tr><td><code>and then</code></td><td>tidak diperlukan</td><td>diperlukan, dan wajib</td></tr>
+<tr><td><code>and then</code></td><td>tidak diperlukan</td><td>wajib</td></tr>
 <tr><td>Arah rekursi</td><td>terpisah pada dua fungsi</td><td>bercampur dalam satu ekspresi</td></tr>
 <tr><td>Padanan langsung ke type-nya</td><td>ada</td><td>tidak ada</td></tr>
 </tbody>
@@ -363,7 +363,7 @@ type Item : Atom   ⟨value : Integer⟩
 </code></pre>
 <p>Keduanya menyebut dirinya sendiri melalui sebuah list. Keduanya menempatkan basis rekurensnya di dalam list tersebut, bukan pada sebuah alternatif tersendiri. Keduanya melahirkan fungsi berpasangan.</p>
 <p>Perbedaannya hanya satu: <strong>letak nilainya</strong>. Sebuah <code>Tree</code> menyimpan <code>info</code> pada setiap simpul, termasuk simpul dalam. Sebuah <code>Item</code> menyimpan nilai hanya pada daunnya; simpul dalamnya, yaitu <code>Nested</code>, tidak membawa apa pun selain anak-anaknya.</p>
-<p>Sebab itu, sebuah <em>list of list</em> dengan sarang tak teratur adalah sebuah pohon n-aire yang nilainya seluruhnya berada di daun. Kedua bab ini membahas satu struktur yang sama, dan bab ini menemukannya dari arah yang berlawanan: Bab 10 berangkat dari gagasan hierarki, bab ini berangkat dari gagasan list yang elemennya boleh berupa list.</p>
+<p>Sebab itu, sebuah <em>list of list</em> dengan sarang tak teratur adalah sebuah pohon n-aire yang nilainya seluruhnya berada di daun. Kedua bab ini membahas satu keluarga struktur, dan bab ini menemukannya dari arah yang berlawanan: Bab 10 berangkat dari gagasan hierarki, bab ini berangkat dari gagasan list yang elemennya boleh berupa list.</p>
 <p>Ada dua pertanyaan yang pantas Anda jawab sendiri, dan sengaja tidak dijawab di sini:</p>
 <ol>
 <li><code>Nested (makeNil)</code>, yaitu <code>[]</code>, adalah sebuah <code>Item</code> yang sah dan tidak memuat satu pun bilangan. Padanan apakah yang dimilikinya pada <code>Tree</code>? Bab 10 menyatakan bahwa tidak ada pohon kosong. Apakah pernyataan tersebut masih berlaku di sini, dan bila ya, apa akibatnya bagi range <code>sumItem</code>?</li>
@@ -394,7 +394,7 @@ type Item : Atom   ⟨value : Integer⟩
 </ol>
 <h2 id="catatan-sejarah"><a class="header" href="#catatan-sejarah">Catatan Sejarah</a></h2>
 <p>Struktur pada bab ini adalah <em>S-expression</em>, dan berasal dari Lisp (1958), bahasa fungsional tertua yang masih dipakai. Di sana struktur ini bukan sebuah topik lanjut, melainkan satu-satunya struktur data yang ada, dan sekaligus bentuk penulisan program itu sendiri: sebuah program Lisp adalah sebuah S-expression, sehingga program dapat diperlakukan sebagai data tanpa perkakas tambahan apa pun. Gagasan tersebut dibahas panjang lebar dalam [6].</p>
-<p>Lisp tidak mempunyai sistem type, sehingga <code>IsAtom</code> dan <code>IsList</code> di sana adalah pemeriksaan yang dilakukan pada saat eksekusi terhadap nilai yang bentuknya tidak dijamin oleh apa pun. Bahan terdahulu mewarisi keadaan tersebut beserta perangkat operasi rangkapnya. Begitu sarang tak teratur dinyatakan sebagai type alternatif yang rekursif, perangkat rangkap itu tidak lagi diperlukan, dan yang tersisa adalah dua alternatif dengan konstruktor dan selektornya sendiri, tidak berbeda dari <code>Shape</code> pada Bab 5.</p>
+<p>Lisp tidak memeriksa type pada saat kompilasi, sehingga <code>IsAtom</code> dan <code>IsList</code> di sana adalah pemeriksaan yang dilakukan pada saat eksekusi terhadap nilai yang bentuknya tidak dijamin oleh apa pun. Bahan terdahulu mewarisi keadaan tersebut beserta perangkat operasi rangkapnya. Begitu sarang tak teratur dinyatakan sebagai type alternatif yang rekursif, perangkat rangkap itu tidak lagi diperlukan, dan yang tersisa adalah dua alternatif dengan konstruktor dan selektornya sendiri, tidak berbeda dari <code>Shape</code> pada Bab 5.</p>
 <p>Sejumlah fungsi pada bagian sebelumnya, khususnya <code>removeValue</code>, dikenal luas dari [9], yang membahas struktur ini secara panjang lebar melalui tanya jawab dan tanpa satu pun definisi type.</p>
 <h2 id="kesalahan-yang-sering-terjadi"><a class="header" href="#kesalahan-yang-sering-terjadi">Kesalahan yang Sering Terjadi</a></h2>
 <div class="table-wrapper">

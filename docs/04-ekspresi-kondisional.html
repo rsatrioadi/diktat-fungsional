@@ -37,7 +37,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-b1c70305.js";
+            window.path_to_searchindex_js = "searchindex-3fac1ea3.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-05c84685.js"></script>
@@ -399,7 +399,7 @@ quadrant x y
     ⇒ isDivisor (12, 0)
       false
 </code></pre>
-<p><code>and then</code> <strong>tidak komutatif</strong>: <code>(a mod b = 0) and then (b ≠ 0)</code> tetap tidak terdefinisi bila <code>b</code> nol. Urutan operan menjadi penting, dan inilah satu-satunya tempat dalam notasi ini yang urutan operannya bermakna. Sebab itu, pakailah <code>and then</code> hanya bila memang diperlukan, yaitu bila operan kedua tidak selalu terdefinisi, dan pakailah <code>and</code> biasa di tempat lain.</p>
+<p><code>and then</code> <strong>tidak komutatif</strong>: <code>(a mod b = 0) and then (b ≠ 0)</code> tetap tidak terdefinisi bila <code>b</code> nol. Urutan operan menjadi penting, dan bersama <code>or else</code>, inilah satu-satunya tempat dalam notasi ini yang urutan evaluasi operannya bermakna. Sebab itu, pakailah <code>and then</code> hanya bila memang diperlukan, yaitu bila operan kedua tidak selalu terdefinisi, dan pakailah <code>and</code> biasa di tempat lain.</p>
 <p>Dalam Haskell:</p>
 <pre><code class="language-haskell">isDivisor :: Integer -&gt; Integer -&gt; Bool
 -- isDivisor a b bernilai True bila b membagi habis a; False bila b = 0
@@ -423,7 +423,7 @@ isDivisor a b = (b /= 0) &amp;&amp; (a `mod` b == 0)
 </tbody>
 </table>
 </div>
-<p>Kesalahan batas layak mendapat perhatian khusus. Kesalahan ini tidak pernah tampak pada contoh aplikasi yang dipilih sembarangan, karena nilai sembarang hampir tidak pernah jatuh tepat di batas. Kebiasaan yang dianjurkan: <strong>untuk setiap batas, uji nilai tepat pada batas, tepat di bawahnya, dan tepat di atasnya.</strong></p>
+<p>Kesalahan batas layak mendapat perhatian khusus. Kesalahan ini jarang tampak pada contoh aplikasi yang dipilih sembarangan, karena nilai sembarang hampir tidak pernah jatuh tepat di batas. Kebiasaan yang dianjurkan: <strong>untuk setiap batas, uji nilai tepat pada batas, tepat di bawahnya, dan tepat di atasnya.</strong></p>
 <h2 id="latihan"><a class="header" href="#latihan">Latihan</a></h2>
 <p><strong>Membaca.</strong> Untuk setiap realisasi berikut, tentukan definisi dan tuliskan spesifikasinya. Kemudian periksa syarat lengkap dan disjoint. Bila salah satu dilanggar, sebutkan nilai masukan yang membuktikannya.</p>
 <pre><code>p (n) :

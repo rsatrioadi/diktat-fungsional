@@ -37,7 +37,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-b1c70305.js";
+            window.path_to_searchindex_js = "searchindex-3fac1ea3.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-05c84685.js"></script>
@@ -182,7 +182,7 @@
 <p>Sampai Bab 7, sebuah nilai selalu berupa bilangan, karakter, boolean, sebuah type bentukan, atau sebuah list. Nilai dapat diberi nama lewat <code>let</code>, diserahkan sebagai argumen, dan dihasilkan sebagai range. Fungsi tidak pernah diperlakukan demikian. Fungsi adalah sesuatu yang <em>diaplikasikan</em>, bukan sesuatu yang <em>diberikan</em>.</p>
 <p>Pembatasan itu tidak pernah dinyatakan sebagai aturan, dan memang tidak pernah ada aturannya. Bab 2 menyatakan bahwa fungsi adalah pemetaan dari satu type ke type lain, dan tidak menyatakan apa pun tentang type apa saja yang boleh menjadi domain atau range. Bila fungsi adalah nilai, maka sebuah fungsi boleh menerima fungsi, dan boleh menghasilkan fungsi.</p>
 <p>Fungsi yang menerima atau menghasilkan fungsi disebut <strong>fungsi orde tinggi</strong> (<em>higher-order function</em>).</p>
-<p>Bab ini tidak memperkenalkan satu pun persoalan baru. Setiap fungsi yang ditulis di sini sudah pernah ditulis pada Bab 6 atau Bab 7. Yang berubah hanyalah cara menuliskannya, dan seberapa banyak yang harus ditulis.</p>
+<p>Bab ini hampir tidak memperkenalkan persoalan baru. Sebagian besar fungsi yang ditulis di sini sudah pernah ditulis pada Bab 6 atau Bab 7. Yang berubah hanyalah cara menuliskannya, dan seberapa banyak yang harus ditulis.</p>
 <h2 id="fungsi-sebagai-parameter"><a class="header" href="#fungsi-sebagai-parameter">Fungsi sebagai Parameter</a></h2>
 <p>Bab 7 menuliskan <code>squareAll</code>, yang mengkuadratkan setiap elemen sebuah list. Seandainya kita membutuhkan fungsi yang menegatifkan setiap elemen, atau yang menambahkan satu pada setiap elemen, teksnya akan hampir sama persis. Yang berbeda hanya satu hal: apa yang dikerjakan terhadap setiap elemen.</p>
 <p>Jadikan hal itu sebagai parameter.</p>
@@ -302,8 +302,8 @@ productList (L) : fold (λ (a, b) : a * b, 1, L)
 length (L)      : fold (λ (a, b) : 1 + b, 0, L)
 </code></pre>
 <p>Perhatikan <code>length</code>. Lambdanya mengabaikan <code>a</code> sama sekali dan hanya menambahkan satu, yang memang persis yang dikerjakan <code>length</code> pada Bab 7. Kenyataan bahwa pencacahan ternyata adalah penjumlahan yang mengabaikan isinya baru terlihat setelah kedua fungsi dituliskan dalam bentuk yang sama.</p>
-<p><strong>Sekarang aturan nilai basis dari Bab 7 dapat dijelaskan.</strong> Bab 7 menyatakan bahwa nilai basis harus netral terhadap operator rekurensnya: nol untuk penjumlahan, satu untuk perkalian. Dalam <code>fold</code>, nilai itu adalah <code>z</code>, dan nilai itu bukan lagi bagian dari realisasi, melainkan sebuah argumen yang harus dipilih pemakainya. Aturan yang pada Bab 7 berupa nasihat, di sini menjadi kewajiban yang terlihat: <code>z</code> adalah jawaban bagi list kosong, dan salah memilihnya adalah kesalahan yang hanya menampakkan diri pada list kosong.</p>
-<p><code>fold</code> adalah yang paling umum di antara ketiga pola ini. <code>map</code> maupun <code>filter</code> dapat dituliskan dengan <code>fold</code>, dan salah satunya ditanyakan pada Latihan.</p>
+<p><strong>Sekarang aturan nilai basis dari Bab 7 dapat dijelaskan.</strong> Bab 7 menyatakan bahwa nilai basis harus netral terhadap operator rekurensnya: nol untuk penjumlahan, satu untuk perkalian. Dalam <code>fold</code>, nilai itu adalah <code>z</code>, dan nilai itu bukan lagi bagian dari realisasi, melainkan sebuah argumen yang harus dipilih pemakainya. Aturan yang pada Bab 7 berupa nasihat, di sini menjadi kewajiban yang terlihat: <code>z</code> adalah jawaban bagi list kosong, dan salah memilihnya merusak jawaban bagi list kosong, dan bila <code>z</code> tidak netral, juga bagi setiap list lain.</p>
+<p><code>fold</code> adalah yang paling umum di antara ketiga pola ini. Baik <code>map</code> maupun <code>filter</code> dapat dituliskan dengan <code>fold</code>, dan salah satunya ditanyakan pada Latihan.</p>
 <h2 id="arah-lipatan"><a class="header" href="#arah-lipatan">Arah Lipatan</a></h2>
 <p><code>fold</code> di atas menggabungkan dari elemen <strong>terakhir</strong> menuju elemen pertama. Itulah bentuk yang dimiliki setiap fungsi pada Bab 7, karena setiap rekurensnya menggabungkan <code>head (L)</code> dengan hasil atas <code>tail (L)</code>, sehingga penggabungan sesungguhnya baru terjadi setelah rekurens mencapai dasar.</p>
 <p>Ada satu fungsi pada Bab 7 yang tidak berbentuk demikian, yaitu <code>reverseOnto</code>. Fungsi itu membawa hasil sementara <strong>maju</strong> sebagai akumulator, sehingga penggabungan terjadi dari elemen pertama menuju elemen terakhir. Bentuk itu adalah lipatan ke arah yang berlawanan.</p>
@@ -417,8 +417,8 @@ map (max2 0) [-3, 5, -1]     -- [0, 5, 0]
 <pre><code>map (λ x : max2 (0, x), L)
 </code></pre>
 <p>dan cara itu memang selalu mungkin. Namun, itu adalah pekerjaan yang dalam bahasa acuan sama sekali tidak perlu dilakukan.</p>
-<p><strong>Inilah pertama kalinya notasi kalah tanpa imbalan.</strong> Setiap perbedaan sejak Bab 2 selalu berupa pertukaran. Notasi lebih ketat pada syarat disjoint, bahasa memeriksa kelengkapan pola. Notasi dapat menuliskan <code>Integer [1..4]</code>, bahasa tidak. Notasi membedakan <code>and</code> dari <code>and then</code>, bahasa tidak. Kali ini tidak ada yang diterima sebagai gantinya. Koma membuat baris definisi lebih mudah dibaca oleh manusia yang belum terbiasa, dan harganya adalah sebuah kemampuan yang hilang seluruhnya.</p>
-<p>Notasi ini adalah alat berpikir, dan Bab 2 sudah menyatakan bahwa notasi ini tidak mencakup seluruh konsep pemrograman fungsional. Di sinilah pernyataan itu menjadi konkret. Sebuah alat berpikir yang tidak mengakui batasnya sendiri tidak lagi menjadi alat berpikir yang jujur, dan mulai dari sini yang terbaik adalah membaca dan menulis langsung dalam bahasanya. Bab 9 dan Suplemen melanjutkan dari sini, dan Suplemen S5 mengumpulkan seluruh batas semacam ini dalam satu daftar.</p>
+<p><strong>Inilah pertama kalinya notasi kalah tanpa imbalan.</strong> Setiap perbedaan sejak Bab 2 selalu berupa pertukaran. Notasi lebih ketat pada syarat disjoint, bahasa memeriksa kelengkapan pola. Notasi dapat menuliskan <code>Integer [1..4]</code>, bahasa tidak. Notasi membedakan <code>and</code> dari <code>and then</code>, bahasa tidak. Kali ini bahasa tidak kehilangan apa pun sebagai gantinya. Imbalannya hanya ada di pihak pembaca: koma membuat baris definisi lebih mudah dibaca oleh manusia yang belum terbiasa, dan harganya adalah sebuah kemampuan yang hilang seluruhnya.</p>
+<p>Notasi ini adalah alat berpikir, dan Bab 2 sudah menyatakan bahwa notasi ini tidak mencakup seluruh konsep pemrograman fungsional. Di sinilah pernyataan itu menjadi konkret. Sebuah alat berpikir yang tidak mengakui batasnya sendiri tidak lagi menjadi alat berpikir yang jujur, dan untuk hal semacam ini, yang terbaik adalah membaca dan menulis langsung dalam bahasanya. Bab 9 dan Suplemen melanjutkan dari sini, dan Suplemen S5 mengumpulkan seluruh batas semacam ini dalam satu daftar.</p>
 <p>Latihan Merancang pada akhir bab ini menanyakan apa yang harus dikorbankan seandainya notasi ini hendak diperbaiki agar aplikasi parsial menjadi mungkin.</p>
 <h2 id="kapan-fungsi-orde-tinggi-tidak-dipakai"><a class="header" href="#kapan-fungsi-orde-tinggi-tidak-dipakai">Kapan Fungsi Orde Tinggi Tidak Dipakai</a></h2>
 <p>Tiga pola pada bab ini kuat, dan justru karena itu ada godaan untuk memaksakan setiap fungsi ke dalam salah satunya. Tahanlah godaan itu.</p>
@@ -434,12 +434,12 @@ map (max2 0) [-3, 5, -1]     -- [0, 5, 0]
 </thead>
 <tbody>
 <tr><td>Menyerahkan aplikasi, bukan fungsi</td><td>tidak berarti apa-apa</td><td>apakah tertulis <code>square</code> atau <code>square (x)</code>? argumen fungsi orde tinggi tidak berkurung</td></tr>
-<tr><td>Nilai awal <code>fold</code> keliru</td><td>benar untuk list tidak kosong, salah untuk list kosong</td><td>apakah <code>z</code> netral terhadap operatornya? ujilah dengan <code>[]</code></td></tr>
+<tr><td>Nilai awal <code>fold</code> keliru</td><td>salah untuk list kosong; bila <code>z</code> tidak netral, salah untuk semua masukan</td><td>apakah <code>z</code> netral terhadap operatornya? ujilah dengan <code>[]</code></td></tr>
 <tr><td><code>map</code> dipakai padahal panjangnya berubah</td><td>hasilnya selalu sepanjang masukan, padahal seharusnya menyaring</td><td>apakah setiap elemen menghasilkan tepat satu elemen? bila tidak, itu <code>filter</code></td></tr>
 <tr><td><code>filter</code> dipakai padahal elemennya berubah</td><td>elemennya tidak berubah, padahal seharusnya berubah</td><td><code>filter</code> hanya memilih, tidak pernah mengubah</td></tr>
 <tr><td>Urutan komposisi terbalik</td><td>hasilnya salah pada fungsi yang tidak komutatif</td><td>pada <code>f ∘ g</code>, <code>g</code> bekerja lebih dahulu</td></tr>
 <tr><td>Lambda dibuat rekursif</td><td>tidak ada nama untuk disebut</td><td>fungsi rekursif harus bernama</td></tr>
-<tr><td>Pola dipaksakan</td><td>teksnya lebih panjang daripada versi rekursifnya</td><td>tulislah keduanya dan bandingkan; yang lebih pendek biasanya yang lebih benar</td></tr>
+<tr><td>Pola dipaksakan</td><td>teksnya lebih panjang daripada versi rekursifnya</td><td>tulislah keduanya dan bandingkan; yang lebih pendek biasanya yang lebih tepat dipakai</td></tr>
 </tbody>
 </table>
 </div>
@@ -462,7 +462,7 @@ fold' _ z []       = z
 fold' g z (x : xs) = g x (fold' g z xs)
 </code></pre>
 <p>Ada empat perbedaan.</p>
-<p><strong>Ketiganya sudah tersedia.</strong> Bahasa acuan menyediakan <code>map</code>, <code>filter</code>, dan <code>foldr</code> dalam pustaka standarnya, dan itulah sebabnya versi di atas diberi tanda kutip. Sikapnya sama dengan sikap terhadap <code>gcd</code> pada Bab 6 dan <code>length</code> pada Bab 7: keduanya tetap ditulis sendiri, karena menuliskannya adalah latihannya.</p>
+<p><strong>Ketiganya sudah tersedia.</strong> Bahasa acuan menyediakan <code>map</code>, <code>filter</code>, dan <code>foldr</code> dalam pustaka standarnya, dan itulah sebabnya versi di atas diberi tanda kutip. Sikapnya sama dengan sikap terhadap <code>gcd</code> pada Bab 6 dan <code>length</code> pada Bab 7: ketiganya tetap ditulis sendiri, karena menuliskannya adalah latihannya.</p>
 <p><strong>Type-nya lebih longgar daripada notasi kita.</strong> Perhatikan <code>map' :: (a -&gt; b) -&gt; [a] -&gt; [b]</code>. Type masukan dan keluaran boleh <strong>berbeda</strong>, sehingga <code>map</code> dapat mengubah list bilangan menjadi list boolean. Notasi kita menuliskan <code>(Element → Element)</code> sehingga mengharuskan keduanya sama. Pembatasan ini berasal dari notasi kita, bukan dari gagasannya, yaitu dari keputusan Bab 7 untuk memakai satu nama <code>Element</code> saja.</p>
 <p><strong>Lambda hampir sama.</strong> <code>\x -&gt; x * x</code> berbanding <code>λ x : x * x</code>. Inilah salah satu di antara sedikit tempat sepanjang diktat ini yang notasi dan bahasanya nyaris berimpit.</p>
 <p><strong>Tersedia jalan pintas yang tidak dimiliki notasi.</strong> Karena setiap fungsi menerima satu argumen, ekspresi seperti <code>(+1)</code>, <code>(*2)</code>, dan <code>(&gt; 0)</code> adalah fungsi yang sah tanpa lambda sama sekali, sehingga <code>map (+1) [1,2,3]</code> menghasilkan <code>[2,3,4]</code>. Bentuk ini (<em>operator section</em>) adalah aplikasi parsial yang dibicarakan di atas, dalam bentuknya yang paling ringkas.</p>

@@ -8,7 +8,7 @@ Sebuah `Date` menyimpan satu tanggal. Bila kita perlu mengelola tiga tanggal, ki
 
 Yang dibutuhkan adalah sebuah **koleksi** (*collection*): satu nama yang mewakili sekumpulan nilai, beserta cara mencapai setiap anggotanya. Sebuah koleksi mungkin kosong, mungkin berisi satu anggota, mungkin berisi sejuta.
 
-Ada banyak cara mengorganisasi koleksi, dan masing-masing cara menentukan sebuah type kolektif tersendiri dengan operasi dasarnya sendiri. Bab ini membahas satu di antaranya, yaitu **list**, yang anggotanya berurutan dan dicapai dari satu ujung. List adalah struktur rekursif yang paling sederhana, sehingga seluruh Bab 6 dapat langsung dipakai kembali di sini.
+Ada banyak cara mengorganisasi koleksi, dan masing-masing cara menentukan sebuah type kolektif tersendiri dengan operasi dasarnya sendiri. Bab ini membahas satu di antaranya, yaitu **list**, yang anggotanya berurutan dan dicapai dari satu ujung. List adalah salah satu struktur rekursif yang paling sederhana, sehingga seluruh Bab 6 dapat langsung dipakai kembali di sini.
 
 ## List sebagai Type Rekursif
 
@@ -174,7 +174,7 @@ APLIKASI
 
 Realisasi ini mempunyai dua sifat yang belum muncul sebelumnya.
 
-**`or else` dipakai, dan memang diperlukan.** Bab 4 menganjurkan memakai hubung-singkat hanya bila operan kedua tidak selalu terdefinisi. Di sini alasannya berbeda, tetapi sama sahnya: operan kedua **selalu terdefinisi, tetapi mahal**. Dengan `or else`, `isMember (1, [1, 2, ..., 1000])` berhenti pada elemen pertama. Dengan `or` biasa, seluruh seribu elemen tetap ditelusuri untuk menghasilkan jawaban yang sama.
+**`or else` dipakai, kali ini demi penghematan.** Bab 4 menganjurkan memakai hubung-singkat hanya bila operan kedua tidak selalu terdefinisi. Di sini alasannya berbeda, tetapi sama sahnya: operan kedua **selalu terdefinisi, tetapi mahal**. Dengan `or else`, `isMember (1, [1, 2, ..., 1000])` berhenti pada elemen pertama. Dengan `or` biasa, seluruh seribu elemen tetap ditelusuri untuk menghasilkan jawaban yang sama.
 
 **Hasilnya dapat dipastikan sebelum basis tercapai.** Inilah fungsi pertama pada bab ini yang tidak selalu berjalan sampai ke ujung list. Sebagian besar fungsi list tidak mempunyai sifat ini.
 
@@ -224,7 +224,7 @@ APLIKASI
 
 Letakkan kedua realisasi berdampingan. Keduanya berbeda **hanya pada dua tempat**: nilai basisnya, dan operatornya.
 
-Mengapa basis `productList` bernilai `1` dan bukan `0`? Karena basis harus berupa nilai netral (*identity element*), yaitu nilai yang tidak mengubah apa-apa ketika operator diterapkan padanya. Menjumlahkan nol tidak mengubah jumlah, dan mengalikan satu tidak mengubah hasil kali. Bila basis `productList` diisi `0`, setiap hasil kali menjadi nol. Aturan ini berlaku umum: **nilai basis ditentukan oleh operator rekurensnya**.
+Mengapa basis `productList` bernilai `1` dan bukan `0`? Karena basis harus berupa nilai netral (*identity element*), yaitu nilai yang tidak mengubah apa-apa ketika operator diterapkan padanya. Menjumlahkan nol tidak mengubah jumlah, dan mengalikan satu tidak mengubah hasil kali. Bila basis `productList` diisi `0`, setiap hasil kali menjadi nol. Aturan ini berlaku bagi fungsi berbasis-0: **nilai basis ditentukan oleh operator rekurensnya**.
 
 Kekembaran kedua fungsi ini sengaja diperlihatkan, dan akan dibicarakan lagi pada akhir bab.
 
@@ -705,7 +705,7 @@ Ada empat perbedaan.
 | `List of Integer tidak kosong` | `[Integer]`; pembatasannya hanya tercatat pada spesifikasi |
 | `type Set : List` dengan invarian | tidak ada padanan; invariannya hanya tercatat pada spesifikasi |
 
-Baris terakhir adalah satu-satunya yang tidak mempunyai padanan. Sepanjang bab ini, `Set` adalah gagasan yang seluruhnya ditegakkan oleh disiplin, dan terjemahannya ke Haskell tidak mengubah keadaan itu: sistem type Haskell memeriksa banyak hal, tetapi tidak memeriksa yang satu ini.
+Baris terakhir adalah satu-satunya yang sama sekali tidak mempunyai padanan; baris di atasnya berpadanan sebagian. Sepanjang bab ini, `Set` adalah gagasan yang seluruhnya ditegakkan oleh disiplin, dan terjemahannya ke Haskell tidak mengubah keadaan itu: sistem type Haskell memeriksa banyak hal, tetapi tidak memeriksa yang satu ini.
 
 ## Latihan
 

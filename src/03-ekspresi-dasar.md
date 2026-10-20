@@ -180,7 +180,7 @@ APLIKASI
 
 Perhatikan bahwa `distance` tidak memerlukan prasyarat meskipun memakai `sqrt`: jumlah dua bilangan kuadrat tidak mungkin negatif. Alasan semacam ini pantas dituliskan sebagai komentar bila tidak segera terlihat.
 
-Perhatikan pula bahwa `square` dari Bab 2 **tidak** dapat dipakai di sini. Domainnya `Integer`, sedangkan yang hendak dikuadratkan adalah `Real`, dan notasi ini tidak menyeberangkan keduanya secara diam-diam. Aturan yang tampak rewel di awal bab baru terasa manfaatnya di sini: aturan itu memaksa perbedaan tersebut tampak pada saat program ditulis, bukan pada saat dijalankan.
+Perhatikan pula bahwa `square` dari Bab 2 **tidak** dapat dipakai di sini. Domainnya `Integer`, sedangkan yang hendak dikuadratkan adalah `Real`, dan notasi ini tidak menyeberangkan keduanya secara diam-diam. Aturan yang tampak terlalu ketat di awal bab baru terasa manfaatnya di sini: aturan itu memaksa perbedaan tersebut tampak pada saat program ditulis, bukan pada saat dijalankan.
 
 Dalam Haskell:
 
@@ -239,7 +239,7 @@ Keduanya menghilangkan pengulangan, tetapi dengan akibat yang berbeda:
 
 Pertanyaan yang membantu memutuskan: *apakah hal ini pantas diberi nama dan dijelaskan kepada orang lain?* `sqrDif` (kuadrat selisih) adalah konsep yang berdiri sendiri dan mungkin berguna di tempat lain, sehingga pantas menjadi fungsi. `dx` hanyalah selisih absis dalam perhitungan ini, dan tidak berarti apa-apa di luar konteksnya, sehingga cukup menjadi nama antara.
 
-Bagi pemula, lebih sehat keliru karena membuat terlalu banyak fungsi antara daripada terlalu sedikit.
+Bagi pemula, keliru karena terlalu banyak membuat fungsi antara lebih aman daripada keliru karena terlalu sedikit.
 
 ## Contoh 2: Ekspresi Boolean
 
@@ -274,7 +274,7 @@ APLIKASI
       false
 ```
 
-Keempat aplikasi di atas dipilih dengan sengaja, bukan diambil sembarangan: `2024` habis dibagi 4 saja, `1900` habis dibagi 100 tetapi tidak 400, `2000` habis dibagi 400, dan `2023` tidak habis dibagi 4. Bersama-sama, keempatnya menyentuh setiap cabang ekspresi. Memilih contoh aplikasi dengan cara ini, satu untuk setiap kemungkinan, adalah bentuk pengujian yang paling sederhana, dan sudah dapat dilakukan sekarang, jauh sebelum ada perkakas pengujian (*testing tools*).
+Keempat aplikasi di atas dipilih dengan sengaja, bukan diambil sembarangan: `2024` habis dibagi 4 saja, `1900` habis dibagi 100 tetapi tidak 400, `2000` habis dibagi 400, dan `2023` tidak habis dibagi 4. Bersama-sama, keempatnya menyentuh setiap cabang ekspresi. Memilih contoh aplikasi dengan cara ini, satu untuk setiap kemungkinan, adalah bentuk pengujian sederhana yang sudah dapat dilakukan sekarang, jauh sebelum ada perkakas pengujian (*testing tools*).
 
 Dalam Haskell:
 
@@ -309,7 +309,7 @@ Berikut ini penelusuran (*trace*) lengkap `distance (1.0, 3.0, 5.0, 6.0)`, memak
   → 5.0                                                     { reduksi sqrt }
 ```
 
-Ada sembilan langkah, dan masing-masing hanya menyentuh satu bagian ekspresi. Menelusuri secara tertulis seperti ini adalah cara paling andal untuk memahami program yang ditulis orang lain *dan* menemukan kesalahan pada program yang kita tulis sendiri.
+Ada sembilan langkah, dan masing-masing hanya menyentuh satu bagian ekspresi. Menelusuri secara tertulis seperti ini adalah cara yang andal untuk memahami program yang ditulis orang lain *dan* menemukan kesalahan pada program yang kita tulis sendiri.
 
 ## Urutan Evaluasi
 

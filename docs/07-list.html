@@ -37,7 +37,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-b1c70305.js";
+            window.path_to_searchindex_js = "searchindex-3fac1ea3.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-05c84685.js"></script>
@@ -181,7 +181,7 @@
 <p>Sampai bab ini, sebuah program hanya mampu mengelola type dasar dan type bentukan yang disusun darinya. Untuk sebagian persoalan, pembatasan itu bukan sekadar menyulitkan, melainkan membuat programnya tidak dapat ditulis sama sekali.</p>
 <p>Sebuah <code>Date</code> menyimpan satu tanggal. Bila kita perlu mengelola tiga tanggal, kita dapat menuliskan tiga parameter. Bila kita perlu mengelola seluruh tanggal dalam setahun, cara itu tidak lagi dapat dipakai. Apalagi bila banyaknya tanggal <strong>tidak diketahui pada saat program ditulis</strong>, cara itu sama sekali tidak mungkin dipakai, karena kita harus menuliskan nama sebanyak nilai yang akan diproses, sedangkan jumlahnya baru diketahui kelak.</p>
 <p>Yang dibutuhkan adalah sebuah <strong>koleksi</strong> (<em>collection</em>): satu nama yang mewakili sekumpulan nilai, beserta cara mencapai setiap anggotanya. Sebuah koleksi mungkin kosong, mungkin berisi satu anggota, mungkin berisi sejuta.</p>
-<p>Ada banyak cara mengorganisasi koleksi, dan masing-masing cara menentukan sebuah type kolektif tersendiri dengan operasi dasarnya sendiri. Bab ini membahas satu di antaranya, yaitu <strong>list</strong>, yang anggotanya berurutan dan dicapai dari satu ujung. List adalah struktur rekursif yang paling sederhana, sehingga seluruh Bab 6 dapat langsung dipakai kembali di sini.</p>
+<p>Ada banyak cara mengorganisasi koleksi, dan masing-masing cara menentukan sebuah type kolektif tersendiri dengan operasi dasarnya sendiri. Bab ini membahas satu di antaranya, yaitu <strong>list</strong>, yang anggotanya berurutan dan dicapai dari satu ujung. List adalah salah satu struktur rekursif yang paling sederhana, sehingga seluruh Bab 6 dapat langsung dipakai kembali di sini.</p>
 <h2 id="list-sebagai-type-rekursif"><a class="header" href="#list-sebagai-type-rekursif">List sebagai Type Rekursif</a></h2>
 <p>Bab 6 ditutup dengan pernyataan bahwa type rekursif yang paling penting dalam informatika adalah list. Definisinya:</p>
 <ul>
@@ -311,7 +311,7 @@ DEFINISI DAN SPESIFIKASI PREDIKAT
       false
 </code></pre>
 <p>Realisasi ini mempunyai dua sifat yang belum muncul sebelumnya.</p>
-<p><strong><code>or else</code> dipakai, dan memang diperlukan.</strong> Bab 4 menganjurkan memakai hubung-singkat hanya bila operan kedua tidak selalu terdefinisi. Di sini alasannya berbeda, tetapi sama sahnya: operan kedua <strong>selalu terdefinisi, tetapi mahal</strong>. Dengan <code>or else</code>, <code>isMember (1, [1, 2, ..., 1000])</code> berhenti pada elemen pertama. Dengan <code>or</code> biasa, seluruh seribu elemen tetap ditelusuri untuk menghasilkan jawaban yang sama.</p>
+<p><strong><code>or else</code> dipakai, kali ini demi penghematan.</strong> Bab 4 menganjurkan memakai hubung-singkat hanya bila operan kedua tidak selalu terdefinisi. Di sini alasannya berbeda, tetapi sama sahnya: operan kedua <strong>selalu terdefinisi, tetapi mahal</strong>. Dengan <code>or else</code>, <code>isMember (1, [1, 2, ..., 1000])</code> berhenti pada elemen pertama. Dengan <code>or</code> biasa, seluruh seribu elemen tetap ditelusuri untuk menghasilkan jawaban yang sama.</p>
 <p><strong>Hasilnya dapat dipastikan sebelum basis tercapai.</strong> Inilah fungsi pertama pada bab ini yang tidak selalu berjalan sampai ke ujung list. Sebagian besar fungsi list tidak mempunyai sifat ini.</p>
 <h2 id="contoh-3-sepasang-fungsi-yang-hampir-kembar"><a class="header" href="#contoh-3-sepasang-fungsi-yang-hampir-kembar">Contoh 3: Sepasang Fungsi yang Hampir Kembar</a></h2>
 <pre><code>JUDUL   Jumlah dan Hasil Kali Seluruh Elemen
@@ -349,7 +349,7 @@ DEFINISI DAN SPESIFIKASI PREDIKAT
       6
 </code></pre>
 <p>Letakkan kedua realisasi berdampingan. Keduanya berbeda <strong>hanya pada dua tempat</strong>: nilai basisnya, dan operatornya.</p>
-<p>Mengapa basis <code>productList</code> bernilai <code>1</code> dan bukan <code>0</code>? Karena basis harus berupa nilai netral (<em>identity element</em>), yaitu nilai yang tidak mengubah apa-apa ketika operator diterapkan padanya. Menjumlahkan nol tidak mengubah jumlah, dan mengalikan satu tidak mengubah hasil kali. Bila basis <code>productList</code> diisi <code>0</code>, setiap hasil kali menjadi nol. Aturan ini berlaku umum: <strong>nilai basis ditentukan oleh operator rekurensnya</strong>.</p>
+<p>Mengapa basis <code>productList</code> bernilai <code>1</code> dan bukan <code>0</code>? Karena basis harus berupa nilai netral (<em>identity element</em>), yaitu nilai yang tidak mengubah apa-apa ketika operator diterapkan padanya. Menjumlahkan nol tidak mengubah jumlah, dan mengalikan satu tidak mengubah hasil kali. Bila basis <code>productList</code> diisi <code>0</code>, setiap hasil kali menjadi nol. Aturan ini berlaku bagi fungsi berbasis-0: <strong>nilai basis ditentukan oleh operator rekurensnya</strong>.</p>
 <p>Kekembaran kedua fungsi ini sengaja diperlihatkan, dan akan dibicarakan lagi pada akhir bab.</p>
 <h2 id="contoh-4-nilai-terbesar-dan-basis-1"><a class="header" href="#contoh-4-nilai-terbesar-dan-basis-1">Contoh 4: Nilai Terbesar, dan Basis-1</a></h2>
 <pre><code>JUDUL   Elemen Terbesar Sebuah List
@@ -737,7 +737,7 @@ keepPositive (x : xs)
 </tbody>
 </table>
 </div>
-<p>Baris terakhir adalah satu-satunya yang tidak mempunyai padanan. Sepanjang bab ini, <code>Set</code> adalah gagasan yang seluruhnya ditegakkan oleh disiplin, dan terjemahannya ke Haskell tidak mengubah keadaan itu: sistem type Haskell memeriksa banyak hal, tetapi tidak memeriksa yang satu ini.</p>
+<p>Baris terakhir adalah satu-satunya yang sama sekali tidak mempunyai padanan; baris di atasnya berpadanan sebagian. Sepanjang bab ini, <code>Set</code> adalah gagasan yang seluruhnya ditegakkan oleh disiplin, dan terjemahannya ke Haskell tidak mengubah keadaan itu: sistem type Haskell memeriksa banyak hal, tetapi tidak memeriksa yang satu ini.</p>
 <h2 id="latihan"><a class="header" href="#latihan">Latihan</a></h2>
 <p><strong>Membaca.</strong> Untuk setiap realisasi berikut, tentukan definisinya, tuliskan spesifikasinya, sebutkan basisnya (basis-0 atau basis-1) dan rekurensnya, lalu usulkan nama yang sesuai konvensi.</p>
 <pre><code>p (L) :

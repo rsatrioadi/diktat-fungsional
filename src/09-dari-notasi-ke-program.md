@@ -14,7 +14,7 @@ Seluruh penundaan itu bermuara pada tiga pertanyaan:
 
 Ketiganya adalah pertanyaan eksekusi. Notasi menolak menjawabnya bukan karena lalai, melainkan karena jawabannya berbeda-beda menurut bahasa yang dipakai, sedangkan rancangan yang baik seharusnya tetap sah ketika bahasanya diganti.
 
-Bab ini menjawab ketiganya **sejauh jawabannya tidak bergantung pada bahasa**, dan menunjukkan di mana jawaban bagi bahasa acuan berada. Jawaban yang bergantung pada bahasa akan berubah ketika bahasanya diganti, dan sebagian di antaranya berubah sampai terbalik; jawaban yang dituliskan di bawah ini tidak demikian. Bab ini adalah bab terakhir Diktat.
+Bab ini menjawab ketiganya **sejauh jawabannya tidak bergantung pada bahasa**, dan menunjukkan di mana jawaban bagi bahasa acuan berada. Jawaban yang bergantung pada bahasa akan berubah ketika bahasanya diganti, dan sebagian di antaranya berubah sampai terbalik; jawaban yang dituliskan di bawah ini tidak demikian. Bab ini adalah bab terakhir alur utama Diktat.
 
 ## Kapan: Strategi Evaluasi
 
@@ -84,7 +84,7 @@ Tidak semua bahasa memberikan jaminan tersebut. Pada sebagian bahasa yang member
 
 Bab 6 menunda pertanyaan ini, dan sekarang jawabannya dapat diberikan secara utuh.
 
-**Karena spesifikasinya jauh lebih mudah ditulis dengan benar.** Inilah alasan yang paling kuat di antara keempatnya. Bab 6 sudah memperlihatkannya pada `fibFrom`, dan Bab 7 pada `reverseOnto`: realisasinya lebih pendek, spesifikasinya jauh lebih sulit. Kesalahan pada fungsi berakumulator hampir selalu terletak pada nilai awal akumulatornya, dan kesalahan itu hanya dapat ditemukan oleh orang yang sudah menuliskan artinya dengan tepat.
+**Karena spesifikasinya jauh lebih mudah ditulis dengan benar.** Inilah alasan yang paling kuat di antara keempatnya. Bab 6 sudah memperlihatkannya pada `fibFrom`, dan Bab 7 pada `reverseOnto`: realisasinya lebih pendek, spesifikasinya jauh lebih sulit. Kesalahan pada fungsi berakumulator sering terletak pada nilai awal akumulatornya, dan kesalahan itu hanya dapat ditemukan oleh orang yang sudah menuliskan artinya dengan tepat.
 
 **Karena sebagian besar fungsi tidak diuntungkan olehnya.** Bab 7 menyatakan hal ini dan menyebutkan bahwa dari seluruh fungsi di sana, hanya `reverse` yang jelas diuntungkan. Untuk `squareAll`, bentuk berakumulator bahkan menuntut satu `reverse` tambahan di ujung.
 
@@ -130,7 +130,7 @@ Yang hilang bersama kemurnian adalah transparansi referensial. Bab 2 menyatakan 
 | Fungsi dapat diserahkan ke mana saja tanpa khawatir | Bab 8 |
 | Pengujian tidak memerlukan penyiapan keadaan | bab ini |
 
-Baris terakhir adalah satu-satunya yang baru pada bab ini. Untuk menguji `next()`, kita harus tahu sudah berapa kali fungsi itu dipanggil sebelumnya. Untuk menguji `sumDigits`, tidak ada yang perlu disiapkan. Yang dibutuhkan hanyalah argumennya.
+Baris terakhir adalah satu-satunya yang baru pada bab ini. Untuk menguji `next(x)`, kita harus tahu sudah berapa kali fungsi itu dipanggil sebelumnya. Untuk menguji `sumDigits`, tidak ada yang perlu disiapkan. Yang dibutuhkan hanyalah argumennya.
 
 ## Masukan dan Keluaran
 
@@ -157,7 +157,7 @@ Mekanisme yang dipakai bahasa-bahasa fungsional untuk merangkai deskripsi aksi m
 
 Sejak Bab 2, pembaca sudah menguji program, meskipun istilah itu belum dipakai.
 
-Bab 2 menganjurkan menuliskan hasil yang diharapkan **sebelum** menjalankan, dan menjelaskan alasannya: hal itu mengubah eksekusi dari "mari lihat apa yang keluar" menjadi "mari periksa apakah dugaan saya benar". Bab 3 memilih empat aplikasi `isLeapYear` sehingga setiap cabang tersentuh. Bab 4 menuntut setiap nilai batas diuji. Bab 5 dan Bab 7 menuntut list kosong dan list satu elemen selalu ada di antara contoh aplikasinya.
+Bab 2 menganjurkan menuliskan hasil yang diharapkan **sebelum** menjalankan, dan menjelaskan alasannya: hal itu mengubah eksekusi dari "mari lihat apa yang keluar" menjadi "mari periksa apakah dugaan saya benar". Bab 3 memilih empat aplikasi `isLeapYear` sehingga setiap cabang tersentuh. Bab 4 menuntut setiap nilai batas diuji. Bab 7 menuntut list kosong dan list satu elemen selalu ada di antara contoh aplikasinya.
 
 Semua itu adalah pengujian yang dilakukan secara manual.
 
@@ -175,7 +175,7 @@ Bab 1 menyatakan bahwa setelah menyelesaikan diktat ini, pembaca **belum** menja
 
 **Yang belum.** Sistem type secara mendalam, termasuk polimorfisme yang membuat `map` dapat mengubah type elemennya, dan cara sebuah bahasa menuliskan prasyarat pada type. Monad dan penanganan efek secara sistematis. Struktur data fungsional yang efisien, karena list bukan satu-satunya dan sering bukan yang terbaik. Analisis kompleksitas, yang akan ditemui pembaca dalam materi lain dan akan terasa akrab karena pembaca sudah terbiasa menghitung aplikasi sejak Bab 6. Pemrograman fungsional untuk perangkat lunak skala besar.
 
-**Ke mana melanjutkan.** Untuk pendalaman bahasa acuan secara sistematis, [1] atau [2]. Untuk cara berpikir fungsional yang lebih matang dengan contoh yang lebih besar, [4]. Untuk argumen tentang mengapa semua ini penting, dalam dua puluh halaman yang masih relevan setelah tiga dekade, [5]. Untuk penerapan gagasan ini di luar bahasa fungsional, yaitu di tempat kebanyakan pembaca akan bekerja, [7]. Untuk pembaca yang mempertanyakan efisiensi struktur data fungsional, [8].
+**Ke mana melanjutkan.** Untuk pendalaman bahasa acuan secara sistematis, [1] atau [2]. Untuk cara berpikir fungsional yang lebih matang dengan contoh yang lebih besar, [4]. Untuk argumen tentang mengapa semua ini penting, dalam dua puluh halaman yang masih relevan setelah lebih dari tiga dekade, [5]. Untuk penerapan gagasan ini di luar bahasa fungsional, yaitu di tempat kebanyakan pembaca akan bekerja, [7]. Untuk pembaca yang mempertanyakan efisiensi struktur data fungsional, [8].
 
 **Suplemen** melanjutkan langsung dari bab ini dan menjawab bagian yang sengaja tidak dijawab di sini: apa yang sesungguhnya dilakukan bahasa acuan terhadap ketiga pertanyaan di atas, padanan yang lengkap bagi seluruh konstruk notasi, perkakas, dan pengujian. Suplemen juga memuat sebagian besar latihan di depan mesin untuk bab ini.
 
@@ -183,7 +183,7 @@ Bab 1 menyatakan bahwa setelah menyelesaikan diktat ini, pembaca **belum** menja
 
 **Bab 11** membahas list yang elemennya boleh berupa list, dan juga bersifat opsional. Bab tersebut tidak memperkenalkan perangkat baru sama sekali; seluruh isinya adalah penerapan Bab 5, 6, 7, dan 10 atas sebuah struktur yang secara tradisional diperlakukan sebagai pokok bahasan tersendiri. Bab itu berbentuk soal panjang, dan pembaca yang mengerjakannya akan menemukan bahwa perangkat operasi rangkap yang biasa menyertai struktur ini tidak pernah diperlukan.
 
-Terakhir, notasi yang dipakai sepanjang delapan bab ini tidak dapat dieksekusi, dan Bab 8 memperlihatkan bahwa ada hal yang bahkan tidak dapat dinyatakannya. Pembaca berhak bertanya apakah notasi tersebut sepadan. Jawaban diktat ini sudah dinyatakan sejak Bab 2 dan tidak berubah: notasi memaksa penulisnya menyatakan apa yang dihitung sebelum bagaimana menghitungnya, dan paksaan itu mudah dilewati bila kita langsung mengetik di depan mesin. Mulai sekarang, pembaca akan langsung mengetik. Pertanyaan yang pantas dibawa serta adalah apakah kebiasaan menyatakan definisi dan spesifikasi lebih dahulu ikut terbawa, atau ditinggalkan bersama notasinya.
+Terakhir, notasi yang dipakai sepanjang delapan bab ini tidak dapat dieksekusi, dan Bab 8 memperlihatkan bahwa ada hal yang bahkan tidak dapat dinyatakannya. Pembaca berhak bertanya apakah notasi tersebut sepadan. Jawaban diktat ini sudah dinyatakan sejak Bab 2 dan tidak berubah: notasi memaksa penulisnya menyatakan apa yang dihitung sebelum bagaimana menghitungnya, dan paksaan itu mudah dilewati bila kita langsung mengetik di depan mesin. Di Suplemen, pembaca akan langsung mengetik. Pertanyaan yang pantas dibawa serta adalah apakah kebiasaan menyatakan definisi dan spesifikasi lebih dahulu ikut terbawa, atau ditinggalkan bersama notasinya.
 
 ## Latihan
 

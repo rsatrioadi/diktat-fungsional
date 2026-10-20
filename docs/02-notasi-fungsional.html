@@ -37,7 +37,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-b1c70305.js";
+            window.path_to_searchindex_js = "searchindex-3fac1ea3.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-05c84685.js"></script>
@@ -218,7 +218,7 @@
   7
 </code></pre>
 <p>Aksi membaca dan menulis diwakili oleh interaksi pemakai dengan lingkungan eksekusi, bukan oleh program. Program itu sendiri hanyalah <code>+</code>.</p>
-<p>Perbedaan ini bukan sekadar soal penulisan. Dalam program imperatif, untuk mengetahui nilai sebuah nama, kita harus tahu <em>kapan</em> nama itu diperiksa; nilainya dapat berubah. Dalam program fungsional, sebuah nama yang telah terikat pada suatu nilai akan bernilai sama di mana pun dan kapan pun ia muncul. Sifat ini disebut <strong>transparansi referensial</strong> (<em>referential transparency</em>), dan dari sifat inilah sebagian besar keuntungan paradigma ini berasal: ekspresi dapat digantikan oleh nilainya tanpa mengubah arti program, sehingga penalaran terhadap program menjadi jauh lebih sederhana.</p>
+<p>Perbedaan ini bukan sekadar soal penulisan. Dalam program imperatif, untuk mengetahui nilai sebuah nama, kita harus tahu <em>kapan</em> nama itu diperiksa; nilainya dapat berubah. Dalam program fungsional, sebuah nama yang telah terikat pada suatu nilai akan bernilai sama di mana pun dan kapan pun nama itu muncul. Sifat ini disebut <strong>transparansi referensial</strong> (<em>referential transparency</em>), dan dari sifat inilah sebagian besar keuntungan paradigma ini berasal: ekspresi dapat digantikan oleh nilainya tanpa mengubah arti program, sehingga penalaran terhadap program menjadi jauh lebih sederhana.</p>
 <h2 id="konstruksi-program-fungsional"><a class="header" href="#konstruksi-program-fungsional">Konstruksi Program Fungsional</a></h2>
 <p>Pemrograman fungsional bertumpu pada analisis dari atas ke bawah (<em>top-down</em>): dari persoalan, ke spesifikasi, lalu ke dekomposisi menjadi persoalan-persoalan antara. Setiap kali kita mendefinisikan sebuah fungsi antara, kita menambah satu tingkat abstraksi sekaligus memperkaya perbendaharaan fungsi yang tersedia untuk dipakai kembali.</p>
 <p>Sebuah fungsi disusun dalam empat tahap yang <strong>selalu</strong> dituliskan dengan urutan yang sama:</p>
@@ -256,7 +256,7 @@
 </code></pre>
 <p>Judul adalah uraian yang sangat ringkas untuk memudahkan pencarian, dan bukan bagian dari program.</p>
 <p>Komentar dituliskan di antara kurung kurawal <code>{ }</code>.</p>
-<p>Pada realisasi tidak ada kata kunci semacam <code>function</code> atau <code>def</code>. Yang dituliskan hanyalah persamaan: nama beserta parameternya di sebelah kiri, ekspresi di sebelah kanan. Sebuah <strong>konstanta</strong> ditulis dengan bentuk yang sama, hanya saja tanpa parameter. Memang, konstanta dapat dipandang sebagai fungsi tanpa argumen.</p>
+<p>Pada realisasi tidak ada kata kunci semacam <code>function</code> atau <code>def</code>. Yang dituliskan hanyalah persamaan: nama beserta parameternya di sebelah kiri, ekspresi di sebelah kanan. Sebuah <strong>konstanta</strong> ditulis dengan bentuk yang sama, hanya saja tanpa parameter. Memang, konstanta dapat dipandang sebagai fungsi tanpa parameter.</p>
 <h2 id="contoh-1-ekspresi-numerik-sederhana"><a class="header" href="#contoh-1-ekspresi-numerik-sederhana">Contoh 1: Ekspresi Numerik Sederhana</a></h2>
 <p><strong>Persoalan.</strong> Tuliskan sebuah fungsi yang menerima sebuah bilangan bulat dan menghasilkan pangkat duanya.</p>
 <pre><code>JUDUL   Pangkat Dua
@@ -340,7 +340,7 @@ max2 a b = if a &gt;= b then a else b
 <pre><code class="language-haskell">max2 3 7
 </code></pre>
 <ul>
-<li>Perhatikan domain yang ditulis sebagai <code>Integer -&gt; Integer -&gt; Integer</code>, bukan <code>(Integer, Integer) -&gt; Integer</code>. Untuk sementara, bacalah tulisan itu sebagai “menerima dua Integer dan menghasilkan sebuah Integer”. Mengapa panah ditulis dua kali, dan apa yang dapat dilakukan berkat hal itu, dibahas pada Bab 8.</li>
+<li>Perhatikan baris definisi yang ditulis sebagai <code>Integer -&gt; Integer -&gt; Integer</code>, bukan <code>(Integer, Integer) -&gt; Integer</code>. Untuk sementara, bacalah tulisan itu sebagai “menerima dua Integer dan menghasilkan sebuah Integer”. Mengapa panah ditulis dua kali, dan apa yang dapat dilakukan berkat hal itu, dibahas pada Bab 8.</li>
 <li>Aplikasi ditulis dengan menderetkan argumen setelah nama fungsi, tanpa kurung dan tanpa koma. Kurung hanya dipakai untuk mengelompokkan ekspresi, misalnya <code>max2 (3 + 1) 7</code> atau <code>cube (-1)</code>.</li>
 </ul>
 <h2 id="acuan-notasi-sejauh-bab-2"><a class="header" href="#acuan-notasi-sejauh-bab-2">Acuan Notasi (sejauh Bab 2)</a></h2>
@@ -399,7 +399,7 @@ max2 a b = if a &gt;= b then a else b
 <p><strong>Catatan.</strong> Koma pada <code>A, B → C</code> menandakan bahwa fungsi mempunyai dua parameter. Terjemahannya ke Haskell memecah koma menjadi panah, sehingga jumlah panah bertambah. Lihat Contoh 3 dan Bab 8.</p>
 <p>Untuk konstanta, panah pada <code>→ A</code> hilang dalam terjemahan. Notasi fungsional menekankan bahwa fungsi adalah pemetaan suatu kumpulan nilai ke kumpulan nilai lainnya; tanda panah menunjukkan makna “pemetaan”. Haskell tidak membedakan antara “nilai bertype <code>A</code>” dan “fungsi tanpa parameter yang menghasilkan <code>A</code>”.</p>
 <h2 id="konvensi-penamaan"><a class="header" href="#konvensi-penamaan">Konvensi Penamaan</a></h2>
-<p>Konvensi berikut berlaku di seluruh diktat, <strong>tanpa kecuali</strong>. Konsistensi penamaan bukan soal selera: nama yang dapat ditebak mengurangi beban ingatan pembaca, dan penyimpangan yang tidak disengaja adalah sumber kesalahan yang nyata.</p>
+<p>Konvensi berikut berlaku di seluruh diktat; satu-satunya kelonggaran disebut pada butir terakhir di bawah. Konsistensi penamaan bukan soal selera: nama yang dapat ditebak mengurangi beban ingatan pembaca, dan penyimpangan yang tidak disengaja adalah sumber kesalahan yang nyata.</p>
 <div class="table-wrapper">
 <table>
 <thead>
@@ -424,7 +424,7 @@ max2 a b = if a &gt;= b then a else b
 </ul>
 <h2 id="yang-dapat-dan-tidak-dapat-dinyatakan-oleh-notasi-ini"><a class="header" href="#yang-dapat-dan-tidak-dapat-dinyatakan-oleh-notasi-ini">Yang Dapat dan Tidak Dapat Dinyatakan oleh Notasi Ini</a></h2>
 <p>Notasi ini dirancang untuk menuliskan <strong>rancangan</strong> program agar mudah dibaca manusia. Notasi ini tidak mempunyai pemroses bahasa, dan karena itu tidak dapat dieksekusi. Justru itulah gunanya: notasi memaksa penulisnya menyatakan definisi dan spesifikasi lebih dahulu, sebelum realisasi. Langkah ini mudah terlewati bila kita langsung mengetik di depan mesin.</p>
-<p>Namun, perlu ditegaskan bahwa notasi ini <strong>tidak</strong> mencakup seluruh konsep pada pemrograman fungsional. Beberapa hal berikut berada di luar jangkauannya, dan bila diperlukan akan dibicarakan langsung dalam bahasa acuan:</p>
+<p>Namun, notasi ini <strong>tidak</strong> mencakup seluruh konsep pada pemrograman fungsional. Beberapa hal berikut berada di luar jangkauannya, dan bila diperlukan akan dibicarakan langsung dalam bahasa acuan:</p>
 <ul>
 <li>Strategi evaluasi: notasi tidak menyatakan urutan evaluasi maupun evaluasi malas (<em>lazy evaluation</em>).</li>
 <li>Efek, masukan, dan keluaran: dibicarakan pada Bab 9.</li>

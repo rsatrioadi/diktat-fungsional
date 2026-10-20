@@ -10,7 +10,7 @@ Pembatasan itu tidak pernah dinyatakan sebagai aturan, dan memang tidak pernah a
 
 Fungsi yang menerima atau menghasilkan fungsi disebut **fungsi orde tinggi** (*higher-order function*).
 
-Bab ini tidak memperkenalkan satu pun persoalan baru. Setiap fungsi yang ditulis di sini sudah pernah ditulis pada Bab 6 atau Bab 7. Yang berubah hanyalah cara menuliskannya, dan seberapa banyak yang harus ditulis.
+Bab ini hampir tidak memperkenalkan persoalan baru. Sebagian besar fungsi yang ditulis di sini sudah pernah ditulis pada Bab 6 atau Bab 7. Yang berubah hanyalah cara menuliskannya, dan seberapa banyak yang harus ditulis.
 
 ## Fungsi sebagai Parameter
 
@@ -187,9 +187,9 @@ length (L)      : fold (λ (a, b) : 1 + b, 0, L)
 
 Perhatikan `length`. Lambdanya mengabaikan `a` sama sekali dan hanya menambahkan satu, yang memang persis yang dikerjakan `length` pada Bab 7. Kenyataan bahwa pencacahan ternyata adalah penjumlahan yang mengabaikan isinya baru terlihat setelah kedua fungsi dituliskan dalam bentuk yang sama.
 
-**Sekarang aturan nilai basis dari Bab 7 dapat dijelaskan.** Bab 7 menyatakan bahwa nilai basis harus netral terhadap operator rekurensnya: nol untuk penjumlahan, satu untuk perkalian. Dalam `fold`, nilai itu adalah `z`, dan nilai itu bukan lagi bagian dari realisasi, melainkan sebuah argumen yang harus dipilih pemakainya. Aturan yang pada Bab 7 berupa nasihat, di sini menjadi kewajiban yang terlihat: `z` adalah jawaban bagi list kosong, dan salah memilihnya adalah kesalahan yang hanya menampakkan diri pada list kosong.
+**Sekarang aturan nilai basis dari Bab 7 dapat dijelaskan.** Bab 7 menyatakan bahwa nilai basis harus netral terhadap operator rekurensnya: nol untuk penjumlahan, satu untuk perkalian. Dalam `fold`, nilai itu adalah `z`, dan nilai itu bukan lagi bagian dari realisasi, melainkan sebuah argumen yang harus dipilih pemakainya. Aturan yang pada Bab 7 berupa nasihat, di sini menjadi kewajiban yang terlihat: `z` adalah jawaban bagi list kosong, dan salah memilihnya merusak jawaban bagi list kosong, dan bila `z` tidak netral, juga bagi setiap list lain.
 
-`fold` adalah yang paling umum di antara ketiga pola ini. `map` maupun `filter` dapat dituliskan dengan `fold`, dan salah satunya ditanyakan pada Latihan.
+`fold` adalah yang paling umum di antara ketiga pola ini. Baik `map` maupun `filter` dapat dituliskan dengan `fold`, dan salah satunya ditanyakan pada Latihan.
 
 ## Arah Lipatan
 
@@ -368,9 +368,9 @@ map (λ x : max2 (0, x), L)
 
 dan cara itu memang selalu mungkin. Namun, itu adalah pekerjaan yang dalam bahasa acuan sama sekali tidak perlu dilakukan.
 
-**Inilah pertama kalinya notasi kalah tanpa imbalan.** Setiap perbedaan sejak Bab 2 selalu berupa pertukaran. Notasi lebih ketat pada syarat disjoint, bahasa memeriksa kelengkapan pola. Notasi dapat menuliskan `Integer [1..4]`, bahasa tidak. Notasi membedakan `and` dari `and then`, bahasa tidak. Kali ini tidak ada yang diterima sebagai gantinya. Koma membuat baris definisi lebih mudah dibaca oleh manusia yang belum terbiasa, dan harganya adalah sebuah kemampuan yang hilang seluruhnya.
+**Inilah pertama kalinya notasi kalah tanpa imbalan.** Setiap perbedaan sejak Bab 2 selalu berupa pertukaran. Notasi lebih ketat pada syarat disjoint, bahasa memeriksa kelengkapan pola. Notasi dapat menuliskan `Integer [1..4]`, bahasa tidak. Notasi membedakan `and` dari `and then`, bahasa tidak. Kali ini bahasa tidak kehilangan apa pun sebagai gantinya. Imbalannya hanya ada di pihak pembaca: koma membuat baris definisi lebih mudah dibaca oleh manusia yang belum terbiasa, dan harganya adalah sebuah kemampuan yang hilang seluruhnya.
 
-Notasi ini adalah alat berpikir, dan Bab 2 sudah menyatakan bahwa notasi ini tidak mencakup seluruh konsep pemrograman fungsional. Di sinilah pernyataan itu menjadi konkret. Sebuah alat berpikir yang tidak mengakui batasnya sendiri tidak lagi menjadi alat berpikir yang jujur, dan mulai dari sini yang terbaik adalah membaca dan menulis langsung dalam bahasanya. Bab 9 dan Suplemen melanjutkan dari sini, dan Suplemen S5 mengumpulkan seluruh batas semacam ini dalam satu daftar.
+Notasi ini adalah alat berpikir, dan Bab 2 sudah menyatakan bahwa notasi ini tidak mencakup seluruh konsep pemrograman fungsional. Di sinilah pernyataan itu menjadi konkret. Sebuah alat berpikir yang tidak mengakui batasnya sendiri tidak lagi menjadi alat berpikir yang jujur, dan untuk hal semacam ini, yang terbaik adalah membaca dan menulis langsung dalam bahasanya. Bab 9 dan Suplemen melanjutkan dari sini, dan Suplemen S5 mengumpulkan seluruh batas semacam ini dalam satu daftar.
 
 Latihan Merancang pada akhir bab ini menanyakan apa yang harus dikorbankan seandainya notasi ini hendak diperbaiki agar aplikasi parsial menjadi mungkin.
 
@@ -391,12 +391,12 @@ Aturan praktisnya: bila Anda dapat menyebutkan dalam satu kalimat pendek apa yan
 | Kesalahan | Gejala | Cara memeriksa |
 |---|---|---|
 | Menyerahkan aplikasi, bukan fungsi | tidak berarti apa-apa | apakah tertulis `square` atau `square (x)`? argumen fungsi orde tinggi tidak berkurung |
-| Nilai awal `fold` keliru | benar untuk list tidak kosong, salah untuk list kosong | apakah `z` netral terhadap operatornya? ujilah dengan `[]` |
+| Nilai awal `fold` keliru | salah untuk list kosong; bila `z` tidak netral, salah untuk semua masukan | apakah `z` netral terhadap operatornya? ujilah dengan `[]` |
 | `map` dipakai padahal panjangnya berubah | hasilnya selalu sepanjang masukan, padahal seharusnya menyaring | apakah setiap elemen menghasilkan tepat satu elemen? bila tidak, itu `filter` |
 | `filter` dipakai padahal elemennya berubah | elemennya tidak berubah, padahal seharusnya berubah | `filter` hanya memilih, tidak pernah mengubah |
 | Urutan komposisi terbalik | hasilnya salah pada fungsi yang tidak komutatif | pada `f ∘ g`, `g` bekerja lebih dahulu |
 | Lambda dibuat rekursif | tidak ada nama untuk disebut | fungsi rekursif harus bernama |
-| Pola dipaksakan | teksnya lebih panjang daripada versi rekursifnya | tulislah keduanya dan bandingkan; yang lebih pendek biasanya yang lebih benar |
+| Pola dipaksakan | teksnya lebih panjang daripada versi rekursifnya | tulislah keduanya dan bandingkan; yang lebih pendek biasanya yang lebih tepat dipakai |
 
 ## Ringkasan Padanan
 
@@ -421,7 +421,7 @@ fold' g z (x : xs) = g x (fold' g z xs)
 
 Ada empat perbedaan.
 
-**Ketiganya sudah tersedia.** Bahasa acuan menyediakan `map`, `filter`, dan `foldr` dalam pustaka standarnya, dan itulah sebabnya versi di atas diberi tanda kutip. Sikapnya sama dengan sikap terhadap `gcd` pada Bab 6 dan `length` pada Bab 7: keduanya tetap ditulis sendiri, karena menuliskannya adalah latihannya.
+**Ketiganya sudah tersedia.** Bahasa acuan menyediakan `map`, `filter`, dan `foldr` dalam pustaka standarnya, dan itulah sebabnya versi di atas diberi tanda kutip. Sikapnya sama dengan sikap terhadap `gcd` pada Bab 6 dan `length` pada Bab 7: ketiganya tetap ditulis sendiri, karena menuliskannya adalah latihannya.
 
 **Type-nya lebih longgar daripada notasi kita.** Perhatikan `map' :: (a -> b) -> [a] -> [b]`. Type masukan dan keluaran boleh **berbeda**, sehingga `map` dapat mengubah list bilangan menjadi list boolean. Notasi kita menuliskan `(Element → Element)` sehingga mengharuskan keduanya sama. Pembatasan ini berasal dari notasi kita, bukan dari gagasannya, yaitu dari keputusan Bab 7 untuk memakai satu nama `Element` saja.
 

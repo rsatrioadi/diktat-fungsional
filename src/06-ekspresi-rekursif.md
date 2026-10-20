@@ -14,7 +14,7 @@ Tambahannya kecil, tetapi akibatnya besar. Sampai Bab 5, setiap fungsi hanya dap
 
 - **Kewajiban pertama: ada kasus yang berhenti.** Sekurang-kurangnya satu kasus harus mempunyai realisasi yang **tidak** mengandung aplikasi terhadap fungsi itu sendiri. Kasus semacam itu disebut **basis** (*base case*). Sebuah fungsi boleh mempunyai lebih dari satu basis.
 
-- **Kewajiban kedua: rekurens menuju basis.** Setiap aplikasi rekursif (*recursive call*) harus dilakukan terhadap argumen yang lebih "dekat" kepada sebuah basis daripada argumen semula, dan kedekatan itu harus dapat dinyatakan. Cara menyatakannya: sebutkan besaran apa yang mendekati basis pada setiap langkah, dan sebutkan batasnya.
+- **Kewajiban kedua: rekurens menuju basis (konvergensi).** Setiap aplikasi rekursif (*recursive call*) harus dilakukan terhadap argumen yang lebih "dekat" kepada sebuah basis daripada argumen semula, dan kedekatan itu harus dapat dinyatakan. Cara menyatakannya: sebutkan besaran apa yang mendekati basis pada setiap langkah, dan sebutkan batasnya.
 
 Pelanggaran terhadap salah satu kewajiban ini membuat fungsi tidak pernah berhenti (tidak pernah menghasilkan nilai).
 Pelanggaran kewajiban pertama mudah terlihat dari spesifikasi dan realisasinya: tidak ada kondisi yang menyebabkan fungsi langsung berhenti.
@@ -129,7 +129,7 @@ Penelusuran `factorial (4)`, ditulis lengkap:
 
 Mulai sekarang, langkah `depend on` boleh disingkat sebagaimana pada baris kedua di atas, karena bentuknya selalu sama. Yang tidak boleh disingkat adalah keterangan di sebelah kanan.
 
-Perhatikan bentuk penelusuran ini. Ekspresi **membesar** lebih dahulu, satu lapis pada setiap ekspansi, sampai basis tercapai. Baru setelah itu ekspresi **mengecil**, satu reduksi demi satu reduksi, sampai tersisa sebuah nilai. Dua fase itu adalah ciri khas rekursi, dan mengenalinya membuat penelusuran fungsi rekursif yang lebih rumit jauh lebih mudah diikuti.
+Perhatikan bentuk penelusuran ini. Ekspresi **membesar** lebih dahulu, satu lapis pada setiap ekspansi, sampai basis tercapai. Baru setelah itu ekspresi **mengecil**, satu reduksi demi satu reduksi, sampai tersisa sebuah nilai. Dua fase itu adalah ciri khas rekursi yang menggabungkan hasil pada saat kembali dari basis, dan mengenalinya membuat penelusuran fungsi rekursif yang lebih rumit jauh lebih mudah diikuti.
 
 Perhatikan pula bahwa perkalian yang sesungguhnya baru terjadi **setelah** seluruh ekspansi selesai. Tidak ada satu pun perkalian yang dapat dihitung sebelum `factorial (0)` mencapai basisnya. Kelak sifat ini akan menjadi persoalan, dan akan dibicarakan pada Bab 9.
 
@@ -192,7 +192,7 @@ Dua hal patut diperhatikan, dan keduanya bertentangan dengan dugaan yang wajar.
 
 **Basisnya bukan sebuah nilai tunggal,** melainkan seluruh kelompok nilai `0` sampai `9`. Tidak ada aturan yang mengharuskan basis berupa satu nilai, dan memaksakannya di sini justru akan memperumit teks. Yang dituntut hanyalah bahwa kasus itu berhenti.
 
-**Rekurensnya tidak mengurangi satu.** Argumennya dibagi sepuluh. Besaran yang mengecil adalah `n` itu sendiri, karena `n div 10 < n` untuk setiap `n ≥ 10`, dan batas bawahnya adalah `10`. Konvergensinya terjamin, dan jauh lebih cepat daripada pengurangan satu: `sumDigits (1000000)` mencapai basisnya dalam tujuh langkah, bukan sejuta.
+**Rekurensnya tidak mengurangi satu.** Argumennya dibagi sepuluh. Besaran yang mengecil adalah `n` itu sendiri, karena `n div 10 < n` untuk setiap `n ≥ 10`, dan batas bawahnya adalah `10`. Konvergensinya terjamin, dan jauh lebih cepat daripada pengurangan satu: `sumDigits (1000000)` mencapai basisnya dengan tujuh aplikasi, bukan sejuta.
 
 Contoh ini menekankan bahwa rekursi tidak selalu berarti `n - 1`. Yang dituntut hanyalah bahwa argumen **mendekati** basis. Seberapa besar langkahnya, dan besaran apa yang dipakai untuk mengukur kedekatan itu, ditentukan oleh persoalannya.
 
@@ -365,7 +365,7 @@ Sekarang hitunglah aplikasinya. Untuk `n = 10`, `fastPower` diaplikasikan pada `
 
 Inilah pertama kalinya dalam diktat ini dua realisasi dari satu spesifikasi berbeda bukan pada keterbacaannya, melainkan pada **banyaknya pekerjaan** yang dilakukan. Sampai Bab 5, pemilihan antara dua realisasi selalu berupa pertimbangan selera dan kejelasan. Mulai sekarang, ada sumbu pertimbangan ketiga.
 
-Sumbu itu tidak gratis. `power` dapat diyakini kebenarannya dengan sekali baca, sedangkan `fastPower` menuntut pembacanya memeriksa dua kesamaan aljabar, tiga kondisi, dan dua argumen konvergensi. Yang lebih cepat adalah yang lebih sulit dipercaya. Kapan pertukaran itu pantas dilakukan bukanlah pertanyaan teknis; Latihan Merancang akan menanyakannya.
+Sumbu itu tidak gratis. `power` dapat diyakini kebenarannya dengan sekali baca, sedangkan `fastPower` menuntut pembacanya memeriksa dua kesamaan aljabar, tiga kondisi, dan dua argumen konvergensi. Di sini, yang lebih cepat adalah yang lebih sulit dipercaya. Kapan pertukaran itu pantas dilakukan bukanlah pertanyaan teknis; Latihan Merancang akan menanyakannya.
 
 Perhatikan pula apa yang **tidak** dilakukan di sini. Kita menghitung banyaknya aplikasi, dan berhenti sampai di situ. Cara menyatakan pertumbuhan itu secara umum (analisis kompleksitas, *complexity analysis*), beserta notasinya, adalah bahan tersendiri yang berada di luar cakupan diktat ini.
 
@@ -431,7 +431,7 @@ fibonacci (5)
 
 Hitunglah simpulnya: lima belas aplikasi untuk `fibonacci (5)`. Hitunglah pula berapa kali masing-masing muncul. `fibonacci (3)` dihitung dua kali, `fibonacci (2)` tiga kali, `fibonacci (1)` lima kali.
 
-Transparansi referensial dari Bab 3 menjamin bahwa setiap perhitungan ulang itu menghasilkan nilai yang sama persis. Justru karena itulah, seluruh perhitungan ulang itu adalah pekerjaan yang sia-sia. Sifat yang membuat program fungsional mudah dinalar sekaligus membuat pemborosan semacam ini terlihat jelas sebagai pemborosan.
+Transparansi referensial dari Bab 2 menjamin bahwa setiap perhitungan ulang itu menghasilkan nilai yang sama persis. Justru karena itulah, seluruh perhitungan ulang itu adalah pekerjaan yang sia-sia. Sifat yang membuat program fungsional mudah dinalar sekaligus membuat pemborosan semacam ini terlihat jelas sebagai pemborosan.
 
 ### Membawa hasil ke depan: akumulasi
 
@@ -476,7 +476,7 @@ Penelusuran `fibonacci2 (7)` berupa satu garis lurus, dan `fibFrom` diaplikasika
 
 Parameter `a` dan `b` disebut **akumulator** (*accumulator*): keduanya membawa hasil sementara maju ke langkah berikutnya. Pola ini akan muncul berulang kali mulai Bab 7.
 
-Kesulitannya tidak terletak pada realisasi, yang justru lebih pendek. Kesulitannya terletak pada **spesifikasinya**. Spesifikasi `fibonacci` dapat dituliskan dalam satu kalimat yang dipahami siapa pun. Spesifikasi `fibFrom` menuntut kita menjelaskan apa arti `a` dan `b` pada setiap langkah, dan menjelaskannya dengan tepat adalah bagian tersulit dari seluruh konstruksi ini. Sebuah fungsi berakumulator yang spesifikasinya asal-asalan hampir selalu keliru, dan kekeliruannya hampir selalu terletak pada nilai awal akumulatornya.
+Kesulitannya tidak terletak pada realisasi, yang justru lebih pendek. Kesulitannya terletak pada **spesifikasinya**. Spesifikasi `fibonacci` dapat dituliskan dalam satu kalimat yang dipahami siapa pun. Spesifikasi `fibFrom` menuntut kita menjelaskan apa arti `a` dan `b` pada setiap langkah, dan menjelaskannya dengan tepat adalah bagian tersulit dari seluruh konstruksi ini. Sebuah fungsi berakumulator yang spesifikasinya asal-asalan sering keliru, dan kekeliruannya sering terletak pada nilai awal akumulatornya.
 
 > ### Ke mana perginya pengulangan?
 >
@@ -504,7 +504,7 @@ Kesulitannya tidak terletak pada realisasi, yang justru lebih pendek. Kesulitann
 >
 > **Ini tidak berarti bahwa program fungsional sesungguhnya prosedural.** Pada versi prosedural, ketiga variabel itu **berubah nilai**, dan untuk mengetahui nilai `a` kita harus tahu sudah berapa putaran berlalu. Pada versi fungsional tidak ada yang berubah sama sekali. Setiap aplikasi `fibFrom` adalah aplikasi baru terhadap argumen yang berbeda, dan setiap nama tetap terikat pada satu nilai selama hidupnya. Transparansi referensial dari Bab 2 tetap utuh. Yang sama pada keduanya adalah **bentuknya**, bukan artinya.
 >
-> **Ini juga tidak berarti bahwa bentuk berakumulator selalu lebih baik.** Bentuk rekursif berakumulator lebih baik di sini, karena persoalannya memang berbentuk pengulangan sederhana. Bab 7 akan memperlihatkan bahwa sebagian besar fungsi atas list justru paling jelas dalam bentuk yang bukan akumulator, dan memaksakan akumulator ke dalamnya menghasilkan teks yang lebih panjang sekaligus lebih lambat.
+> **Ini juga tidak berarti bahwa bentuk berakumulator selalu lebih baik.** Bentuk rekursif berakumulator lebih baik di sini, karena persoalannya memang berbentuk pengulangan sederhana. Bab 7 akan memperlihatkan bahwa sebagian besar fungsi atas list justru paling jelas dalam bentuk yang bukan akumulator, dan memaksakan akumulator ke dalamnya menghasilkan teks yang lebih panjang tanpa penghematan, dan kadang justru lebih lambat.
 >
 > Yang wajar ditanyakan sesudah ini adalah pertanyaan tentang mesin. Bila keduanya berbentuk sama, apakah keduanya dijalankan dengan cara yang sama, dan apakah salah satunya lebih hemat? Pertanyaan itu adalah pertanyaan eksekusi, bukan pertanyaan rancangan, dan jawabannya berbeda-beda menurut bahasanya. Bab 9 membahasnya.
 
@@ -602,7 +602,7 @@ Justru di sinilah letak nilai gagasan ini, dan hal ini sebaiknya diperhatikan ba
 
 **`Integer` bukan type rekursif dalam diktat ini.** `Integer` adalah type dasar, sebagaimana ditetapkan sejak Bab 2. Yang kita lakukan pada seluruh contoh sebelumnya bukanlah membongkar sebuah struktur rekursif, melainkan **menalar secara rekursif** terhadap sebuah type yang tidak rekursif. Itulah sebabnya setiap contoh menuntut argumen konvergensi yang ditulis sendiri, dan itu pula sebabnya `factorial (n + 1) / (n + 1)` sempat lolos dari seluruh pemeriksaan Bab 4.
 
-Perbedaan ini mempunyai akibat pada peristilahan. Untuk type rekursif, banyaknya kemungkinan basis ditentukan oleh banyaknya konstruktornya, sehingga wajar bila masing-masing diberi nama. Untuk `Integer`, tidak ada yang membatasi di mana basis boleh diletakkan, dan kelima contoh di bab ini membuktikannya dengan basis `n = 0`, `n = 1`, `n < 10`, `b = 0`, serta pasangan `n = 0` dan `n = 1`. Sebab itu, istilah **basis-0** dan **basis-1**, yang dipakai secara luas di lingkungan kuliah, baru diperkenalkan pada Bab 7, dan di sana masing-masing mengacu pada list kosong dan list satu elemen.
+Perbedaan ini mempunyai akibat pada peristilahan. Untuk type rekursif, banyaknya kemungkinan basis ditentukan oleh banyaknya konstruktornya, sehingga wajar bila masing-masing diberi nama. Untuk `Integer`, tidak ada yang membatasi di mana basis boleh diletakkan, dan kelima contoh di bab ini memperlihatkannya dengan basis `n = 0`, `n = 1`, `n < 10`, `b = 0`, serta pasangan `n = 0` dan `n = 1`. Sebab itu, istilah **basis-0** dan **basis-1**, yang dipakai secara luas di lingkungan kuliah, baru diperkenalkan pada Bab 7, dan di sana masing-masing mengacu pada list kosong dan list satu elemen.
 
 Type rekursif yang paling penting dalam informatika adalah **list**: sebuah list adalah list kosong, atau sebuah elemen diikuti oleh sebuah list. Bab 7 melanjutkan pembahasan dari sini.
 
@@ -618,7 +618,7 @@ Type rekursif yang paling penting dalam informatika adalah **list**: sebuah list
 | Kasus tidak disjoint | ambigu | berlaku persis seperti Bab 4; basis dan rekurens adalah kasus biasa |
 | Pekerjaan berulang | hasilnya benar, tetapi sangat lambat untuk masukan sedang | gambarkan pohon aplikasinya; adakah aplikasi yang sama muncul lebih dari sekali? |
 
-Baris kedua patut mendapat perhatian khusus, karena inilah satu-satunya kesalahan pada tabel yang tidak dapat ditemukan dengan mencoba nilai batas. Sebuah fungsi yang rekurensnya menjauhi basis tidak menghasilkan jawaban keliru yang dapat diperiksa; fungsi itu sama sekali tidak menghasilkan apa-apa.
+Baris kedua patut mendapat perhatian khusus, karena kesalahan ini tidak dapat ditemukan dengan mencoba nilai batas. Sebuah fungsi yang rekurensnya menjauhi basis tidak menghasilkan jawaban keliru yang dapat diperiksa; fungsi itu sama sekali tidak menghasilkan apa-apa.
 
 ## Ringkasan Padanan
 

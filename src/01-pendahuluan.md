@@ -2,15 +2,15 @@
 
 ## Tentang Diktat Ini
 
-Diktat ini adalah penyusunan ulang atas *Draft Diktat Kuliah Dasar Pemrograman, Bagian: Pemrograman Fungsional* (Revisi Februari 2014) karya Inggriani Liem. Bahan asli tersebut telah dipakai selama bertahun-tahun di lingkungan Institut Teknologi Bandung, dan sebagian besar keputusan mendasarnya (notasi fungsional empat bagian yang diadopsi dari [3], pemisahan tegas antara belajar memrogram dan belajar bahasa, serta urutan materi dari notasi menuju rekursi dan struktur data) dipertahankan di sini karena keputusan-keputusan itu terbukti tepat.
+Diktat ini adalah penyusunan ulang atas *Draft Diktat Kuliah Dasar Pemrograman, Bagian: Pemrograman Fungsional* (Revisi Februari 2014) karya Inggriani Liem. Bahan asli tersebut telah dipakai selama bertahun-tahun di lingkungan Institut Teknologi Bandung, dan sebagian besar keputusan mendasarnya (notasi fungsional empat bagian yang diadopsi dari [3], pemisahan tegas antara belajar memrogram dan belajar bahasa, serta urutan materi dari notasi menuju rekursi dan struktur data) dipertahankan di sini karena keputusan-keputusan itu masih dinilai tepat.
 
 Yang berubah adalah cakupan dan penyajiannya. Bahasa acuan diperbarui ke sebuah bahasa fungsional arus utama, seluruh materi yang terikat pada bahasa tertentu dipindahkan ke sebuah Suplemen terpisah agar badan diktat tidak terikat pada bahasa tertentu, dan sejumlah bab ditambahkan sehingga materi kini mencakup notasi fungsional hingga pohon. Pada beberapa tempat, terminologi bahan lama sengaja diubah mengikuti istilah yang kini lazim di kalangan bahasa fungsional. Setiap perubahan semacam itu ditandai dengan peringatan bagi pembaca yang mengenal bahan terdahulu, agar nama yang kini bermakna berkebalikan tidak menimbulkan kekeliruan.
 
-Diktat ini juga dirancang untuk tidak terikat pada satu mata kuliah tertentu. Susunan kurikulum berubah dari waktu ke waktu: nama, kode, urutan, dan bobot mata kuliah disesuaikan dengan kebutuhan program studi. Yang relatif tetap adalah materi pemrograman fungsional itu sendiri, dan cara termudah untuk mempelajarinya. Sebab itu, diktat ini menyebut dirinya *modul*, bukan buku pegangan sebuah kuliah. Capaian pembelajaran yang dituliskan di bawah adalah capaian pada tingkat modul; mata kuliah yang menggunakannya dipersilakan memetakannya ke CPMK masing-masing, memilih bab yang dipakai, dan menentukan bahasa eksekusi yang sesuai dengan konteksnya. Bagian *Cara Memakai Diktat Ini* di akhir bab memberikan panduan untuk itu.
+Diktat ini juga dirancang untuk tidak terikat pada satu mata kuliah tertentu. Susunan kurikulum berubah dari waktu ke waktu: nama, kode, urutan, dan bobot mata kuliah disesuaikan dengan kebutuhan program studi. Yang relatif tetap adalah materi pemrograman fungsional itu sendiri, dan cara mempelajarinya. Sebab itu, diktat ini menyebut dirinya *modul*, bukan buku pegangan sebuah kuliah. Capaian pembelajaran yang dituliskan di bawah adalah capaian pada tingkat modul; mata kuliah yang menggunakannya dipersilakan memetakannya ke CPMK masing-masing, memilih bab yang dipakai, dan menentukan bahasa eksekusi yang sesuai dengan konteksnya. Bagian *Cara Memakai Diktat Ini* di akhir bab memberikan panduan untuk itu.
 
 ## Paradigma Pemrograman
 
-Komputer dipakai sebagai alat bantu penyelesaian persoalan. Masalahnya, persoalan tidak dapat "disodorkan" begitu saja ke depan komputer untuk dijawab. Ada jarak antara persoalan dengan mesin, dan strategi pemecahan masalah masih harus dituangkan manusia ke dalam bentuk program. Untuk menghasilkan program, seseorang dapat memakai berbagai pendekatan yang dalam bidang pemrograman disebut **paradigma**.
+Komputer dipakai sebagai alat bantu penyelesaian persoalan. Masalahnya, persoalan tidak dapat "disodorkan" begitu saja ke depan komputer untuk dijawab. Ada jarak antara persoalan dan mesin, dan strategi pemecahan masalah masih harus dituangkan manusia ke dalam bentuk program. Untuk menghasilkan program, seseorang dapat memakai berbagai pendekatan yang dalam bidang pemrograman disebut **paradigma**.
 
 Paradigma adalah sudut pandang tertentu yang diprioritaskan terhadap sekelompok persoalan. Paradigma mengarahkan perhatian kita kepada beberapa atribut dan membuat kita mengabaikan atribut yang lain. Sebab itu, sebuah paradigma hanya memberikan pandangan yang terbatas terhadap realitas, dan fanatisme terhadap satu paradigma mempersempit wawasan. Satu paradigma tidak akan cocok untuk semua kelas persoalan.
 
@@ -60,9 +60,9 @@ Karena itu, pertanyaan "bahasa ini fungsional atau bukan" jarang berguna. Pertan
 
 **Belajar bahasa pemrograman** adalah belajar memakai suatu bahasa: aturan sintaks, instruksi yang tersedia, pustaka (*library*), serta cara mengoperasikan kompilator (*compiler*) atau interpreternya. Kegiatan ini lebih merupakan keterampilan.
 
-Keduanya berbeda tingkat kesulitannya, dan mahasiswa sering kali dihadapkan pada kedua kesulitan itu sekaligus, sehingga kesalahan berpikir sulit dibedakan dari kesalahan mengetik. Diktat ini memisahkan keduanya dengan sengaja. *Diktat Pemrograman Fungsional* melatih cara berpikir dengan notasi yang tidak dapat dieksekusi, dan menyisipkan terjemahan singkat ke bahasa acuan pada tempat-tempat yang ditandai: secukupnya agar rancangan dapat dijalankan, tidak lebih. *Suplemen Diktat Pemrograman Fungsional* (selanjutnya disebut sebagai Suplemen) melanjutkan dari titik itu dan membahas eksekusi secara sistematis.
+Keduanya berbeda tingkat kesulitannya, dan mahasiswa sering kali dihadapkan pada kedua kesulitan itu sekaligus, sehingga kesalahan berpikir sulit dibedakan dari kesalahan mengetik. Diktat ini memisahkan keduanya dengan sengaja. *Diktat Pemrograman Fungsional* melatih cara berpikir dengan notasi yang tidak dapat dieksekusi, dan menyisipkan terjemahan singkat ke bahasa acuan pada tempat-tempat yang ditandai: secukupnya agar rancangan dapat dijalankan, tidak lebih. *Suplemen Diktat Pemrograman Fungsional* (selanjutnya disebut Suplemen) melanjutkan dari titik itu dan membahas eksekusi secara sistematis.
 
-Pemisahan ini tidak berarti bahwa program tidak perlu dijalankan. Memaksa pembaca hanya bekerja di atas kertas, membuat spesifikasi tanpa pernah mengeksekusi program, tidaklah benar. Sebaliknya, mencetak pemrogram yang langsung mengetik dan mengeksekusi tanpa analisis dan spesifikasi yang dapat dipertanggungjawabkan juga tidak benar. Keduanya saling melengkapi dan tidak dapat dipisahkan.
+Pemisahan ini tidak berarti bahwa program tidak perlu dijalankan. Memaksa pembaca hanya bekerja di atas kertas, membuat spesifikasi tanpa pernah mengeksekusi program, tidaklah benar. Sebaliknya, mencetak pemrogram yang langsung mengetik dan mengeksekusi tanpa analisis dan spesifikasi yang dapat dipertanggungjawabkan juga tidak benar. Kerja di atas kertas dan eksekusi saling melengkapi dan tidak dapat dipisahkan.
 
 ## Notasi Fungsional dan Bahasa Eksekusi
 
@@ -81,7 +81,7 @@ Kriteria pemilihan bahasa acuan:
 - Mendukung pencocokan pola (*pattern matching*), sehingga analisis basis-rekurens dapat diterjemahkan secara langsung.
 - Tersedia secara bebas, mudah dipasang, dan mempunyai lingkungan interaktif (REPL) untuk mencoba ekspresi satu per satu.
 
-Diktat ini memakai **Haskell** sebagai bahasa acuan, terutama karena kriteria kedua: dalam Haskell, kesalahan berpikir tentang domain dan range terdeteksi pada saat kompilasi, bukan pada saat program dijalankan. Bahasa lain yang memenuhi kriteria di atas (misalnya OCaml, F#, Elm, atau Racket) dapat menggantikannya.
+Diktat ini memakai **Haskell** sebagai bahasa acuan, terutama karena kriteria kedua: dalam Haskell, ketidakcocokan type pada domain dan range terdeteksi pada saat kompilasi, bukan pada saat program dijalankan. Bahasa lain yang memenuhi kriteria di atas (misalnya OCaml, F#, Elm, atau Racket) dapat menggantikannya.
 
 **Apa yang berubah bila bahasa acuannya diganti.** Jawaban yang jujur bukanlah "tidak ada", melainkan sesuatu yang dapat dirinci satu per satu. Setiap bab Diktat ini terdiri atas **badan** dan **koda**. Badan bab hanya memakai notasi fungsional dan tidak berubah sedikit pun oleh pergantian bahasa. Koda adalah bagian yang menerjemahkan isi bab tersebut ke bahasa acuan, dan seluruh isinya bergantung pada bahasa itu. Daftar lengkap letak koda pada kesepuluh bab tercantum pada Suplemen S1, dan daftar itulah yang harus dikerjakan ulang oleh siapa pun yang mengganti bahasanya. Selain koda, yang perlu ditulis ulang hanyalah bab-bab Suplemen yang bertanda **[B]** pada tabel di bawah.
 
@@ -153,7 +153,7 @@ Bab 10 dan 11 bersifat opsional dan berdiri di luar alur utama. Bila modul ini d
 
 (Sedang disusun, belum tersedia.)
 
-Suplemen dibaca berurutan dari S1 sampai S10 dan merupakan satu bacaan yang utuh. Tanda **[U]** dan **[B]** hanya menyangkut pemeliharaan: **[U]** berlaku bagi bahasa acuan mana pun, **[B]** khas bagi bahasa acuan yang dipakai.
+Suplemen dibaca berurutan dari S1 sampai S10 dan merupakan satu bacaan yang utuh. Tanda **[U]** dan **[B]** hanya menyangkut pemeliharaan: **[U]** berlaku bagi bahasa acuan mana pun, **[B]** khusus untuk bahasa acuan yang dipakai.
 
 | Bab | Judul | Isi | |
 |---|---|---|---|
@@ -172,7 +172,7 @@ Tidak semua fungsi pada Diktat ini diterjemahkan; sebagian sengaja disisakan seb
 
 ## Cara Memakai Diktat Ini
 
-**Bagi pembaca.** Diktat ini adalah buku kerja, bukan buku teks. Membacanya tanpa menuliskan sendiri definisi, spesifikasi, dan realisasi tidak akan banyak berguna. Untuk setiap contoh, tutuplah bagian realisasi dan cobalah menuliskannya sendiri dari spesifikasi yang diberikan, lalu bandingkan. Untuk setiap fungsi yang Anda tulis, jalankan dalam bahasa acuan dan periksa apakah hasilnya sesuai dengan spesifikasi yang Anda tulis sendiri. Inilah bentuk pengujian yang paling sederhana dan paling sering terlupakan.
+**Bagi pembaca.** Diktat ini adalah buku kerja, bukan buku teks. Membacanya tanpa menuliskan sendiri definisi, spesifikasi, dan realisasi tidak akan banyak berguna. Untuk setiap contoh, tutuplah bagian realisasi dan cobalah menuliskannya sendiri dari spesifikasi yang diberikan, lalu bandingkan. Untuk setiap fungsi yang Anda tulis, jalankan dalam bahasa acuan dan periksa apakah hasilnya sesuai dengan spesifikasi yang Anda tulis sendiri. Inilah bentuk pengujian yang paling dasar dan paling sering terlupakan.
 
 **Bagi pengajar.** Bab 2–8 merupakan inti yang saling bergantung dan sebaiknya diambil utuh; Bab 9 dapat diringkas menjadi satu pertemuan bila waktu sempit, tetapi tidak dihilangkan. Bab 10, Bab 11, dan sebagian besar contoh pada Bab 7 dapat dipilih sesuai waktu yang tersedia. Bab 11 dirancang untuk dibaca dan dikerjakan sendiri, bukan untuk diajarkan, dan dapat diberikan sebagai bahan pengayaan tanpa satu pertemuan pun. Bila modul ini menempati kurang dari setengah semester, cara memadatkan yang disarankan adalah mengurangi jumlah contoh pada Bab 7, bukan menghapus Bab 8, karena tanpa Bab 8, pembaca akan menyimpulkan bahwa pemrograman fungsional identik dengan rekursi manual.
 

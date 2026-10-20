@@ -23,7 +23,7 @@ Istilah yang dipakai sepanjang bab ini:
 | Upapohon (*subtree*) | sebuah simpul beserta seluruh keturunannya, yang dengan sendirinya juga sebuah pohon |
 | Tinggi (*height*) | banyaknya simpul pada jalur terpanjang dari akar sampai daun |
 
-Baris terakhir pada tabel di atas berbentuk definisi rekursif: sebuah upapohon **adalah sebuah pohon**. Setiap type dan setiap fungsi pada bab ini mengikuti bentuk tersebut.
+Baris *Upapohon* pada tabel di atas berbentuk definisi rekursif: sebuah upapohon **adalah sebuah pohon**. Setiap type dan setiap fungsi pada bab ini mengikuti bentuk tersebut.
 
 Persoalan yang berbentuk pohon banyak ditemui: struktur bab sebuah buku, klasifikasi makhluk hidup, silsilah keluarga, susunan berkas dalam sebuah sistem operasi, menu sebuah aplikasi, dan ekspresi aritmetika. Yang terakhir dibahas tersendiri pada bab ini.
 
@@ -436,9 +436,9 @@ APLIKASI
 
 Realisasi tersebut mempunyai tiga sifat berikut.
 
-- **Bandingkan dengan `insertSorted` pada Bab 7.** Keduanya menyisipkan sebuah nilai ke dalam struktur terurut, keduanya bersandar pada invarian yang dinyatakan sebagai prasyarat, dan keduanya membangun ulang bagian struktur yang dilewatinya sambil memakai kembali sisanya utuh. Yang berbeda hanyalah strukturnya. `insertSorted` melewati rata-rata separuh list; `insertTree` melewati sepanjang tingginya saja. Rancangan yang sama, ditempatkan pada struktur yang berbeda, memberikan hasil yang berbeda.
+- **`insertTree` adalah `insertSorted` yang dipindahkan ke pohon.** Keduanya menyisipkan sebuah nilai ke dalam struktur terurut, keduanya bersandar pada invarian yang dinyatakan sebagai prasyarat, dan keduanya membangun ulang bagian struktur yang dilewatinya sambil memakai kembali sisanya utuh. Yang berbeda hanyalah strukturnya. `insertSorted` melewati rata-rata separuh list; `insertTree` melewati sepanjang tingginya saja. Rancangan yang sama, ditempatkan pada struktur yang berbeda, memberikan biaya yang berbeda.
 
-- **`isMemberTree` membuang separuh pohon pada setiap langkah.** Bandingkan dengan `isMember` atas list pada Bab 7, yang harus memeriksa elemen satu per satu. Inilah imbalan dari invariannya, dan sebagaimana Bab 7 sudah menyatakan tentang himpunan, invarian tidak pernah gratis: harganya dibayar oleh setiap penyisipan yang harus menjaganya.
+- **`isMemberTree` membuang satu upapohon pada setiap langkah,** yaitu separuh pohon bila pohonnya seimbang. Bandingkan dengan `isMember` atas list pada Bab 7, yang harus memeriksa elemen satu per satu. Inilah imbalan dari invariannya, dan sebagaimana Bab 7 sudah menyatakan tentang himpunan, invarian tidak pernah gratis: harganya dibayar oleh setiap penyisipan yang harus menjaganya.
 
 - **Penelusuran inorder sebuah pohon terurut menghasilkan list yang terurut menaik.** Aplikasi terakhir di atas memperlihatkannya. Hal itu merupakan akibat langsung dari invariannya, dan merupakan salah satu cara mengurutkan sebuah kumpulan nilai.
 

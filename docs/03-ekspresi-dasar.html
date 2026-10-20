@@ -37,7 +37,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-b1c70305.js";
+            window.path_to_searchindex_js = "searchindex-3fac1ea3.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-05c84685.js"></script>
@@ -338,7 +338,7 @@ pi     : → Real               { pi adalah konstanta matematika π }
       0.0
 </code></pre>
 <p>Perhatikan bahwa <code>distance</code> tidak memerlukan prasyarat meskipun memakai <code>sqrt</code>: jumlah dua bilangan kuadrat tidak mungkin negatif. Alasan semacam ini pantas dituliskan sebagai komentar bila tidak segera terlihat.</p>
-<p>Perhatikan pula bahwa <code>square</code> dari Bab 2 <strong>tidak</strong> dapat dipakai di sini. Domainnya <code>Integer</code>, sedangkan yang hendak dikuadratkan adalah <code>Real</code>, dan notasi ini tidak menyeberangkan keduanya secara diam-diam. Aturan yang tampak rewel di awal bab baru terasa manfaatnya di sini: aturan itu memaksa perbedaan tersebut tampak pada saat program ditulis, bukan pada saat dijalankan.</p>
+<p>Perhatikan pula bahwa <code>square</code> dari Bab 2 <strong>tidak</strong> dapat dipakai di sini. Domainnya <code>Integer</code>, sedangkan yang hendak dikuadratkan adalah <code>Real</code>, dan notasi ini tidak menyeberangkan keduanya secara diam-diam. Aturan yang tampak terlalu ketat di awal bab baru terasa manfaatnya di sini: aturan itu memaksa perbedaan tersebut tampak pada saat program ditulis, bukan pada saat dijalankan.</p>
 <p>Dalam Haskell:</p>
 <pre><code class="language-haskell">sqrDif :: Double -&gt; Double -&gt; Double
 -- sqrDif a b adalah kuadrat dari selisih a dan b
@@ -386,7 +386,7 @@ distance x1 y1 x2 y2 = sqrt (sqrDif x1 x2 + sqrDif y1 y2)
 </table>
 </div>
 <p>Pertanyaan yang membantu memutuskan: <em>apakah hal ini pantas diberi nama dan dijelaskan kepada orang lain?</em> <code>sqrDif</code> (kuadrat selisih) adalah konsep yang berdiri sendiri dan mungkin berguna di tempat lain, sehingga pantas menjadi fungsi. <code>dx</code> hanyalah selisih absis dalam perhitungan ini, dan tidak berarti apa-apa di luar konteksnya, sehingga cukup menjadi nama antara.</p>
-<p>Bagi pemula, lebih sehat keliru karena membuat terlalu banyak fungsi antara daripada terlalu sedikit.</p>
+<p>Bagi pemula, keliru karena terlalu banyak membuat fungsi antara lebih aman daripada keliru karena terlalu sedikit.</p>
 <h2 id="contoh-2-ekspresi-boolean"><a class="header" href="#contoh-2-ekspresi-boolean">Contoh 2: Ekspresi Boolean</a></h2>
 <p><strong>Persoalan.</strong> Tuliskan sebuah predikat yang menentukan apakah suatu tahun adalah tahun kabisat. Sebuah tahun adalah kabisat bila habis dibagi 4, kecuali bila habis dibagi 100 tetapi tidak habis dibagi 400.</p>
 <pre><code>JUDUL   Tahun Kabisat
@@ -410,7 +410,7 @@ distance x1 y1 x2 y2 = sqrt (sqrDif x1 x2 + sqrDif y1 y2)
     ⇒ isLeapYear (2023)
       false
 </code></pre>
-<p>Keempat aplikasi di atas dipilih dengan sengaja, bukan diambil sembarangan: <code>2024</code> habis dibagi 4 saja, <code>1900</code> habis dibagi 100 tetapi tidak 400, <code>2000</code> habis dibagi 400, dan <code>2023</code> tidak habis dibagi 4. Bersama-sama, keempatnya menyentuh setiap cabang ekspresi. Memilih contoh aplikasi dengan cara ini, satu untuk setiap kemungkinan, adalah bentuk pengujian yang paling sederhana, dan sudah dapat dilakukan sekarang, jauh sebelum ada perkakas pengujian (<em>testing tools</em>).</p>
+<p>Keempat aplikasi di atas dipilih dengan sengaja, bukan diambil sembarangan: <code>2024</code> habis dibagi 4 saja, <code>1900</code> habis dibagi 100 tetapi tidak 400, <code>2000</code> habis dibagi 400, dan <code>2023</code> tidak habis dibagi 4. Bersama-sama, keempatnya menyentuh setiap cabang ekspresi. Memilih contoh aplikasi dengan cara ini, satu untuk setiap kemungkinan, adalah bentuk pengujian sederhana yang sudah dapat dilakukan sekarang, jauh sebelum ada perkakas pengujian (<em>testing tools</em>).</p>
 <p>Dalam Haskell:</p>
 <pre><code class="language-haskell">isLeapYear :: Integer -&gt; Bool
 -- isLeapYear y bernilai True bila y adalah tahun kabisat
@@ -442,7 +442,7 @@ isLeapYear y = (y `mod` 4 == 0) &amp;&amp; ((y `mod` 100 /= 0) || (y `mod` 400 =
   → sqrt (25.0)                                             { reduksi + }
   → 5.0                                                     { reduksi sqrt }
 </code></pre>
-<p>Ada sembilan langkah, dan masing-masing hanya menyentuh satu bagian ekspresi. Menelusuri secara tertulis seperti ini adalah cara paling andal untuk memahami program yang ditulis orang lain <em>dan</em> menemukan kesalahan pada program yang kita tulis sendiri.</p>
+<p>Ada sembilan langkah, dan masing-masing hanya menyentuh satu bagian ekspresi. Menelusuri secara tertulis seperti ini adalah cara yang andal untuk memahami program yang ditulis orang lain <em>dan</em> menemukan kesalahan pada program yang kita tulis sendiri.</p>
 <h2 id="urutan-evaluasi"><a class="header" href="#urutan-evaluasi">Urutan Evaluasi</a></h2>
 <p>Pada penelusuran di atas, <code>sqrDif (1.0, 5.0)</code> dievaluasi lebih dahulu. Pilihan itu tidak wajib. Kita dapat mengevaluasi <code>sqrDif (3.0, 6.0)</code> lebih dahulu:</p>
 <pre><code>⇒ distance (1.0, 3.0, 5.0, 6.0)

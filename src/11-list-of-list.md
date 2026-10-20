@@ -1,8 +1,8 @@
 # List of List
 
-Bab ini berdiri di luar alur utama Diktat, sebagaimana Bab 10, tetapi dengan cara yang berbeda: Bab 10 memperkenalkan sebuah struktur baru, sedangkan bab ini tidak memperkenalkan satu pun type, operasi, atau notasi yang belum ada. Seluruh isinya diturunkan dari Bab 5, 6, 7, dan 10, dan tugas bab ini adalah memperlihatkan penurunan itu.
+Bab ini berdiri di luar alur utama Diktat, sebagaimana Bab 10, tetapi dengan cara yang berbeda: Bab 10 memperkenalkan sebuah struktur baru, sedangkan bab ini tidak memperkenalkan satu pun mekanisme type, operasi list, atau notasi yang belum ada. Seluruh isinya diturunkan dari Bab 5, 6, 7, dan 10, dan tugas bab ini adalah memperlihatkan penurunan itu.
 
-Bab ini juga dirancang untuk dikerjakan sendiri, bukan untuk diajarkan: sedikit yang dituliskan lengkap, banyak yang ditanyakan. Bahan terdahulu di lingkungan ITB, mengikuti literatur Lisp, memperlakukan topik ini sebagai pokok bahasan tersendiri dengan delapan operasi dasarnya sendiri. Pembaca bab ini akan mengerjakan seluruh topik tersebut tanpa satu pun operasi baru.
+Bab ini juga dirancang untuk dikerjakan sendiri, bukan untuk diajarkan: sedikit yang dituliskan lengkap, banyak yang ditanyakan. Bahan terdahulu di lingkungan ITB, mengikuti literatur Lisp, memperlakukan topik ini sebagai pokok bahasan tersendiri dengan delapan operasi dasarnya sendiri. Pembaca bab ini akan mengerjakan seluruh topik tersebut tanpa satu pun operasi list baru.
 
 Bab ini mengasumsikan Bab 10 sudah dibaca.
 
@@ -228,7 +228,7 @@ Perbandingan kedua bentuk itu:
 | Banyaknya fungsi | dua | satu |
 | Analisis kasus per fungsi | atas satu type saja | atas dua type sekaligus |
 | Sifat lengkap dan disjoint | dijamin type-nya | harus dijaga sendiri |
-| `and then` | tidak diperlukan | diperlukan, dan wajib |
+| `and then` | tidak diperlukan | wajib |
 | Arah rekursi | terpisah pada dua fungsi | bercampur dalam satu ekspresi |
 | Padanan langsung ke type-nya | ada | tidak ada |
 
@@ -251,7 +251,7 @@ Keduanya menyebut dirinya sendiri melalui sebuah list. Keduanya menempatkan basi
 
 Perbedaannya hanya satu: **letak nilainya**. Sebuah `Tree` menyimpan `info` pada setiap simpul, termasuk simpul dalam. Sebuah `Item` menyimpan nilai hanya pada daunnya; simpul dalamnya, yaitu `Nested`, tidak membawa apa pun selain anak-anaknya.
 
-Sebab itu, sebuah *list of list* dengan sarang tak teratur adalah sebuah pohon n-aire yang nilainya seluruhnya berada di daun. Kedua bab ini membahas satu struktur yang sama, dan bab ini menemukannya dari arah yang berlawanan: Bab 10 berangkat dari gagasan hierarki, bab ini berangkat dari gagasan list yang elemennya boleh berupa list.
+Sebab itu, sebuah *list of list* dengan sarang tak teratur adalah sebuah pohon n-aire yang nilainya seluruhnya berada di daun. Kedua bab ini membahas satu keluarga struktur, dan bab ini menemukannya dari arah yang berlawanan: Bab 10 berangkat dari gagasan hierarki, bab ini berangkat dari gagasan list yang elemennya boleh berupa list.
 
 Ada dua pertanyaan yang pantas Anda jawab sendiri, dan sengaja tidak dijawab di sini:
 
@@ -280,7 +280,7 @@ Untuk setiap nomor, tuliskan keempat bagian secara lengkap. Pakailah bentuk pasa
 
 Struktur pada bab ini adalah *S-expression*, dan berasal dari Lisp (1958), bahasa fungsional tertua yang masih dipakai. Di sana struktur ini bukan sebuah topik lanjut, melainkan satu-satunya struktur data yang ada, dan sekaligus bentuk penulisan program itu sendiri: sebuah program Lisp adalah sebuah S-expression, sehingga program dapat diperlakukan sebagai data tanpa perkakas tambahan apa pun. Gagasan tersebut dibahas panjang lebar dalam [6].
 
-Lisp tidak mempunyai sistem type, sehingga `IsAtom` dan `IsList` di sana adalah pemeriksaan yang dilakukan pada saat eksekusi terhadap nilai yang bentuknya tidak dijamin oleh apa pun. Bahan terdahulu mewarisi keadaan tersebut beserta perangkat operasi rangkapnya. Begitu sarang tak teratur dinyatakan sebagai type alternatif yang rekursif, perangkat rangkap itu tidak lagi diperlukan, dan yang tersisa adalah dua alternatif dengan konstruktor dan selektornya sendiri, tidak berbeda dari `Shape` pada Bab 5.
+Lisp tidak memeriksa type pada saat kompilasi, sehingga `IsAtom` dan `IsList` di sana adalah pemeriksaan yang dilakukan pada saat eksekusi terhadap nilai yang bentuknya tidak dijamin oleh apa pun. Bahan terdahulu mewarisi keadaan tersebut beserta perangkat operasi rangkapnya. Begitu sarang tak teratur dinyatakan sebagai type alternatif yang rekursif, perangkat rangkap itu tidak lagi diperlukan, dan yang tersisa adalah dua alternatif dengan konstruktor dan selektornya sendiri, tidak berbeda dari `Shape` pada Bab 5.
 
 Sejumlah fungsi pada bagian sebelumnya, khususnya `removeValue`, dikenal luas dari [9], yang membahas struktur ini secara panjang lebar melalui tanya jawab dan tanpa satu pun definisi type.
 

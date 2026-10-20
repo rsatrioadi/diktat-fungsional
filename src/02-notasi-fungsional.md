@@ -53,7 +53,7 @@ APLIKASI
 
 Aksi membaca dan menulis diwakili oleh interaksi pemakai dengan lingkungan eksekusi, bukan oleh program. Program itu sendiri hanyalah `+`.
 
-Perbedaan ini bukan sekadar soal penulisan. Dalam program imperatif, untuk mengetahui nilai sebuah nama, kita harus tahu *kapan* nama itu diperiksa; nilainya dapat berubah. Dalam program fungsional, sebuah nama yang telah terikat pada suatu nilai akan bernilai sama di mana pun dan kapan pun ia muncul. Sifat ini disebut **transparansi referensial** (*referential transparency*), dan dari sifat inilah sebagian besar keuntungan paradigma ini berasal: ekspresi dapat digantikan oleh nilainya tanpa mengubah arti program, sehingga penalaran terhadap program menjadi jauh lebih sederhana.
+Perbedaan ini bukan sekadar soal penulisan. Dalam program imperatif, untuk mengetahui nilai sebuah nama, kita harus tahu *kapan* nama itu diperiksa; nilainya dapat berubah. Dalam program fungsional, sebuah nama yang telah terikat pada suatu nilai akan bernilai sama di mana pun dan kapan pun nama itu muncul. Sifat ini disebut **transparansi referensial** (*referential transparency*), dan dari sifat inilah sebagian besar keuntungan paradigma ini berasal: ekspresi dapat digantikan oleh nilainya tanpa mengubah arti program, sehingga penalaran terhadap program menjadi jauh lebih sederhana.
 
 ## Konstruksi Program Fungsional
 
@@ -104,7 +104,7 @@ Judul adalah uraian yang sangat ringkas untuk memudahkan pencarian, dan bukan ba
 
 Komentar dituliskan di antara kurung kurawal `{ }`.
 
-Pada realisasi tidak ada kata kunci semacam `function` atau `def`. Yang dituliskan hanyalah persamaan: nama beserta parameternya di sebelah kiri, ekspresi di sebelah kanan. Sebuah **konstanta** ditulis dengan bentuk yang sama, hanya saja tanpa parameter. Memang, konstanta dapat dipandang sebagai fungsi tanpa argumen.
+Pada realisasi tidak ada kata kunci semacam `function` atau `def`. Yang dituliskan hanyalah persamaan: nama beserta parameternya di sebelah kiri, ekspresi di sebelah kanan. Sebuah **konstanta** ditulis dengan bentuk yang sama, hanya saja tanpa parameter. Memang, konstanta dapat dipandang sebagai fungsi tanpa parameter.
 
 ## Contoh 1: Ekspresi Numerik Sederhana
 
@@ -235,7 +235,7 @@ Sementara itu, aplikasi fungsinya ditulis sebagai berikut:
 max2 3 7
 ```
 
-- Perhatikan domain yang ditulis sebagai `Integer -> Integer -> Integer`, bukan `(Integer, Integer) -> Integer`. Untuk sementara, bacalah tulisan itu sebagai "menerima dua Integer dan menghasilkan sebuah Integer". Mengapa panah ditulis dua kali, dan apa yang dapat dilakukan berkat hal itu, dibahas pada Bab 8.
+- Perhatikan baris definisi yang ditulis sebagai `Integer -> Integer -> Integer`, bukan `(Integer, Integer) -> Integer`. Untuk sementara, bacalah tulisan itu sebagai "menerima dua Integer dan menghasilkan sebuah Integer". Mengapa panah ditulis dua kali, dan apa yang dapat dilakukan berkat hal itu, dibahas pada Bab 8.
 - Aplikasi ditulis dengan menderetkan argumen setelah nama fungsi, tanpa kurung dan tanpa koma. Kurung hanya dipakai untuk mengelompokkan ekspresi, misalnya `max2 (3 + 1) 7` atau `cube (-1)`.
 
 ## Acuan Notasi (sejauh Bab 2)
@@ -284,7 +284,7 @@ Untuk konstanta, panah pada `→ A` hilang dalam terjemahan. Notasi fungsional m
 
 ## Konvensi Penamaan
 
-Konvensi berikut berlaku di seluruh diktat, **tanpa kecuali**. Konsistensi penamaan bukan soal selera: nama yang dapat ditebak mengurangi beban ingatan pembaca, dan penyimpangan yang tidak disengaja adalah sumber kesalahan yang nyata.
+Konvensi berikut berlaku di seluruh diktat; satu-satunya kelonggaran disebut pada butir terakhir di bawah. Konsistensi penamaan bukan soal selera: nama yang dapat ditebak mengurangi beban ingatan pembaca, dan penyimpangan yang tidak disengaja adalah sumber kesalahan yang nyata.
 
 | Jenis | Aturan | Contoh |
 |---|---|---|
@@ -306,7 +306,7 @@ Tambahan yang perlu diperhatikan:
 
 Notasi ini dirancang untuk menuliskan **rancangan** program agar mudah dibaca manusia. Notasi ini tidak mempunyai pemroses bahasa, dan karena itu tidak dapat dieksekusi. Justru itulah gunanya: notasi memaksa penulisnya menyatakan definisi dan spesifikasi lebih dahulu, sebelum realisasi. Langkah ini mudah terlewati bila kita langsung mengetik di depan mesin.
 
-Namun, perlu ditegaskan bahwa notasi ini **tidak** mencakup seluruh konsep pada pemrograman fungsional. Beberapa hal berikut berada di luar jangkauannya, dan bila diperlukan akan dibicarakan langsung dalam bahasa acuan:
+Namun, notasi ini **tidak** mencakup seluruh konsep pada pemrograman fungsional. Beberapa hal berikut berada di luar jangkauannya, dan bila diperlukan akan dibicarakan langsung dalam bahasa acuan:
 
 - Strategi evaluasi: notasi tidak menyatakan urutan evaluasi maupun evaluasi malas (*lazy evaluation*).
 - Efek, masukan, dan keluaran: dibicarakan pada Bab 9.

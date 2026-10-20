@@ -309,7 +309,7 @@ APLIKASI
       false
 ```
 
-`and then` **tidak komutatif**: `(a mod b = 0) and then (b ≠ 0)` tetap tidak terdefinisi bila `b` nol. Urutan operan menjadi penting, dan inilah satu-satunya tempat dalam notasi ini yang urutan operannya bermakna. Sebab itu, pakailah `and then` hanya bila memang diperlukan, yaitu bila operan kedua tidak selalu terdefinisi, dan pakailah `and` biasa di tempat lain.
+`and then` **tidak komutatif**: `(a mod b = 0) and then (b ≠ 0)` tetap tidak terdefinisi bila `b` nol. Urutan operan menjadi penting, dan bersama `or else`, inilah satu-satunya tempat dalam notasi ini yang urutan evaluasi operannya bermakna. Sebab itu, pakailah `and then` hanya bila memang diperlukan, yaitu bila operan kedua tidak selalu terdefinisi, dan pakailah `and` biasa di tempat lain.
 
 Dalam Haskell:
 
@@ -334,7 +334,7 @@ Pembedaan itu tetap berarti bagi pembaca, meskipun tidak bagi mesin: `and then` 
 | `if` tanpa `else` | tidak ada nilai bagi sebagian masukan | tidak berlaku dalam notasi ini |
 | `and` untuk operan yang tidak selalu terdefinisi | tidak terdefinisi padahal seharusnya bernilai | apakah operan kedua terdefinisi untuk seluruh domain? |
 
-Kesalahan batas layak mendapat perhatian khusus. Kesalahan ini tidak pernah tampak pada contoh aplikasi yang dipilih sembarangan, karena nilai sembarang hampir tidak pernah jatuh tepat di batas. Kebiasaan yang dianjurkan: **untuk setiap batas, uji nilai tepat pada batas, tepat di bawahnya, dan tepat di atasnya.**
+Kesalahan batas layak mendapat perhatian khusus. Kesalahan ini jarang tampak pada contoh aplikasi yang dipilih sembarangan, karena nilai sembarang hampir tidak pernah jatuh tepat di batas. Kebiasaan yang dianjurkan: **untuk setiap batas, uji nilai tepat pada batas, tepat di bawahnya, dan tepat di atasnya.**
 
 ## Latihan
 
